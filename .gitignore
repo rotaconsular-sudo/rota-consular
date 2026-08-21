@@ -44,6 +44,6 @@ next-env.d.ts
 
 # skill reference bundles auto-installed by `prisma init` (regenerable, not project code)
 /.agents/
-/.claude/
+/.claude/skills/
 /.windsurf/
 skills-lock.json

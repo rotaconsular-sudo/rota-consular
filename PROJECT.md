@@ -89,5 +89,9 @@ marca e SEO inviável.
       região em São Paulo ainda). Conta criada com `rotaconsular@gmail.com`.
       Conexão verificada de ponta a ponta.
 - [x] Rodar a primeira migration (`prisma migrate dev --name init`)
-- [ ] Construir as telas do wizard (dashboard de solicitações + 5 etapas + revisão)
+- [x] Construir as telas do wizard (dashboard de solicitações + 5 etapas + revisão)
+      — testado ponta a ponta no navegador, sem autenticação real ainda
+      (usuário de teste fixo em `src/lib/current-user.ts`)
+- [ ] Login por magic link (substituir o usuário de teste fixo)
+- [ ] Upload real de documentos (Vercel Blob ou S3 — hoje só registra o nome do arquivo)
 - [ ] Prototipar o prompt de análise automática (Claude API) com casos de teste reais
