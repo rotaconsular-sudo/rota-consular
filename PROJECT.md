@@ -97,6 +97,10 @@ marca e SEO inviável.
       Testado com dois usuários diferentes no navegador. Envio de e-mail via
       Resend ainda não configurado — em dev, o link é só logado no console
       do servidor (ver `src/lib/mailer.ts`).
+- [x] Pagamento e ativação do domínio `rotaconsular.com.br` confirmados —
+      DNS em transição (delegação externa liberada ~20min depois da ativação)
+- [ ] Publicar o projeto na Vercel (conta em `rotaconsular-sudo`, ligada ao
+      GitHub) e depois apontar `rotaconsular.com.br` pra lá
 - [ ] Configurar `RESEND_API_KEY` e domínio de envio pra e-mail de verdade
 - [ ] Upload real de documentos (Vercel Blob ou S3 — hoje só registra o nome do arquivo)
 - [x] Motor de análise automática (Claude API, `claude-sonnet-5`) — lê as
