@@ -107,5 +107,9 @@ marca e SEO inviável.
       respostas do wizard + lista de documentos, devolve nível de prontidão
       (0-100), checklist com status (ok/atenção/faltando) e alertas, via
       resposta estruturada (tool use). Prompt deixa explícito que não é
-      previsão de aprovação. Precisa de `ANTHROPIC_API_KEY` no `.env` — ainda
-      não testado ponta a ponta com uma chave real.
+      previsão de aprovação. **Testado ponta a ponta** com chave real (conta
+      Anthropic própria em `rotaconsular@gmail.com`, separada da 55digital) —
+      resultado qualitativamente bom, identificou pontos específicos (vínculo
+      empregatício forte, documentação financeira/patrimonial faltando).
+      Custo por análise: ~US$ 0,01–0,02 (preço promocional do Sonnet 5 até
+      31/08/2026, depois sobe um pouco). ~18s de latência por análise.
