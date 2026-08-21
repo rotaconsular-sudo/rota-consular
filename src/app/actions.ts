@@ -8,6 +8,7 @@ import { requireUser } from "@/lib/auth";
 import { destroySession } from "@/lib/session";
 import { WIZARD_STEPS, getNextStep, type WizardStepSlug } from "@/lib/wizard";
 import type { WizardStep, DocumentType } from "@/generated/prisma/enums";
+import { runReadinessAnalysis } from "@/lib/anthropic";
 
 // Server Actions são alcançáveis por POST direto, não só pela UI — por
 // isso toda ação aqui reconfirma quem é o usuário e se ele é dono da
@@ -93,6 +94,48 @@ export async function removeDocument(documentId: string, applicationId: string) 
   });
 
   revalidatePath(`/solicitacoes/${applicationId}/documentos`);
+}
+
+export async function runAnalysis(applicationId: string) {
+  const user = await requireUser();
+  await requireOwnApplication(user.id, applicationId);
+
+  const [answers, documents] = await Promise.all([
+    prisma.answer.findMany({ where: { applicationId } }),
+    prisma.document.findMany({ where: { applicationId } }),
+  ]);
+
+  const answersByStep = Object.fromEntries(
+    answers.map((a) => [a.step, a.data as Record<string, unknown>]),
+  );
+
+  const result = await runReadinessAnalysis({
+    answers: answersByStep,
+    documents: documents.map((d) => ({ type: d.type, fileName: d.fileName })),
+  });
+
+  await prisma.analysisResult.upsert({
+    where: { applicationId },
+    update: {
+      readinessScore: result.readinessScore,
+      checklist: result.checklist,
+      alerts: result.alerts,
+    },
+    create: {
+      applicationId,
+      readinessScore: result.readinessScore,
+      checklist: result.checklist,
+      alerts: result.alerts,
+    },
+  });
+
+  await prisma.application.update({
+    where: { id: applicationId },
+    data: { status: "ANALISE_PRONTA" },
+  });
+
+  revalidatePath(`/solicitacoes/${applicationId}`);
+  redirect(`/solicitacoes/${applicationId}/resultado`);
 }
 
 export async function logout() {

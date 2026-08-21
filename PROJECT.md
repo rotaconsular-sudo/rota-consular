@@ -99,4 +99,9 @@ marca e SEO inviável.
       do servidor (ver `src/lib/mailer.ts`).
 - [ ] Configurar `RESEND_API_KEY` e domínio de envio pra e-mail de verdade
 - [ ] Upload real de documentos (Vercel Blob ou S3 — hoje só registra o nome do arquivo)
-- [ ] Prototipar o prompt de análise automática (Claude API) com casos de teste reais
+- [x] Motor de análise automática (Claude API, `claude-sonnet-5`) — lê as
+      respostas do wizard + lista de documentos, devolve nível de prontidão
+      (0-100), checklist com status (ok/atenção/faltando) e alertas, via
+      resposta estruturada (tool use). Prompt deixa explícito que não é
+      previsão de aprovação. Precisa de `ANTHROPIC_API_KEY` no `.env` — ainda
+      não testado ponta a ponta com uma chave real.

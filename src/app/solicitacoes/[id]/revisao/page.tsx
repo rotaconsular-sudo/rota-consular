@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { WIZARD_STEPS } from "@/lib/wizard";
+import { runAnalysis } from "@/app/actions";
 
 const FIELD_LABEL: Record<string, string> = {
   nomeCompleto: "Nome completo",
@@ -65,7 +66,7 @@ export default async function RevisaoPage(
 
   const application = await prisma.application.findUnique({
     where: { id },
-    include: { answers: true, documents: true },
+    include: { answers: true, documents: true, analysisResult: true },
   });
 
   if (!application) return null;
@@ -157,14 +158,36 @@ export default async function RevisaoPage(
       </section>
 
       <div className="border-t border-zinc-100 pt-5">
-        <button
-          type="button"
-          disabled
-          title="Motor de análise automática ainda não está conectado"
-          className="w-full cursor-not-allowed rounded-lg bg-zinc-200 px-5 py-3 text-sm font-medium text-zinc-500"
-        >
-          Rodar análise automática (em breve)
-        </button>
+        {application.analysisResult && (
+          <Link
+            href={`/solicitacoes/${id}/resultado`}
+            className="mb-3 block text-center text-sm text-blue-700 hover:underline"
+          >
+            Ver análise já gerada
+          </Link>
+        )}
+
+        {pendingSteps.length > 0 ? (
+          <button
+            type="button"
+            disabled
+            title="Preencha todas as etapas antes de rodar a análise"
+            className="w-full cursor-not-allowed rounded-lg bg-zinc-200 px-5 py-3 text-sm font-medium text-zinc-500"
+          >
+            Rodar análise automática
+          </button>
+        ) : (
+          <form action={runAnalysis.bind(null, id)}>
+            <button
+              type="submit"
+              className="w-full rounded-lg bg-blue-700 px-5 py-3 text-sm font-medium text-white transition hover:bg-blue-800"
+            >
+              {application.analysisResult
+                ? "Rodar análise novamente"
+                : "Rodar análise automática"}
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );
