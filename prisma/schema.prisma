@@ -1,0 +1,89 @@
+// Rota Consular — schema inicial
+// Ver PROJECT.md para o desenho completo do wizard e do fluxo de análise.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id           String        @id @default(cuid())
+  email        String        @unique
+  name         String?
+  createdAt    DateTime      @default(now())
+  applications Application[]
+}
+
+// Um "caso" de visto por tentativa — o usuário pode ter mais de um
+// (ex: reaplicar depois de uma recusa).
+model Application {
+  id             String            @id @default(cuid())
+  user           User              @relation(fields: [userId], references: [id])
+  userId         String
+  status         ApplicationStatus @default(EM_ANDAMENTO)
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+  answers        Answer[]
+  documents      Document[]
+  analysisResult AnalysisResult?
+}
+
+enum ApplicationStatus {
+  EM_ANDAMENTO
+  ANALISE_PRONTA
+  CONCLUIDA
+}
+
+// Uma resposta por etapa do wizard — permite editar uma etapa
+// isoladamente sem afetar as demais.
+model Answer {
+  id            String      @id @default(cuid())
+  application   Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  applicationId String
+  step          WizardStep
+  data          Json
+  updatedAt     DateTime    @updatedAt
+
+  @@unique([applicationId, step])
+}
+
+enum WizardStep {
+  DADOS_PESSOAIS
+  SITUACAO_PROFISSIONAL
+  HISTORICO_VIAGENS
+  MOTIVO_VIAGEM
+}
+
+model Document {
+  id            String       @id @default(cuid())
+  application   Application  @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  applicationId String
+  type          DocumentType
+  url           String
+  fileName      String
+  uploadedAt    DateTime     @default(now())
+}
+
+enum DocumentType {
+  IDENTIDADE
+  COMPROVANTE_RENDA
+  EXTRATO_BANCARIO
+  VINCULO_EMPREGATICIO
+  ITINERARIO
+  OUTRO
+}
+
+// Saída do motor de análise (Claude API) — apoio à decisão, nunca veredito.
+model AnalysisResult {
+  id             String      @id @default(cuid())
+  application    Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  applicationId  String      @unique
+  readinessScore Int
+  checklist      Json
+  alerts         Json
+  createdAt      DateTime    @default(now())
+}

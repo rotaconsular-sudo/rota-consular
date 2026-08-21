@@ -81,7 +81,12 @@ marca e SEO inviável.
 
 - [x] Detalhar stack técnica e estrutura do projeto
 - [x] Desenhar o fluxo do wizard de triagem
+- [x] Fazer o scaffold inicial do projeto Next.js (App Router, TS, Tailwind)
+- [x] Modelar o schema Prisma (`User`, `Application`, `Answer`, `Document`, `AnalysisResult`)
 - [ ] Confirmar pagamento e ativação do domínio rotaconsular.com.br
-- [ ] Fazer o scaffold inicial do projeto Next.js + Prisma
-- [ ] Modelar o schema Prisma (`User`, `Application`, `Answer`, `Document`, `AnalysisResult`)
+- [ ] Escolher e provisionar o banco Postgres (dev local via `prisma dev`, produção
+      a decidir: Neon / Vercel Postgres / Prisma Postgres — envolve criar conta,
+      decisão do usuário)
+- [ ] Rodar a primeira migration (`prisma migrate dev`) assim que houver DATABASE_URL
+- [ ] Construir as telas do wizard (dashboard de solicitações + 5 etapas + revisão)
 - [ ] Prototipar o prompt de análise automática (Claude API) com casos de teste reais
