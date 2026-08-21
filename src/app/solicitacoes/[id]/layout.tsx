@@ -1,12 +1,14 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
+import { requireUser } from "@/lib/auth";
 import { WizardNav } from "@/components/WizardNav";
 import { WIZARD_STEPS } from "@/lib/wizard";
 
 export default async function ApplicationLayout(
   props: LayoutProps<"/solicitacoes/[id]">,
 ) {
+  const user = await requireUser();
   const { id } = await props.params;
 
   const application = await prisma.application.findUnique({
@@ -14,7 +16,9 @@ export default async function ApplicationLayout(
     include: { answers: true, documents: true },
   });
 
-  if (!application) notFound();
+  // notFound() em vez de redirect — não revela pra quem não é dono se a
+  // solicitação existe ou não.
+  if (!application || application.userId !== user.id) notFound();
 
   const completedSlugs = WIZARD_STEPS.filter((s) => {
     if (s.step) return application.answers.some((a) => a.step === s.step);

@@ -16,6 +16,30 @@ model User {
   name         String?
   createdAt    DateTime      @default(now())
   applications Application[]
+  sessions     Session[]
+}
+
+// Login sem senha: um link de acesso de uso único, válido por 15 minutos.
+// Guardamos só o hash do token — o valor em texto puro só existe no e-mail
+// enviado ao usuário.
+model VerificationToken {
+  id         String    @id @default(cuid())
+  email      String
+  tokenHash  String    @unique
+  expiresAt  DateTime
+  consumedAt DateTime?
+  createdAt  DateTime  @default(now())
+}
+
+// Sessão de login, com estado no banco (não um JWT autocontido) — permite
+// revogar sessões individualmente e não depende só de um segredo compartilhado.
+model Session {
+  id        String   @id @default(cuid())
+  tokenHash String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
 }
 
 // Um "caso" de visto por tentativa — o usuário pode ter mais de um

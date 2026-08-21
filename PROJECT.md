@@ -90,8 +90,13 @@ marca e SEO inviável.
       Conexão verificada de ponta a ponta.
 - [x] Rodar a primeira migration (`prisma migrate dev --name init`)
 - [x] Construir as telas do wizard (dashboard de solicitações + 5 etapas + revisão)
-      — testado ponta a ponta no navegador, sem autenticação real ainda
-      (usuário de teste fixo em `src/lib/current-user.ts`)
-- [ ] Login por magic link (substituir o usuário de teste fixo)
+- [x] Login por magic link (sem senha) — sessão com estado no banco (`Session`,
+      revogável), token do link é de uso único e expira em 15 min. Toda Server
+      Action reconfirma dono da solicitação (`requireOwnApplication`), e uma
+      solicitação de outro usuário retorna 404 em vez de vazar que ela existe.
+      Testado com dois usuários diferentes no navegador. Envio de e-mail via
+      Resend ainda não configurado — em dev, o link é só logado no console
+      do servidor (ver `src/lib/mailer.ts`).
+- [ ] Configurar `RESEND_API_KEY` e domínio de envio pra e-mail de verdade
 - [ ] Upload real de documentos (Vercel Blob ou S3 — hoje só registra o nome do arquivo)
 - [ ] Prototipar o prompt de análise automática (Claude API) com casos de teste reais

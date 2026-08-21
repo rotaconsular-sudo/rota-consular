@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import { getCurrentUser } from "@/lib/current-user";
-import { createApplication } from "@/app/actions";
+import { requireUser } from "@/lib/auth";
+import { createApplication, logout } from "@/app/actions";
 import { WIZARD_STEPS } from "@/lib/wizard";
 
 const STATUS_LABEL: Record<string, string> = {
@@ -17,7 +17,7 @@ const STATUS_STYLE: Record<string, string> = {
 };
 
 export default async function DashboardPage() {
-  const user = await getCurrentUser();
+  const user = await requireUser();
 
   const applications = await prisma.application.findMany({
     where: { userId: user.id },
@@ -27,15 +27,25 @@ export default async function DashboardPage() {
 
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-8 px-6 py-16">
-      <header>
-        <p className="text-sm font-medium text-blue-700">Rota Consular</p>
-        <h1 className="mt-1 text-2xl font-semibold tracking-tight">
-          Minhas solicitações
-        </h1>
-        <p className="mt-2 text-sm text-zinc-600">
-          Preparação para o visto americano de turismo (B1/B2). Isso não é
-          uma garantia de aprovação — a decisão é sempre do consulado.
-        </p>
+      <header className="flex items-start justify-between gap-4">
+        <div>
+          <p className="text-sm font-medium text-blue-700">Rota Consular</p>
+          <h1 className="mt-1 text-2xl font-semibold tracking-tight">
+            Minhas solicitações
+          </h1>
+          <p className="mt-2 text-sm text-zinc-600">
+            Preparação para o visto americano de turismo (B1/B2). Isso não é
+            uma garantia de aprovação — a decisão é sempre do consulado.
+          </p>
+        </div>
+        <div className="flex shrink-0 flex-col items-end gap-1 pt-1">
+          <span className="text-xs text-zinc-500">{user.email}</span>
+          <form action={logout}>
+            <button type="submit" className="text-xs text-zinc-500 hover:underline">
+              Sair
+            </button>
+          </form>
+        </div>
       </header>
 
       {applications.length === 0 ? (

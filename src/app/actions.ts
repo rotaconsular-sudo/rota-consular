@@ -1,14 +1,29 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
-import { getCurrentUser } from "@/lib/current-user";
+import { requireUser } from "@/lib/auth";
+import { destroySession } from "@/lib/session";
 import { WIZARD_STEPS, getNextStep, type WizardStepSlug } from "@/lib/wizard";
 import type { WizardStep, DocumentType } from "@/generated/prisma/enums";
 
+// Server Actions são alcançáveis por POST direto, não só pela UI — por
+// isso toda ação aqui reconfirma quem é o usuário e se ele é dono da
+// solicitação, mesmo que a tela já pareça garantir isso.
+async function requireOwnApplication(userId: string, applicationId: string) {
+  const application = await prisma.application.findUnique({
+    where: { id: applicationId },
+  });
+
+  if (!application || application.userId !== userId) notFound();
+
+  return application;
+}
+
 export async function createApplication() {
-  const user = await getCurrentUser();
+  const user = await requireUser();
 
   const application = await prisma.application.create({
     data: { userId: user.id },
@@ -23,6 +38,9 @@ export async function saveAnswer(
   step: WizardStep,
   formData: FormData,
 ) {
+  const user = await requireUser();
+  await requireOwnApplication(user.id, applicationId);
+
   const data: Record<string, string> = Object.fromEntries(
     Array.from(formData.entries()).map(([key, value]) => [key, String(value)]),
   );
@@ -43,10 +61,10 @@ export async function saveAnswer(
   redirect(`/solicitacoes/${applicationId}/${next ? next.slug : "revisao"}`);
 }
 
-export async function addDocument(
-  applicationId: string,
-  formData: FormData,
-) {
+export async function addDocument(applicationId: string, formData: FormData) {
+  const user = await requireUser();
+  await requireOwnApplication(user.id, applicationId);
+
   const type = formData.get("type") as DocumentType;
   const fileName = formData.get("fileName") as string;
 
@@ -67,6 +85,17 @@ export async function addDocument(
 }
 
 export async function removeDocument(documentId: string, applicationId: string) {
-  await prisma.document.delete({ where: { id: documentId } });
+  const user = await requireUser();
+  await requireOwnApplication(user.id, applicationId);
+
+  await prisma.document.delete({
+    where: { id: documentId, applicationId },
+  });
+
   revalidatePath(`/solicitacoes/${applicationId}/documentos`);
+}
+
+export async function logout() {
+  await destroySession();
+  redirect("/entrar");
 }
