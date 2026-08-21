@@ -84,9 +84,10 @@ marca e SEO inviável.
 - [x] Fazer o scaffold inicial do projeto Next.js (App Router, TS, Tailwind)
 - [x] Modelar o schema Prisma (`User`, `Application`, `Answer`, `Document`, `AnalysisResult`)
 - [ ] Confirmar pagamento e ativação do domínio rotaconsular.com.br
-- [ ] Escolher e provisionar o banco Postgres (dev local via `prisma dev`, produção
-      a decidir: Neon / Vercel Postgres / Prisma Postgres — envolve criar conta,
-      decisão do usuário)
-- [ ] Rodar a primeira migration (`prisma migrate dev`) assim que houver DATABASE_URL
+- [x] Provisionar o banco de produção: **Prisma Postgres**, região `us-east-1`
+      (N. Virginia — mais próxima do Brasil entre as opções disponíveis, não há
+      região em São Paulo ainda). Conta criada com `rotaconsular@gmail.com`.
+      Conexão verificada de ponta a ponta.
+- [x] Rodar a primeira migration (`prisma migrate dev --name init`)
 - [ ] Construir as telas do wizard (dashboard de solicitações + 5 etapas + revisão)
 - [ ] Prototipar o prompt de análise automática (Claude API) com casos de teste reais
