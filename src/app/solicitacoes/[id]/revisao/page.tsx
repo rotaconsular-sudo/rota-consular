@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { WIZARD_STEPS } from "@/lib/wizard";
-import { runAnalysis } from "@/app/actions";
+import { RunAnalysisButton } from "@/components/RunAnalysisButton";
 
 const FIELD_LABEL: Record<string, string> = {
   nomeCompleto: "Nome completo",
@@ -177,16 +177,14 @@ export default async function RevisaoPage(
             Rodar análise automática
           </button>
         ) : (
-          <form action={runAnalysis.bind(null, id)}>
-            <button
-              type="submit"
-              className="w-full rounded-lg bg-blue-700 px-5 py-3 text-sm font-medium text-white transition hover:bg-blue-800"
-            >
-              {application.analysisResult
+          <RunAnalysisButton
+            applicationId={id}
+            label={
+              application.analysisResult
                 ? "Rodar análise novamente"
-                : "Rodar análise automática"}
-            </button>
-          </form>
+                : "Rodar análise automática"
+            }
+          />
         )}
       </div>
     </div>
