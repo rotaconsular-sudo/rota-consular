@@ -135,7 +135,19 @@ marca e SEO inviável.
       Chave salva como env var sensível na Vercel (Production). Testado ponta
       a ponta em produção: e-mail de link de acesso chegou na caixa de
       entrada (não foi pra spam).
-- [ ] Upload real de documentos (Vercel Blob ou S3 — hoje só registra o nome do arquivo)
+- [x] Upload real de documentos — Vercel Blob, store privado
+      (`rota-consular-documentos`, região `iad1`, `access: private`). Limite
+      de 8MB por arquivo, `next.config.ts` com
+      `serverActions.bodySizeLimit: "10mb"` (o padrão de 1MB estourava fácil
+      com PDF/foto de extrato). Download só pelo dono da solicitação, via rota
+      `src/app/solicitacoes/[id]/documentos/[docId]/route.ts` (reusa
+      `requireOwnApplication`, extraído pra `src/lib/applications.ts`), que
+      busca o blob privado com `@vercel/blob` `get()` e serve com
+      `Content-Disposition: attachment`. Ao remover um documento, o blob
+      correspondente também é apagado (`del()`), sem ficar órfão no storage.
+      Testado ponta a ponta em produção: upload de PDF, listagem e download
+      confirmados via navegador (uma solicitação de teste ficou na conta
+      `rotaconsular@gmail.com`, mantida de propósito).
 - [x] Motor de análise automática (Claude API, `claude-sonnet-5`) — lê as
       respostas do wizard + lista de documentos, devolve nível de prontidão
       (0-100), checklist com status (ok/atenção/faltando) e alertas, via
