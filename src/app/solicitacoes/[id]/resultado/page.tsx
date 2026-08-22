@@ -110,8 +110,11 @@ export default async function ResultadoPage(
                 {paid ? (
                   <p className="text-zinc-600">{entry.comentario}</p>
                 ) : (
-                  <p className="text-zinc-400 select-none blur-[3px]">
-                    {entry.comentario}
+                  <p
+                    aria-hidden
+                    className="select-none text-zinc-300"
+                  >
+                    ████████████████████████████
                   </p>
                 )}
               </div>
