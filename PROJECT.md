@@ -106,6 +106,8 @@ marca e SEO inviável.
       Project Settings → Git pra voltar a deployar automático depois de cada
       push. Testado em produção: login por link mágico, banco de dados e
       navegação entre etapas funcionando.
+- [ ] Testando deploy automático Git→Vercel: commit de teste pra confirmar se o
+      push dispara build sozinho agora (ver histórico do `vercel ls`).
 - [ ] Apontar o domínio `rotaconsular.com.br` pro projeto na Vercel
 - [ ] Configurar `RESEND_API_KEY` e domínio de envio pra e-mail de verdade
 - [ ] Upload real de documentos (Vercel Blob ou S3 — hoje só registra o nome do arquivo)
