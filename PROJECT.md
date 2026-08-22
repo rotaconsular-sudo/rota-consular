@@ -106,8 +106,13 @@ marca e SEO inviável.
       Project Settings → Git pra voltar a deployar automático depois de cada
       push. Testado em produção: login por link mágico, banco de dados e
       navegação entre etapas funcionando.
-- [ ] Testando deploy automático Git→Vercel: commit de teste pra confirmar se o
-      push dispara build sozinho agora (ver histórico do `vercel ls`).
+- [x] Deploy automático Git→Vercel corrigido — reconectado via `vercel link` +
+      `vercel git connect` (também foi necessário reconfigurar as credenciais
+      Git locais: o push estava usando a conta GitHub errada,
+      `vistosnationaltur-ship-it`, sem permissão neste repo; corrigido com
+      `gh auth login` como `rotaconsular-sudo` + `gh auth setup-git`).
+      Confirmado com push de teste: deploy disparou sozinho, sem `vercel --prod`
+      manual.
 - [ ] Apontar o domínio `rotaconsular.com.br` pro projeto na Vercel
 - [ ] Configurar `RESEND_API_KEY` e domínio de envio pra e-mail de verdade
 - [ ] Upload real de documentos (Vercel Blob ou S3 — hoje só registra o nome do arquivo)
