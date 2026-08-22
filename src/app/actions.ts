@@ -1,27 +1,17 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { notFound } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import { put, del } from "@vercel/blob";
 import { prisma } from "@/lib/prisma";
 import { requireUser } from "@/lib/auth";
 import { destroySession } from "@/lib/session";
+import { requireOwnApplication } from "@/lib/applications";
 import { WIZARD_STEPS, getNextStep, type WizardStepSlug } from "@/lib/wizard";
 import type { WizardStep, DocumentType } from "@/generated/prisma/enums";
 import { runReadinessAnalysis } from "@/lib/anthropic";
 
-// Server Actions são alcançáveis por POST direto, não só pela UI — por
-// isso toda ação aqui reconfirma quem é o usuário e se ele é dono da
-// solicitação, mesmo que a tela já pareça garantir isso.
-async function requireOwnApplication(userId: string, applicationId: string) {
-  const application = await prisma.application.findUnique({
-    where: { id: applicationId },
-  });
-
-  if (!application || application.userId !== userId) notFound();
-
-  return application;
-}
+const MAX_DOCUMENT_SIZE = 8 * 1024 * 1024; // 8MB
 
 export async function createApplication() {
   const user = await requireUser();
@@ -67,18 +57,24 @@ export async function addDocument(applicationId: string, formData: FormData) {
   await requireOwnApplication(user.id, applicationId);
 
   const type = formData.get("type") as DocumentType;
-  const fileName = formData.get("fileName") as string;
+  const file = formData.get("file") as File | null;
 
-  if (!type || !fileName) return;
+  if (!type || !file || file.size === 0) return;
+  if (file.size > MAX_DOCUMENT_SIZE) {
+    throw new Error("Arquivo maior que 8MB. Envie um arquivo menor.");
+  }
+
+  const blob = await put(`documentos/${applicationId}/${crypto.randomUUID()}-${file.name}`, file, {
+    access: "private",
+    addRandomSuffix: false,
+  });
 
   await prisma.document.create({
     data: {
       applicationId,
       type,
-      fileName,
-      // Upload real (Vercel Blob ou S3) ainda não está conectado —
-      // por enquanto só registramos o nome do arquivo. Ver PROJECT.md.
-      url: "",
+      fileName: file.name,
+      url: blob.url,
     },
   });
 
@@ -89,9 +85,16 @@ export async function removeDocument(documentId: string, applicationId: string) 
   const user = await requireUser();
   await requireOwnApplication(user.id, applicationId);
 
+  const document = await prisma.document.findUnique({
+    where: { id: documentId, applicationId },
+  });
+  if (!document) return;
+
   await prisma.document.delete({
     where: { id: documentId, applicationId },
   });
+
+  if (document.url) await del(document.url);
 
   revalidatePath(`/solicitacoes/${applicationId}/documentos`);
 }

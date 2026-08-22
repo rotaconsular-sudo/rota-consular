@@ -32,9 +32,8 @@ export default async function DocumentosPage(
       <div>
         <h2 className="text-lg font-semibold">Documentos</h2>
         <p className="mt-1 text-sm text-zinc-500">
-          Liste o que você já tem em mãos. O upload real de arquivos ainda
-          não está conectado — por enquanto só registramos o nome do
-          documento, pra montar o checklist.
+          Envie o que você já tem em mãos. Arquivos até 8MB, armazenados de
+          forma privada — só você tem acesso.
         </p>
       </div>
 
@@ -49,7 +48,12 @@ export default async function DocumentosPage(
                 <p className="font-medium">
                   {DOCUMENT_TYPE_LABEL[doc.type] ?? doc.type}
                 </p>
-                <p className="text-zinc-500">{doc.fileName}</p>
+                <a
+                  href={`/solicitacoes/${id}/documentos/${doc.id}`}
+                  className="text-zinc-500 hover:underline"
+                >
+                  {doc.fileName}
+                </a>
               </div>
               <form action={removeDocument.bind(null, doc.id, id)}>
                 <button
@@ -66,6 +70,7 @@ export default async function DocumentosPage(
 
       <form
         action={addAction}
+        encType="multipart/form-data"
         className="flex flex-col gap-3 rounded-md border border-dashed border-zinc-300 p-4 sm:flex-row sm:items-end"
       >
         <label className="flex flex-1 flex-col gap-1">
@@ -84,11 +89,12 @@ export default async function DocumentosPage(
         </label>
 
         <label className="flex flex-1 flex-col gap-1">
-          <span className="text-sm font-medium">Nome do arquivo</span>
+          <span className="text-sm font-medium">Arquivo</span>
           <input
-            name="fileName"
-            placeholder="ex: extrato-nubank-julho.pdf"
+            name="file"
+            type="file"
             required
+            accept="application/pdf,image/*"
             className="rounded-md border border-zinc-300 px-3 py-2 text-sm"
           />
         </label>
