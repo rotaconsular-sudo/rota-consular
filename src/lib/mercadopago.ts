@@ -24,6 +24,8 @@ export async function createCheckoutPreference(input: {
         {
           id: "checklist-completo",
           title: "Checklist completo — Rota Consular",
+          description:
+            "Status detalhado de cada item avaliado, explicação específica citando seus dados, e alertas do seu caso pra preparação do visto americano de turismo.",
           quantity: 1,
           unit_price: input.amountCents / 100,
           currency_id: "BRL",

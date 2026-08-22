@@ -69,13 +69,23 @@ export default async function ResultadoPage(
         <section className="flex flex-col gap-3 rounded-lg border border-blue-200 bg-blue-50 p-5">
           <div>
             <h3 className="text-sm font-semibold text-blue-900">
-              Checklist completo e alertas bloqueados
+              O que vem no checklist completo (R$47)
             </h3>
-            <p className="mt-1 text-sm text-blue-800">
-              O nível de prontidão é grátis. Pra ver o que exatamente falta ou
-              está fraco em cada item — e os alertas específicos do seu
-              caso — desbloqueie o checklist completo.
-            </p>
+            <ul className="mt-2 flex flex-col gap-1.5 text-sm text-blue-800">
+              <li>
+                • Status individual (ok / atenção / faltando) dos{" "}
+                {checklist.length} itens avaliados
+              </li>
+              <li>
+                • Explicação específica de cada item, citando os dados que
+                você informou
+              </li>
+              <li>
+                • Alertas do seu caso (ex: recusa anterior, vínculo
+                financeiro fraco, viagem muito próxima da data)
+              </li>
+              <li>• Acesso permanente por e-mail, pra rever quando quiser</li>
+            </ul>
           </div>
           <UnlockChecklistButton applicationId={id} />
         </section>
