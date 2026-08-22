@@ -122,12 +122,11 @@ marca e SEO inviável.
       (`vercel certs issue`) — não saiu sozinho depois da verificação do DNS.
       Confirmado em produção: `https://rotaconsular.com.br` responde 200,
       redireciona pra `/entrar`.
-      **Pendência à parte encontrada:** o DNS desse domínio no Cloudflare tem
-      dois registros SPF conflitantes (`v=spf1 +ip4:187.33.241.37
-      +include:spf-c.mailbaby.net...` e `v=spf1 -all`), o que pode estar
-      quebrando a entrega de e-mail da hospedagem antiga (cPanel). Não mexido
-      ainda — avaliar se essa hospedagem de e-mail ainda está em uso antes de
-      limpar.
+      SPF duplicado (`v=spf1 +ip4:187.33.241.37 +include:spf-c.mailbaby.net...`
+      e `v=spf1 -all`) encontrado e corrigido durante a limpeza — só sobrou um
+      registro SPF. `www.rotaconsular.com.br` também adicionado como domínio
+      no projeto (CNAME próprio, cert emitido) — confirmado em produção
+      (HTTP 307, igual ao domínio raiz).
 - [ ] Configurar `RESEND_API_KEY` e domínio de envio pra e-mail de verdade
 - [ ] Upload real de documentos (Vercel Blob ou S3 — hoje só registra o nome do arquivo)
 - [x] Motor de análise automática (Claude API, `claude-sonnet-5`) — lê as
