@@ -1,16 +1,14 @@
 import { notFound } from "next/navigation";
 import { get } from "@vercel/blob";
 import { prisma } from "@/lib/prisma";
-import { requireUser } from "@/lib/auth";
-import { requireOwnApplication } from "@/lib/applications";
+import { requireApplicationAccess } from "@/lib/applications";
 
 export async function GET(
   _request: Request,
   { params }: { params: Promise<{ id: string; docId: string }> },
 ) {
   const { id, docId } = await params;
-  const user = await requireUser();
-  await requireOwnApplication(user.id, id);
+  await requireApplicationAccess(id);
 
   const document = await prisma.document.findUnique({
     where: { id: docId, applicationId: id },

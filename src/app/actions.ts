@@ -6,12 +6,21 @@ import { put, del } from "@vercel/blob";
 import { prisma } from "@/lib/prisma";
 import { requireUser } from "@/lib/auth";
 import { destroySession } from "@/lib/session";
-import { requireOwnApplication } from "@/lib/applications";
+import {
+  requireApplicationAccess,
+  createAccessToken,
+  getAccessCookieValue,
+} from "@/lib/applications";
 import { WIZARD_STEPS, getNextStep, type WizardStepSlug } from "@/lib/wizard";
 import type { WizardStep, DocumentType } from "@/generated/prisma/enums";
 import { runReadinessAnalysis } from "@/lib/anthropic";
+import { sendAnalysisResult } from "@/lib/mailer";
+import { getBaseUrl } from "@/lib/url";
+import { createCheckoutPreference as createMpPreference } from "@/lib/mercadopago";
 
 const MAX_DOCUMENT_SIZE = 8 * 1024 * 1024; // 8MB
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const CHECKLIST_PRICE_CENTS = 4700; // R$47,00
 
 export async function createApplication() {
   const user = await requireUser();
@@ -23,14 +32,37 @@ export async function createApplication() {
   redirect(`/solicitacoes/${application.id}/${WIZARD_STEPS[0].slug}`);
 }
 
+// Início do funil gratuito, sem login — só e-mail e WhatsApp. A solicitação
+// fica anônima (userId nulo) até o pagamento; acesso é validado por cookie
+// (ver src/lib/applications.ts), não por sessão.
+export async function startFreeApplication(formData: FormData) {
+  const email = String(formData.get("email") ?? "").trim().toLowerCase();
+  const whatsapp = String(formData.get("whatsapp") ?? "").trim();
+
+  if (!EMAIL_REGEX.test(email) || !whatsapp) {
+    redirect("/?erro=dados_invalidos");
+  }
+
+  const application = await prisma.application.create({
+    data: { email, whatsapp },
+  });
+
+  const accessTokenHash = await createAccessToken(application.id);
+  await prisma.application.update({
+    where: { id: application.id },
+    data: { accessTokenHash },
+  });
+
+  redirect(`/solicitacoes/${application.id}/${WIZARD_STEPS[0].slug}`);
+}
+
 export async function saveAnswer(
   applicationId: string,
   stepSlug: WizardStepSlug,
   step: WizardStep,
   formData: FormData,
 ) {
-  const user = await requireUser();
-  await requireOwnApplication(user.id, applicationId);
+  await requireApplicationAccess(applicationId);
 
   const data: Record<string, string> = Object.fromEntries(
     Array.from(formData.entries()).map(([key, value]) => [key, String(value)]),
@@ -53,8 +85,7 @@ export async function saveAnswer(
 }
 
 export async function addDocument(applicationId: string, formData: FormData) {
-  const user = await requireUser();
-  await requireOwnApplication(user.id, applicationId);
+  await requireApplicationAccess(applicationId);
 
   const type = formData.get("type") as DocumentType;
   const file = formData.get("file") as File | null;
@@ -82,8 +113,7 @@ export async function addDocument(applicationId: string, formData: FormData) {
 }
 
 export async function removeDocument(documentId: string, applicationId: string) {
-  const user = await requireUser();
-  await requireOwnApplication(user.id, applicationId);
+  await requireApplicationAccess(applicationId);
 
   const document = await prisma.document.findUnique({
     where: { id: documentId, applicationId },
@@ -100,8 +130,7 @@ export async function removeDocument(documentId: string, applicationId: string) 
 }
 
 export async function runAnalysis(applicationId: string) {
-  const user = await requireUser();
-  await requireOwnApplication(user.id, applicationId);
+  const application = await requireApplicationAccess(applicationId);
 
   const [answers, documents] = await Promise.all([
     prisma.answer.findMany({ where: { applicationId } }),
@@ -137,8 +166,54 @@ export async function runAnalysis(applicationId: string) {
     data: { status: "ANALISE_PRONTA" },
   });
 
+  if (application.email) {
+    const baseUrl = await getBaseUrl();
+    const accessToken = application.userId
+      ? null
+      : await getAccessCookieValue(applicationId);
+    const resultUrl = accessToken
+      ? `${baseUrl}/solicitacoes/${applicationId}/acessar?token=${accessToken}`
+      : `${baseUrl}/solicitacoes/${applicationId}/resultado`;
+
+    await sendAnalysisResult(application.email, {
+      readinessScore: result.readinessScore,
+      resultUrl,
+    });
+  }
+
   revalidatePath(`/solicitacoes/${applicationId}`);
   redirect(`/solicitacoes/${applicationId}/resultado`);
+}
+
+// Desbloqueia o checklist completo (R$47, Mercado Pago Checkout Pro).
+export async function createCheckoutPreference(applicationId: string) {
+  const application = await requireApplicationAccess(applicationId);
+
+  const baseUrl = await getBaseUrl();
+  const accessToken = application.userId
+    ? null
+    : await getAccessCookieValue(applicationId);
+  const returnUrl = accessToken
+    ? `${baseUrl}/solicitacoes/${applicationId}/acessar?token=${accessToken}`
+    : `${baseUrl}/solicitacoes/${applicationId}/resultado`;
+
+  const preference = await createMpPreference({
+    applicationId,
+    amountCents: CHECKLIST_PRICE_CENTS,
+    successUrl: returnUrl,
+    notificationUrl: `${baseUrl}/api/mercadopago/webhook`,
+  });
+
+  await prisma.payment.create({
+    data: {
+      applicationId,
+      mpPreferenceId: preference.id,
+      status: "PENDING",
+      amountCents: CHECKLIST_PRICE_CENTS,
+    },
+  });
+
+  redirect(preference.initPoint);
 }
 
 export async function logout() {

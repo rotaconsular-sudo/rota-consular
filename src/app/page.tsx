@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import { requireUser } from "@/lib/auth";
-import { createApplication, logout } from "@/app/actions";
+import { getSession } from "@/lib/session";
+import { createApplication, logout, startFreeApplication } from "@/app/actions";
 import { WIZARD_STEPS } from "@/lib/wizard";
 
 const STATUS_LABEL: Record<string, string> = {
@@ -16,8 +16,10 @@ const STATUS_STYLE: Record<string, string> = {
   CONCLUIDA: "bg-zinc-200 text-zinc-700",
 };
 
-export default async function DashboardPage() {
-  const user = await requireUser();
+export default async function HomePage() {
+  const session = await getSession();
+  if (!session) return <FreeStartLanding />;
+  const user = session.user;
 
   const applications = await prisma.application.findMany({
     where: { userId: user.id },
@@ -98,6 +100,66 @@ export default async function DashboardPage() {
           Nova solicitação
         </button>
       </form>
+    </div>
+  );
+}
+
+function FreeStartLanding() {
+  return (
+    <div className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center gap-8 px-6 py-16">
+      <div>
+        <p className="text-sm font-medium text-blue-700">Rota Consular</p>
+        <h1 className="mt-1 text-2xl font-semibold tracking-tight">
+          Descubra o quanto sua documentação está pronta pro visto americano
+          de turismo
+        </h1>
+        <p className="mt-3 text-sm text-zinc-600">
+          Responda algumas perguntas e receba uma análise automática por IA —
+          sem precisar enviar nenhum documento agora. Isso não é uma garantia
+          de aprovação, é uma preparação: a decisão é sempre do consulado.
+        </p>
+      </div>
+
+      <form
+        action={startFreeApplication}
+        className="flex flex-col gap-4 rounded-lg border border-zinc-200 bg-white p-6"
+      >
+        <label className="flex flex-col gap-1">
+          <span className="text-sm font-medium">E-mail</span>
+          <input
+            name="email"
+            type="email"
+            required
+            placeholder="seu@email.com"
+            className="rounded-md border border-zinc-300 px-3 py-2 text-sm"
+          />
+        </label>
+
+        <label className="flex flex-col gap-1">
+          <span className="text-sm font-medium">WhatsApp</span>
+          <input
+            name="whatsapp"
+            type="tel"
+            required
+            placeholder="(11) 99999-9999"
+            className="rounded-md border border-zinc-300 px-3 py-2 text-sm"
+          />
+        </label>
+
+        <button
+          type="submit"
+          className="mt-2 w-full rounded-lg bg-blue-700 px-5 py-3 text-sm font-medium text-white transition hover:bg-blue-800"
+        >
+          Começar análise gratuita
+        </button>
+      </form>
+
+      <p className="text-center text-xs text-zinc-400">
+        Já tem uma solicitação paga?{" "}
+        <Link href="/entrar" className="text-blue-700 hover:underline">
+          Entrar
+        </Link>
+      </p>
     </div>
   );
 }

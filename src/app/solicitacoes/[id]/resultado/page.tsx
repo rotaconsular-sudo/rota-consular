@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import { UnlockChecklistButton } from "@/components/UnlockChecklistButton";
 import type {
   AnalysisChecklistItem,
 } from "@/lib/anthropic";
@@ -34,6 +35,9 @@ export default async function ResultadoPage(
 
   if (!result) notFound();
 
+  const payments = await prisma.payment.findMany({ where: { applicationId: id } });
+  const paid = payments.some((p) => p.status === "APPROVED");
+
   const checklist = result.checklist as unknown as AnalysisChecklistItem[];
   const alerts = result.alerts as unknown as string[];
 
@@ -61,7 +65,23 @@ export default async function ResultadoPage(
         </div>
       </div>
 
-      {alerts.length > 0 && (
+      {!paid && (
+        <section className="flex flex-col gap-3 rounded-lg border border-blue-200 bg-blue-50 p-5">
+          <div>
+            <h3 className="text-sm font-semibold text-blue-900">
+              Checklist completo e alertas bloqueados
+            </h3>
+            <p className="mt-1 text-sm text-blue-800">
+              O nível de prontidão é grátis. Pra ver o que exatamente falta ou
+              está fraco em cada item — e os alertas específicos do seu
+              caso — desbloqueie o checklist completo.
+            </p>
+          </div>
+          <UnlockChecklistButton applicationId={id} />
+        </section>
+      )}
+
+      {paid && alerts.length > 0 && (
         <section className="flex flex-col gap-2">
           <h3 className="text-sm font-semibold">Alertas</h3>
           <ul className="flex flex-col gap-2">
@@ -87,13 +107,21 @@ export default async function ResultadoPage(
             >
               <div>
                 <p className="font-medium">{entry.item}</p>
-                <p className="text-zinc-600">{entry.comentario}</p>
+                {paid ? (
+                  <p className="text-zinc-600">{entry.comentario}</p>
+                ) : (
+                  <p className="text-zinc-400 select-none blur-[3px]">
+                    {entry.comentario}
+                  </p>
+                )}
               </div>
-              <span
-                className={`shrink-0 self-start rounded-full px-3 py-1 text-xs font-medium ${STATUS_STYLE[entry.status]}`}
-              >
-                {STATUS_LABEL[entry.status] ?? entry.status}
-              </span>
+              {paid && (
+                <span
+                  className={`shrink-0 self-start rounded-full px-3 py-1 text-xs font-medium ${STATUS_STYLE[entry.status]}`}
+                >
+                  {STATUS_LABEL[entry.status] ?? entry.status}
+                </span>
+              )}
             </li>
           ))}
         </ul>

@@ -44,16 +44,26 @@ model Session {
 
 // Um "caso" de visto por tentativa — o usuário pode ter mais de um
 // (ex: reaplicar depois de uma recusa).
+//
+// userId é opcional: o funil gratuito começa anônimo (sem login), só com
+// email/whatsapp capturados na criação. Acesso nesse estágio é validado por
+// accessTokenHash (cookie/token na URL, ver src/lib/applications.ts), não
+// por sessão. Quando o pagamento é aprovado, a Application é linkada a um
+// User (criado/reaproveitado pelo email).
 model Application {
-  id             String            @id @default(cuid())
-  user           User              @relation(fields: [userId], references: [id])
-  userId         String
-  status         ApplicationStatus @default(EM_ANDAMENTO)
-  createdAt      DateTime          @default(now())
-  updatedAt      DateTime          @updatedAt
-  answers        Answer[]
-  documents      Document[]
-  analysisResult AnalysisResult?
+  id              String            @id @default(cuid())
+  user            User?             @relation(fields: [userId], references: [id])
+  userId          String?
+  email           String?
+  whatsapp        String?
+  accessTokenHash String?           @unique
+  status          ApplicationStatus @default(EM_ANDAMENTO)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  answers         Answer[]
+  documents       Document[]
+  analysisResult  AnalysisResult?
+  payments        Payment[]
 }
 
 enum ApplicationStatus {
@@ -110,4 +120,26 @@ model AnalysisResult {
   checklist      Json
   alerts         Json
   createdAt      DateTime    @default(now())
+}
+
+// Desbloqueia o checklist completo (freemium: score é grátis). Uma
+// Application pode ter mais de um Payment se uma tentativa falhar/expirar e
+// a pessoa tentar de novo. "Pago" = existe algum Payment com status
+// APPROVED, sem campo denormalizado.
+model Payment {
+  id            String        @id @default(cuid())
+  application   Application   @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  applicationId String
+  mpPreferenceId String
+  mpPaymentId   String?       @unique
+  status        PaymentStatus @default(PENDING)
+  amountCents   Int
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+enum PaymentStatus {
+  PENDING
+  APPROVED
+  REJECTED
 }
