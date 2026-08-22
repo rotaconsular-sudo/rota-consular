@@ -220,3 +220,42 @@ marca e SEO inviável.
       cartões com fundo branco. O app nunca foi desenhado pra tema escuro,
       então a correção foi forçar `color-scheme: light` e remover a regra,
       em vez de redesenhar cada tela pra dark mode.
+      Copy do que se ganha ao pagar foi deixada mais clara (card de
+      desbloqueio na `/resultado` virou lista de bullets concreta, e o item
+      do Mercado Pago ganhou `description`), depois de feedback de que
+      "checklist" sozinho não deixava claro o que a pessoa recebia.
+
+## Escada de ofertas (decisão: adiada, não construir ainda)
+
+Foi discutida uma escada de 4 degraus pra substituir o funil atual de 2
+degraus (grátis → R$47): grátis → **R$19,70** (diagnóstico mais profundo por
+tipo de perfil: família, visto negado antes, parente nos EUA) → **R$197**
+(DS-160 preenchido, reaproveitando o robô/form do projeto de automação de
+DS-160 separado, da 2N Travel) → **R$497** (assessoria completa com
+consultora humana, descontando o que já foi pago nos degraus anteriores).
+Registro completo (com o que cada degrau inclui, dependências e perguntas em
+aberto) está neste briefing:
+**https://claude.ai/code/artifact/611772af-7d81-4ec2-b091-5c337749eaf1**
+
+**Decisão tomada em 2026-08-22**: não construir a escada toda agora.
+Motivo: nenhum pagamento real aconteceu ainda no funil atual — construir 2
+camadas novas (que dependem de conteúdo por persona que não existe, e de um
+processo humano pra R$497 que também não existe) antes de saber se o
+primeiro degrau converte é resolver um problema não confirmado.
+**Foco agora é aprimorar/validar o primeiro passo** (grátis → pago) com
+tráfego real antes de expandir a escada.
+
+**Próximos passos concretos (nessa ordem):**
+- [ ] Testar um pagamento aprovado de verdade (ou em modo sandbox do
+      Mercado Pago) ponta a ponta: webhook → conta criada → e-mail de
+      confirmação — ainda não foi validado com dinheiro real.
+- [ ] Configurar cobrança comercial na conta Anthropic `rota`
+      (`rotaconsular@gmail.com`) antes de escalar tráfego — hoje roda sob
+      avaliação/créditos, não plano comercial com SLA de rate limit.
+- [ ] Trocar nome "National Tur" → "Rota Consular" (e a foto) no perfil de
+      negócio do Mercado Pago.
+- [ ] Decidir e colocar tráfego de verdade no funil atual (anúncio ou
+      orgânico) pra ter dado real de conversão antes de mexer em preço ou
+      construir os próximos degraus.
+- [ ] Só depois disso: revisitar a escada de ofertas (R$19,70 / R$197 /
+      R$497) com dado real na mão.
