@@ -113,7 +113,21 @@ marca e SEO inviável.
       `gh auth login` como `rotaconsular-sudo` + `gh auth setup-git`).
       Confirmado com push de teste: deploy disparou sozinho, sem `vercel --prod`
       manual.
-- [ ] Apontar o domínio `rotaconsular.com.br` pro projeto na Vercel
+- [x] Domínio `rotaconsular.com.br` apontado pro projeto na Vercel — DNS fica no
+      Cloudflare (não delegação de nameserver), com um CNAME na raiz (`@` →
+      `7e4c1ce103fcca64.vercel-dns-017.com.`, proxy desligado/"DNS only") no
+      lugar do A record antigo que apontava pra hospedagem cPanel antiga. Os
+      registros MX/e-mail (`mail.rotaconsular.com.br`) ficaram intactos, sem
+      impacto. Certificado SSL precisou ser emitido manualmente
+      (`vercel certs issue`) — não saiu sozinho depois da verificação do DNS.
+      Confirmado em produção: `https://rotaconsular.com.br` responde 200,
+      redireciona pra `/entrar`.
+      **Pendência à parte encontrada:** o DNS desse domínio no Cloudflare tem
+      dois registros SPF conflitantes (`v=spf1 +ip4:187.33.241.37
+      +include:spf-c.mailbaby.net...` e `v=spf1 -all`), o que pode estar
+      quebrando a entrega de e-mail da hospedagem antiga (cPanel). Não mexido
+      ainda — avaliar se essa hospedagem de e-mail ainda está em uso antes de
+      limpar.
 - [ ] Configurar `RESEND_API_KEY` e domínio de envio pra e-mail de verdade
 - [ ] Upload real de documentos (Vercel Blob ou S3 — hoje só registra o nome do arquivo)
 - [x] Motor de análise automática (Claude API, `claude-sonnet-5`) — lê as
