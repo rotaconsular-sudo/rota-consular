@@ -127,7 +127,14 @@ marca e SEO inviável.
       registro SPF. `www.rotaconsular.com.br` também adicionado como domínio
       no projeto (CNAME próprio, cert emitido) — confirmado em produção
       (HTTP 307, igual ao domínio raiz).
-- [ ] Configurar `RESEND_API_KEY` e domínio de envio pra e-mail de verdade
+- [x] Configurado `RESEND_API_KEY` e e-mail real via Resend — domínio de envio
+      é um subdomínio dedicado, `enviar.rotaconsular.com.br` (verificado via
+      Auto configure do Resend com Cloudflare), separado da raiz do domínio
+      pra não conflitar com o SPF/DKIM da hospedagem cPanel existente.
+      Remetente: `acesso@enviar.rotaconsular.com.br` (`src/lib/mailer.ts`).
+      Chave salva como env var sensível na Vercel (Production). Testado ponta
+      a ponta em produção: e-mail de link de acesso chegou na caixa de
+      entrada (não foi pra spam).
 - [ ] Upload real de documentos (Vercel Blob ou S3 — hoje só registra o nome do arquivo)
 - [x] Motor de análise automática (Claude API, `claude-sonnet-5`) — lê as
       respostas do wizard + lista de documentos, devolve nível de prontidão
