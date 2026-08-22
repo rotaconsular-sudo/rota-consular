@@ -158,3 +158,58 @@ marca e SEO inviável.
       empregatício forte, documentação financeira/patrimonial faltando).
       Custo por análise: ~US$ 0,01–0,02 (preço promocional do Sonnet 5 até
       31/08/2026, depois sobe um pouco). ~18s de latência por análise.
+- [x] **Funil freemium sem login + checkout Mercado Pago (R$47)** — antes
+      disso, o app inteiro exigia login e era grátis/ilimitado, sem nenhuma
+      cobrança em lugar nenhum.
+      Fluxo novo: landing pública (`/`, sem sessão) captura e-mail + WhatsApp
+      → cria uma `Application` anônima (`userId` nulo) → wizard de 4 etapas
+      (documento continua opcional, não bloqueia mais a análise) → IA roda a
+      análise só com as respostas → nível de prontidão (score) aparece
+      grátis na tela e é mandado por e-mail → checklist detalhado + alertas
+      ficam bloqueados até pagar.
+      Acesso sem login: `Application.accessTokenHash` + cookie httpOnly
+      escopado por rota (`src/lib/applications.ts`,
+      `requireApplicationAccess`) — não usa Session/User enquanto anônima.
+      Link do e-mail de resultado passa pela rota
+      `/solicitacoes/[id]/acessar?token=` (mesmo padrão do `/verificar` de
+      login) pra replantar o cookie em outro navegador/dispositivo.
+      Pagamento: Mercado Pago Checkout Pro (`src/lib/mercadopago.ts`), preço
+      fixo R$47 (`CHECKLIST_PRICE_CENTS` em `src/app/actions.ts`), conta
+      Mercado Pago pessoal do usuário (não é a `rotaconsular@gmail.com`).
+      Webhook em `/api/mercadopago/webhook` nunca confia no corpo da
+      notificação — sempre rebusca o pagamento na API do Mercado Pago pelo
+      id antes de marcar como aprovado. Quando aprovado: cria/reaproveita um
+      `User` pelo e-mail, linka a `Application`, e manda um magic link de
+      acesso.
+      **Achado e corrigido durante o teste**: o checklist bloqueado
+      inicialmente só borrava o texto via CSS (`blur`) — o comentário real
+      continuava inteiro no HTML/snapshot de acessibilidade, dava pra ler
+      sem pagar. Corrigido: quando não pago, o servidor nem manda o texto
+      real pro navegador (Server Component só renderiza um placeholder fixo).
+      Migration nova (`Application.userId` opcional, `email`/`whatsapp`/
+      `accessTokenHash`, tabela `Payment`) e o `build` da Vercel agora roda
+      `prisma migrate deploy` automaticamente antes do `next build` — não
+      precisa mais rodar migration manual a cada deploy (a máquina local não
+      tem acesso direto ao banco de produção, então isso também resolve esse
+      gargalo).
+      Testado ponta a ponta em produção via navegador: landing → wizard sem
+      login → análise → score grátis com checklist bloqueado (confirmado sem
+      vazamento) → botão de desbloqueio abre o Checkout Pro corretamente
+      (Pix/cartão/boleto, item e preço certos, link de volta com token). Não
+      foi completado um pagamento real — falta testar o caminho de
+      pagamento aprovado → webhook → e-mail de confirmação ponta a ponta com
+      dinheiro de verdade (ou em modo sandbox do Mercado Pago).
+      **Pendências desta frente:**
+      - [ ] WhatsApp automático (precisa nova aplicação Meta/número
+            dedicado) — o campo já é capturado, só o envio que falta.
+        - [ ] "Pedido de visto completo" (apoio guiado no preenchimento do
+              DS-160) — próxima etapa depois de validar o checkout de R$47
+              com pagamento de verdade.
+      - [ ] Nome "National Tur" aparece como vendedor na tela do Mercado
+            Pago (nome cadastrado na conta pessoal usada) — trocar pro nome
+            da marca nas configurações do perfil de negócio, se fizer
+            sentido.
+      Sites de referência mostrados pro produto: boundless.com,
+      simplecitizen.com (concorrentes americanos de assessoria de
+      visto/imigração self-service + IA), ds160.io/agencies (SaaS
+      white-label pra agências).
