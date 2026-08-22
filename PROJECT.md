@@ -213,3 +213,10 @@ marca e SEO inviável.
       simplecitizen.com (concorrentes americanos de assessoria de
       visto/imigração self-service + IA), ds160.io/agencies (SaaS
       white-label pra agências).
+      **Bug de contraste achado pelo usuário e corrigido**: `globals.css`
+      tinha uma regra `prefers-color-scheme: dark` que deixava o app inteiro
+      (não só a landing nova) com texto quase ilegível em navegador/SO com
+      tema escuro — rótulo/texto herdava cor clara do modo escuro em cima de
+      cartões com fundo branco. O app nunca foi desenhado pra tema escuro,
+      então a correção foi forçar `color-scheme: light` e remover a regra,
+      em vez de redesenhar cada tela pra dark mode.
