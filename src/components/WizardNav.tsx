@@ -24,10 +24,10 @@ export function WizardNav({
           <li key={step.slug}>
             <Link
               href={href}
-              className={`flex items-center gap-3 rounded-md px-3 py-2 text-sm transition ${
+              className={`flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition ${
                 isActive
-                  ? "bg-blue-50 font-medium text-blue-800"
-                  : "text-zinc-600 hover:bg-zinc-100"
+                  ? "bg-blue-50 font-semibold text-blue-700"
+                  : "text-slate-600 hover:bg-slate-100"
               }`}
             >
               <span
@@ -35,8 +35,8 @@ export function WizardNav({
                   isDone
                     ? "bg-emerald-600 text-white"
                     : isActive
-                      ? "bg-blue-700 text-white"
-                      : "bg-zinc-200 text-zinc-600"
+                      ? "bg-blue-600 text-white"
+                      : "bg-slate-200 text-slate-600"
                 }`}
               >
                 {isDone ? "✓" : index + 1}

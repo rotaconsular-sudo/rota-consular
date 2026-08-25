@@ -11,7 +11,7 @@ export function UnlockChecklistButton({ applicationId }: { applicationId: string
       type="button"
       disabled={isPending}
       onClick={() => startTransition(() => createCheckoutPreference(applicationId))}
-      className="w-full rounded-lg bg-blue-700 px-5 py-3 text-sm font-medium text-white transition hover:bg-blue-800 disabled:cursor-wait disabled:opacity-70"
+      className="w-full rounded-full bg-blue-600 px-5 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-600/25 transition hover:bg-blue-700 disabled:cursor-wait disabled:opacity-70"
     >
       {isPending ? "Abrindo pagamento…" : "Desbloquear checklist completo — R$47"}
     </button>

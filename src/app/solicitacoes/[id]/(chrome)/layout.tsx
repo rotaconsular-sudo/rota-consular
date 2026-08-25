@@ -25,10 +25,10 @@ export default async function ApplicationLayout(
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-8 px-6 py-12">
       <div>
-        <Link href="/" className="text-sm text-blue-700 hover:underline">
+        <Link href="/" className="text-sm font-medium text-blue-600 hover:underline">
           ← Minhas solicitações
         </Link>
-        <h1 className="mt-2 text-xl font-semibold tracking-tight">
+        <h1 className="mt-2 text-xl font-bold tracking-tight text-slate-900">
           Solicitação de{" "}
           {new Date(application.createdAt).toLocaleDateString("pt-BR")}
         </h1>
@@ -39,7 +39,7 @@ export default async function ApplicationLayout(
           <WizardNav applicationId={application.id} completedSlugs={completedSlugs} />
         </nav>
 
-        <div className="flex-1 rounded-lg border border-zinc-200 bg-white p-6">
+        <div className="flex-1 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
           {props.children}
         </div>
       </div>

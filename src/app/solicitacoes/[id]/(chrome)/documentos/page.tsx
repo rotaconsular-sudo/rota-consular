@@ -1,6 +1,5 @@
 import { prisma } from "@/lib/prisma";
 import { addDocument, removeDocument } from "@/app/actions";
-import { StepFooter } from "@/components/StepFooter";
 import Link from "next/link";
 import { getNextStep, getPrevStep } from "@/lib/wizard";
 
@@ -30,8 +29,8 @@ export default async function DocumentosPage(
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h2 className="text-lg font-semibold">Documentos</h2>
-        <p className="mt-1 text-sm text-zinc-500">
+        <h2 className="text-lg font-bold text-slate-900">Documentos</h2>
+        <p className="mt-1 text-sm text-slate-500">
           Envie o que você já tem em mãos. Arquivos até 8MB, armazenados de
           forma privada — só você tem acesso.
         </p>
@@ -42,15 +41,15 @@ export default async function DocumentosPage(
           {documents.map((doc) => (
             <li
               key={doc.id}
-              className="flex items-center justify-between rounded-md border border-zinc-200 px-4 py-2.5 text-sm"
+              className="flex items-center justify-between rounded-xl border border-slate-200 px-4 py-2.5 text-sm"
             >
               <div>
-                <p className="font-medium">
+                <p className="font-medium text-slate-900">
                   {DOCUMENT_TYPE_LABEL[doc.type] ?? doc.type}
                 </p>
                 <a
                   href={`/solicitacoes/${id}/documentos/${doc.id}`}
-                  className="text-zinc-500 hover:underline"
+                  className="text-slate-500 hover:underline"
                 >
                   {doc.fileName}
                 </a>
@@ -71,14 +70,14 @@ export default async function DocumentosPage(
       <form
         action={addAction}
         encType="multipart/form-data"
-        className="flex flex-col gap-3 rounded-md border border-dashed border-zinc-300 p-4 sm:flex-row sm:items-end"
+        className="flex flex-col gap-3 rounded-xl border border-dashed border-slate-300 p-4 sm:flex-row sm:items-end"
       >
         <label className="flex flex-1 flex-col gap-1">
-          <span className="text-sm font-medium">Tipo de documento</span>
+          <span className="text-sm font-medium text-slate-700">Tipo de documento</span>
           <select
             name="type"
             required
-            className="rounded-md border border-zinc-300 px-3 py-2 text-sm"
+            className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/40"
           >
             {Object.entries(DOCUMENT_TYPE_LABEL).map(([value, label]) => (
               <option key={value} value={value}>
@@ -89,29 +88,29 @@ export default async function DocumentosPage(
         </label>
 
         <label className="flex flex-1 flex-col gap-1">
-          <span className="text-sm font-medium">Arquivo</span>
+          <span className="text-sm font-medium text-slate-700">Arquivo</span>
           <input
             name="file"
             type="file"
             required
             accept="application/pdf,image/*"
-            className="rounded-md border border-zinc-300 px-3 py-2 text-sm"
+            className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/40"
           />
         </label>
 
         <button
           type="submit"
-          className="rounded-lg border border-blue-700 px-4 py-2 text-sm font-medium text-blue-700 transition hover:bg-blue-50"
+          className="rounded-full border border-blue-600 px-4 py-2 text-sm font-semibold text-blue-600 transition hover:bg-blue-50"
         >
           Adicionar
         </button>
       </form>
 
-      <div className="flex items-center justify-between border-t border-zinc-100 pt-5">
+      <div className="flex items-center justify-between border-t border-slate-100 pt-5">
         {prev ? (
           <Link
             href={`/solicitacoes/${id}/${prev.slug}`}
-            className="text-sm text-zinc-600 hover:underline"
+            className="text-sm text-slate-600 hover:underline"
           >
             ← Voltar
           </Link>
@@ -120,7 +119,7 @@ export default async function DocumentosPage(
         )}
         <Link
           href={`/solicitacoes/${id}/${next ? next.slug : "revisao"}`}
-          className="rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-blue-800"
+          className="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-blue-600/20 transition hover:bg-blue-700"
         >
           Continuar
         </Link>

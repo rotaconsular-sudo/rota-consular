@@ -1,11 +1,8 @@
 import Link from "next/link";
-import { Plus_Jakarta_Sans } from "next/font/google";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/session";
 import { createApplication, logout, startFreeApplication } from "@/app/actions";
 import { WIZARD_STEPS } from "@/lib/wizard";
-
-const plusJakarta = Plus_Jakarta_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
 
 const STATUS_LABEL: Record<string, string> = {
   EM_ANDAMENTO: "Em andamento",
@@ -16,7 +13,7 @@ const STATUS_LABEL: Record<string, string> = {
 const STATUS_STYLE: Record<string, string> = {
   EM_ANDAMENTO: "bg-amber-100 text-amber-800",
   ANALISE_PRONTA: "bg-emerald-100 text-emerald-800",
-  CONCLUIDA: "bg-zinc-200 text-zinc-700",
+  CONCLUIDA: "bg-slate-200 text-slate-700",
 };
 
 export default async function HomePage() {
@@ -34,19 +31,19 @@ export default async function HomePage() {
     <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-8 px-6 py-16">
       <header className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-sm font-medium text-blue-700">Rota Consular</p>
-          <h1 className="mt-1 text-2xl font-semibold tracking-tight">
+          <p className="text-sm font-semibold text-blue-600">Rota Consular</p>
+          <h1 className="mt-1 text-2xl font-bold tracking-tight text-slate-900">
             Minhas solicitações
           </h1>
-          <p className="mt-2 text-sm text-zinc-600">
+          <p className="mt-2 text-sm text-slate-500">
             Preparação para o visto americano de turismo (B1/B2). Isso não é
             uma garantia de aprovação — a decisão é sempre do consulado.
           </p>
         </div>
         <div className="flex shrink-0 flex-col items-end gap-1 pt-1">
-          <span className="text-xs text-zinc-500">{user.email}</span>
+          <span className="text-xs text-slate-500">{user.email}</span>
           <form action={logout}>
-            <button type="submit" className="text-xs text-zinc-500 hover:underline">
+            <button type="submit" className="text-xs text-slate-500 hover:underline">
               Sair
             </button>
           </form>
@@ -54,8 +51,8 @@ export default async function HomePage() {
       </header>
 
       {applications.length === 0 ? (
-        <div className="rounded-lg border border-dashed border-zinc-300 bg-white p-8 text-center">
-          <p className="text-sm text-zinc-600">
+        <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center">
+          <p className="text-sm text-slate-500">
             Você ainda não começou nenhuma solicitação.
           </p>
         </div>
@@ -71,20 +68,20 @@ export default async function HomePage() {
               <li key={app.id}>
                 <Link
                   href={`/solicitacoes/${app.id}/${WIZARD_STEPS[0].slug}`}
-                  className="flex items-center justify-between rounded-lg border border-zinc-200 bg-white px-5 py-4 transition hover:border-blue-300 hover:shadow-sm"
+                  className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm transition hover:border-blue-300 hover:shadow-md"
                 >
                   <div>
-                    <p className="font-medium">
+                    <p className="font-semibold text-slate-900">
                       Solicitação de{" "}
                       {new Date(app.createdAt).toLocaleDateString("pt-BR")}
                     </p>
-                    <p className="mt-0.5 text-sm text-zinc-500">
+                    <p className="mt-0.5 text-sm text-slate-500">
                       {completedSteps.size} de {totalTrackedSteps} etapas
                       preenchidas
                     </p>
                   </div>
                   <span
-                    className={`rounded-full px-3 py-1 text-xs font-medium ${STATUS_STYLE[app.status]}`}
+                    className={`rounded-full px-3 py-1 text-xs font-semibold ${STATUS_STYLE[app.status]}`}
                   >
                     {STATUS_LABEL[app.status]}
                   </span>
@@ -98,7 +95,7 @@ export default async function HomePage() {
       <form action={createApplication}>
         <button
           type="submit"
-          className="w-full rounded-lg bg-blue-700 px-5 py-3 text-sm font-medium text-white transition hover:bg-blue-800"
+          className="w-full rounded-full bg-blue-600 px-5 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-600/25 transition hover:bg-blue-700"
         >
           Nova solicitação
         </button>
@@ -133,7 +130,7 @@ const HOW_IT_WORKS = [
 
 function FreeStartLanding() {
   return (
-    <div className={`${plusJakarta.className} flex flex-1 flex-col bg-slate-50 text-slate-900`}>
+    <div className="flex flex-1 flex-col bg-slate-50 text-slate-900">
       <section className="bg-slate-50">
         <div className="mx-auto flex w-full max-w-2xl flex-col items-center gap-6 px-6 py-20 text-center sm:py-28">
           <span className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-1.5 text-xs font-semibold tracking-wide text-blue-700">

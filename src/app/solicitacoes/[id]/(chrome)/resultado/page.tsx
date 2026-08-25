@@ -44,21 +44,21 @@ export default async function ResultadoPage(
   return (
     <div className="flex flex-col gap-8">
       <div>
-        <h2 className="text-lg font-semibold">Resultado da análise</h2>
-        <p className="mt-1 text-sm text-zinc-500">
+        <h2 className="text-lg font-bold text-slate-900">Resultado da análise</h2>
+        <p className="mt-1 text-sm text-slate-500">
           Isso é um checklist de prontidão da sua documentação, gerado
           automaticamente — nunca uma previsão ou garantia de aprovação. A
           decisão é sempre do oficial consular americano.
         </p>
       </div>
 
-      <div className="flex items-center gap-4 rounded-lg border border-zinc-200 bg-zinc-50 p-5">
-        <div className={`text-4xl font-bold ${scoreColor(result.readinessScore)}`}>
+      <div className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <div className={`text-4xl font-extrabold ${scoreColor(result.readinessScore)}`}>
           {result.readinessScore}
         </div>
         <div>
-          <p className="text-sm font-medium">Nível de prontidão</p>
-          <p className="text-xs text-zinc-500">
+          <p className="text-sm font-semibold text-slate-900">Nível de prontidão</p>
+          <p className="text-xs text-slate-500">
             Quanto sua documentação e vínculos parecem completos e
             consistentes (0-100)
           </p>
@@ -66,7 +66,7 @@ export default async function ResultadoPage(
       </div>
 
       {!paid && (
-        <section className="flex flex-col gap-3 rounded-lg border border-blue-200 bg-blue-50 p-5">
+        <section className="flex flex-col gap-3 rounded-2xl border border-blue-200 bg-blue-50 p-5">
           <div>
             <h3 className="text-sm font-semibold text-blue-900">
               O que vem no checklist completo (R$47)
@@ -93,12 +93,12 @@ export default async function ResultadoPage(
 
       {paid && alerts.length > 0 && (
         <section className="flex flex-col gap-2">
-          <h3 className="text-sm font-semibold">Alertas</h3>
+          <h3 className="text-sm font-semibold text-slate-900">Alertas</h3>
           <ul className="flex flex-col gap-2">
             {alerts.map((alert, i) => (
               <li
                 key={i}
-                className="rounded-md border border-amber-200 bg-amber-50 px-4 py-2.5 text-sm text-amber-900"
+                className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-2.5 text-sm text-amber-900"
               >
                 {alert}
               </li>
@@ -108,21 +108,21 @@ export default async function ResultadoPage(
       )}
 
       <section className="flex flex-col gap-2">
-        <h3 className="text-sm font-semibold">Checklist</h3>
+        <h3 className="text-sm font-semibold text-slate-900">Checklist</h3>
         <ul className="flex flex-col gap-2">
           {checklist.map((entry, i) => (
             <li
               key={i}
-              className="flex flex-col gap-1 rounded-md border border-zinc-200 p-3 text-sm sm:flex-row sm:items-start sm:justify-between sm:gap-4"
+              className="flex flex-col gap-1 rounded-xl border border-slate-200 bg-white p-3 text-sm sm:flex-row sm:items-start sm:justify-between sm:gap-4"
             >
               <div>
-                <p className="font-medium">{entry.item}</p>
+                <p className="font-medium text-slate-900">{entry.item}</p>
                 {paid ? (
-                  <p className="text-zinc-600">{entry.comentario}</p>
+                  <p className="text-slate-600">{entry.comentario}</p>
                 ) : (
                   <p
                     aria-hidden
-                    className="select-none text-zinc-300"
+                    className="select-none text-slate-300"
                   >
                     ████████████████████████████
                   </p>
@@ -140,11 +140,11 @@ export default async function ResultadoPage(
         </ul>
       </section>
 
-      <div className="flex items-center justify-between border-t border-zinc-100 pt-5 text-sm">
-        <Link href={`/solicitacoes/${id}/perfil`} className="text-zinc-500 hover:underline">
+      <div className="flex items-center justify-between border-t border-slate-100 pt-5 text-sm">
+        <Link href={`/solicitacoes/${id}/perfil`} className="text-slate-500 hover:underline">
           ← Editar respostas
         </Link>
-        <Link href={`/solicitacoes/${id}/documentos`} className="text-blue-700 hover:underline">
+        <Link href={`/solicitacoes/${id}/documentos`} className="font-medium text-blue-600 hover:underline">
           Enviar documentos e refinar a análise →
         </Link>
       </div>
