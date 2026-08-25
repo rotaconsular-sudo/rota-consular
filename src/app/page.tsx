@@ -511,6 +511,10 @@ function SalesLanding() {
         <Link href="/entrar" className="text-blue-600 hover:underline">
           Entrar
         </Link>
+        {" · "}
+        <Link href="/blog" className="text-blue-600 hover:underline">
+          Blog
+        </Link>
       </p>
 
       <footer className="border-t border-slate-200 bg-white">

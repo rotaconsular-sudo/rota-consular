@@ -16,6 +16,8 @@
     "@prisma/client": "^7.9.1",
     "@vercel/blob": "^2.8.0",
     "dotenv": "^17.4.2",
+    "gray-matter": "^4.0.3",
+    "marked": "^18.0.11",
     "mercadopago": "^3.4.0",
     "next": "16.3.2",
     "pg": "^8.23.0",
@@ -26,6 +28,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@tailwindcss/typography": "^0.5.20",
     "@types/node": "^20",
     "@types/pg": "^8.23.1",
     "@types/react": "^19",
