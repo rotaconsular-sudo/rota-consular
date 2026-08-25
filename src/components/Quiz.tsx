@@ -53,33 +53,47 @@ export function Quiz({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current]);
 
-  if (!current) return null;
-
   return (
     <div className="flex min-h-screen flex-col bg-gradient-to-b from-[#0b3d91] to-[#0a2f6e] text-white">
       <div className="mx-auto flex w-full max-w-xl flex-1 flex-col px-6 py-10">
-        <div className="mb-8 h-1.5 w-full overflow-hidden rounded-full bg-white/15">
-          <div
-            className="h-full rounded-full bg-white transition-all duration-300"
-            style={{
-              width: `${((progressIndex + 1) / Math.max(progressTotal, 1)) * 100}%`,
-            }}
-          />
-        </div>
+        {current ? (
+          <>
+            <div className="mb-8 h-1.5 w-full overflow-hidden rounded-full bg-white/15">
+              <div
+                className="h-full rounded-full bg-white transition-all duration-300"
+                style={{
+                  width: `${((progressIndex + 1) / Math.max(progressTotal, 1)) * 100}%`,
+                }}
+              />
+            </div>
 
-        <p className="text-xs font-semibold uppercase tracking-wide text-white/70">
-          Pergunta {progressIndex + 1} de {progressTotal}
-        </p>
+            <p className="text-xs font-semibold uppercase tracking-wide text-white/70">
+              Pergunta {progressIndex + 1} de {progressTotal}
+            </p>
 
-        <QuestionScreen
-          key={current.id}
-          question={current}
-          value={answers[current.id]}
-          onAnswer={(value) => answer(current.id, value)}
-          canGoBack={history.length > 0}
-          onBack={goBack}
-        />
+            <QuestionScreen
+              key={current.id}
+              question={current}
+              value={answers[current.id]}
+              onAnswer={(value) => answer(current.id, value)}
+              canGoBack={history.length > 0}
+              onBack={goBack}
+            />
+          </>
+        ) : (
+          <AnalyzingScreen />
+        )}
       </div>
+    </div>
+  );
+}
+
+function AnalyzingScreen() {
+  return (
+    <div className="flex flex-1 flex-col items-center justify-center gap-4 text-center">
+      <div className="h-8 w-8 animate-spin rounded-full border-2 border-white/25 border-t-white" />
+      <h2 className="font-serif text-2xl">Analisando suas respostas…</h2>
+      <p className="text-sm text-white/60">Isso pode levar até 20 segundos.</p>
     </div>
   );
 }

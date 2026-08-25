@@ -89,8 +89,10 @@ export async function saveAnswer(
 }
 
 // Salva o quiz de análise de perfil inteiro (etapa PERFIL) de uma vez, ao
-// final das perguntas — diferente de saveAnswer, que salva 1 etapa do
-// wizard antigo por submit de página.
+// final das perguntas, e já roda a análise na hora — a pessoa sai do quiz
+// direto pro resultado (score grátis), sem passar por documentos/revisão
+// antes. Documentos continuam disponíveis depois, pra quem quiser refinar
+// o checklist pago.
 export async function savePerfilAnswers(
   applicationId: string,
   answers: QuizAnswers,
@@ -103,14 +105,10 @@ export async function savePerfilAnswers(
     create: { applicationId, step: "PERFIL", data: answers },
   });
 
-  await prisma.application.update({
-    where: { id: applicationId },
-    data: { status: "EM_ANDAMENTO" },
-  });
+  await performAnalysis(applicationId);
 
-  const next = getNextStep("perfil");
   revalidatePath(`/solicitacoes/${applicationId}`);
-  redirect(`/solicitacoes/${applicationId}/${next ? next.slug : "revisao"}`);
+  redirect(`/solicitacoes/${applicationId}/resultado`);
 }
 
 export async function addDocument(applicationId: string, formData: FormData) {
@@ -158,7 +156,12 @@ export async function removeDocument(documentId: string, applicationId: string) 
   revalidatePath(`/solicitacoes/${applicationId}/documentos`);
 }
 
-export async function runAnalysis(applicationId: string) {
+// Núcleo de rodar a análise por IA: lê respostas + documentos salvos,
+// chama o modelo, grava o resultado e avisa por e-mail. Sem redirect —
+// quem chama decide pra onde mandar a pessoa depois (savePerfilAnswers
+// manda pro resultado assim que o quiz termina; runAnalysis reusa isso
+// pro botão "rodar análise novamente" na revisão, depois de documentos).
+async function performAnalysis(applicationId: string) {
   const application = await requireApplicationAccess(applicationId);
 
   const [answers, documents] = await Promise.all([
@@ -209,6 +212,10 @@ export async function runAnalysis(applicationId: string) {
       resultUrl,
     });
   }
+}
+
+export async function runAnalysis(applicationId: string) {
+  await performAnalysis(applicationId);
 
   revalidatePath(`/solicitacoes/${applicationId}`);
   redirect(`/solicitacoes/${applicationId}/resultado`);

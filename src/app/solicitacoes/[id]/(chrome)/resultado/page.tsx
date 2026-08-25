@@ -140,12 +140,12 @@ export default async function ResultadoPage(
         </ul>
       </section>
 
-      <div className="border-t border-zinc-100 pt-5">
-        <Link
-          href={`/solicitacoes/${id}/revisao`}
-          className="text-sm text-blue-700 hover:underline"
-        >
-          ← Voltar à revisão
+      <div className="flex items-center justify-between border-t border-zinc-100 pt-5 text-sm">
+        <Link href={`/solicitacoes/${id}/perfil`} className="text-zinc-500 hover:underline">
+          ← Editar respostas
+        </Link>
+        <Link href={`/solicitacoes/${id}/documentos`} className="text-blue-700 hover:underline">
+          Enviar documentos e refinar a análise →
         </Link>
       </div>
     </div>
