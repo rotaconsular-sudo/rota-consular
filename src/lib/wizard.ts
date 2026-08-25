@@ -1,32 +1,17 @@
 import type { WizardStep } from "@/generated/prisma/enums";
 
-// Ordem das etapas do wizard de triagem. "documentos" e "revisao" não têm
+// Ordem das etapas do funil. "perfil" é o quiz (1 pergunta por tela, ver
+// src/components/Quiz.tsx) que substituiu as 4 páginas antigas de
+// formulário — essas páginas continuam existindo (não foram apagadas) mas
+// não fazem mais parte do fluxo ativo. "documentos" e "revisao" não têm
 // um WizardStep correspondente — documentos usa o model Document, e a
 // revisão só lê o que já foi salvo nas etapas anteriores.
 export const WIZARD_STEPS = [
   {
-    slug: "dados-pessoais",
-    step: "DADOS_PESSOAIS" satisfies WizardStep,
-    title: "Dados pessoais",
-    description: "Quem é você",
-  },
-  {
-    slug: "situacao-profissional",
-    step: "SITUACAO_PROFISSIONAL" satisfies WizardStep,
-    title: "Situação profissional",
-    description: "Seu vínculo com o Brasil",
-  },
-  {
-    slug: "historico-viagens",
-    step: "HISTORICO_VIAGENS" satisfies WizardStep,
-    title: "Histórico de viagens",
-    description: "Viagens e vistos anteriores",
-  },
-  {
-    slug: "motivo-viagem",
-    step: "MOTIVO_VIAGEM" satisfies WizardStep,
-    title: "Motivo da viagem",
-    description: "Por que você quer ir aos EUA",
+    slug: "perfil",
+    step: "PERFIL" satisfies WizardStep,
+    title: "Perfil",
+    description: "Análise de perfil",
   },
   {
     slug: "documentos",

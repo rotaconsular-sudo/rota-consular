@@ -11,8 +11,9 @@ import {
   createAccessToken,
   getAccessCookieValue,
 } from "@/lib/applications";
-import { WIZARD_STEPS, getNextStep, type WizardStepSlug } from "@/lib/wizard";
+import { WIZARD_STEPS, getNextStep } from "@/lib/wizard";
 import type { WizardStep, DocumentType } from "@/generated/prisma/enums";
+import type { QuizAnswers } from "@/lib/quizQuestions";
 import { runReadinessAnalysis } from "@/lib/anthropic";
 import { sendAnalysisResult } from "@/lib/mailer";
 import { getBaseUrl } from "@/lib/url";
@@ -56,9 +57,12 @@ export async function startFreeApplication(formData: FormData) {
   redirect(`/solicitacoes/${application.id}/${WIZARD_STEPS[0].slug}`);
 }
 
+// stepSlug é string solta (não WizardStepSlug): só as páginas antigas do
+// wizard (fora do fluxo ativo, ver src/lib/wizard.ts) ainda chamam essa
+// action, com slugs que não existem mais em WIZARD_STEPS.
 export async function saveAnswer(
   applicationId: string,
-  stepSlug: WizardStepSlug,
+  stepSlug: string,
   step: WizardStep,
   formData: FormData,
 ) {
@@ -80,6 +84,31 @@ export async function saveAnswer(
   });
 
   const next = getNextStep(stepSlug);
+  revalidatePath(`/solicitacoes/${applicationId}`);
+  redirect(`/solicitacoes/${applicationId}/${next ? next.slug : "revisao"}`);
+}
+
+// Salva o quiz de análise de perfil inteiro (etapa PERFIL) de uma vez, ao
+// final das perguntas — diferente de saveAnswer, que salva 1 etapa do
+// wizard antigo por submit de página.
+export async function savePerfilAnswers(
+  applicationId: string,
+  answers: QuizAnswers,
+) {
+  await requireApplicationAccess(applicationId);
+
+  await prisma.answer.upsert({
+    where: { applicationId_step: { applicationId, step: "PERFIL" } },
+    update: { data: answers },
+    create: { applicationId, step: "PERFIL", data: answers },
+  });
+
+  await prisma.application.update({
+    where: { id: applicationId },
+    data: { status: "EM_ANDAMENTO" },
+  });
+
+  const next = getNextStep("perfil");
   revalidatePath(`/solicitacoes/${applicationId}`);
   redirect(`/solicitacoes/${applicationId}/${next ? next.slug : "revisao"}`);
 }

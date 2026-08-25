@@ -22,6 +22,17 @@ const FIELD_LABEL: Record<string, string> = {
   duracaoEstimadaDias: "Duração estimada (dias)",
   temParenteNosEUA: "Tem parente nos EUA",
   nomeParente: "Nome do parente",
+  escolaridade: "Escolaridade",
+  trabalhoAtual: "Trabalho atual",
+  tempoTrabalho: "Tempo no trabalho atual",
+  ramoAtividade: "Ramo de atividade",
+  declaraIR: "Declara Imposto de Renda",
+  casaPropria: "Possui casa própria",
+  jaViajou: "Já viajou para outros países",
+  paisesViajados: "Países visitados",
+  conheceAlguemEUA: "Conhece alguém nos EUA",
+  quemConheceEUA: "Quem conhece nos EUA",
+  maisDetalhes: "Mais detalhes",
 };
 
 const DOCUMENT_TYPE_LABEL: Record<string, string> = {
@@ -50,6 +61,22 @@ const VALUE_LABEL: Record<string, string> = {
   visita_familia_amigos: "Visita a família ou amigos",
   convencao_evento: "Convenção ou evento",
   outro: "Outro",
+  fundamental: "Fundamental",
+  medio: "Médio",
+  superior_incompleto: "Superior incompleto",
+  superior_completo: "Superior completo",
+  pos_graduacao: "Pós-graduação",
+  menos_6m: "Menos de 6 meses",
+  "6m_1a": "Entre 6 meses e 1 ano",
+  "1_3a": "Entre 1 e 3 anos",
+  mais_3a: "Mais de 3 anos",
+  sim: "Sim",
+  nao: "Não",
+  ate_3k: "Até R$ 3 mil",
+  "3k_6k": "Entre R$ 3 mil e R$ 6 mil",
+  "6k_10k": "Entre R$ 6 mil e R$ 10 mil",
+  "10k_20k": "Entre R$ 10 mil e R$ 20 mil",
+  acima_20k: "Acima de R$ 20 mil",
 };
 
 function formatValue(value: unknown) {

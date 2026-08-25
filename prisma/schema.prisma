@@ -90,6 +90,11 @@ enum WizardStep {
   SITUACAO_PROFISSIONAL
   HISTORICO_VIAGENS
   MOTIVO_VIAGEM
+  // Substitui as 4 etapas acima no funil gratuito: quiz de 1 pergunta por
+  // tela (ver src/components/Quiz.tsx), todas as respostas num Answer só.
+  // As 4 antigas ficam no enum e nas páginas (não removidas) mas saem de
+  // uso — só existem casos antigos que já as usaram antes dessa migração.
+  PERFIL
 }
 
 model Document {
