@@ -62,7 +62,7 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
           Quer saber o nível de prontidão da sua documentação para o visto?
         </p>
         <Link
-          href="/#analise-gratis"
+          href="/analise-de-perfil"
           className="mt-3 inline-block rounded-full bg-blue-600 px-6 py-3 text-sm font-bold text-white transition hover:bg-blue-700"
         >
           Fazer análise grátis

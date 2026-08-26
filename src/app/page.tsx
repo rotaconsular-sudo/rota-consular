@@ -172,7 +172,7 @@ function InstitutionalHome() {
           </p>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Link
-              href="/mapads160#analise-gratis"
+              href="/analise-de-perfil"
               className="rounded-full bg-blue-600 px-8 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-600/25 transition hover:bg-blue-700 hover:shadow-xl"
             >
               Fazer análise grátis
@@ -221,18 +221,20 @@ function InstitutionalHome() {
           </h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             <Link
-              href="/mapads160#analise-gratis"
+              href="/analise-de-perfil"
               className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition hover:border-blue-300 hover:shadow-md"
             >
               <span className="inline-flex w-fit items-center gap-2 rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-800">
-                GRÁTIS
+                ANÁLISE GRÁTIS
               </span>
               <h3 className="text-lg font-bold text-slate-900">
-                Análise de prontidão
+                Descubra suas chances na hora
               </h3>
               <p className="text-sm text-slate-600">
-                Responda algumas perguntas sobre o seu perfil e receba, na
-                hora, o nível de prontidão da sua documentação para o visto.
+                Responda um quiz rápido de 2 minutos e receba um diagnóstico
+                imediato. Saiba se o seu perfil está pronto para aprovação ou
+                se esconde alguma &quot;pegadinha&quot; que pode te fazer
+                perder a taxa do visto.
               </p>
             </Link>
             <Link
@@ -240,14 +242,15 @@ function InstitutionalHome() {
               className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition hover:border-blue-300 hover:shadow-md"
             >
               <span className="inline-flex w-fit items-center gap-2 rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-blue-800">
-                MAPA DO DS-160
+                ACESSO IMEDIATO
               </span>
               <h3 className="text-lg font-bold text-slate-900">
-                Guia visual passo a passo
+                Mapa do DS-160: O Guia Definitivo
               </h3>
               <p className="text-sm text-slate-600">
-                Preencha o formulário DS-160 com mais segurança, seguindo a
-                mesma sequência apresentada no site oficial.
+                Já sabe que não quer arriscar? Pule a fila. Siga nosso passo a
+                passo visual e preencha o formulário oficial americano sem
+                medo de errar e sem pagar fortunas para despachantes.
               </p>
             </Link>
           </div>

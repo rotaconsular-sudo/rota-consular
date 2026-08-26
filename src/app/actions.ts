@@ -41,7 +41,7 @@ export async function startFreeApplication(formData: FormData) {
   const whatsapp = String(formData.get("whatsapp") ?? "").trim();
 
   if (!EMAIL_REGEX.test(email) || !whatsapp) {
-    redirect("/?erro=dados_invalidos");
+    redirect("/analise-de-perfil?erro=dados_invalidos");
   }
 
   const application = await prisma.application.create({
