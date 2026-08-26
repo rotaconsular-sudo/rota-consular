@@ -356,6 +356,31 @@ export default function MapaDS160Page() {
         </div>
       </section>
 
+      {/* Upsell: Assessoria Completa */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-2xl px-6 py-16">
+          <div className="rounded-2xl border border-blue-100 bg-blue-50 p-7 text-center shadow-sm sm:p-9">
+            <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-blue-700">
+              PARA QUEM QUER IR ALÉM DO FORMULÁRIO
+            </span>
+            <h2 className="mt-3 text-2xl font-bold tracking-tight text-slate-900">
+              Quer uma especialista cuidando de tudo, do DS-160 até a entrevista?
+            </h2>
+            <p className="mt-2 text-sm text-slate-600">
+              Conheça a Assessoria Completa Rota Consular: documentação,
+              treinamento para a entrevista consular e atendimento humano
+              direto no WhatsApp.
+            </p>
+            <Link
+              href="/assessoria-completa"
+              className="mt-6 inline-block rounded-full bg-blue-600 px-8 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-600/25 transition hover:bg-blue-700 hover:shadow-xl"
+            >
+              Conhecer a Assessoria Completa
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ */}
       <section className="bg-slate-50">
         <div className="mx-auto max-w-2xl px-6 py-16">
