@@ -24,18 +24,18 @@ export type OrderBump = {
 
 export const FLAGSHIP_PRODUCT: Product = {
   slug: "mapa-ds160",
-  title: "Mapa do DS-160",
+  title: "DS-160 Sem Erros",
   subtitle:
-    "Guia visual passo a passo para preencher o formulário DS-160 do visto americano de turista com mais clareza, segurança e organização.",
+    "Preencha seu DS-160 pelo nosso formulário 100% em português. Nossa equipe revisa suas respostas e faz o envio oficial ao Consulado americano por você.",
   priceCents: 2790,
   compareAtPriceCents: 9700,
   bullets: [
-    "Guia visual completo, passo a passo",
+    "Formulário próprio, 100% em português",
     "Foco no DS-160 para visto de turista B1/B2",
-    "Explicação clara dos principais campos e perguntas",
-    "Mesma sequência apresentada no formulário",
-    "Alertas, pontos de atenção e situações comuns",
-    "Zero conteúdo desnecessário",
+    "Revisão humana especializada antes do envio",
+    "Envio oficial direto ao site do Consulado americano",
+    "Alertas sobre informações conflitantes ou inconsistentes",
+    "Você recebe o código de confirmação e o PDF oficial",
   ],
   themes: [
     "Personal Information",

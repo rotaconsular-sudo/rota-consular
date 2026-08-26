@@ -146,8 +146,11 @@ function InstitutionalHome() {
             <Link href="/blog" className="hover:text-blue-600">
               Blog
             </Link>
+            <Link href="/analise-de-perfil" className="hover:text-blue-600">
+              Análise de Perfil
+            </Link>
             <Link href="/mapads160" className="hover:text-blue-600">
-              Mapa do DS-160
+              DS160 sem erros
             </Link>
             <Link href="/entrar" className="hover:text-blue-600">
               Entrar
@@ -181,7 +184,7 @@ function InstitutionalHome() {
               href="/mapads160"
               className="rounded-full border border-slate-300 px-8 py-3.5 text-sm font-bold text-slate-700 transition hover:border-blue-300 hover:text-blue-700"
             >
-              Conhecer o Mapa do DS-160
+              DS160 sem erros
             </Link>
           </div>
         </div>

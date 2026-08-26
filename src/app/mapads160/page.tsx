@@ -9,66 +9,88 @@ export const metadata: Metadata = {
 
 const GUIDE_FEATURES = [
   {
-    title: "Guia visual organizado conforme a sequência do formulário",
+    title: "Formulário próprio, simples e 100% em português",
     icon: IconClipboard,
   },
   {
-    title: "Explicação dos principais campos do DS-160",
+    title: "Suporte para tirar dúvidas durante o preenchimento",
     icon: IconDocument,
   },
   {
-    title: "Orientações para diferentes situações de preenchimento",
+    title: "Revisão humana especializada antes do envio",
     icon: IconRoute,
   },
   {
-    title: "Alertas e pontos de atenção em cada etapa",
+    title: "Alertas sobre informações conflitantes ou inconsistentes",
     icon: IconAlert,
   },
   {
-    title: "Passo a passo da abertura até o envio do formulário",
+    title: "Envio oficial direto ao site do Consulado americano",
     icon: IconClipboard,
   },
 ];
 
 const IDEAL_FOR = [
-  "Preencher o DS-160 por conta própria",
-  "Entender o que cada etapa do formulário está solicitando",
-  "Evitar dúvidas durante o preenchimento",
-  "Seguir um processo prático, organizado e visual",
-  "Consultar rapidamente sempre que surgir uma dúvida",
+  "Preencher seus dados 100% em português, no seu tempo e sem esbarrar no site confuso do governo.",
+  "Ter a segurança de uma revisão humana especializada antes de qualquer envio oficial.",
+  "Receber a confirmação oficial (código de barras) e o PDF finalizado sem estresse.",
+  "Economizar centenas de reais fugindo das taxas abusivas de despachantes tradicionais.",
 ];
 
-const ACCESS_STEPS = [
-  { title: "Conclua sua compra", icon: IconOrder },
-  { title: "Receba o acesso imediatamente no seu e-mail", icon: IconMail },
-  { title: "Baixe todo o material organizado", icon: IconDownload },
-  { title: "Abra o DS-160 e deixe o guia ao lado", icon: IconOpenForm },
-  { title: "Siga cada etapa do formulário com o apoio do mapa", icon: IconGuide },
+const HOW_DS160_WORKS = [
+  {
+    title: "O Preenchimento Descomplicado",
+    description: "Você usa nosso formulário simplificado em português.",
+    icon: IconOpenForm,
+  },
+  {
+    title: "A Revisão Humana",
+    description:
+      "Um especialista audita as suas respostas para eliminar informações conflitantes.",
+    icon: IconGuide,
+  },
+  {
+    title: "A Submissão Oficial",
+    description:
+      "Nós assumimos a burocracia, lançamos tudo no site do Consulado e te enviamos o código do DS-160 e o PDF oficial prontos para o seu agendamento.",
+    icon: IconOrder,
+  },
 ];
 
 const FAQ_ITEMS = [
   {
-    question: "O material serve para quem nunca preencheu o DS-160?",
+    question: "O serviço serve para quem nunca preencheu o DS-160?",
     answer:
-      "Sim. O material foi organizado para acompanhar quem está preenchendo o DS-160 pela primeira vez, com explicações visuais e sequência passo a passo.",
+      "Sim. Você só precisa responder nosso formulário em português — nossa equipe cuida da revisão e do envio oficial, mesmo que seja a primeira vez que você lida com o DS-160.",
   },
   {
     question: "Posso acessar pelo celular?",
-    answer: "Sim. Você pode acessar o material pelo celular, tablet ou computador.",
+    answer: "Sim. Você pode preencher nosso formulário pelo celular, tablet ou computador.",
   },
   {
-    question: "Como recebo o material?",
-    answer: "Após a confirmação da compra, você recebe o acesso no seu e-mail.",
-  },
-  {
-    question: "O guia segue a sequência do formulário?",
+    question: "Preciso saber inglês para usar o formulário de vocês?",
     answer:
-      "Sim. O guia foi organizado seguindo a sequência apresentada no DS-160 para facilitar o acompanhamento durante o preenchimento.",
+      "Não. Nosso formulário é 100% em português — a tradução e o envio ao site oficial do Consulado ficam por nossa conta.",
   },
   {
     question: "Como funciona a garantia?",
     answer:
       "Você conta com garantia de 7 dias. Dentro desse prazo, caso não queira continuar com o produto, pode solicitar o reembolso.",
+  },
+  {
+    question: "Eu vou precisar entrar no site oficial do governo americano?",
+    answer:
+      "Não. Nossa equipe se encarrega de transferir todos os seus dados revisados para o sistema oficial do Consulado.",
+  },
+  {
+    question: "O que eu recebo no final do processo?",
+    answer:
+      "Você receberá o número de confirmação oficial do seu DS-160 e uma cópia em PDF gerada diretamente pelo site do governo americano.",
+  },
+  {
+    question: "E se eu errar alguma digitação no sistema de vocês?",
+    answer:
+      "Fique tranquilo. Antes do envio definitivo, nosso especialista fará uma revisão humana e entrará em contato caso encontre alguma divergência.",
   },
 ];
 
@@ -121,7 +143,7 @@ export default function MapaDS160Page() {
             ACESSAR AGORA
           </Link>
           <p className="text-sm text-slate-500">
-            Você recebe tudo na hora, direto no seu e-mail.
+            Preencha agora e deixe o resto com a gente.
           </p>
         </div>
       </section>
@@ -130,18 +152,8 @@ export default function MapaDS160Page() {
       <section className="bg-slate-50">
         <div className="mx-auto max-w-4xl px-6 py-16">
           <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900">
-            Veja o material que você vai receber na prática:
+            Nós cuidamos de cada uma dessas etapas do formulário oficial:
           </h2>
-          <div className="mt-8 grid gap-4 sm:grid-cols-4">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <div
-                key={i}
-                className="flex aspect-[3/4] items-center justify-center rounded-xl border border-dashed border-slate-300 bg-white text-xs text-slate-400"
-              >
-                [ página {i + 1} ]
-              </div>
-            ))}
-          </div>
           <div className="mt-8 flex flex-wrap justify-center gap-2">
             {p.themes.map((theme) => (
               <span
@@ -159,7 +171,7 @@ export default function MapaDS160Page() {
       <section className="bg-white">
         <div className="mx-auto max-w-5xl px-6 py-16">
           <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900">
-            O {p.title} possui:
+            O {p.title} inclui:
           </h2>
           <ul className="mt-10 grid gap-6 sm:grid-cols-3">
             {GUIDE_FEATURES.map((f) => {
@@ -175,9 +187,8 @@ export default function MapaDS160Page() {
             })}
           </ul>
           <p className="mt-10 text-center text-sm font-semibold uppercase tracking-wide text-slate-500">
-            Com o nosso mapa você entende o que o DS-160 está pedindo, preenche
-            cada etapa com mais clareza e chega ao envio do formulário com muito
-            mais segurança!
+            Você preenche pelo nosso formulário, nossa equipe revisa e envia
+            oficialmente — sem risco de erro e sem precisar de despachante!
           </p>
           <div className="mt-8 flex justify-center">
             <Link
@@ -194,7 +205,7 @@ export default function MapaDS160Page() {
       <section className="bg-slate-50">
         <div className="mx-auto max-w-2xl px-6 py-16">
           <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900">
-            Nosso Mapa é ideal para você que deseja:
+            O nosso Sistema Inteligente é ideal para você que deseja:
           </h2>
           <ul className="mt-8 flex flex-col gap-3">
             {IDEAL_FOR.map((item) => (
@@ -225,7 +236,7 @@ export default function MapaDS160Page() {
             ))}
           </ul>
           <p className="mt-6 text-center text-sm text-slate-500">
-            Você recebe tudo na hora, direto no e-mail.
+            Você preenche, nossa equipe revisa e envia — sem burocracia.
           </p>
         </div>
       </section>
@@ -306,24 +317,28 @@ export default function MapaDS160Page() {
         </div>
       </section>
 
-      {/* Como é o acesso */}
+      {/* Como funciona o seu DS-160 Blindado */}
       <section className="bg-white">
         <div className="mx-auto max-w-4xl px-6 py-16">
           <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900">
-            Como é o acesso (passo a passo)
+            Como funciona o seu DS-160 Blindado?
           </h2>
-          <ol className="mt-10 grid gap-6 sm:grid-cols-5">
-            {ACCESS_STEPS.map((step, i) => {
+          <ol className="mt-10 grid gap-6 sm:grid-cols-3">
+            {HOW_DS160_WORKS.map((step, i) => {
               const Icon = step.icon;
               return (
-                <li key={step.title} className="flex flex-col items-center gap-3 text-center">
+                <li
+                  key={step.title}
+                  className="flex flex-col items-center gap-3 rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm"
+                >
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-50 text-blue-600">
                     <Icon />
                   </div>
                   <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
                     Passo {i + 1}
                   </p>
-                  <p className="text-sm font-medium text-slate-700">{step.title}</p>
+                  <p className="text-sm font-semibold text-slate-900">{step.title}</p>
+                  <p className="text-sm text-slate-600">{step.description}</p>
                 </li>
               );
             })}
