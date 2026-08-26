@@ -242,15 +242,17 @@ function InstitutionalHome() {
               className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition hover:border-blue-300 hover:shadow-md"
             >
               <span className="inline-flex w-fit items-center gap-2 rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-blue-800">
-                ACESSO IMEDIATO
+                🛡️ PREENCHIMENTO OFICIAL
               </span>
               <h3 className="text-lg font-bold text-slate-900">
-                Mapa do DS-160: O Guia Definitivo
+                O Fim do Medo de Errar no DS-160
               </h3>
               <p className="text-sm text-slate-600">
-                Já sabe que não quer arriscar? Pule a fila. Siga nosso passo a
-                passo visual e preencha o formulário oficial americano sem
-                medo de errar e sem pagar fortunas para despachantes.
+                Esqueça o site confuso em inglês. Use nosso formulário fácil
+                no seu idioma e deixe o resto com a gente. Nossa equipe faz
+                uma revisão humana minuciosa para evitar &quot;pegadinhas&quot;
+                e transmite seus dados ao governo americano com zero risco de
+                erros.
               </p>
             </Link>
           </div>
