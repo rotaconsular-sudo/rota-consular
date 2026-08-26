@@ -259,3 +259,65 @@ tráfego real antes de expandir a escada.
       construir os próximos degraus.
 - [ ] Só depois disso: revisitar a escada de ofertas (R$19,70 / R$197 /
       R$497) com dado real na mão.
+
+## Sessão 2026-08-25/26 — reestruturação de páginas e incidente de deploy
+
+- [x] **Blog em `/blog`** — posts em Markdown puro (`content/blog/*.md`), sem
+      CMS/banco. 6 artigos iniciais sobre visto americano/DS-160. Páginas de
+      listagem, post individual e filtro por tag, com busca/paginação.
+- [x] **Home dividida em institucional + funil** — `/` virou página
+      institucional (hero, diferenciais, "o que oferecemos", últimos posts do
+      blog), sem depoimentos/números fictícios (ainda não há prova social
+      real). O funil de venda antigo (oferta, checkout, análise grátis)
+      mudou de endereço pra `/mapads160`.
+- [x] **`/analise-de-perfil` separada do `/mapads160`** — a análise gratuita
+      de perfil (formulário e-mail + WhatsApp) tinha uma seção misturada
+      dentro da página do DS-160; agora é uma página própria, com estrutura
+      de dobra principal + "como funciona" (3 passos) + benefícios + bloco de
+      autoridade + CTA final. Todos os links que apontavam pra
+      `/mapads160#analise-gratis` foram atualizados.
+- [x] **`/mapads160` reposicionado como serviço completo** — antes o produto
+      era um guia/PDF autoguiado; a operação real é: cliente preenche
+      formulário próprio em português → equipe faz revisão humana → equipe
+      submete oficialmente no site do Consulado → cliente recebe código de
+      confirmação + PDF oficial. Título do produto (`lib/products.ts`)
+      virou "DS-160 Sem Erros"; textos, features, FAQ e a faixa de oferta do
+      topo (removida a promessa de "24hs") foram todos revisados pra não
+      contradizer esse modelo. Prazo de entrega comunicado no FAQ: 7 a 10
+      dias úteis (framed como "Auditoria Humana Especializada", não demora).
+- [x] **Enquadramento institucional pro suporte via WhatsApp** — decisão:
+      nunca chamar o contato pós-venda de "suporte"/"tirar dúvida" (abre
+      brecha pra virar consultoria de graça por áudio). Linguagem oficial:
+      "Controle de Qualidade" / "Notificação de Divergência" / "Auditoria
+      Humana Especializada". FAQ deixa explícito que o serviço cobre 1
+      alerta pontual de divergência, sem consultoria de perfil, análise de
+      vínculos ou simulação de entrevista.
+- [x] **Nova página `/assessoria-completa`** — venda da assessoria humana
+      completa (documentação + treinamento pra entrevista + atendimento
+      direto no WhatsApp + bônus "Kit Passaporte Carimbado" pra quem vai a
+      Orlando). Sem preço na página — os 2 CTAs abrem WhatsApp direto
+      (conectado ao Chatwoot, conforme combinado). Link de upsell adicionado
+      em `/mapads160` antes do FAQ.
+      **Pendência:** o número de WhatsApp nos botões (`WHATSAPP_LINK` em
+      `src/app/assessoria-completa/page.tsx`) é um **placeholder**
+      (`5500000000000`, marcado com `// TODO`) — falta o número real
+      conectado ao Chatwoot antes de divulgar a página de verdade.
+- [x] **Incidente de deploy (commit `5fd2b73`) e correção** — build falhou
+      com `Error: P1001: Can't reach database server at db.prisma.io:5432`
+      durante `prisma migrate deploy`. Diagnosticado via GitHub Commit
+      Status API (`gh api .../commits/<sha>/status`) — não tínhamos login do
+      Vercel CLI nesta máquina (`vercel login` via device-code falhou
+      repetidamente, causa não identificada — possível proxy/firewall).
+      Resolvido com um commit vazio pra forçar redeploy depois de confirmar
+      o banco ativo no console do Prisma; build seguinte passou.
+      **Nota importante pra não confundir de novo**: apareceu uma tela (na
+      Vercel, não no Prisma) mostrando "1.7K operations · 119% of workspace
+      usage", que parecia indicar cota estourada. Comparando com o
+      dashboard oficial do Prisma (console.prisma.io), o uso real é **1.472
+      de 200.000 operações incluídas (1%)** — a tela dos 119% media outra
+      métrica (não elucidado qual exatamente; linguagem "no repository/no
+      deploys" sugere ser algo do lado Vercel/Storage, não do Prisma). Ou
+      seja: **cota de operações não é o problema**, o erro P1001 foi
+      instabilidade pontual de conexão. Se o erro voltar a acontecer, não
+      assumir que é cota — investigar como problema de conectividade
+      pontual primeiro.
