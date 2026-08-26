@@ -13,11 +13,11 @@ const GUIDE_FEATURES = [
     icon: IconClipboard,
   },
   {
-    title: "Suporte para tirar dúvidas durante o preenchimento",
+    title: "Auditoria Humana Especializada em cada resposta enviada",
     icon: IconDocument,
   },
   {
-    title: "Revisão humana especializada antes do envio",
+    title: "Notificação oficial caso nosso Controle de Qualidade identifique alguma divergência",
     icon: IconRoute,
   },
   {
@@ -59,6 +59,11 @@ const HOW_DS160_WORKS = [
 
 const FAQ_ITEMS = [
   {
+    question: "Em quanto tempo recebo meu DS-160 oficial pronto?",
+    answer:
+      "O nosso foco é a sua aprovação, e excelência leva tempo. Diferente de sistemas 100% automatizados que geram erros grotescos, nós fazemos uma Auditoria Humana Especializada em cada linha das suas respostas. Por isso, após você preencher o nosso formulário em português, nossa equipe leva de 7 a 10 dias úteis para revisar todas as informações, cruzar os dados, emitir o envio no sistema oficial do governo americano e te entregar o PDF finalizado com o código de barras, 100% seguro e sem erros.",
+  },
+  {
     question: "O serviço serve para quem nunca preencheu o DS-160?",
     answer:
       "Sim. Você só precisa responder nosso formulário em português — nossa equipe cuida da revisão e do envio oficial, mesmo que seja a primeira vez que você lida com o DS-160.",
@@ -90,7 +95,12 @@ const FAQ_ITEMS = [
   {
     question: "E se eu errar alguma digitação no sistema de vocês?",
     answer:
-      "Fique tranquilo. Antes do envio definitivo, nosso especialista fará uma revisão humana e entrará em contato caso encontre alguma divergência.",
+      "Nosso Controle de Qualidade audita cada resposta antes do envio definitivo. Caso identifique alguma divergência, você recebe uma Notificação de Divergência para corrigir o dado pontual antes da submissão oficial.",
+  },
+  {
+    question: "E se as informações que eu preencher estiverem confusas?",
+    answer:
+      "Nosso time faz uma auditoria estrita. Caso encontremos informações conflitantes que coloquem seu visto em risco, emitiremos um (1) \"Alerta de Divergência\" via WhatsApp solicitando a correção pontual daquele dado para finalizar o seu envio. Este serviço inclui a submissão dos dados fornecidos por você, e não inclui consultoria de perfil, análise de vínculos ou simulação de entrevista.",
   },
 ];
 
@@ -109,7 +119,7 @@ export default function MapaDS160Page() {
     <div className="flex flex-1 flex-col bg-slate-50 text-slate-900">
       {/* Faixa de oferta */}
       <div className="bg-slate-900 py-2 text-center text-xs font-semibold tracking-wide text-white">
-        OFERTA POR TEMPO LIMITADO — Como Tirar seu Visto Americano em 24hs
+        OFERTA POR TEMPO LIMITADO — Como Tirar seu Visto Americano com Segurança
       </div>
 
       {/* Hero */}
