@@ -107,22 +107,28 @@ export default async function HomePage() {
 
 const DIFERENCIAIS = [
   {
-    title: "Análise por Inteligência Artificial",
+    title: "Análise Inteligente de Perfil",
     description:
-      "Suas respostas sobre o perfil são lidas por IA, que aponta o nível de prontidão da documentação e o que merece mais atenção.",
+      "Em poucos minutos, nosso sistema lê suas respostas e te avisa exatamente onde você pode estar errando. Descubra os pontos fracos do seu perfil antes mesmo de pagar a cara taxa do visto",
     icon: IconSpark,
   },
   {
-    title: "Checklist objetivo, sem enrolação",
+    title: "Lista de Documentos Exata",
     description:
-      "Nada de conteúdo genérico: o retorno é direto sobre o seu caso, com o que está ok e o que falta organizar.",
+      "Esqueça aquelas listas gigantes e confusas da internet. Você vai receber um checklist mastigado mostrando apenas os documentos que o seu caso precisa levar no dia da entrevista",
     icon: IconChecklist,
   },
   {
-    title: "Transparência sobre o que isso é",
+    title: "Preparação Sem Falsas Promessas",
     description:
-      "Preparamos e orientamos — a aprovação do visto é sempre decisão do oficial consular americano, nunca uma promessa nossa.",
+      "Não vendemos milagres, jogamos limpo com você. Entregamos a preparação real para você sentar na frente do cônsul sabendo exatamente o que fazer, com total segurança e confiança",
     icon: IconShieldOutline,
+  },
+  {
+    title: "Passo a Passo Descomplicado",
+    description:
+      "Preencher o formulário DS-160 não precisa dar dor de cabeça. Te guiamos pela mão em cada etapa para você não cometer erros bobos e economizar um bom dinheiro com despachantes",
+    icon: IconSteps,
   },
 ];
 
@@ -187,7 +193,7 @@ function InstitutionalHome() {
           <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900">
             Como o Rota Consular ajuda
           </h2>
-          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {DIFERENCIAIS.map((d) => {
               const Icon = d.icon;
               return (
@@ -312,6 +318,16 @@ function IconChecklist() {
     <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
       <rect x="4.5" y="3.5" width="15" height="17" rx="2" stroke="currentColor" strokeWidth="1.6" />
       <path d="M8 9h8M8 12.5h8M8 16h5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function IconSteps() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+      <path d="M4 18h4v-4H4v4Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+      <path d="M10 13h4V9h-4v4Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+      <path d="M16 8h4V4h-4v4Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
     </svg>
   );
 }
