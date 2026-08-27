@@ -32,27 +32,31 @@ export default async function HomePage() {
   });
 
   return (
-    <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-8 px-6 py-20 sm:py-28">
-      <header className="flex items-start justify-between gap-4">
-        <div>
-          <p className="text-sm font-semibold text-accent">Rota Consular</p>
-          <h1 className="mt-1 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+    <div className="flex flex-1 flex-col">
+      <SiteHeader variant="minimal">
+        <div className="flex items-center gap-4">
+          <span className="hidden text-xs text-slate-500 sm:inline">{user.email}</span>
+          <form action={logout}>
+            <button
+              type="submit"
+              className="rounded-full border border-slate-300 px-4 py-1.5 text-sm font-medium text-ink transition hover:border-ink"
+            >
+              Sair
+            </button>
+          </form>
+        </div>
+      </SiteHeader>
+
+      <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-8 px-6 py-16">
+        <header>
+          <h1 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">
             Minhas solicitações
           </h1>
           <p className="mt-2 text-sm text-slate-500">
             Preparação para o visto americano de turismo (B1/B2). Isso não é
             uma garantia de aprovação — a decisão é sempre do consulado.
           </p>
-        </div>
-        <div className="flex shrink-0 flex-col items-end gap-1 pt-1">
-          <span className="text-xs text-slate-500">{user.email}</span>
-          <form action={logout}>
-            <button type="submit" className="text-xs text-slate-500 hover:underline">
-              Sair
-            </button>
-          </form>
-        </div>
-      </header>
+        </header>
 
       {applications.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center">
@@ -96,14 +100,15 @@ export default async function HomePage() {
         </ul>
       )}
 
-      <form action={createApplication}>
-        <button
-          type="submit"
-          className="w-full rounded-full bg-ink px-5 py-3.5 text-sm font-bold text-white transition hover:bg-ink-muted"
-        >
-          Nova solicitação
-        </button>
-      </form>
+        <form action={createApplication}>
+          <button
+            type="submit"
+            className="w-full rounded-full bg-ink px-5 py-3.5 text-sm font-bold text-white transition hover:bg-ink-muted"
+          >
+            Nova solicitação
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

@@ -1,8 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
 import { FLAGSHIP_PRODUCT, ORDER_BUMPS } from "@/lib/products";
+import SiteHeader from "@/components/SiteHeader";
 
 // Estrutura estática do checkout, fiel ao layout de referência (identificação
 // + pagamento + order bumps + resumo do carrinho). A integração real com
@@ -45,16 +45,11 @@ export default function CheckoutPage() {
 
   return (
     <div className="min-h-full bg-slate-50">
-      <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-          <Link href="/" className="text-sm font-bold tracking-[0.14em] text-ink">
-            ROTA CONSULAR
-          </Link>
-          <span className="inline-flex items-center rounded-full border border-ok/30 bg-ok/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-ok">
-            Ambiente seguro
-          </span>
-        </div>
-      </header>
+      <SiteHeader variant="minimal">
+        <span className="inline-flex items-center rounded-full border border-ok/30 bg-ok/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-ok">
+          Ambiente seguro
+        </span>
+      </SiteHeader>
 
       <div className="mx-auto grid max-w-5xl gap-6 px-6 py-10 lg:grid-cols-[1fr_360px]">
         <div className="flex flex-col gap-6">

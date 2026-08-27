@@ -1,4 +1,5 @@
 import { requestMagicLink } from "./actions";
+import SiteHeader from "@/components/SiteHeader";
 
 const ERROR_MESSAGE: Record<string, string> = {
   email_invalido: "Digite um e-mail válido.",
@@ -11,10 +12,11 @@ export default async function EntrarPage(props: PageProps<"/entrar">) {
   const erro = typeof params.erro === "string" ? params.erro : null;
 
   return (
-    <div className="mx-auto flex w-full max-w-sm flex-1 flex-col justify-center gap-6 px-6 py-16">
+    <div className="flex flex-1 flex-col">
+      <SiteHeader variant="minimal" />
+      <div className="mx-auto flex w-full max-w-sm flex-1 flex-col justify-center gap-6 px-6 py-16">
       <div>
-        <p className="text-sm font-bold tracking-[0.14em] text-ink">ROTA CONSULAR</p>
-        <h1 className="mt-1 text-2xl font-bold tracking-tight text-ink">
+        <h1 className="text-2xl font-bold tracking-tight text-ink">
           Entrar
         </h1>
         <p className="mt-2 text-sm text-slate-500">
@@ -56,6 +58,7 @@ export default async function EntrarPage(props: PageProps<"/entrar">) {
           </button>
         </form>
       )}
+      </div>
     </div>
   );
 }

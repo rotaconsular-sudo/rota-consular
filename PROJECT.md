@@ -494,3 +494,34 @@ Estado final do sistema, site inteiro: **zero** classe `blue-*`/`emerald-*`/
 `amber-*`/`red-*`/`zinc-*` solta fora dos tokens, e **uma única** `shadow-*`
 (o CTA da capa). Tokens em uso: `text-ink` 105, `bg-ink` 40, `border-ink`
 37, `text-accent` 18, `text-ok` 8, `text-warn` 5, `text-err` 4.
+
+## Sessão 2026-08-27 (4) — fase 3: estrutura (header/footer) nas telas restantes
+
+A fase 2 levou **cor** pra área logada, mas não o resto do esquema. Faltava
+estrutura: `/entrar`, o wizard e a home logada não tinham header do sistema,
+e o blog não tinha footer.
+
+- [x] **`SiteHeader` ganha a variante `minimal`** — só a marca e um slot
+      (`children`) à direita, sem os links de navegação. Usada em `/entrar`,
+      `/checkout`, wizard e home logada. **O motivo é de conversão, não
+      estético:** em tela de tarefa ou pagamento, nav de marketing é
+      distração e caminho fácil pra fora do fluxo. O `/checkout` já tinha
+      header próprio sem nav por esse motivo — agora isso virou uma variante
+      explícita do componente em vez de uma exceção solta.
+      As três variantes: `dark` (capa), `light` (públicas), `minimal`
+      (telas de tarefa).
+- [x] **Slots usados** — `/checkout`: selo "Ambiente seguro"; home logada e
+      wizard: e-mail do usuário + botão "Sair" (que no wizard antes não
+      existia em lugar nenhum da tela); `/entrar`: nada.
+- [x] **Blog ganhou `SiteFooter`** (só tinha header).
+- [x] **Marca duplicada removida** — `/entrar` e a home logada repetiam
+      "Rota Consular" como texto solto logo acima do `<h1>`, o que ficou
+      redundante assim que o header entrou.
+- [x] **Código morto removido** — `IconMail` e `IconDownload` no
+      `mapads160` (warnings pré-existentes do eslint) e o `import Link`
+      órfão do `/checkout`. **eslint agora em 0 warnings**, era 2 desde
+      antes desta sessão.
+
+Verificado: `tsc` e eslint limpos (0 erros, 0 warnings), 7 rotas em 200,
+`/entrar` e `/checkout` conferidos no navegador. Wizard e home logada
+seguem sem verificação visual (exigem sessão por magic link).

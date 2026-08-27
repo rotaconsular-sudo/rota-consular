@@ -3,6 +3,8 @@ import { prisma } from "@/lib/prisma";
 import { requireApplicationAccess } from "@/lib/applications";
 import { WizardNav } from "@/components/WizardNav";
 import { WIZARD_STEPS } from "@/lib/wizard";
+import SiteHeader from "@/components/SiteHeader";
+import { logout } from "@/app/actions";
 
 export default async function ApplicationLayout(
   props: LayoutProps<"/solicitacoes/[id]">,
@@ -23,7 +25,19 @@ export default async function ApplicationLayout(
   }).map((s) => s.slug);
 
   return (
-    <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-8 px-6 py-12">
+    <div className="flex flex-1 flex-col">
+      <SiteHeader variant="minimal">
+        <form action={logout}>
+          <button
+            type="submit"
+            className="rounded-full border border-slate-300 px-4 py-1.5 text-sm font-medium text-ink transition hover:border-ink"
+          >
+            Sair
+          </button>
+        </form>
+      </SiteHeader>
+
+      <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-8 px-6 py-12">
       <div>
         <Link href="/" className="text-sm font-medium text-accent hover:underline">
           ← Minhas solicitações
@@ -42,6 +56,7 @@ export default async function ApplicationLayout(
         <div className="flex-1 rounded-2xl border border-slate-200 bg-white p-6">
           {props.children}
         </div>
+      </div>
       </div>
     </div>
   );
