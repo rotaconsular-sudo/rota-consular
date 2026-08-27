@@ -537,3 +537,27 @@ documentos com excelência e vá para o consulado com total segurança."
 Nota: a nova versão **não menciona IA** — mudança deliberada de
 posicionamento, não esquecimento. Ocupa 4 linhas em 1440px (a anterior,
 3).
+
+## Card de captura da /analise-de-perfil em navy
+
+Feedback do usuário: "em analise de perfil o card pode ter um cor, tudo
+branco nao esta bom". Era **efeito colateral da fase 1**: o card tinha
+`bg-blue-50 border-blue-100` e foi trocado por `border-slate-200 bg-white`
+na limpeza da paleta — só que a seção que o contém também é `bg-white`,
+então o card sumiu contra o fundo.
+
+Correção: o card virou **`bg-ink`** (navy da marca). É o elemento de
+conversão da página, então dominar faz sentido — e vira mais uma âncora
+escura no claro, como a capa e o footer. Dentro dele tudo inverte: badge
+"GRÁTIS" em `accent-soft` sobre borda translúcida, rótulos em `slate-300`,
+CTA branco sólido (mesmo da capa), disclaimer em `slate-400`.
+**Os inputs seguem brancos de propósito** — é onde a pessoa digita, e ali
+legibilidade vem antes do efeito; só o anel de foco virou `accent-soft`,
+que é o que se enxerga sobre fundo escuro.
+
+**Bug achado por causa da mudança**: com o card escuro ficou visível que o
+botão **transbordava pra fora do card** no desktop. Causa: o form era
+`sm:flex-row` com os dois campos + o botão `shrink-0 whitespace-nowrap`
+disputando a mesma linha, e o botão (rótulo longo) estourava a largura.
+Corrigido reestruturando: os dois campos dividem uma linha, o CTA ganha
+linha própria em largura total. Conferido em 1440 e em ~500px de largura.

@@ -60,42 +60,49 @@ const DIFERENCIAIS = [
 
 function AnaliseForm() {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-7 sm:p-9">
-      <span className="inline-flex items-center rounded-full border border-ink/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink">
+    <div className="rounded-2xl bg-ink p-7 text-left sm:p-9">
+      <span className="inline-flex items-center rounded-full border border-white/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent-soft">
         GRÁTIS
       </span>
-      <form
-        action={startFreeApplication}
-        className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-end"
-      >
-        <label className="flex flex-1 flex-col gap-1.5 text-left">
-          <span className="text-sm font-medium text-slate-700">Seu melhor e-mail</span>
-          <input
-            name="email"
-            type="email"
-            required
-            placeholder="seu@email.com"
-            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
-          />
-        </label>
-        <label className="flex flex-1 flex-col gap-1.5 text-left">
-          <span className="text-sm font-medium text-slate-700">Seu WhatsApp</span>
-          <input
-            name="whatsapp"
-            type="tel"
-            required
-            placeholder="(11) 99999-9999"
-            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
-          />
-        </label>
+
+      <form action={startFreeApplication} className="mt-5 flex flex-col gap-3">
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <label className="flex flex-1 flex-col gap-1.5">
+            <span className="text-sm font-medium text-slate-300">
+              Seu melhor e-mail
+            </span>
+            <input
+              name="email"
+              type="email"
+              required
+              placeholder="seu@email.com"
+              className="rounded-lg border border-transparent bg-white px-3.5 py-2.5 text-sm text-ink outline-none transition focus:ring-2 focus:ring-accent-soft"
+            />
+          </label>
+
+          <label className="flex flex-1 flex-col gap-1.5">
+            <span className="text-sm font-medium text-slate-300">
+              Seu WhatsApp
+            </span>
+            <input
+              name="whatsapp"
+              type="tel"
+              required
+              placeholder="(11) 99999-9999"
+              className="rounded-lg border border-transparent bg-white px-3.5 py-2.5 text-sm text-ink outline-none transition focus:ring-2 focus:ring-accent-soft"
+            />
+          </label>
+        </div>
+
         <button
           type="submit"
-          className="shrink-0 whitespace-nowrap rounded-full bg-ink px-6 py-3 text-sm font-bold text-white transition hover:bg-ink-muted"
+          className="w-full rounded-full bg-white px-6 py-3 text-sm font-bold text-ink transition hover:bg-slate-100"
         >
           Iniciar Minha Análise Gratuita
         </button>
       </form>
-      <p className="mt-3 text-xs text-slate-500">
+
+      <p className="mt-3 text-xs text-slate-400">
         100% seguro e sigiloso. Sem necessidade de cartão de crédito.
       </p>
     </div>
