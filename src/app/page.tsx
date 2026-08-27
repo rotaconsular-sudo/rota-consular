@@ -5,6 +5,8 @@ import { createApplication, logout } from "@/app/actions";
 import { WIZARD_STEPS } from "@/lib/wizard";
 import { getAllPosts, formatPostDate } from "@/lib/blog";
 import WavingFlag from "@/components/WavingFlag";
+import SiteFooter from "@/components/SiteFooter";
+import SiteHeader from "@/components/SiteHeader";
 
 const STATUS_LABEL: Record<string, string> = {
   EM_ANDAMENTO: "Em andamento",
@@ -30,11 +32,11 @@ export default async function HomePage() {
   });
 
   return (
-    <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-8 px-6 py-16">
+    <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-8 px-6 py-20 sm:py-28">
       <header className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-sm font-semibold text-blue-600">Rota Consular</p>
-          <h1 className="mt-1 text-2xl font-bold tracking-tight text-slate-900">
+          <p className="text-sm font-semibold text-accent">Rota Consular</p>
+          <h1 className="mt-1 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
             Minhas solicitações
           </h1>
           <p className="mt-2 text-sm text-slate-500">
@@ -70,10 +72,10 @@ export default async function HomePage() {
               <li key={app.id}>
                 <Link
                   href={`/solicitacoes/${app.id}/${WIZARD_STEPS[0].slug}`}
-                  className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm transition hover:border-blue-300 hover:shadow-md"
+                  className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-5 py-4 transition hover:border-slate-400"
                 >
                   <div>
-                    <p className="font-semibold text-slate-900">
+                    <p className="font-semibold text-ink">
                       Solicitação de{" "}
                       {new Date(app.createdAt).toLocaleDateString("pt-BR")}
                     </p>
@@ -97,7 +99,7 @@ export default async function HomePage() {
       <form action={createApplication}>
         <button
           type="submit"
-          className="w-full rounded-full bg-blue-600 px-5 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-600/25 transition hover:bg-blue-700"
+          className="w-full rounded-full bg-ink px-5 py-3.5 text-sm font-bold text-white transition hover:bg-ink-muted"
         >
           Nova solicitação
         </button>
@@ -137,7 +139,7 @@ function InstitutionalHome() {
   const posts = getAllPosts().slice(0, 3);
 
   return (
-    <div className="flex flex-1 flex-col bg-slate-50 text-slate-900">
+    <div className="flex flex-1 flex-col bg-slate-50 text-ink">
       {/* Capa */}
       <section className="relative isolate flex min-h-[92svh] flex-col overflow-hidden bg-[#070d1c]">
         <WavingFlag className="absolute inset-0 h-full w-full" />
@@ -147,32 +149,9 @@ function InstitutionalHome() {
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#070d1c]/90 via-transparent to-[#070d1c]/60" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-slate-50" />
 
-        <header className="relative z-10">
-          <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
-            <span className="text-sm font-bold tracking-[0.14em] text-white">
-              ROTA CONSULAR
-            </span>
-            <nav className="flex items-center gap-6 text-sm font-medium text-white/70">
-              <Link href="/blog" className="hidden transition hover:text-white sm:inline">
-                Blog
-              </Link>
-              <Link href="/analise-de-perfil" className="hidden transition hover:text-white sm:inline">
-                Análise de Perfil
-              </Link>
-              <Link href="/mapads160" className="hidden transition hover:text-white sm:inline">
-                DS160 sem erros
-              </Link>
-              <Link
-                href="/entrar"
-                className="rounded-full border border-white/25 px-4 py-1.5 text-white transition hover:border-white/60 hover:bg-white/10"
-              >
-                Entrar
-              </Link>
-            </nav>
-          </div>
-        </header>
+        <SiteHeader variant="dark" />
 
-        <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-6 py-16 sm:py-24">
+        <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-6 py-20 sm:py-28 sm:py-24">
           <div className="flex items-center gap-3">
             <span className="h-px w-10 bg-white/40" />
             <span className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-white/70">
@@ -184,7 +163,7 @@ function InstitutionalHome() {
             Preparação inteligente
             <br />
             para o seu{" "}
-            <span className="text-blue-300">visto americano</span>
+            <span className="text-accent-soft">visto americano</span>
           </h1>
 
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-slate-300">
@@ -196,7 +175,7 @@ function InstitutionalHome() {
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <Link
               href="/analise-de-perfil"
-              className="rounded-full bg-white px-8 py-3.5 text-center text-sm font-bold text-slate-900 shadow-xl shadow-black/25 transition hover:bg-blue-50"
+              className="rounded-full bg-white px-8 py-3.5 text-center text-sm font-bold text-ink shadow-xl shadow-black/25 transition hover:bg-blue-50"
             >
               Fazer análise grátis
             </Link>
@@ -218,22 +197,22 @@ function InstitutionalHome() {
 
       {/* Diferenciais */}
       <section className="bg-slate-50">
-        <div className="mx-auto max-w-5xl px-6 py-16">
-          <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900">
+        <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
             Como o Rota Consular ajuda
           </h2>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2">
             {DIFERENCIAIS.map((d) => {
               const Icon = d.icon;
               return (
                 <div
                   key={d.title}
-                  className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+                  className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-6"
                 >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-ink">
                     <Icon />
                   </div>
-                  <p className="text-sm font-semibold text-slate-900">{d.title}</p>
+                  <p className="text-sm font-semibold text-ink">{d.title}</p>
                   <p className="text-sm text-slate-600">{d.description}</p>
                 </div>
               );
@@ -244,19 +223,19 @@ function InstitutionalHome() {
 
       {/* O que oferecemos */}
       <section className="bg-white">
-        <div className="mx-auto max-w-4xl px-6 py-16">
-          <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900">
+        <div className="mx-auto max-w-4xl px-6 py-20 sm:py-28">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
             O que você encontra aqui
           </h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             <Link
               href="/analise-de-perfil"
-              className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition hover:border-blue-300 hover:shadow-md"
+              className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-7 transition hover:border-slate-400"
             >
-              <span className="inline-flex w-fit items-center gap-2 rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-800">
+              <span className="inline-flex w-fit items-center gap-2 rounded-full border border-ink/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink">
                 ANÁLISE GRÁTIS
               </span>
-              <h3 className="text-lg font-bold text-slate-900">
+              <h3 className="text-lg font-bold text-ink">
                 Descubra suas chances na hora
               </h3>
               <p className="text-sm text-slate-600">
@@ -268,12 +247,12 @@ function InstitutionalHome() {
             </Link>
             <Link
               href="/mapads160"
-              className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition hover:border-blue-300 hover:shadow-md"
+              className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-7 transition hover:border-slate-400"
             >
-              <span className="inline-flex w-fit items-center gap-2 rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-blue-800">
-                🛡️ PREENCHIMENTO OFICIAL
+              <span className="inline-flex w-fit items-center gap-2 rounded-full border border-slate-300 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600">
+                PREENCHIMENTO OFICIAL
               </span>
-              <h3 className="text-lg font-bold text-slate-900">
+              <h3 className="text-lg font-bold text-ink">
                 O Fim do Medo de Errar no DS-160
               </h3>
               <p className="text-sm text-slate-600">
@@ -291,12 +270,12 @@ function InstitutionalHome() {
       {/* Blog teaser */}
       {posts.length > 0 && (
         <section className="bg-slate-50">
-          <div className="mx-auto max-w-5xl px-6 py-16">
+          <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold tracking-tight text-slate-900">
+              <h2 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">
                 Últimas do blog
               </h2>
-              <Link href="/blog" className="text-sm font-semibold text-blue-600 hover:underline">
+              <Link href="/blog" className="text-sm font-semibold text-accent hover:underline">
                 Ver blog completo →
               </Link>
             </div>
@@ -305,12 +284,12 @@ function InstitutionalHome() {
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
-                  className="flex flex-col gap-2 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-blue-300 hover:shadow-md"
+                  className="flex flex-col gap-2 rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-slate-400"
                 >
                   <time className="text-xs text-slate-400" dateTime={post.publishedAt}>
                     {formatPostDate(post.publishedAt)}
                   </time>
-                  <p className="text-sm font-bold text-slate-900">{post.title}</p>
+                  <p className="text-sm font-bold text-ink">{post.title}</p>
                   <p className="text-xs text-slate-600">{post.excerpt}</p>
                 </Link>
               ))}
@@ -319,16 +298,7 @@ function InstitutionalHome() {
         </section>
       )}
 
-      <footer className="border-t border-slate-200 bg-white">
-        <div className="mx-auto max-w-2xl px-6 py-10 text-center text-xs text-slate-400">
-          O Rota Consular é uma ferramenta de tecnologia e inteligência
-          estratégica. Não somos afiliados ao governo dos Estados Unidos, à
-          Embaixada ou ao Consulado americano. Isso não é uma promessa de
-          aprovação — a decisão final é sempre do oficial consular
-          americano. Nossa missão é te ajudar a chegar na entrevista com a
-          melhor estratégia e documentação possível.
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

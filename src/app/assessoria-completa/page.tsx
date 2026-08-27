@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import SiteFooter from "@/components/SiteFooter";
+import SiteHeader from "@/components/SiteHeader";
 
 export const metadata: Metadata = {
   title: "Assessoria Completa | Rota Consular",
@@ -12,17 +14,14 @@ const WHATSAPP_LINK =
 
 const BENEFITS = [
   {
-    emoji: "🛡️",
     title: "100% Guiado",
     description: "Zero dor de cabeça com o idioma ou formulários confusos do governo.",
   },
   {
-    emoji: "📱",
     title: "Atendimento Humano",
     description: "Tire suas dúvidas direto pelo WhatsApp com quem entende do assunto.",
   },
   {
-    emoji: "🎯",
     title: "Estratégia Anti-Negativa",
     description: "Mapeamos os seus vínculos para o cônsul não ter motivos para duvidar de você.",
   },
@@ -53,18 +52,15 @@ const VALUE_STACK = [
 
 const BONUSES = [
   {
-    emoji: "📘",
     title: "Manual da Migração",
     description:
       "O passo a passo de como se comportar e o que responder no aeroporto para não ser barrado.",
   },
   {
-    emoji: "📕",
     title: "Manual de Inglês Básico para Viagem",
     description: "As frases que vão te salvar no aeroporto, hotel e restaurantes.",
   },
   {
-    emoji: "🎢",
     title: "Dicas de Ouro de Orlando",
     description:
       "Atalhos exclusivos de especialistas para você aproveitar os parques e compras sem cair em furadas.",
@@ -90,7 +86,7 @@ const FAQ_ITEMS = [
 
 function IconCheck() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" className="mt-0.5 h-4 w-4 shrink-0 text-blue-600">
+    <svg viewBox="0 0 24 24" fill="none" className="mt-0.5 h-4 w-4 shrink-0 text-accent">
       <path
         d="M5 12.5 9.5 17 19 7"
         stroke="currentColor"
@@ -108,7 +104,7 @@ function WhatsAppButton({ children }: { children: React.ReactNode }) {
       href={WHATSAPP_LINK}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-9 py-4 text-base font-bold text-white shadow-lg shadow-blue-600/25 transition hover:bg-blue-700 hover:shadow-xl"
+      className="inline-flex items-center gap-2 rounded-full bg-ink px-9 py-4 text-base font-bold text-white transition hover:bg-ink-muted"
     >
       {children}
     </a>
@@ -117,14 +113,16 @@ function WhatsAppButton({ children }: { children: React.ReactNode }) {
 
 export default function AssessoriaCompletaPage() {
   return (
-    <div className="flex flex-1 flex-col bg-slate-50 text-slate-900">
+    <div className="flex flex-1 flex-col bg-slate-50 text-ink">
+      <SiteHeader />
+
       {/* Hero */}
       <section className="bg-white">
-        <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 px-6 py-16 text-center sm:py-20">
-          <span className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-1.5 text-xs font-semibold tracking-wide text-blue-700">
-            🇺🇸 PARE DE ARRISCAR O SEU SONHO
+        <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 px-6 py-20 sm:py-28 text-center sm:py-20">
+          <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-semibold tracking-wide text-ink">
+            PARE DE ARRISCAR O SEU SONHO
           </span>
-          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+          <h1 className="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
             Aprovamos o seu visto americano cuidando de cada detalhe, do
             preenchimento do formulário até a sua chegada em Orlando.
           </h1>
@@ -140,8 +138,8 @@ export default function AssessoriaCompletaPage() {
 
       {/* Agitação da dor */}
       <section className="bg-slate-50">
-        <div className="mx-auto max-w-2xl px-6 py-16 text-center">
-          <h2 className="text-2xl font-bold tracking-tight text-slate-900">
+        <div className="mx-auto max-w-2xl px-6 py-20 sm:py-28 text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">
             O Consulado não perdoa erros amadores.
           </h2>
           <p className="mt-4 text-sm text-slate-600">
@@ -157,8 +155,8 @@ export default function AssessoriaCompletaPage() {
 
       {/* Solução */}
       <section className="bg-white">
-        <div className="mx-auto max-w-4xl px-6 py-16">
-          <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900">
+        <div className="mx-auto max-w-4xl px-6 py-20 sm:py-28">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
             Conheça a Assessoria Completa Rota Consular
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-center text-sm text-slate-600">
@@ -168,13 +166,15 @@ export default function AssessoriaCompletaPage() {
             entrevista.
           </p>
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
-            {BENEFITS.map((b) => (
+            {BENEFITS.map((b, i) => (
               <div
                 key={b.title}
-                className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm"
+                className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-6 text-center"
               >
-                <span className="text-3xl">{b.emoji}</span>
-                <p className="text-sm font-semibold text-slate-900">{b.title}</p>
+                <span className="font-mono text-xs font-medium tracking-[0.2em] text-slate-400">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <p className="text-sm font-semibold text-ink">{b.title}</p>
                 <p className="text-sm text-slate-600">{b.description}</p>
               </div>
             ))}
@@ -184,19 +184,19 @@ export default function AssessoriaCompletaPage() {
 
       {/* Empilhamento de valor */}
       <section className="bg-slate-50">
-        <div className="mx-auto max-w-2xl px-6 py-16">
-          <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900">
+        <div className="mx-auto max-w-2xl px-6 py-20 sm:py-28">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
             O que você garante ao entrar para a nossa Assessoria:
           </h2>
           <ul className="mt-8 flex flex-col gap-3">
             {VALUE_STACK.map((item) => (
               <li
                 key={item.title}
-                className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
+                className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-4"
               >
                 <IconCheck />
                 <div>
-                  <p className="text-sm font-semibold text-slate-900">{item.title}</p>
+                  <p className="text-sm font-semibold text-ink">{item.title}</p>
                   <p className="mt-1 text-sm text-slate-600">{item.description}</p>
                 </div>
               </li>
@@ -207,9 +207,9 @@ export default function AssessoriaCompletaPage() {
 
       {/* Bônus */}
       <section className="bg-white">
-        <div className="mx-auto max-w-4xl px-6 py-16 text-center">
-          <span className="inline-flex items-center gap-2 rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-800">
-            E NÃO ACABA NA PORTA DO CONSULADO 🎁
+        <div className="mx-auto max-w-4xl px-6 py-20 sm:py-28 text-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600">
+            E NÃO ACABA NA PORTA DO CONSULADO
           </span>
           <p className="mx-auto mt-4 max-w-2xl text-sm text-slate-600">
             Quem tira o visto geralmente tem um destino principal: Orlando.
@@ -218,13 +218,15 @@ export default function AssessoriaCompletaPage() {
             viagem:
           </p>
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
-            {BONUSES.map((bonus) => (
+            {BONUSES.map((bonus, i) => (
               <div
                 key={bonus.title}
-                className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-6 text-left shadow-sm"
+                className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-6 text-left"
               >
-                <span className="text-3xl">{bonus.emoji}</span>
-                <p className="text-sm font-semibold text-slate-900">{bonus.title}</p>
+                <span className="font-mono text-xs font-medium tracking-[0.2em] text-slate-400">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <p className="text-sm font-semibold text-ink">{bonus.title}</p>
                 <p className="text-sm text-slate-600">{bonus.description}</p>
               </div>
             ))}
@@ -234,8 +236,8 @@ export default function AssessoriaCompletaPage() {
 
       {/* CTA final */}
       <section className="bg-slate-50">
-        <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 px-6 py-16 text-center">
-          <h2 className="text-2xl font-bold tracking-tight text-slate-900">
+        <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 px-6 py-20 sm:py-28 text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">
             O seu visto americano merece preparação de verdade.
           </h2>
           <p className="text-sm text-slate-600">
@@ -250,17 +252,17 @@ export default function AssessoriaCompletaPage() {
 
       {/* FAQ */}
       <section className="bg-white">
-        <div className="mx-auto max-w-2xl px-6 py-16">
-          <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900">
+        <div className="mx-auto max-w-2xl px-6 py-20 sm:py-28">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
             Perguntas frequentes
           </h2>
           <div className="mt-8 flex flex-col gap-3">
             {FAQ_ITEMS.map((item) => (
               <details
                 key={item.question}
-                className="group rounded-xl border border-slate-200 bg-slate-50 p-4 open:shadow-sm"
+                className="group rounded-xl border border-slate-200 bg-slate-50 p-4 transition-colors open:border-ink/30"
               >
-                <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-semibold text-slate-900">
+                <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-semibold text-ink">
                   {item.question}
                   <span className="ml-4 text-slate-400 transition group-open:rotate-45">+</span>
                 </summary>
@@ -271,16 +273,7 @@ export default function AssessoriaCompletaPage() {
         </div>
       </section>
 
-      <footer className="border-t border-slate-200 bg-slate-50">
-        <div className="mx-auto max-w-2xl px-6 py-10 text-center text-xs text-slate-400">
-          O Rota Consular é uma ferramenta de tecnologia e inteligência
-          estratégica. Não somos afiliados ao governo dos Estados Unidos, à
-          Embaixada ou ao Consulado americano. Isso não é uma promessa de
-          aprovação — a decisão final é sempre do oficial consular
-          americano. Nossa missão é te ajudar a chegar na entrevista com a
-          melhor estratégia e documentação possível.
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

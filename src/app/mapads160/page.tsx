@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { FLAGSHIP_PRODUCT } from "@/lib/products";
+import SiteFooter from "@/components/SiteFooter";
+import SiteHeader from "@/components/SiteHeader";
 
 export const metadata: Metadata = {
   title: "Mapa do DS-160 | Rota Consular",
@@ -116,24 +118,23 @@ export default function MapaDS160Page() {
   const discountCents = p.compareAtPriceCents - p.priceCents;
 
   return (
-    <div className="flex flex-1 flex-col bg-slate-50 text-slate-900">
+    <div className="flex flex-1 flex-col bg-slate-50 text-ink">
       {/* Faixa de oferta */}
-      <div className="bg-slate-900 py-2 text-center text-xs font-semibold tracking-wide text-white">
+      <div className="bg-ink py-2 text-center text-xs font-semibold tracking-wide text-white">
         OFERTA POR TEMPO LIMITADO — Como Tirar seu Visto Americano com Segurança
       </div>
+
+      <SiteHeader />
 
       {/* Hero */}
       <section className="bg-slate-50">
         <div className="mx-auto flex w-full max-w-2xl flex-col items-center gap-6 px-6 py-14 text-center sm:py-20">
-          <span className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-1.5 text-xs font-semibold tracking-wide text-blue-700">
-            🇺🇸 ROTA CONSULAR
-          </span>
-          <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+          <h1 className="text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
             {p.title}
           </h1>
           <p className="max-w-xl text-lg text-slate-600">{p.subtitle}</p>
 
-          <div className="flex aspect-[4/3] w-full max-w-sm items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400 shadow-sm">
+          <div className="flex aspect-[4/3] w-full max-w-sm items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
             [ prévia do {p.title} ]
           </div>
 
@@ -148,7 +149,7 @@ export default function MapaDS160Page() {
 
           <Link
             href="/checkout"
-            className="mt-2 rounded-full bg-blue-600 px-9 py-4 text-base font-bold text-white shadow-lg shadow-blue-600/25 transition hover:bg-blue-700 hover:shadow-xl"
+            className="mt-2 rounded-full bg-ink px-9 py-4 text-base font-bold text-white transition hover:bg-ink-muted"
           >
             ACESSAR AGORA
           </Link>
@@ -160,8 +161,8 @@ export default function MapaDS160Page() {
 
       {/* Prévia do material */}
       <section className="bg-slate-50">
-        <div className="mx-auto max-w-4xl px-6 py-16">
-          <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900">
+        <div className="mx-auto max-w-4xl px-6 py-20 sm:py-28">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
             Nós cuidamos de cada uma dessas etapas do formulário oficial:
           </h2>
           <div className="mt-8 flex flex-wrap justify-center gap-2">
@@ -179,19 +180,19 @@ export default function MapaDS160Page() {
 
       {/* O guia possui */}
       <section className="bg-white">
-        <div className="mx-auto max-w-5xl px-6 py-16">
-          <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900">
+        <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
             O {p.title} inclui:
           </h2>
           <ul className="mt-10 grid gap-6 sm:grid-cols-3">
             {GUIDE_FEATURES.map((f) => {
               const Icon = f.icon;
               return (
-                <li key={f.title} className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                <li key={f.title} className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-6">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-ink">
                     <Icon />
                   </div>
-                  <p className="text-sm font-semibold text-slate-900">{f.title}</p>
+                  <p className="text-sm font-semibold text-ink">{f.title}</p>
                 </li>
               );
             })}
@@ -203,7 +204,7 @@ export default function MapaDS160Page() {
           <div className="mt-8 flex justify-center">
             <Link
               href="/checkout"
-              className="rounded-full bg-blue-600 px-9 py-4 text-base font-bold text-white shadow-lg shadow-blue-600/25 transition hover:bg-blue-700"
+              className="rounded-full bg-ink px-9 py-4 text-base font-bold text-white transition hover:bg-ink-muted"
             >
               QUERO ACESSAR AGORA
             </Link>
@@ -213,13 +214,13 @@ export default function MapaDS160Page() {
 
       {/* Ideal para você que deseja */}
       <section className="bg-slate-50">
-        <div className="mx-auto max-w-2xl px-6 py-16">
-          <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900">
+        <div className="mx-auto max-w-2xl px-6 py-20 sm:py-28">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
             O nosso Sistema Inteligente é ideal para você que deseja:
           </h2>
           <ul className="mt-8 flex flex-col gap-3">
             {IDEAL_FOR.map((item) => (
-              <li key={item} className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-700 shadow-sm">
+              <li key={item} className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-700">
                 <IconCheck />
                 <span>{item}</span>
               </li>
@@ -230,8 +231,8 @@ export default function MapaDS160Page() {
 
       {/* Tudo que você vai receber */}
       <section className="bg-white">
-        <div className="mx-auto max-w-3xl px-6 py-16">
-          <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900">
+        <div className="mx-auto max-w-3xl px-6 py-20 sm:py-28">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
             Tudo o que você vai receber:
           </h2>
           <div className="mt-8 flex aspect-video w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400">
@@ -253,36 +254,36 @@ export default function MapaDS160Page() {
 
       {/* Bônus */}
       <section className="bg-slate-50">
-        <div className="mx-auto max-w-2xl px-6 py-16 text-center">
-          <span className="inline-flex items-center gap-2 rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-800">
-            🔥 BÔNUS EXCLUSIVO
+        <div className="mx-auto max-w-2xl px-6 py-20 sm:py-28 text-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600">
+            BÔNUS EXCLUSIVO
           </span>
           <div className="mt-6 flex aspect-video w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
             [ capa do bônus ]
           </div>
-          <h3 className="mt-6 text-xl font-bold text-slate-900">{p.bonusTitle}</h3>
+          <h3 className="mt-6 text-xl font-bold text-ink">{p.bonusTitle}</h3>
           <p className="mt-2 text-sm text-slate-600">{p.bonusDescription}</p>
           <p className="mt-3 text-sm font-semibold">
             <span className="text-slate-400 line-through">{formatBRL(p.bonusValueCents)}</span>{" "}
-            <span className="text-emerald-600">GRÁTIS</span>
+            <span className="text-ink">GRÁTIS</span>
           </p>
         </div>
       </section>
 
       {/* Oferta / preço */}
       <section className="bg-white">
-        <div className="mx-auto max-w-md px-6 py-16">
-          <div className="rounded-2xl border border-blue-200 bg-white p-7 text-center shadow-xl shadow-slate-900/5 ring-1 ring-blue-100">
+        <div className="mx-auto max-w-md px-6 py-20 sm:py-28">
+          <div className="rounded-2xl border border-ink/20 bg-white p-7 text-center ring-1 ring-blue-100">
             <div className="flex justify-center gap-2">
-              <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-blue-700">MAIS VENDIDO</span>
-              <span className="rounded-full bg-red-100 px-3 py-1 text-xs font-bold text-red-700">ÚLTIMA CHANCE</span>
+              <span className="rounded-full border border-slate-300 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600">MAIS VENDIDO</span>
+              <span className="rounded-full border border-ink/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink">ÚLTIMA CHANCE</span>
             </div>
-            <h3 className="mt-4 text-xl font-bold text-slate-900">Mapa Completo</h3>
+            <h3 className="mt-4 text-xl font-bold text-ink">Mapa Completo</h3>
             <div className="mt-4 flex aspect-square w-full items-center justify-center rounded-xl border border-dashed border-slate-300 bg-slate-50 text-xs text-slate-400">
               [ prévia do produto ]
             </div>
             <ul className="mt-6 flex flex-col gap-2 text-left text-sm text-slate-700">
-              {[p.title, "Guia organizado passo a passo", "Conteúdo visual e de fácil consulta", `🎁 Bônus: ${p.bonusTitle}`].map((line) => (
+              {[p.title, "Guia organizado passo a passo", "Conteúdo visual e de fácil consulta", `Bônus: ${p.bonusTitle}`].map((line) => (
                 <li key={line} className="flex items-start gap-2">
                   <IconCheck />
                   <span>{line}</span>
@@ -292,14 +293,14 @@ export default function MapaDS160Page() {
             <p className="mt-6 text-sm text-slate-500">
               de <span className="line-through">{formatBRL(p.compareAtPriceCents)}</span> por apenas:
             </p>
-            <p className="text-4xl font-extrabold text-blue-600">{formatBRL(p.priceCents)}</p>
+            <p className="text-4xl font-extrabold text-accent">{formatBRL(p.priceCents)}</p>
             <p className="text-xs text-slate-500">ou em até 4x no cartão</p>
-            <p className="mt-1 text-xs font-semibold text-emerald-600">
+            <p className="mt-1 text-xs font-semibold text-ink">
               Você economiza {formatBRL(discountCents)}.
             </p>
             <Link
               href="/checkout"
-              className="mt-6 block w-full rounded-full bg-blue-600 px-5 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-600/25 transition hover:bg-blue-700"
+              className="mt-6 block w-full rounded-full bg-ink px-5 py-3.5 text-sm font-bold text-white transition hover:bg-ink-muted"
             >
               QUERO O PLANO COMPLETO
             </Link>
@@ -309,19 +310,19 @@ export default function MapaDS160Page() {
 
       {/* Garantia */}
       <section className="bg-slate-50">
-        <div className="mx-auto max-w-2xl px-6 py-16 text-center">
-          <h2 className="text-xl font-bold tracking-tight text-slate-900">
+        <div className="mx-auto max-w-2xl px-6 py-20 sm:py-28 text-center">
+          <h2 className="text-xl font-bold tracking-tight text-ink">
             Preencher o DS-160 entendendo o que cada etapa está pedindo torna o
             processo muito mais claro, organizado e seguro!
           </h2>
-          <div className="mx-auto mt-6 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+          <div className="mx-auto mt-6 flex h-20 w-20 items-center justify-center rounded-full bg-slate-100 text-ink">
             <IconShield />
           </div>
           <p className="mt-4 text-sm text-slate-600">
             Garantia de 7 dias. Se você achar que o material não faz sentido para
             o seu processo ou simplesmente não quiser continuar com o produto:
           </p>
-          <p className="mt-1 text-sm font-bold text-slate-900">
+          <p className="mt-1 text-sm font-bold text-ink">
             DEVOLVEMOS SEU DINHEIRO DE VOLTA, SEM BUROCRACIA!
           </p>
         </div>
@@ -329,8 +330,8 @@ export default function MapaDS160Page() {
 
       {/* Como funciona o seu DS-160 Blindado */}
       <section className="bg-white">
-        <div className="mx-auto max-w-4xl px-6 py-16">
-          <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900">
+        <div className="mx-auto max-w-4xl px-6 py-20 sm:py-28">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
             Como funciona o seu DS-160 Blindado?
           </h2>
           <ol className="mt-10 grid gap-6 sm:grid-cols-3">
@@ -339,15 +340,15 @@ export default function MapaDS160Page() {
               return (
                 <li
                   key={step.title}
-                  className="flex flex-col items-center gap-3 rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm"
+                  className="flex flex-col items-center gap-3 rounded-2xl border border-slate-200 bg-white p-6 text-center"
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-50 text-blue-600">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-ink">
                     <Icon />
                   </div>
                   <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
                     Passo {i + 1}
                   </p>
-                  <p className="text-sm font-semibold text-slate-900">{step.title}</p>
+                  <p className="text-sm font-semibold text-ink">{step.title}</p>
                   <p className="text-sm text-slate-600">{step.description}</p>
                 </li>
               );
@@ -358,12 +359,12 @@ export default function MapaDS160Page() {
 
       {/* Upsell: Assessoria Completa */}
       <section className="bg-white">
-        <div className="mx-auto max-w-2xl px-6 py-16">
-          <div className="rounded-2xl border border-blue-100 bg-blue-50 p-7 text-center shadow-sm sm:p-9">
-            <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-blue-700">
+        <div className="mx-auto max-w-2xl px-6 py-20 sm:py-28">
+          <div className="rounded-2xl border border-slate-200 bg-white p-7 text-center sm:p-9">
+            <span className="inline-flex items-center rounded-full border border-ink/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink">
               PARA QUEM QUER IR ALÉM DO FORMULÁRIO
             </span>
-            <h2 className="mt-3 text-2xl font-bold tracking-tight text-slate-900">
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
               Quer uma especialista cuidando de tudo, do DS-160 até a entrevista?
             </h2>
             <p className="mt-2 text-sm text-slate-600">
@@ -373,7 +374,7 @@ export default function MapaDS160Page() {
             </p>
             <Link
               href="/assessoria-completa"
-              className="mt-6 inline-block rounded-full bg-blue-600 px-8 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-600/25 transition hover:bg-blue-700 hover:shadow-xl"
+              className="mt-6 inline-block rounded-full bg-ink px-8 py-3.5 text-sm font-bold text-white transition hover:bg-ink-muted"
             >
               Conhecer a Assessoria Completa
             </Link>
@@ -383,17 +384,17 @@ export default function MapaDS160Page() {
 
       {/* FAQ */}
       <section className="bg-slate-50">
-        <div className="mx-auto max-w-2xl px-6 py-16">
-          <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900">
+        <div className="mx-auto max-w-2xl px-6 py-20 sm:py-28">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
             Perguntas frequentes
           </h2>
           <div className="mt-8 flex flex-col gap-3">
             {FAQ_ITEMS.map((item) => (
               <details
                 key={item.question}
-                className="group rounded-xl border border-slate-200 bg-white p-4 open:shadow-sm"
+                className="group rounded-xl border border-slate-200 bg-white p-4 transition-colors open:border-ink/30"
               >
-                <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-semibold text-slate-900">
+                <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-semibold text-ink">
                   {item.question}
                   <span className="ml-4 text-slate-400 transition group-open:rotate-45">+</span>
                 </summary>
@@ -406,25 +407,16 @@ export default function MapaDS160Page() {
 
       <p className="mx-auto mt-2 text-center text-xs text-slate-400">
         Já tem uma solicitação paga?{" "}
-        <Link href="/entrar" className="text-blue-600 hover:underline">
+        <Link href="/entrar" className="text-accent hover:underline">
           Entrar
         </Link>
         {" · "}
-        <Link href="/blog" className="text-blue-600 hover:underline">
+        <Link href="/blog" className="text-accent hover:underline">
           Blog
         </Link>
       </p>
 
-      <footer className="border-t border-slate-200 bg-white">
-        <div className="mx-auto max-w-2xl px-6 py-10 text-center text-xs text-slate-400">
-          O Rota Consular é uma ferramenta de tecnologia e inteligência
-          estratégica. Não somos afiliados ao governo dos Estados Unidos, à
-          Embaixada ou ao Consulado americano. Isso não é uma promessa de
-          aprovação — a decisão final é sempre do oficial consular
-          americano. Nossa missão é te ajudar a chegar na entrevista com a
-          melhor estratégia e documentação possível.
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
@@ -494,7 +486,7 @@ function IconAlert() {
 
 function IconCheck() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" className="mt-0.5 h-4 w-4 shrink-0 text-blue-600">
+    <svg viewBox="0 0 24 24" fill="none" className="mt-0.5 h-4 w-4 shrink-0 text-accent">
       <path
         d="M5 12.5 9.5 17 19 7"
         stroke="currentColor"

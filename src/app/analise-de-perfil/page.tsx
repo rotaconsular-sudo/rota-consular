@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { startFreeApplication } from "@/app/actions";
+import SiteFooter from "@/components/SiteFooter";
+import SiteHeader from "@/components/SiteHeader";
 
 export const metadata: Metadata = {
   title: "Análise Grátis de Perfil | Rota Consular",
@@ -58,8 +60,8 @@ const DIFERENCIAIS = [
 
 function AnaliseForm() {
   return (
-    <div className="rounded-2xl border border-blue-100 bg-blue-50 p-7 shadow-sm sm:p-9">
-      <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-blue-700">
+    <div className="rounded-2xl border border-slate-200 bg-white p-7 sm:p-9">
+      <span className="inline-flex items-center rounded-full border border-ink/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink">
         GRÁTIS
       </span>
       <form
@@ -73,7 +75,7 @@ function AnaliseForm() {
             type="email"
             required
             placeholder="seu@email.com"
-            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/40"
+            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
           />
         </label>
         <label className="flex flex-1 flex-col gap-1.5 text-left">
@@ -83,18 +85,18 @@ function AnaliseForm() {
             type="tel"
             required
             placeholder="(11) 99999-9999"
-            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/40"
+            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
           />
         </label>
         <button
           type="submit"
-          className="rounded-full bg-blue-600 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-blue-600/25 transition hover:bg-blue-700"
+          className="shrink-0 whitespace-nowrap rounded-full bg-ink px-6 py-3 text-sm font-bold text-white transition hover:bg-ink-muted"
         >
-          ➔ Iniciar Minha Análise Gratuita
+          Iniciar Minha Análise Gratuita
         </button>
       </form>
       <p className="mt-3 text-xs text-slate-500">
-        🔒 100% seguro e sigiloso. Sem necessidade de cartão de crédito.
+        100% seguro e sigiloso. Sem necessidade de cartão de crédito.
       </p>
     </div>
   );
@@ -102,11 +104,13 @@ function AnaliseForm() {
 
 export default function AnaliseDePerfilPage() {
   return (
-    <div className="flex flex-1 flex-col bg-slate-50 text-slate-900">
+    <div className="flex flex-1 flex-col bg-slate-50 text-ink">
+      <SiteHeader />
+
       {/* Dobra principal: promessa + card de captura */}
       <section id="captura" className="scroll-mt-6 bg-white">
-        <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 px-6 py-16 text-center">
-          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+        <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 px-6 py-20 sm:py-28 text-center">
+          <h1 className="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
             O seu perfil passa no teste do Consulado Americano?
           </h1>
           <p className="max-w-xl text-lg text-slate-600">
@@ -121,8 +125,8 @@ export default function AnaliseDePerfilPage() {
 
       {/* Como funciona */}
       <section className="bg-slate-50">
-        <div className="mx-auto max-w-4xl px-6 py-16">
-          <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900">
+        <div className="mx-auto max-w-4xl px-6 py-20 sm:py-28">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
             Como funciona a nossa Análise?
           </h2>
           <ol className="mt-10 grid gap-6 sm:grid-cols-3">
@@ -131,15 +135,15 @@ export default function AnaliseDePerfilPage() {
               return (
                 <li
                   key={step.title}
-                  className="flex flex-col items-center gap-3 rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm"
+                  className="flex flex-col items-center gap-3 rounded-2xl border border-slate-200 bg-white p-6 text-center"
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-50 text-blue-600">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-ink">
                     <Icon />
                   </div>
                   <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
                     Passo {i + 1}
                   </p>
-                  <p className="text-sm font-semibold text-slate-900">{step.title}</p>
+                  <p className="text-sm font-semibold text-ink">{step.title}</p>
                   <p className="text-sm text-slate-600">{step.description}</p>
                 </li>
               );
@@ -150,8 +154,8 @@ export default function AnaliseDePerfilPage() {
 
       {/* Benefícios */}
       <section className="bg-white">
-        <div className="mx-auto max-w-5xl px-6 py-16">
-          <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900">
+        <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
             Como o Rota Consular ajuda
           </h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -160,12 +164,12 @@ export default function AnaliseDePerfilPage() {
               return (
                 <div
                   key={d.title}
-                  className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+                  className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-6"
                 >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-ink">
                     <Icon />
                   </div>
-                  <p className="text-sm font-semibold text-slate-900">{d.title}</p>
+                  <p className="text-sm font-semibold text-ink">{d.title}</p>
                   <p className="text-sm text-slate-600">{d.description}</p>
                 </div>
               );
@@ -176,8 +180,8 @@ export default function AnaliseDePerfilPage() {
 
       {/* Autoridade */}
       <section className="bg-slate-50">
-        <div className="mx-auto max-w-2xl px-6 py-16 text-center">
-          <h2 className="text-2xl font-bold tracking-tight text-slate-900">
+        <div className="mx-auto max-w-2xl px-6 py-20 sm:py-28 text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">
             Não jogue a taxa do seu visto (US$ 185) no lixo por erros
             amadores.
           </h2>
@@ -192,26 +196,17 @@ export default function AnaliseDePerfilPage() {
 
       {/* Rodapé de resgate */}
       <section className="bg-white">
-        <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 px-6 py-16 text-center">
+        <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 px-6 py-20 sm:py-28 text-center">
           <Link
             href="#captura"
-            className="rounded-full bg-blue-600 px-9 py-4 text-base font-bold text-white shadow-lg shadow-blue-600/25 transition hover:bg-blue-700 hover:shadow-xl"
+            className="rounded-full bg-ink px-9 py-4 text-base font-bold text-white transition hover:bg-ink-muted"
           >
             Quero Fazer Minha Análise Grátis
           </Link>
         </div>
       </section>
 
-      <footer className="border-t border-slate-200 bg-slate-50">
-        <div className="mx-auto max-w-2xl px-6 py-10 text-center text-xs text-slate-400">
-          O Rota Consular é uma ferramenta de tecnologia e inteligência
-          estratégica. Não somos afiliados ao governo dos Estados Unidos, à
-          Embaixada ou ao Consulado americano. Isso não é uma promessa de
-          aprovação — a decisão final é sempre do oficial consular
-          americano. Nossa missão é te ajudar a chegar na entrevista com a
-          melhor estratégia e documentação possível.
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

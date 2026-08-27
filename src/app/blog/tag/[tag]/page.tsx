@@ -30,7 +30,7 @@ export default async function BlogTagPage(props: PageProps<"/blog/tag/[tag]">) {
 
   return (
     <div className="mx-auto max-w-5xl px-6 py-12">
-      <h1 className="text-3xl font-extrabold tracking-tight text-slate-900">
+      <h1 className="text-3xl font-extrabold tracking-tight text-ink">
         Artigos com #{tag}
       </h1>
 

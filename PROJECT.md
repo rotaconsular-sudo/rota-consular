@@ -369,3 +369,62 @@ tráfego real antes de expandir a escada.
   `rotaconsular-sudo`. Resolvido com
   `gh auth switch --hostname github.com --user rotaconsular-sudo` **antes**
   do push. Sempre checar `gh auth status` antes de subir neste projeto.
+
+## Sessão 2026-08-27 (2) — sistema de design nas páginas públicas
+
+Pedido: aplicar o padrão de cores da capa no resto do site, "sempre
+minimalista". Duas decisões foram confirmadas com o usuário antes de mexer
+em 21 páginas:
+1. **Claro com âncoras escuras** (não dark total) — o corpo continua claro
+   pra leitura e conversão; o navy entra como cor da marca em título, CTA,
+   faixas e footer. Dark total foi descartado: exigiria reescrever
+   formulário/wizard/checkout e o tema escuro já causou bug de contraste
+   aqui antes (ver sessão 2026-08-22).
+2. **Páginas públicas primeiro** — wizard/checkout/entrar ficam pra fase 2.
+
+- [x] **Tokens em `globals.css`** — `--color-ink` (#070d1c, o mesmo navy do
+      `WavingFlag`), `--color-ink-muted`, `--color-accent`,
+      `--color-accent-soft`. Regra do sistema: **cor é informação, não
+      decoração** — fora do navy e do azul de acento, só se usa cor quando
+      ela significa algo. O `ink` é o que costura a capa ao resto do site.
+- [x] **Paleta unificada (154 substituições)** — emerald/amber/red/zinc
+      decorativos eliminados das públicas. Badges saturadas
+      (`bg-emerald-100`, `bg-amber-100`, `bg-blue-100`…) viraram um padrão
+      único: contorno hairline, caixa alta, `tracking-[0.14em]`.
+- [x] **Elevação eliminada** — toda `shadow-*` de card saiu; hierarquia
+      passa a ser borda + espaço. Sobra **uma só** no site: a do CTA da
+      capa. O FAQ sinalizava "aberto" com `open:shadow-sm`, agora usa
+      `open:border-ink/30`.
+- [x] **Emojis removidos das públicas.** Atenção: a primeira varredura
+      **não pegou 🇺🇸** — bandeiras são *regional indicators*
+      (U+1F1E6–1F1FF), fora do range U+1F300–1FAFF. Se for varrer emoji de
+      novo, incluir esse range. Na `/assessoria-completa` os 6 emojis-ícone
+      viraram numeração mono (`01`, `02`…), coerente com o eyebrow da capa.
+- [x] **Respiro e hierarquia** — seções `py-16` → `py-20 sm:py-28`; h2
+      `text-2xl` → `text-3xl sm:text-4xl`. Cards de diferenciais da home de
+      4 → 2 colunas (o texto era longo demais pra coluna estreita).
+
+**Três problemas de UX achados no caminho (não eram de cor):**
+- [x] **`/analise-de-perfil`, `/mapads160` e `/assessoria-completa` não
+      tinham header nenhum** — abriam direto no h1, sem navegação. Novo
+      `src/components/SiteHeader.tsx` com duas variantes: `dark`
+      (sobreposta à capa) e `light` (barra sticky das internas). O blog
+      tinha header próprio divergente (emoji + azul); passou a usar o mesmo.
+- [x] **Disclaimer duplicado em 4 arquivos** → `src/components/SiteFooter.tsx`,
+      que é também a âncora escura fechando a página no navy da capa.
+- [x] **Links de navegação em 3 lugares** → `src/lib/nav.ts`, fonte única
+      consumida por header e footer.
+
+**Duas decisões de conteúdo tomadas junto (reversíveis):** "Assessoria
+Completa" entrou na nav (a página não era alcançável pelo topo); e a badge
+"ROTA CONSULAR" do hero do `/mapads160` foi removida, porque passou a
+repetir o logo do header logo acima.
+
+Verificado: `tsc` limpo, eslint sem erros (os 2 warnings de `IconMail`/
+`IconDownload` no `mapads160` são pré-existentes), console do navegador
+limpo, 7 rotas em 200, conferido em 1440×900 e 390×844. Diff: 12 arquivos,
++212/−246 — o site ficou com menos código do que tinha.
+
+**Pendente — fase 2:** wizard (`/solicitacoes/**`), `/checkout`, `/entrar` e
+a home logada ainda usam o padrão antigo (badge amber/emerald de status em
+`STATUS_STYLE`, emoji no checkout).

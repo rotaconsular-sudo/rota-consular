@@ -29,7 +29,7 @@ export function Pagination({
         className={`rounded-lg border border-slate-300 px-3 py-1.5 font-medium ${
           page === 1
             ? "pointer-events-none text-slate-300"
-            : "text-slate-600 hover:border-blue-300 hover:text-blue-700"
+            : "text-slate-600 hover:border-slate-400 hover:text-ink"
         }`}
       >
         Anterior
@@ -40,7 +40,7 @@ export function Pagination({
           href={hrefFor(n)}
           className={`rounded-lg px-3 py-1.5 font-medium ${
             n === page
-              ? "bg-blue-600 text-white"
+              ? "bg-ink text-white"
               : "text-slate-600 hover:bg-slate-100"
           }`}
         >
@@ -53,7 +53,7 @@ export function Pagination({
         className={`rounded-lg border border-slate-300 px-3 py-1.5 font-medium ${
           page === totalPages
             ? "pointer-events-none text-slate-300"
-            : "text-slate-600 hover:border-blue-300 hover:text-blue-700"
+            : "text-slate-600 hover:border-slate-400 hover:text-ink"
         }`}
       >
         Próxima

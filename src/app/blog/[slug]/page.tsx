@@ -28,14 +28,14 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
   return (
     <article className="mx-auto max-w-2xl px-6 py-12">
       <nav className="text-xs text-slate-500">
-        <Link href="/blog" className="hover:text-blue-600">
+        <Link href="/blog" className="hover:text-accent">
           Blog
         </Link>
         <span className="mx-1.5">/</span>
         <span className="text-slate-700">{post.title}</span>
       </nav>
 
-      <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-slate-900">
+      <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-ink">
         {post.title}
       </h1>
 
@@ -45,7 +45,7 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
           <Link
             key={tag}
             href={`/blog/tag/${tag}`}
-            className="rounded-full bg-slate-100 px-2.5 py-1 font-medium text-slate-600 hover:bg-blue-50 hover:text-blue-700"
+            className="rounded-full bg-slate-100 px-2.5 py-1 font-medium text-slate-600 hover:bg-slate-200 hover:text-ink"
           >
             #{tag}
           </Link>
@@ -53,17 +53,17 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
       </div>
 
       <div
-        className="prose prose-slate mt-8 max-w-none prose-headings:font-bold prose-a:text-blue-600"
+        className="prose prose-slate mt-8 max-w-none prose-headings:font-bold prose-a:text-accent"
         dangerouslySetInnerHTML={{ __html: post.contentHtml }}
       />
 
-      <div className="mt-12 rounded-2xl border border-blue-100 bg-blue-50 p-6 text-center">
-        <p className="text-sm font-semibold text-slate-900">
+      <div className="mt-12 rounded-2xl border border-slate-200 bg-white p-6 text-center">
+        <p className="text-sm font-semibold text-ink">
           Quer saber o nível de prontidão da sua documentação para o visto?
         </p>
         <Link
           href="/analise-de-perfil"
-          className="mt-3 inline-block rounded-full bg-blue-600 px-6 py-3 text-sm font-bold text-white transition hover:bg-blue-700"
+          className="mt-3 inline-block rounded-full bg-ink px-6 py-3 text-sm font-bold text-white transition hover:bg-ink-muted"
         >
           Fazer análise grátis
         </Link>
