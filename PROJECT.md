@@ -561,3 +561,23 @@ botão **transbordava pra fora do card** no desktop. Causa: o form era
 disputando a mesma linha, e o botão (rótulo longo) estourava a largura.
 Corrigido reestruturando: os dois campos dividem uma linha, o CTA ganha
 linha própria em largura total. Conferido em 1440 e em ~500px de largura.
+
+## Quebra de linha dos títulos
+
+Usuário apontou a quebra ruim em "Não jogue a taxa do seu visto (US$ 185)
+no lixo por erros amadores." (`/analise-de-perfil`). Medido no navegador: a
+linha quebrava **no meio do valor** — `(US$` na primeira linha e `185)` na
+segunda.
+
+Duas correções:
+- **`US$&nbsp;185`** nas duas ocorrências (`/analise-de-perfil` e
+  `/assessoria-completa`) — espaço não-quebrável impede o valor de partir.
+  Vale a regra pra qualquer valor/unidade futura.
+- **`text-balance` nos 20 títulos** (h1/h2) das páginas públicas — distribui
+  as linhas em vez de encher a primeira e deixar sobra na última.
+
+Investigado e **descartado**: forçar a quebra semântica com `<br>` depois de
+"(US$ 185)". Medido — a primeira metade sozinha não cabe em `text-4xl`
+dentro do `max-w-2xl`, então o `<br>` transformava 2 linhas em 3. A quebra
+que o `text-balance` escolhe (29/37 caracteres) já é a mais equilibrada
+possível, e não muda entre 672px e 1024px de container.

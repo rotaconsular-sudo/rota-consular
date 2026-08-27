@@ -139,12 +139,12 @@ export default function AssessoriaCompletaPage() {
       {/* Agitação da dor */}
       <section className="bg-slate-50">
         <div className="mx-auto max-w-2xl px-6 py-20 sm:py-28 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
             O Consulado não perdoa erros amadores.
           </h2>
           <p className="mt-4 text-sm text-slate-600">
             Todos os dias, centenas de brasileiros têm o visto negado e
-            perdem a cara taxa consular de US$ 185. O motivo? Não é falta de
+            perdem a cara taxa consular de US$&nbsp;185. O motivo? Não é falta de
             dinheiro. É falta de instrução. Formulários com informações
             conflitantes, nervosismo na frente do cônsul e falta de
             documentos corretos destroem viagens planejadas por anos. Você
@@ -156,7 +156,7 @@ export default function AssessoriaCompletaPage() {
       {/* Solução */}
       <section className="bg-white">
         <div className="mx-auto max-w-4xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
             Conheça a Assessoria Completa Rota Consular
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-center text-sm text-slate-600">
@@ -185,7 +185,7 @@ export default function AssessoriaCompletaPage() {
       {/* Empilhamento de valor */}
       <section className="bg-slate-50">
         <div className="mx-auto max-w-2xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
             O que você garante ao entrar para a nossa Assessoria:
           </h2>
           <ul className="mt-8 flex flex-col gap-3">
@@ -237,7 +237,7 @@ export default function AssessoriaCompletaPage() {
       {/* CTA final */}
       <section className="bg-slate-50">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 px-6 py-20 sm:py-28 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
             O seu visto americano merece preparação de verdade.
           </h2>
           <p className="text-sm text-slate-600">
@@ -253,7 +253,7 @@ export default function AssessoriaCompletaPage() {
       {/* FAQ */}
       <section className="bg-white">
         <div className="mx-auto max-w-2xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
             Perguntas frequentes
           </h2>
           <div className="mt-8 flex flex-col gap-3">

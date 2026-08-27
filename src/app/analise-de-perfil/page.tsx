@@ -133,7 +133,7 @@ export default function AnaliseDePerfilPage() {
       {/* Como funciona */}
       <section className="bg-slate-50">
         <div className="mx-auto max-w-4xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
             Como funciona a nossa Análise?
           </h2>
           <ol className="mt-10 grid gap-6 sm:grid-cols-3">
@@ -162,7 +162,7 @@ export default function AnaliseDePerfilPage() {
       {/* Benefícios */}
       <section className="bg-white">
         <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
             Como o Rota Consular ajuda
           </h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -188,8 +188,8 @@ export default function AnaliseDePerfilPage() {
       {/* Autoridade */}
       <section className="bg-slate-50">
         <div className="mx-auto max-w-2xl px-6 py-20 sm:py-28 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-            Não jogue a taxa do seu visto (US$ 185) no lixo por erros
+          <h2 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
+            Não jogue a taxa do seu visto (US$&nbsp;185) no lixo por erros
             amadores.
           </h2>
           <p className="mt-4 text-sm text-slate-600">

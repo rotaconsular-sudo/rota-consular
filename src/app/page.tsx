@@ -49,7 +49,7 @@ export default async function HomePage() {
 
       <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-8 px-6 py-16">
         <header>
-          <h1 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          <h1 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
             Minhas solicitações
           </h1>
           <p className="mt-2 text-sm text-slate-500">
@@ -204,7 +204,7 @@ function InstitutionalHome() {
       {/* Diferenciais */}
       <section className="bg-slate-50">
         <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
             Como o Rota Consular ajuda
           </h2>
           <div className="mt-12 grid gap-6 sm:grid-cols-2">
@@ -230,7 +230,7 @@ function InstitutionalHome() {
       {/* O que oferecemos */}
       <section className="bg-white">
         <div className="mx-auto max-w-4xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
             O que você encontra aqui
           </h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
@@ -278,7 +278,7 @@ function InstitutionalHome() {
         <section className="bg-slate-50">
           <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
             <div className="flex items-center justify-between">
-              <h2 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+              <h2 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
                 Últimas do blog
               </h2>
               <Link href="/blog" className="text-sm font-semibold text-accent hover:underline">

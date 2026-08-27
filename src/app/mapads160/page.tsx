@@ -129,7 +129,7 @@ export default function MapaDS160Page() {
       {/* Hero */}
       <section className="bg-slate-50">
         <div className="mx-auto flex w-full max-w-2xl flex-col items-center gap-6 px-6 py-14 text-center sm:py-20">
-          <h1 className="text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
+          <h1 className="text-4xl font-extrabold tracking-tight text-ink sm:text-5xl text-balance">
             {p.title}
           </h1>
           <p className="max-w-xl text-lg text-slate-600">{p.subtitle}</p>
@@ -162,7 +162,7 @@ export default function MapaDS160Page() {
       {/* Prévia do material */}
       <section className="bg-slate-50">
         <div className="mx-auto max-w-4xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
             Nós cuidamos de cada uma dessas etapas do formulário oficial:
           </h2>
           <div className="mt-8 flex flex-wrap justify-center gap-2">
@@ -181,7 +181,7 @@ export default function MapaDS160Page() {
       {/* O guia possui */}
       <section className="bg-white">
         <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
             O {p.title} inclui:
           </h2>
           <ul className="mt-10 grid gap-6 sm:grid-cols-3">
@@ -215,7 +215,7 @@ export default function MapaDS160Page() {
       {/* Ideal para você que deseja */}
       <section className="bg-slate-50">
         <div className="mx-auto max-w-2xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
             O nosso Sistema Inteligente é ideal para você que deseja:
           </h2>
           <ul className="mt-8 flex flex-col gap-3">
@@ -232,7 +232,7 @@ export default function MapaDS160Page() {
       {/* Tudo que você vai receber */}
       <section className="bg-white">
         <div className="mx-auto max-w-3xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
             Tudo o que você vai receber:
           </h2>
           <div className="mt-8 flex aspect-video w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400">
@@ -331,7 +331,7 @@ export default function MapaDS160Page() {
       {/* Como funciona o seu DS-160 Blindado */}
       <section className="bg-white">
         <div className="mx-auto max-w-4xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
             Como funciona o seu DS-160 Blindado?
           </h2>
           <ol className="mt-10 grid gap-6 sm:grid-cols-3">
@@ -364,7 +364,7 @@ export default function MapaDS160Page() {
             <span className="inline-flex items-center rounded-full border border-ink/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink">
               PARA QUEM QUER IR ALÉM DO FORMULÁRIO
             </span>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
               Quer uma especialista cuidando de tudo, do DS-160 até a entrevista?
             </h2>
             <p className="mt-2 text-sm text-slate-600">
@@ -385,7 +385,7 @@ export default function MapaDS160Page() {
       {/* FAQ */}
       <section className="bg-slate-50">
         <div className="mx-auto max-w-2xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
             Perguntas frequentes
           </h2>
           <div className="mt-8 flex flex-col gap-3">
