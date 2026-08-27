@@ -321,3 +321,51 @@ tráfego real antes de expandir a escada.
       instabilidade pontual de conexão. Se o erro voltar a acontecer, não
       assumir que é cota — investigar como problema de conectividade
       pontual primeiro.
+
+## Sessão 2026-08-27 — capa animada com a bandeira dos EUA na home
+
+- [x] **Nova capa full-bleed em `/`** — o hero antigo (bloco branco centrado
+      dentro de `InstitutionalHome`) virou uma capa imersiva de `92svh`,
+      fundo `#070d1c`, com a bandeira dos EUA ondulando em tela cheia atrás
+      da tipografia. Pedido veio com a referência
+      `recent.design/i/7eq5d9w-koi-fish-portfolio-hero` (hero imersivo com
+      visual orgânico animado atrás de tipografia grande) — a página do
+      recent.design é gated e retorna erro pra acesso não-logado, então o
+      padrão foi reproduzido pelo conceito, não pelo layout exato.
+- [x] **`src/components/WavingFlag.tsx`** — a bandeira é desenhada por
+      código num `<canvas>`: **sem imagem externa e sem biblioteca**.
+      Textura na proporção oficial (13 listras, união 7/13 da altura ×
+      0.76 da largura, 50 estrelas em 9 fileiras 6-5-6-5…), cores Old Glory
+      (`#b22234` / `#ffffff` / `#3c3b6e`).
+      A ondulação recorta a bandeira em fatias verticais de 2px e desloca
+      cada uma por **duas senoides sobrepostas**, com amplitude crescendo do
+      mastro pra ponta (`pow(p, 1.25)`) — é isso que prende o pano à
+      esquerda e deixa solto à direita. O sombreado sai da **derivada da
+      onda** (luz na crista, sombra no vale) e o pano encurta um pouco onde
+      dobra (`squeeze`). Sem esses dois detalhes vira "imagem tremendo" em
+      vez de tecido.
+      Cuidados: pausa via `IntersectionObserver` fora da viewport e via
+      `visibilitychange` com a aba em segundo plano; respeita
+      `prefers-reduced-motion` (renderiza um quadro parado, sem rAF);
+      redesenha no resize honrando `devicePixelRatio` (limitado a 2).
+- [x] **Legibilidade** — a primeira versão usava um scrim radial que
+      apagava a bandeira inteira. Trocado por um **gradiente diagonal**
+      (`linear-gradient(100deg, …)`): escuro atrás do texto à esquerda,
+      bandeira viva à direita. Mais duas camadas: vinheta vertical e um
+      fade da base pro `slate-50` que funde a capa na seção clara seguinte.
+- [x] **Ajustes achados na checagem visual** — removido o emoji 🇺🇸 do logo
+      (redundante com a bandeira gigante atrás, e cai pra "us" em ambiente
+      sem fonte de emoji); a nav espremia e quebrava em duas linhas no
+      celular (problema que já existia antes), agora no mobile fica só
+      logo + "Entrar" (`hidden sm:inline` nos 3 links secundários).
+      Conferido em 1440×900 e 390×844, console sem erros, `tsc --noEmit` e
+      `eslint` limpos.
+      **Nota**: `npm run build` não foi rodado localmente de propósito — o
+      script roda `prisma migrate deploy` antes do `next build` e esta
+      máquina não alcança o banco de produção (falharia por conexão, não
+      por código). A validação real é o build da Vercel.
+- **Gotcha de push confirmado na prática**: a conta ativa do `gh` estava
+  como `vistosnationaltur-ship-it` enquanto o remote deste repo é
+  `rotaconsular-sudo`. Resolvido com
+  `gh auth switch --hostname github.com --user rotaconsular-sudo` **antes**
+  do push. Sempre checar `gh auth status` antes de subir neste projeto.

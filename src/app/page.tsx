@@ -4,6 +4,7 @@ import { getSession } from "@/lib/session";
 import { createApplication, logout } from "@/app/actions";
 import { WIZARD_STEPS } from "@/lib/wizard";
 import { getAllPosts, formatPostDate } from "@/lib/blog";
+import WavingFlag from "@/components/WavingFlag";
 
 const STATUS_LABEL: Record<string, string> = {
   EM_ANDAMENTO: "Em andamento",
@@ -137,56 +138,81 @@ function InstitutionalHome() {
 
   return (
     <div className="flex flex-1 flex-col bg-slate-50 text-slate-900">
-      <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-          <span className="text-sm font-semibold text-blue-600">
-            🇺🇸 ROTA CONSULAR
-          </span>
-          <nav className="flex items-center gap-5 text-sm font-medium text-slate-600">
-            <Link href="/blog" className="hover:text-blue-600">
-              Blog
-            </Link>
-            <Link href="/analise-de-perfil" className="hover:text-blue-600">
-              Análise de Perfil
-            </Link>
-            <Link href="/mapads160" className="hover:text-blue-600">
-              DS160 sem erros
-            </Link>
-            <Link href="/entrar" className="hover:text-blue-600">
-              Entrar
-            </Link>
-          </nav>
-        </div>
-      </header>
+      {/* Capa */}
+      <section className="relative isolate flex min-h-[92svh] flex-col overflow-hidden bg-[#070d1c]">
+        <WavingFlag className="absolute inset-0 h-full w-full" />
 
-      {/* Hero */}
-      <section className="bg-white">
-        <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 py-16 text-center sm:py-20">
-          <span className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-1.5 text-xs font-semibold tracking-wide text-blue-700">
-            VISTO AMERICANO DE TURISMO (B1/B2)
-          </span>
-          <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
-            Preparação inteligente para o seu visto americano
+        {/* Camadas de leitura: escurecem o pano sem apagar a bandeira */}
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(100deg,rgba(7,13,28,0.96)_0%,rgba(7,13,28,0.88)_30%,rgba(7,13,28,0.5)_55%,rgba(7,13,28,0.24)_78%,rgba(7,13,28,0.34)_100%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#070d1c]/90 via-transparent to-[#070d1c]/60" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-slate-50" />
+
+        <header className="relative z-10">
+          <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
+            <span className="text-sm font-bold tracking-[0.14em] text-white">
+              ROTA CONSULAR
+            </span>
+            <nav className="flex items-center gap-6 text-sm font-medium text-white/70">
+              <Link href="/blog" className="hidden transition hover:text-white sm:inline">
+                Blog
+              </Link>
+              <Link href="/analise-de-perfil" className="hidden transition hover:text-white sm:inline">
+                Análise de Perfil
+              </Link>
+              <Link href="/mapads160" className="hidden transition hover:text-white sm:inline">
+                DS160 sem erros
+              </Link>
+              <Link
+                href="/entrar"
+                className="rounded-full border border-white/25 px-4 py-1.5 text-white transition hover:border-white/60 hover:bg-white/10"
+              >
+                Entrar
+              </Link>
+            </nav>
+          </div>
+        </header>
+
+        <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-6 py-16 sm:py-24">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-10 bg-white/40" />
+            <span className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-white/70">
+              Visto americano de turismo · B1/B2
+            </span>
+          </div>
+
+          <h1 className="mt-7 max-w-4xl text-[clamp(2.5rem,6.6vw,5rem)] font-extrabold leading-[0.98] tracking-tight text-white">
+            Preparação inteligente
+            <br />
+            para o seu{" "}
+            <span className="text-blue-300">visto americano</span>
           </h1>
-          <p className="max-w-xl text-lg text-slate-600">
+
+          <p className="mt-7 max-w-xl text-lg leading-relaxed text-slate-300">
             Análise de prontidão por IA, checklist do que falta organizar e um
             guia passo a passo para o DS-160 — para você chegar na entrevista
             com mais clareza e segurança.
           </p>
-          <div className="flex flex-col gap-3 sm:flex-row">
+
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <Link
               href="/analise-de-perfil"
-              className="rounded-full bg-blue-600 px-8 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-600/25 transition hover:bg-blue-700 hover:shadow-xl"
+              className="rounded-full bg-white px-8 py-3.5 text-center text-sm font-bold text-slate-900 shadow-xl shadow-black/25 transition hover:bg-blue-50"
             >
               Fazer análise grátis
             </Link>
             <Link
               href="/mapads160"
-              className="rounded-full border border-slate-300 px-8 py-3.5 text-sm font-bold text-slate-700 transition hover:border-blue-300 hover:text-blue-700"
+              className="rounded-full border border-white/30 px-8 py-3.5 text-center text-sm font-bold text-white backdrop-blur-sm transition hover:border-white/70 hover:bg-white/10"
             >
               DS160 sem erros
             </Link>
           </div>
+        </div>
+
+        <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-10">
+          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/45">
+            ↓ Role para ver como funciona
+          </span>
         </div>
       </section>
 
