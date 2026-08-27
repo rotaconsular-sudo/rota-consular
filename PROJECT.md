@@ -525,3 +525,15 @@ e o blog não tinha footer.
 Verificado: `tsc` e eslint limpos (0 erros, 0 warnings), 7 rotas em 200,
 `/entrar` e `/checkout` conferidos no navegador. Wizard e home logada
 seguem sem verificação visual (exigem sessão por magic link).
+
+## Copy da capa
+
+Subtítulo do hero trocado a pedido do usuário. Era "Análise de prontidão por
+IA, checklist do que falta organizar e um guia passo a passo para o DS-160
+— para você chegar na entrevista com mais clareza e segurança."
+Agora: "Um Raio-X completo das suas chances, um checklist à prova de falhas
+e o passo a passo exato para o DS-160. Evite erros críticos, organize seus
+documentos com excelência e vá para o consulado com total segurança."
+Nota: a nova versão **não menciona IA** — mudança deliberada de
+posicionamento, não esquecimento. Ocupa 4 linhas em 1440px (a anterior,
+3).

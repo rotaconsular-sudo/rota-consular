@@ -172,9 +172,10 @@ function InstitutionalHome() {
           </h1>
 
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-slate-300">
-            Análise de prontidão por IA, checklist do que falta organizar e um
-            guia passo a passo para o DS-160 — para você chegar na entrevista
-            com mais clareza e segurança.
+            Um Raio-X completo das suas chances, um checklist à prova de
+            falhas e o passo a passo exato para o DS-160. Evite erros
+            críticos, organize seus documentos com excelência e vá para o
+            consulado com total segurança.
           </p>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
