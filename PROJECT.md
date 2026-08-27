@@ -428,3 +428,69 @@ limpo, 7 rotas em 200, conferido em 1440×900 e 390×844. Diff: 12 arquivos,
 **Pendente — fase 2:** wizard (`/solicitacoes/**`), `/checkout`, `/entrar` e
 a home logada ainda usam o padrão antigo (badge amber/emerald de status em
 `STATUS_STYLE`, emoji no checkout).
+
+## Sessão 2026-08-27 (3) — fase 2: sistema de cores na área logada
+
+Conclui o trabalho da fase 1 levando o sistema pro wizard, `/checkout`,
+`/entrar`, `/analise-perfil` (demo) e a home logada.
+
+**A regra aqui é o oposto da fase 1.** Nas páginas públicas cor era
+decoração e foi removida; na área logada cor **carrega significado**
+(status da solicitação, erro de validação, desconto, etapa concluída).
+Então em vez de remover, o trabalho foi reduzir a um vocabulário mínimo:
+**uma cor por significado**, com tokens cujo nome diz o significado e não
+o tom (`globals.css`):
+- `--color-ok: #047857` — aprovado, positivo, economia real
+- `--color-warn: #b45309` — atenção/alerta
+- `--color-err: #b91c1c` — erro, item faltando
+Superfícies saem por **opacidade** (`bg-ok/5`, `border-warn/30`), nunca por
+um segundo tom da mesma família — é o que impede a paleta de voltar a
+inflar.
+
+- [x] **~85 substituições mecânicas** (mesmas regras da fase 1: sombras
+      fora, `text-slate-900` → `text-ink`, CTA azul → navy).
+- [x] **Estados semânticos tokenizados** — `STATUS_STYLE` do `/resultado`
+      (ok/atenção/faltando), `scoreColor()`, `STATUS_STYLE` da home logada,
+      caixas de alerta do `/resultado` e `/revisao`, sucesso do `/entrar`.
+      Todos passaram de fundo saturado (`bg-emerald-100`) pro padrão
+      `border-<token>/30 bg-<token>/5 text-<token>`.
+- [x] **`WizardNav`: estado por forma, não por cor** — antes concluído era
+      verde e ativo era azul. Agora concluído é `bg-ink` preenchido (com ✓)
+      e ativo é **contornado** (`border-ink`, com o número). Distingue sem
+      gastar duas cores, e o ✓ já dizia "concluído" sozinho.
+- [x] **Uma escala de cinza só** — o wizard usava `zinc` enquanto o resto
+      do site usava `slate` (6 usos). Unificado em `slate`.
+- [x] **14 inputs do wizard padronizados** — eram `rounded-md
+      border-zinc-300` **sem estado de foco visível**; agora usam o mesmo
+      padrão dos campos públicos, com `focus:border-ink focus:ring-2
+      focus:ring-ink/40`. Checkboxes ganharam `accent-ink`.
+- [x] **`/checkout` (tela mais sensível, revisada uma a uma)** — o que era
+      urgência decorativa virou neutro: caixa de order bump perdeu o âmbar
+      (o tracejado já comunica "opcional"), botão "PEGAR OFERTA" virou navy,
+      "N ofertas disponíveis" virou ênfase e não status. O que é informação
+      real continuou verde: "3% OFF", "APROVAÇÃO IMEDIATA", "Ambiente
+      seguro" e a linha de desconto. **O total voltou pra `ink`** — verde no
+      vocabulário significa economia, e o total é valor a pagar, não
+      economia. Emojis 🔒 e 💳 removidos.
+
+**Não consegui verificar visualmente o wizard e a home logada**: exigem
+sessão autenticada e o login é por magic link enviado por e-mail. O que foi
+verificado nessas telas é estático (`tsc`, eslint, varredura por classe).
+`/checkout`, `/entrar` e `/analise-perfil` **foram** conferidos no navegador.
+
+**Achados durante a fase 2 (não corrigidos, decisão do usuário):**
+- `/checkout` está com o botão COMPRAR desabilitado e a mensagem "Checkout
+  em configuração — pagamento será habilitado em breve", e mostra o produto
+  a **R$ 27,90**. O funil que está de fato em produção usa Mercado Pago
+  Checkout Pro a **R$ 47** (`CHECKLIST_PRICE_CENTS`). Ou seja, essa página
+  é um checkout próprio inacabado, paralelo ao fluxo real — vale decidir se
+  vai ser terminado ou removido.
+- `/analise-perfil` (sem o "de") é uma **página de demo** que renderiza o
+  quiz e despeja o JSON cru das respostas. Está acessível publicamente em
+  produção. Não removi por estar fora do escopo, mas provavelmente não
+  deveria estar no ar.
+
+Estado final do sistema, site inteiro: **zero** classe `blue-*`/`emerald-*`/
+`amber-*`/`red-*`/`zinc-*` solta fora dos tokens, e **uma única** `shadow-*`
+(o CTA da capa). Tokens em uso: `text-ink` 105, `bg-ink` 40, `border-ink`
+37, `text-accent` 18, `text-ok` 8, `text-warn` 5, `text-err` 4.

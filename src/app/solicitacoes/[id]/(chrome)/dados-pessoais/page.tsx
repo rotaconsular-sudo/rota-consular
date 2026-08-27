@@ -18,7 +18,7 @@ export default async function DadosPessoaisPage(
     <form action={action} className="flex flex-col gap-6">
       <div>
         <h2 className="text-lg font-semibold">Dados pessoais</h2>
-        <p className="mt-1 text-sm text-zinc-500">Quem é você.</p>
+        <p className="mt-1 text-sm text-slate-500">Quem é você.</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
@@ -28,7 +28,7 @@ export default async function DadosPessoaisPage(
             name="nomeCompleto"
             defaultValue={data.nomeCompleto}
             required
-            className="rounded-md border border-zinc-300 px-3 py-2 text-sm"
+            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
           />
         </label>
 
@@ -41,7 +41,7 @@ export default async function DadosPessoaisPage(
             max={120}
             defaultValue={data.idade}
             required
-            className="rounded-md border border-zinc-300 px-3 py-2 text-sm"
+            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
           />
         </label>
 
@@ -51,7 +51,7 @@ export default async function DadosPessoaisPage(
             name="estadoCivil"
             defaultValue={data.estadoCivil ?? ""}
             required
-            className="rounded-md border border-zinc-300 px-3 py-2 text-sm"
+            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
           >
             <option value="" disabled>
               Selecione
@@ -70,7 +70,7 @@ export default async function DadosPessoaisPage(
             name="cidade"
             defaultValue={data.cidade}
             required
-            className="rounded-md border border-zinc-300 px-3 py-2 text-sm"
+            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
           />
         </label>
 
@@ -81,7 +81,7 @@ export default async function DadosPessoaisPage(
             maxLength={2}
             defaultValue={data.uf}
             required
-            className="rounded-md border border-zinc-300 px-3 py-2 text-sm uppercase"
+            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40 uppercase"
           />
         </label>
       </div>

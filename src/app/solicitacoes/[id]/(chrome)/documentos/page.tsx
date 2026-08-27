@@ -29,7 +29,7 @@ export default async function DocumentosPage(
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h2 className="text-lg font-bold text-slate-900">Documentos</h2>
+        <h2 className="text-lg font-bold text-ink">Documentos</h2>
         <p className="mt-1 text-sm text-slate-500">
           Envie o que você já tem em mãos. Arquivos até 8MB, armazenados de
           forma privada — só você tem acesso.
@@ -44,7 +44,7 @@ export default async function DocumentosPage(
               className="flex items-center justify-between rounded-xl border border-slate-200 px-4 py-2.5 text-sm"
             >
               <div>
-                <p className="font-medium text-slate-900">
+                <p className="font-medium text-ink">
                   {DOCUMENT_TYPE_LABEL[doc.type] ?? doc.type}
                 </p>
                 <a
@@ -57,7 +57,7 @@ export default async function DocumentosPage(
               <form action={removeDocument.bind(null, doc.id, id)}>
                 <button
                   type="submit"
-                  className="text-xs text-red-600 hover:underline"
+                  className="text-xs text-err hover:underline"
                 >
                   Remover
                 </button>
@@ -77,7 +77,7 @@ export default async function DocumentosPage(
           <select
             name="type"
             required
-            className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/40"
+            className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
           >
             {Object.entries(DOCUMENT_TYPE_LABEL).map(([value, label]) => (
               <option key={value} value={value}>
@@ -94,13 +94,13 @@ export default async function DocumentosPage(
             type="file"
             required
             accept="application/pdf,image/*"
-            className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/40"
+            className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
           />
         </label>
 
         <button
           type="submit"
-          className="rounded-full border border-blue-600 px-4 py-2 text-sm font-semibold text-blue-600 transition hover:bg-blue-50"
+          className="rounded-full border border-ink px-4 py-2 text-sm font-semibold text-ink transition hover:bg-slate-100"
         >
           Adicionar
         </button>
@@ -119,7 +119,7 @@ export default async function DocumentosPage(
         )}
         <Link
           href={`/solicitacoes/${id}/${next ? next.slug : "revisao"}`}
-          className="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-blue-600/20 transition hover:bg-blue-700"
+          className="rounded-full bg-ink px-5 py-2.5 text-sm font-bold text-white shadow-blue-600/20 transition hover:bg-ink-muted"
         >
           Continuar
         </Link>

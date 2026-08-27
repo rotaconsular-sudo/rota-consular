@@ -21,6 +21,17 @@
   --color-ink-muted: #0f1a33;
   --color-accent: #2563eb;
   --color-accent-soft: #93c5fd;
+
+  /*
+   * Vocabulário semântico da área logada (wizard, checkout, resultado).
+   * Nas páginas públicas cor é decoração e foi removida; aqui ela carrega
+   * significado, então existe UMA cor por significado — e o nome do token
+   * diz o significado, não o tom. Superfícies saem por opacidade
+   * (bg-ok/5, border-warn/30), nunca por um segundo tom da mesma família.
+   */
+  --color-ok: #047857;
+  --color-warn: #b45309;
+  --color-err: #b91c1c;
 }
 
 @theme inline {

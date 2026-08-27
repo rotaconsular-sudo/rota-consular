@@ -7,9 +7,9 @@ import type {
 } from "@/lib/anthropic";
 
 const STATUS_STYLE: Record<string, string> = {
-  ok: "bg-emerald-100 text-emerald-800",
-  atencao: "bg-amber-100 text-amber-800",
-  faltando: "bg-red-100 text-red-800",
+  ok: "border border-ok/30 bg-ok/5 text-ok",
+  atencao: "border border-warn/30 bg-warn/5 text-warn",
+  faltando: "border border-err/30 bg-err/5 text-err",
 };
 
 const STATUS_LABEL: Record<string, string> = {
@@ -19,9 +19,9 @@ const STATUS_LABEL: Record<string, string> = {
 };
 
 function scoreColor(score: number) {
-  if (score >= 75) return "text-emerald-700";
-  if (score >= 45) return "text-amber-700";
-  return "text-red-700";
+  if (score >= 75) return "text-ok";
+  if (score >= 45) return "text-warn";
+  return "text-err";
 }
 
 export default async function ResultadoPage(
@@ -44,7 +44,7 @@ export default async function ResultadoPage(
   return (
     <div className="flex flex-col gap-8">
       <div>
-        <h2 className="text-lg font-bold text-slate-900">Resultado da análise</h2>
+        <h2 className="text-lg font-bold text-ink">Resultado da análise</h2>
         <p className="mt-1 text-sm text-slate-500">
           Isso é um checklist de prontidão da sua documentação, gerado
           automaticamente — nunca uma previsão ou garantia de aprovação. A
@@ -52,12 +52,12 @@ export default async function ResultadoPage(
         </p>
       </div>
 
-      <div className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+      <div className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5">
         <div className={`text-4xl font-extrabold ${scoreColor(result.readinessScore)}`}>
           {result.readinessScore}
         </div>
         <div>
-          <p className="text-sm font-semibold text-slate-900">Nível de prontidão</p>
+          <p className="text-sm font-semibold text-ink">Nível de prontidão</p>
           <p className="text-xs text-slate-500">
             Quanto sua documentação e vínculos parecem completos e
             consistentes (0-100)
@@ -66,12 +66,12 @@ export default async function ResultadoPage(
       </div>
 
       {!paid && (
-        <section className="flex flex-col gap-3 rounded-2xl border border-blue-200 bg-blue-50 p-5">
+        <section className="flex flex-col gap-3 rounded-2xl border border-ink/20 bg-white p-5">
           <div>
-            <h3 className="text-sm font-semibold text-blue-900">
+            <h3 className="text-sm font-semibold text-ink">
               O que vem no checklist completo (R$47)
             </h3>
-            <ul className="mt-2 flex flex-col gap-1.5 text-sm text-blue-800">
+            <ul className="mt-2 flex flex-col gap-1.5 text-sm text-slate-600">
               <li>
                 • Status individual (ok / atenção / faltando) dos{" "}
                 {checklist.length} itens avaliados
@@ -93,12 +93,12 @@ export default async function ResultadoPage(
 
       {paid && alerts.length > 0 && (
         <section className="flex flex-col gap-2">
-          <h3 className="text-sm font-semibold text-slate-900">Alertas</h3>
+          <h3 className="text-sm font-semibold text-ink">Alertas</h3>
           <ul className="flex flex-col gap-2">
             {alerts.map((alert, i) => (
               <li
                 key={i}
-                className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-2.5 text-sm text-amber-900"
+                className="rounded-xl border border-warn/30 bg-warn/5 px-4 py-2.5 text-sm text-warn"
               >
                 {alert}
               </li>
@@ -108,7 +108,7 @@ export default async function ResultadoPage(
       )}
 
       <section className="flex flex-col gap-2">
-        <h3 className="text-sm font-semibold text-slate-900">Checklist</h3>
+        <h3 className="text-sm font-semibold text-ink">Checklist</h3>
         <ul className="flex flex-col gap-2">
           {checklist.map((entry, i) => (
             <li
@@ -116,7 +116,7 @@ export default async function ResultadoPage(
               className="flex flex-col gap-1 rounded-xl border border-slate-200 bg-white p-3 text-sm sm:flex-row sm:items-start sm:justify-between sm:gap-4"
             >
               <div>
-                <p className="font-medium text-slate-900">{entry.item}</p>
+                <p className="font-medium text-ink">{entry.item}</p>
                 {paid ? (
                   <p className="text-slate-600">{entry.comentario}</p>
                 ) : (
@@ -144,7 +144,7 @@ export default async function ResultadoPage(
         <Link href={`/solicitacoes/${id}/perfil`} className="text-slate-500 hover:underline">
           ← Editar respostas
         </Link>
-        <Link href={`/solicitacoes/${id}/documentos`} className="font-medium text-blue-600 hover:underline">
+        <Link href={`/solicitacoes/${id}/documentos`} className="font-medium text-accent hover:underline">
           Enviar documentos e refinar a análise →
         </Link>
       </div>

@@ -15,9 +15,9 @@ const STATUS_LABEL: Record<string, string> = {
 };
 
 const STATUS_STYLE: Record<string, string> = {
-  EM_ANDAMENTO: "bg-amber-100 text-amber-800",
-  ANALISE_PRONTA: "bg-emerald-100 text-emerald-800",
-  CONCLUIDA: "bg-slate-200 text-slate-700",
+  EM_ANDAMENTO: "border border-warn/30 bg-warn/5 text-warn",
+  ANALISE_PRONTA: "border border-ok/30 bg-ok/5 text-ok",
+  CONCLUIDA: "border border-slate-300 text-slate-600",
 };
 
 export default async function HomePage() {
@@ -175,7 +175,7 @@ function InstitutionalHome() {
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <Link
               href="/analise-de-perfil"
-              className="rounded-full bg-white px-8 py-3.5 text-center text-sm font-bold text-ink shadow-xl shadow-black/25 transition hover:bg-blue-50"
+              className="rounded-full bg-white px-8 py-3.5 text-center text-sm font-bold text-ink shadow-xl shadow-black/25 transition hover:bg-slate-100"
             >
               Fazer análise grátis
             </Link>

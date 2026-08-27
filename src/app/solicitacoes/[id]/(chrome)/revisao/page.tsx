@@ -106,14 +106,14 @@ export default async function RevisaoPage(
   return (
     <div className="flex flex-col gap-8">
       <div>
-        <h2 className="text-lg font-bold text-slate-900">Revisão</h2>
+        <h2 className="text-lg font-bold text-ink">Revisão</h2>
         <p className="mt-1 text-sm text-slate-500">
           Confira tudo antes de rodar a análise automática.
         </p>
       </div>
 
       {pendingSteps.length > 0 && (
-        <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+        <div className="rounded-xl border border-warn/30 bg-warn/5 px-4 py-3 text-sm text-warn">
           Ainda falta preencher:{" "}
           {pendingSteps.map((s) => s.title).join(", ")}.
         </div>
@@ -126,10 +126,10 @@ export default async function RevisaoPage(
         return (
           <section key={step.slug} className="flex flex-col gap-2">
             <div className="flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-slate-900">{step.title}</h3>
+              <h3 className="text-sm font-semibold text-ink">{step.title}</h3>
               <Link
                 href={`/solicitacoes/${id}/${step.slug}`}
-                className="text-xs font-medium text-blue-600 hover:underline"
+                className="text-xs font-medium text-accent hover:underline"
               >
                 Editar
               </Link>
@@ -141,7 +141,7 @@ export default async function RevisaoPage(
                     <dt className="text-slate-500">
                       {FIELD_LABEL[key] ?? key}
                     </dt>
-                    <dd className="text-right font-medium text-slate-900">
+                    <dd className="text-right font-medium text-ink">
                       {formatValue(value)}
                     </dd>
                   </div>
@@ -158,10 +158,10 @@ export default async function RevisaoPage(
 
       <section className="flex flex-col gap-2">
         <div className="flex items-center justify-between">
-          <h3 className="text-sm font-semibold text-slate-900">Documentos</h3>
+          <h3 className="text-sm font-semibold text-ink">Documentos</h3>
           <Link
             href={`/solicitacoes/${id}/documentos`}
-            className="text-xs font-medium text-blue-600 hover:underline"
+            className="text-xs font-medium text-accent hover:underline"
           >
             Editar
           </Link>
@@ -173,7 +173,7 @@ export default async function RevisaoPage(
                 <span className="text-slate-500">
                   {DOCUMENT_TYPE_LABEL[doc.type] ?? doc.type}
                 </span>
-                <span className="font-medium text-slate-900">{doc.fileName}</span>
+                <span className="font-medium text-ink">{doc.fileName}</span>
               </li>
             ))}
           </ul>
@@ -188,7 +188,7 @@ export default async function RevisaoPage(
         {application.analysisResult && (
           <Link
             href={`/solicitacoes/${id}/resultado`}
-            className="mb-3 block text-center text-sm font-medium text-blue-600 hover:underline"
+            className="mb-3 block text-center text-sm font-medium text-accent hover:underline"
           >
             Ver análise já gerada
           </Link>

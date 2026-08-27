@@ -26,16 +26,16 @@ export function WizardNav({
               href={href}
               className={`flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition ${
                 isActive
-                  ? "bg-blue-50 font-semibold text-blue-700"
+                  ? "bg-slate-100 font-semibold text-ink"
                   : "text-slate-600 hover:bg-slate-100"
               }`}
             >
               <span
                 className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] ${
                   isDone
-                    ? "bg-emerald-600 text-white"
+                    ? "bg-ink text-white"
                     : isActive
-                      ? "bg-blue-600 text-white"
+                      ? "border border-ink text-ink"
                       : "bg-slate-200 text-slate-600"
                 }`}
               >

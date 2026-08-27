@@ -25,7 +25,7 @@ export default async function SituacaoProfissionalPage(
     <form action={action} className="flex flex-col gap-6">
       <div>
         <h2 className="text-lg font-semibold">Situação profissional</h2>
-        <p className="mt-1 text-sm text-zinc-500">
+        <p className="mt-1 text-sm text-slate-500">
           É o principal fator de vínculo com o Brasil avaliado no consulado.
         </p>
       </div>
@@ -37,7 +37,7 @@ export default async function SituacaoProfissionalPage(
             name="vinculo"
             defaultValue={data.vinculo ?? ""}
             required
-            className="rounded-md border border-zinc-300 px-3 py-2 text-sm"
+            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
           >
             <option value="" disabled>
               Selecione
@@ -58,7 +58,7 @@ export default async function SituacaoProfissionalPage(
             name="profissao"
             defaultValue={data.profissao}
             required
-            className="rounded-md border border-zinc-300 px-3 py-2 text-sm"
+            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
           />
         </label>
 
@@ -73,7 +73,7 @@ export default async function SituacaoProfissionalPage(
             step={0.5}
             defaultValue={data.tempoNoEmprego}
             required
-            className="rounded-md border border-zinc-300 px-3 py-2 text-sm"
+            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
           />
         </label>
 
@@ -85,7 +85,7 @@ export default async function SituacaoProfissionalPage(
             min={0}
             defaultValue={data.rendaMensal}
             required
-            className="rounded-md border border-zinc-300 px-3 py-2 text-sm"
+            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
           />
         </label>
       </div>

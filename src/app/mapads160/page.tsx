@@ -273,7 +273,7 @@ export default function MapaDS160Page() {
       {/* Oferta / preço */}
       <section className="bg-white">
         <div className="mx-auto max-w-md px-6 py-20 sm:py-28">
-          <div className="rounded-2xl border border-ink/20 bg-white p-7 text-center ring-1 ring-blue-100">
+          <div className="rounded-2xl border border-ink/20 bg-white p-7 text-center">
             <div className="flex justify-center gap-2">
               <span className="rounded-full border border-slate-300 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600">MAIS VENDIDO</span>
               <span className="rounded-full border border-ink/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink">ÚLTIMA CHANCE</span>

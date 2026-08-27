@@ -20,7 +20,7 @@ export default async function HistoricoViagensPage(
     <form action={action} className="flex flex-col gap-6">
       <div>
         <h2 className="text-lg font-semibold">Histórico de viagens</h2>
-        <p className="mt-1 text-sm text-zinc-500">
+        <p className="mt-1 text-sm text-slate-500">
           Uma recusa anterior muda bastante a orientação — não tem problema
           ter tido uma, só precisamos saber.
         </p>
@@ -32,7 +32,7 @@ export default async function HistoricoViagensPage(
             type="checkbox"
             name="jaViajouInternacional"
             defaultChecked={data.jaViajouInternacional === "on"}
-            className="h-4 w-4 rounded border-zinc-300"
+            className="h-4 w-4 rounded border-slate-300 accent-ink"
           />
           <span className="text-sm">Já viajei para outros países antes</span>
         </label>
@@ -42,7 +42,7 @@ export default async function HistoricoViagensPage(
             type="checkbox"
             name="jaTeveVistoAmericano"
             defaultChecked={data.jaTeveVistoAmericano === "on"}
-            className="h-4 w-4 rounded border-zinc-300"
+            className="h-4 w-4 rounded border-slate-300 accent-ink"
           />
           <span className="text-sm">Já tive visto americano antes</span>
         </label>
@@ -52,7 +52,7 @@ export default async function HistoricoViagensPage(
             type="checkbox"
             name="vistoNegadoAntes"
             defaultChecked={data.vistoNegadoAntes === "on"}
-            className="h-4 w-4 rounded border-zinc-300"
+            className="h-4 w-4 rounded border-slate-300 accent-ink"
           />
           <span className="text-sm">Já tive um visto americano negado</span>
         </label>
@@ -65,7 +65,7 @@ export default async function HistoricoViagensPage(
             name="detalhesRecusa"
             defaultValue={data.detalhesRecusa}
             rows={3}
-            className="rounded-md border border-zinc-300 px-3 py-2 text-sm"
+            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
           />
         </label>
       </div>
