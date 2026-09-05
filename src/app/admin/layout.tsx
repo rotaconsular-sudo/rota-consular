@@ -6,6 +6,7 @@ import { logout } from "@/app/actions";
 const TABS = [
   { href: "/admin/produtos", label: "Produtos" },
   { href: "/admin/conteudos", label: "Conteúdos" },
+  { href: "/admin/acessos", label: "Acessos" },
 ];
 
 export default async function AdminLayout({
