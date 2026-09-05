@@ -36,6 +36,8 @@ Commits desta sessão (mais antigo → mais novo):
 | `4a4ddf7` | **`/minha-conta`** (área de membros) + **Admin › Acessos** (concessão manual) |
 | `760e114` | **`/checkout`** ligado ao Mercado Pago (multi-item) + webhook `/api/mercadopago/loja/webhook` |
 | `c68da78` | log da sessão no `PROJECT.md` |
+| `f797456` | checkout: confirma o e-mail antes de criar o pedido |
+| `c7f1550` | `Conteudo.descricao` (Markdown) + `Produto.categoria`/`promoverCategoria` + bloco "Leve também" no `/minha-conta/[id]` + `/checkout?p=<slug>` (migration `20260905202855_loja_categorias_descricao`) |
 
 ### Testado (dev, no navegador)
 - Admin: criar/editar/excluir/ativar produto; criar/editar/excluir conteúdo dos 4
