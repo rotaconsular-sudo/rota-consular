@@ -19,21 +19,31 @@ export async function criarPedido(formData: FormData) {
     .toLowerCase();
   const nome = String(formData.get("nome") ?? "").trim();
   const whatsapp = String(formData.get("whatsapp") ?? "").trim();
+  const principalSlug = String(formData.get("principalSlug") ?? "").trim();
   const bumpSlugs = formData.getAll("bump").map(String).filter(Boolean);
 
   if (!EMAIL_RE.test(email)) redirect("/checkout?erro=email");
   // Confirmação do e-mail: o acesso à compra fica amarrado a ele.
   if (email !== emailConfirmacao) redirect("/checkout?erro=email_confere");
 
-  const principal = await prisma.produto.findFirst({
-    where: { tipo: "PRINCIPAL", ativo: true },
-    orderBy: [{ ordem: "asc" }, { createdAt: "asc" }],
-  });
+  // Item principal: o slug enviado pelo form (pode ser um produto "destacado"
+  // vindo do "Leve também"); se não vier ou não existir, cai no 1º PRINCIPAL.
+  const principal =
+    (principalSlug
+      ? await prisma.produto.findFirst({
+          where: { slug: principalSlug, ativo: true },
+        })
+      : null) ??
+    (await prisma.produto.findFirst({
+      where: { tipo: "PRINCIPAL", ativo: true },
+      orderBy: [{ ordem: "asc" }, { createdAt: "asc" }],
+    }));
   if (!principal) redirect("/checkout?erro=indisponivel");
 
-  const bumps = bumpSlugs.length
+  const bumpSlugsLimpos = bumpSlugs.filter((s) => s !== principal.slug);
+  const bumps = bumpSlugsLimpos.length
     ? await prisma.produto.findMany({
-        where: { slug: { in: bumpSlugs }, tipo: "ORDER_BUMP", ativo: true },
+        where: { slug: { in: bumpSlugsLimpos }, tipo: "ORDER_BUMP", ativo: true },
       })
     : [];
 

@@ -23,6 +23,7 @@ function isHttpUrl(v: string) {
 
 type Campos = {
   titulo: string;
+  descricao: string | null;
   tipo: ConteudoTipo;
   videoUrl: string | null;
   markdown: string | null;
@@ -33,6 +34,7 @@ type Campos = {
 
 function parseBase(formData: FormData): Campos {
   const titulo = String(formData.get("titulo") ?? "").trim();
+  const descricao = String(formData.get("descricao") ?? "").trim() || null;
   const tipoRaw = String(formData.get("tipo") ?? "");
   const ordemRaw = String(formData.get("ordem") ?? "0").trim();
 
@@ -63,6 +65,7 @@ function parseBase(formData: FormData): Campos {
 
   return {
     titulo,
+    descricao,
     tipo,
     videoUrl,
     markdown,
@@ -125,6 +128,7 @@ export async function salvarConteudo(
       where: { id },
       data: {
         titulo: base.titulo,
+        descricao: base.descricao,
         tipo: base.tipo,
         videoUrl: base.videoUrl,
         markdown: base.markdown,
@@ -140,6 +144,7 @@ export async function salvarConteudo(
     await prisma.conteudo.create({
       data: {
         titulo: base.titulo,
+        descricao: base.descricao,
         tipo: base.tipo,
         videoUrl: base.videoUrl,
         markdown: base.markdown,

@@ -18,9 +18,24 @@ type ParsedProduto = {
   precoCents: number;
   tipo: ProdutoTipo;
   duracaoDias: number | null;
+  categoria: string | null;
+  promoverCategoria: string | null;
   ativo: boolean;
   ordem: number;
 };
+
+// Normaliza uma categoria digitada: minúsculas, espaços/underscores viram
+// hífen, tira o resto. "" -> null.
+function normalizaCategoria(raw: string): string | null {
+  const s = raw
+    .trim()
+    .toLowerCase()
+    .replace(/[\s_]+/g, "-")
+    .replace(/[^a-z0-9-]/g, "")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+  return s || null;
+}
 
 // Lança string legível em caso de dado inválido — quem chama transforma em
 // FormState.error.
@@ -33,6 +48,10 @@ function parseForm(formData: FormData): ParsedProduto {
   const precoCents = parseReaisToCents(String(formData.get("preco") ?? ""));
   const tipoRaw = String(formData.get("tipo") ?? "PRINCIPAL");
   const duracaoRaw = String(formData.get("duracaoDias") ?? "").trim();
+  const categoria = normalizaCategoria(String(formData.get("categoria") ?? ""));
+  const promoverCategoria = normalizaCategoria(
+    String(formData.get("promoverCategoria") ?? ""),
+  );
   const ordemRaw = String(formData.get("ordem") ?? "0").trim();
 
   if (!nome) throw "O nome é obrigatório.";
@@ -59,6 +78,8 @@ function parseForm(formData: FormData): ParsedProduto {
     precoCents,
     tipo: tipoRaw,
     duracaoDias,
+    categoria,
+    promoverCategoria,
     ativo: formData.get("ativo") === "on",
     ordem,
   };

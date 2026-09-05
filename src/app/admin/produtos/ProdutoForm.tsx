@@ -13,6 +13,8 @@ type Produto = {
   precoCents: number;
   tipo: "PRINCIPAL" | "ORDER_BUMP";
   duracaoDias: number | null;
+  categoria: string | null;
+  promoverCategoria: string | null;
   ativo: boolean;
   ordem: number;
 };
@@ -21,7 +23,13 @@ const field =
   "rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/30";
 const label = "flex flex-col gap-1.5 text-sm font-medium text-slate-700";
 
-export default function ProdutoForm({ produto }: { produto?: Produto }) {
+export default function ProdutoForm({
+  produto,
+  categorias = [],
+}: {
+  produto?: Produto;
+  categorias?: string[];
+}) {
   const [state, formAction, pending] = useActionState<FormState, FormData>(
     salvarProduto,
     {},
@@ -75,6 +83,43 @@ export default function ProdutoForm({ produto }: { produto?: Produto }) {
             className={field}
           />
         </label>
+
+        <datalist id="lista-categorias">
+          {categorias.map((c) => (
+            <option key={c} value={c} />
+          ))}
+        </datalist>
+
+        <div className="grid gap-5 sm:grid-cols-2">
+          <label className={label}>
+            Categoria
+            <input
+              name="categoria"
+              list="lista-categorias"
+              defaultValue={produto?.categoria ?? ""}
+              placeholder="roteiros-eua"
+              className={field}
+            />
+            <span className="text-xs font-normal text-slate-400">
+              Agrupa produtos parecidos. Vira slug automaticamente.
+            </span>
+          </label>
+
+          <label className={label}>
+            Promover categoria
+            <input
+              name="promoverCategoria"
+              list="lista-categorias"
+              defaultValue={produto?.promoverCategoria ?? ""}
+              placeholder="(usa a categoria acima)"
+              className={field}
+            />
+            <span className="text-xs font-normal text-slate-400">
+              Qual categoria o bloco &ldquo;Leve também&rdquo; mostra abaixo do
+              conteúdo deste produto. Vazio = a própria categoria.
+            </span>
+          </label>
+        </div>
 
         <div className="grid gap-5 sm:grid-cols-2">
           <label className={label}>

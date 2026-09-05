@@ -8,6 +8,7 @@ import ExcluirConteudoForm from "./ExcluirConteudoForm";
 type Conteudo = {
   id: string;
   titulo: string;
+  descricao: string | null;
   tipo: "VIDEO" | "PDF" | "ROTEIRO" | "LINK";
   videoUrl: string | null;
   blobUrl: string | null;
@@ -56,6 +57,17 @@ export default function ConteudoForm({ conteudo }: { conteudo?: Conteudo }) {
         <label className={label}>
           Título
           <input name="titulo" defaultValue={conteudo?.titulo} required className={field} />
+        </label>
+
+        <label className={label}>
+          Descrição (aparece abaixo do conteúdo)
+          <textarea
+            name="descricao"
+            defaultValue={conteudo?.descricao ?? ""}
+            rows={5}
+            placeholder={"Sobre o que é este material, o que a pessoa vai ver…\n\nAceita Markdown."}
+            className={field}
+          />
         </label>
 
         <label className={label}>

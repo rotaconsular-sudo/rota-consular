@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/admin";
+import { categoriasExistentes } from "@/lib/loja";
 import ProdutoForm from "../ProdutoForm";
 import VinculosForm from "../VinculosForm";
 
@@ -12,7 +13,7 @@ export default async function EditarProdutoPage({
   await requireAdmin();
   const { id } = await params;
 
-  const [produto, conteudos] = await Promise.all([
+  const [produto, conteudos, categorias] = await Promise.all([
     prisma.produto.findUnique({
       where: { id },
       include: { conteudos: { select: { conteudoId: true } } },
@@ -21,6 +22,7 @@ export default async function EditarProdutoPage({
       orderBy: [{ ordem: "asc" }, { createdAt: "asc" }],
       select: { id: true, titulo: true, tipo: true, ativo: true },
     }),
+    categoriasExistentes(),
   ]);
   if (!produto) notFound();
 
@@ -35,9 +37,12 @@ export default async function EditarProdutoPage({
           precoCents: produto.precoCents,
           tipo: produto.tipo,
           duracaoDias: produto.duracaoDias,
+          categoria: produto.categoria,
+          promoverCategoria: produto.promoverCategoria,
           ativo: produto.ativo,
           ordem: produto.ordem,
         }}
+        categorias={categorias}
       />
       <VinculosForm
         produtoId={produto.id}

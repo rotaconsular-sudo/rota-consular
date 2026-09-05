@@ -627,3 +627,20 @@ mostra erro inline se não bate, desabilita o botão e `preventDefault` no submi
 `onPaste` bloqueado só no campo de confirmação. Server (`criarPedido`): rejeita
 com `?erro=email_confere` antes de criar qualquer Compra. Motivo: o acesso da
 compra fica amarrado ao e-mail digitado — typo = acesso numa conta inútil.
+
+### Descrição do conteúdo + cross-sell por categoria (2026-09-05)
+
+Migration `20260905202855_loja_categorias_descricao`.
+
+- `Conteudo.descricao` (Markdown) — mostrado abaixo do vídeo/roteiro/PDF na
+  área de membros.
+- `Produto.categoria` (slug livre, normalizado no save) e
+  `Produto.promoverCategoria` (se vazio, usa `categoria`). Datalist no admin
+  sugere categorias já usadas.
+- Bloco "Leve também" em `/minha-conta/[conteudoId]`: pega a(s)
+  `promoverCategoria ?? categoria` dos produtos que o usuário TEM e que
+  liberam aquele conteúdo, e lista até 6 produtos ativos dessa(s) categoria(s)
+  que ele ainda não tem (`src/lib/loja.ts` → `produtosParaPromover`).
+- `/checkout?p=<slug>` destaca um produto específico como item principal
+  (o botão do "Leve também" leva pra lá). `criarPedido` lê `principalSlug`
+  do form; sem ele, cai no 1º PRINCIPAL.

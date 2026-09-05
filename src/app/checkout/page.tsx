@@ -6,22 +6,35 @@ import CheckoutForm from "./CheckoutForm";
 export default async function CheckoutPage({
   searchParams,
 }: {
-  searchParams: Promise<{ erro?: string }>;
+  searchParams: Promise<{ erro?: string; p?: string }>;
 }) {
-  const { erro } = await searchParams;
+  const { erro, p } = await searchParams;
 
-  const [principal, bumps] = await Promise.all([
-    prisma.produto.findFirst({
-      where: { tipo: "PRINCIPAL", ativo: true },
-      orderBy: [{ ordem: "asc" }, { createdAt: "asc" }],
-      select: { slug: true, nome: true, descricao: true, precoCents: true },
-    }),
+  // `?p=slug` destaca um produto específico (vem do "Leve também"). Sem ele,
+  // usa o primeiro PRINCIPAL ativo.
+  const destaque = p
+    ? await prisma.produto.findFirst({
+        where: { slug: p, ativo: true },
+        select: { slug: true, nome: true, descricao: true, precoCents: true },
+      })
+    : null;
+
+  const [principalPadrao, bumps] = await Promise.all([
+    destaque
+      ? Promise.resolve(destaque)
+      : prisma.produto.findFirst({
+          where: { tipo: "PRINCIPAL", ativo: true },
+          orderBy: [{ ordem: "asc" }, { createdAt: "asc" }],
+          select: { slug: true, nome: true, descricao: true, precoCents: true },
+        }),
     prisma.produto.findMany({
-      where: { tipo: "ORDER_BUMP", ativo: true },
+      where: { tipo: "ORDER_BUMP", ativo: true, ...(p ? { slug: { not: p } } : {}) },
       orderBy: [{ ordem: "asc" }, { createdAt: "asc" }],
       select: { slug: true, nome: true, descricao: true, precoCents: true },
     }),
   ]);
+
+  const principal = principalPadrao;
 
   return (
     <div className="min-h-full bg-slate-50">

@@ -19,6 +19,7 @@ export default async function EditarConteudoPage({
       conteudo={{
         id: conteudo.id,
         titulo: conteudo.titulo,
+        descricao: conteudo.descricao,
         tipo: conteudo.tipo,
         videoUrl: conteudo.videoUrl,
         blobUrl: conteudo.blobUrl,

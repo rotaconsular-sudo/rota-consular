@@ -166,19 +166,24 @@ enum PaymentStatus {
 
 // Item vendável (produto principal ou order bump no checkout).
 model Produto {
-  id          String      @id @default(cuid())
-  slug        String      @unique
-  nome        String
-  descricao   String?
-  precoCents  Int
-  tipo        ProdutoTipo @default(PRINCIPAL)
+  id                String      @id @default(cuid())
+  slug              String      @unique
+  nome              String
+  descricao         String?
+  precoCents        Int
+  tipo              ProdutoTipo @default(PRINCIPAL)
   // Quantos dias o acesso dura a partir da compra. null = não expira.
   // Produtos de visto americano = 365.
-  duracaoDias Int?
-  ativo       Boolean     @default(true)
-  ordem       Int         @default(0)
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  duracaoDias       Int?
+  // Categoria a que o produto pertence (slug livre, ex.: "roteiros-eua").
+  categoria         String?
+  // "Leve também" abaixo do conteúdo comprado mostra produtos DESTA
+  // categoria. Se vazio, usa a própria `categoria`.
+  promoverCategoria String?
+  ativo             Boolean     @default(true)
+  ordem             Int         @default(0)
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
 
   conteudos ProdutoConteudo[]
   itens     CompraItem[]
@@ -195,6 +200,7 @@ enum ProdutoTipo {
 model Conteudo {
   id          String       @id @default(cuid())
   titulo      String
+  descricao   String? // texto em Markdown, mostrado abaixo do conteúdo
   tipo        ConteudoTipo
   videoUrl    String? // VIDEO   — URL do YouTube não-listado
   blobUrl     String? // PDF     — URL do arquivo no Vercel Blob (privado)
