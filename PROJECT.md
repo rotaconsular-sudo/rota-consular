@@ -581,3 +581,41 @@ Investigado e **descartado**: forçar a quebra semântica com `<br>` depois de
 dentro do `max-w-2xl`, então o `<br>` transformava 2 linhas em 3. A quebra
 que o `text-balance` escolhe (29/37 caracteres) já é a mais equilibrada
 possível, e não muda entre 672px e 1024px de container.
+
+## Loja de produtos + área de membros (2026-09-05)
+
+Novo módulo, separado do fluxo freemium (`model Payment`, intocado).
+
+**Schema** (`prisma/schema.prisma`, migration `20260905181749_loja_area_membros`):
+`Produto` (slug, preço, tipo PRINCIPAL/ORDER_BUMP, `duracaoDias` — null = não
+expira, visto = 365), `Conteudo` (VIDEO/PDF/ROTEIRO/LINK), `ProdutoConteudo`
+(N-N), `Compra` + `CompraItem`, `Acesso` (unique userId+produtoId; origem
+COMPRA/MANUAL/CORTESIA; `expiraEm`, `revogadoEm`). Catálogo saiu de
+`src/lib/products.ts` pro banco — `node prisma/seed.mjs` popula os 4 atuais
+(1 principal + 3 bumps). `src/lib/products.ts` ainda é usado por
+`/mapads160` (copy da página de vendas) — migrar depois.
+
+**Admin** (`/admin/*`, allowlist `ADMIN_EMAIL`, já setada no Vercel):
+Produtos (CRUD + preço em reais + dias de acesso), Conteúdos (CRUD, PDF sobe
+pro Vercel Blob privado), vínculos produto↔conteúdo na tela do produto,
+Acessos (busca por e-mail, concede/revoga manual, cria a conta se não existir).
+
+**Área de membros** (`/minha-conta`): lista produtos com acesso ativo + seus
+conteúdos. Visualizador por tipo — vídeo em iframe `youtube-nocookie`, roteiro
+em Markdown, PDF via `/minha-conta/[id]/arquivo` (revalida acesso, stream do
+Blob, `blobUrl` nunca vai pro cliente). Conteúdo sem acesso = 404.
+`src/lib/acesso.ts`: `acessosAtivos` / `podeVerConteudo` / `minhaBiblioteca`.
+
+**Checkout** (`/checkout`): lê catálogo do banco. `criarPedido()` cria
+User + Compra PENDENTE + CompraItem, monta preferência multi-item no Mercado
+Pago (`external_reference` = `pedido:<compraId>`) e vai pro Checkout Pro.
+Webhook `/api/mercadopago/loja/webhook`: rebusca o pagamento, aprovado →
+Compra APROVADA + `concederAcessosDaCompra` (Acesso por item, `expiraEm` =
+duração do produto) + e-mail "acesso liberado" (`/verificar?token&next=/minha-conta`);
+estorno/chargeback → revoga os acessos daquela compra.
+
+**Pendente pra ativar pagamento:** sem `MERCADOPAGO_ACCESS_TOKEN` o botão do
+checkout fica desativado e só registra a Compra PENDENTE. Pra ligar: pôr o
+token (conta nova de recebimento) na env do Vercel e cadastrar a URL do
+webhook `https://rotaconsular.com.br/api/mercadopago/loja/webhook` (evento
+*payments*) no painel dessa conta. Nada de código muda.
