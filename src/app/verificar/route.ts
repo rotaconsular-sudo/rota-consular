@@ -8,6 +8,12 @@ import { createSession } from "@/lib/session";
 // isso essa verificação é uma rota, não uma page.tsx comum.
 export async function GET(request: NextRequest) {
   const token = request.nextUrl.searchParams.get("token");
+  const nextParam = request.nextUrl.searchParams.get("next");
+  // só aceita caminho interno, nunca URL absoluta (open redirect)
+  const destino =
+    nextParam && nextParam.startsWith("/") && !nextParam.startsWith("//")
+      ? nextParam
+      : "/";
 
   if (!token) redirect("/entrar");
 
@@ -32,5 +38,5 @@ export async function GET(request: NextRequest) {
   });
 
   await createSession(user.id);
-  redirect("/");
+  redirect(destino);
 }

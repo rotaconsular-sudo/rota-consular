@@ -22,6 +22,30 @@ export async function sendMagicLink(email: string, url: string) {
   });
 }
 
+// Compra aprovada na loja: o acesso já foi concedido, esse e-mail leva a
+// pessoa direto pra área de membros (o link já loga, sem senha).
+export async function sendAcessoLiberado(
+  email: string,
+  input: { loginUrl: string; produtos: string[] },
+) {
+  const apiKey = process.env.RESEND_API_KEY;
+  const lista = input.produtos.map((p) => `<li>${p}</li>`).join("");
+  const html = `<p>Seu pagamento foi confirmado e o acesso está liberado:</p><ul>${lista}</ul><p><a href="${input.loginUrl}">Ver meus materiais</a></p><p>Esse link entra na sua conta automaticamente (expira em 15 minutos). Depois, é só usar o e-mail em <strong>rotaconsular.com.br/entrar</strong>.</p>`;
+
+  if (!apiKey) {
+    console.log(`[dev] Acesso liberado para ${email}: ${input.loginUrl}`);
+    return;
+  }
+
+  const resend = new Resend(apiKey);
+  await resend.emails.send({
+    from: "Rota Consular <acesso@enviar.rotaconsular.com.br>",
+    to: email,
+    subject: "Acesso liberado — Rota Consular",
+    html,
+  });
+}
+
 // Resultado da análise gratuita (score) — o checklist detalhado fica
 // bloqueado até o pagamento, então esse e-mail não inclui os detalhes.
 export async function sendAnalysisResult(
