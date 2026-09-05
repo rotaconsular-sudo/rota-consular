@@ -14,11 +14,16 @@ export async function criarPedido(formData: FormData) {
   const email = String(formData.get("email") ?? "")
     .trim()
     .toLowerCase();
+  const emailConfirmacao = String(formData.get("emailConfirmacao") ?? "")
+    .trim()
+    .toLowerCase();
   const nome = String(formData.get("nome") ?? "").trim();
   const whatsapp = String(formData.get("whatsapp") ?? "").trim();
   const bumpSlugs = formData.getAll("bump").map(String).filter(Boolean);
 
   if (!EMAIL_RE.test(email)) redirect("/checkout?erro=email");
+  // Confirmação do e-mail: o acesso à compra fica amarrado a ele.
+  if (email !== emailConfirmacao) redirect("/checkout?erro=email_confere");
 
   const principal = await prisma.produto.findFirst({
     where: { tipo: "PRINCIPAL", ativo: true },

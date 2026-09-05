@@ -26,6 +26,12 @@ export default function CheckoutForm({
 }) {
   const [selectedBumps, setSelectedBumps] = useState<Set<string>>(new Set());
   const [paymentMethod, setPaymentMethod] = useState<"cartao" | "pix">("pix");
+  const [email, setEmail] = useState("");
+  const [emailConfirma, setEmailConfirma] = useState("");
+
+  const norm = (s: string) => s.trim().toLowerCase();
+  const emailConfere = norm(email) === norm(emailConfirma);
+  const mostrarErroEmail = emailConfirma.length > 0 && !emailConfere;
 
   function toggleBump(slug: string) {
     setSelectedBumps((prev) => {
@@ -49,12 +55,19 @@ export default function CheckoutForm({
 
   const ERRO_MSG: Record<string, string> = {
     email: "Digite um e-mail válido.",
+    email_confere: "Os dois e-mails não batem. Confira e tente de novo.",
     indisponivel: "Nenhum produto disponível para compra no momento.",
     config: "Pedido registrado, mas o pagamento ainda não está ligado. Já já habilitamos.",
   };
 
   return (
-    <form action={criarPedido} className="mx-auto grid max-w-5xl gap-6 px-6 py-10 lg:grid-cols-[1fr_360px]">
+    <form
+      action={criarPedido}
+      onSubmit={(e) => {
+        if (!emailConfere) e.preventDefault();
+      }}
+      className="mx-auto grid max-w-5xl gap-6 px-6 py-10 lg:grid-cols-[1fr_360px]"
+    >
       {bumps
         .filter((b) => selectedBumps.has(b.slug))
         .map((b) => (
@@ -77,8 +90,28 @@ export default function CheckoutForm({
                 name="email"
                 type="email"
                 required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="seuemail@email.com"
                 className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
+              />
+            </label>
+            <label className="flex flex-col gap-1.5">
+              <span className="text-sm font-medium text-slate-700">Confirme o e-mail</span>
+              <input
+                name="emailConfirmacao"
+                type="email"
+                required
+                value={emailConfirma}
+                onChange={(e) => setEmailConfirma(e.target.value)}
+                onPaste={(e) => e.preventDefault()}
+                placeholder="repita o e-mail"
+                aria-invalid={mostrarErroEmail}
+                className={`rounded-lg border px-3.5 py-2.5 text-sm outline-none transition focus:ring-2 ${
+                  mostrarErroEmail
+                    ? "border-err focus:border-err focus:ring-err/30"
+                    : "border-slate-300 focus:border-ink focus:ring-ink/40"
+                }`}
               />
             </label>
             <label className="flex flex-col gap-1.5">
@@ -90,7 +123,7 @@ export default function CheckoutForm({
                 className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
               />
             </label>
-            <label className="flex flex-col gap-1.5 sm:col-span-2">
+            <label className="flex flex-col gap-1.5">
               <span className="text-sm font-medium text-slate-700">Nome completo</span>
               <input
                 name="nome"
@@ -100,9 +133,13 @@ export default function CheckoutForm({
               />
             </label>
           </div>
-          <p className="mt-3 text-xs text-slate-400">
-            O acesso aos materiais fica vinculado a esse e-mail.
-          </p>
+          {mostrarErroEmail ? (
+            <p className="mt-3 text-xs text-err">Os dois e-mails não são iguais.</p>
+          ) : (
+            <p className="mt-3 text-xs text-slate-400">
+              O acesso aos materiais fica vinculado a esse e-mail — confira com atenção.
+            </p>
+          )}
         </div>
 
         <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7">
@@ -240,17 +277,22 @@ export default function CheckoutForm({
           </div>
         </div>
 
-        <button
-          type="submit"
-          disabled={!mpConfigurado}
-          className={`w-full rounded-full px-5 py-3.5 text-sm font-bold transition ${
-            mpConfigurado
-              ? "bg-ink text-white hover:bg-ink-muted"
-              : "cursor-not-allowed bg-slate-300 text-slate-500"
-          }`}
-        >
-          {mpConfigurado ? "IR PARA O PAGAMENTO" : "COMPRAR"}
-        </button>
+        {(() => {
+          const podeEnviar = mpConfigurado && emailConfere;
+          return (
+            <button
+              type="submit"
+              disabled={!podeEnviar}
+              className={`w-full rounded-full px-5 py-3.5 text-sm font-bold transition ${
+                podeEnviar
+                  ? "bg-ink text-white hover:bg-ink-muted"
+                  : "cursor-not-allowed bg-slate-300 text-slate-500"
+              }`}
+            >
+              {mpConfigurado ? "IR PARA O PAGAMENTO" : "COMPRAR"}
+            </button>
+          );
+        })()}
         {!mpConfigurado && (
           <p className="text-center text-xs text-slate-400">
             Checkout em configuração — pagamento será habilitado em breve.

@@ -619,3 +619,11 @@ checkout fica desativado e só registra a Compra PENDENTE. Pra ligar: pôr o
 token (conta nova de recebimento) na env do Vercel e cadastrar a URL do
 webhook `https://rotaconsular.com.br/api/mercadopago/loja/webhook` (evento
 *payments*) no painel dessa conta. Nada de código muda.
+
+### Confirmação de e-mail no checkout (2026-09-05)
+
+Campo "Confirme o e-mail" no `/checkout`. Client: normaliza (trim + lowercase),
+mostra erro inline se não bate, desabilita o botão e `preventDefault` no submit;
+`onPaste` bloqueado só no campo de confirmação. Server (`criarPedido`): rejeita
+com `?erro=email_confere` antes de criar qualquer Compra. Motivo: o acesso da
+compra fica amarrado ao e-mail digitado — typo = acesso numa conta inútil.
