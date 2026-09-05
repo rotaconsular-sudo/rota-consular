@@ -9,7 +9,7 @@ import type { ProdutoTipo } from "@/generated/prisma/enums";
 
 const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
-export type FormState = { error?: string };
+export type FormState = { error?: string; ok?: boolean };
 
 type ParsedProduto = {
   slug: string;
@@ -93,6 +93,30 @@ export async function salvarProduto(
 
   revalidatePath("/admin/produtos");
   redirect("/admin/produtos");
+}
+
+// Substitui o conjunto de conteúdos liberados por um produto.
+export async function salvarVinculos(
+  produtoId: string,
+  _prev: FormState,
+  formData: FormData,
+): Promise<FormState> {
+  await requireAdmin();
+
+  const conteudoIds = formData.getAll("conteudoIds").map(String).filter(Boolean);
+
+  await prisma.$transaction([
+    prisma.produtoConteudo.deleteMany({ where: { produtoId } }),
+    prisma.produtoConteudo.createMany({
+      data: conteudoIds.map((conteudoId) => ({ produtoId, conteudoId })),
+      skipDuplicates: true,
+    }),
+  ]);
+
+  revalidatePath(`/admin/produtos/${produtoId}`);
+  revalidatePath("/admin/produtos");
+  revalidatePath("/admin/conteudos");
+  return { ok: true };
 }
 
 export async function alternarAtivo(id: string) {

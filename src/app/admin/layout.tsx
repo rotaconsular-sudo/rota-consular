@@ -3,7 +3,10 @@ import { requireAdmin } from "@/lib/admin";
 import { logout } from "@/app/actions";
 
 // Abas do admin. Vão sendo ligadas conforme cada passo é construído.
-const TABS = [{ href: "/admin/produtos", label: "Produtos" }];
+const TABS = [
+  { href: "/admin/produtos", label: "Produtos" },
+  { href: "/admin/conteudos", label: "Conteúdos" },
+];
 
 export default async function AdminLayout({
   children,
