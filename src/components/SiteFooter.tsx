@@ -24,6 +24,12 @@ export default function SiteFooter() {
                 {l.label}
               </Link>
             ))}
+            <Link
+              href="/politica-de-privacidade"
+              className="transition hover:text-white"
+            >
+              Política de Privacidade
+            </Link>
           </nav>
         </div>
 
