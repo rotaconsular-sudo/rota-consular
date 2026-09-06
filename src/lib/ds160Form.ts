@@ -122,9 +122,11 @@ export const DS160_SECTIONS: Ds160Section[] = [
       { key: "nome_sobrenome_atual", label: "Nome e sobrenome atuais", kind: "text" },
       { key: "usou_outros_nomes", label: "Você já teve outros nomes ou sobrenomes antes do atual?", kind: "bool" },
       { key: "outro_nome_sobrenome", label: "Já teve outro nome e sobrenome utilizados antes do atual", kind: "text", help: "Casamentos e divórcios podem alterar o sobrenome.", showIf: (d) => SIM_NAO(d, "usou_outros_nomes") },
-      { key: "nome_nativo_na", label: "Não tenho nome em alfabeto nativo / não se aplica", kind: "bool" },
-      { key: "nome_nativo", label: "Nome completo em alfabeto nativo", kind: "text", showIf: (d) => !SIM_NAO(d, "nome_nativo_na") },
-      { key: "tem_telecode", label: "Seu nome tem telecode?", kind: "bool", help: "Quase sempre \"não\". Só marque se souber o que é." },
+      {
+        key: "tem_telecode", label: "Seu nome tem um código telegráfico (telecode)?", kind: "bool",
+        help: "Isso só existe pra nomes escritos originalmente em certos alfabetos não latinos (como chinês), que têm um código numérico oficial equivalente. Se seu nome é em português, a resposta é quase sempre \"Não\".",
+      },
+      { key: "telecode_numero", label: "Informe o código telegráfico do seu nome", kind: "text", showIf: (d) => SIM_NAO(d, "tem_telecode") },
       {
         key: "sexo", label: "Sexo", kind: "select",
         options: [{ value: "FEMALE", label: "Feminino" }, { value: "MALE", label: "Masculino" }],
