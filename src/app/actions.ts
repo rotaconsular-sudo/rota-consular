@@ -119,18 +119,27 @@ async function performAnalysis(applicationId: string) {
 
   const result = await runReadinessAnalysis({ answers: answersByStep });
 
+  // O model AnalysisResult tem 3 colunas (readinessScore, checklist Json,
+  // alerts Json) — reaproveitadas pro novo formato sem migração:
+  // checklist = { resumo, favoravel, reforcar }; alerts = atencao.
+  const corpo = {
+    resumo: result.resumo,
+    favoravel: result.favoravel,
+    reforcar: result.reforcar,
+  };
+
   await prisma.analysisResult.upsert({
     where: { applicationId },
     update: {
-      readinessScore: result.readinessScore,
-      checklist: result.checklist,
-      alerts: result.alerts,
+      readinessScore: result.score,
+      checklist: corpo,
+      alerts: result.atencao,
     },
     create: {
       applicationId,
-      readinessScore: result.readinessScore,
-      checklist: result.checklist,
-      alerts: result.alerts,
+      readinessScore: result.score,
+      checklist: corpo,
+      alerts: result.atencao,
     },
   });
 
@@ -149,7 +158,8 @@ async function performAnalysis(applicationId: string) {
       : `${baseUrl}/solicitacoes/${applicationId}/resultado`;
 
     await sendAnalysisResult(application.email, {
-      readinessScore: result.readinessScore,
+      score: result.score,
+      resumo: result.resumo,
       resultUrl,
     });
   }

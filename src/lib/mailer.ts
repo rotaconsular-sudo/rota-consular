@@ -50,11 +50,11 @@ export async function sendAcessoLiberado(
 // completo no site.
 export async function sendAnalysisResult(
   email: string,
-  input: { readinessScore: number; resultUrl: string },
+  input: { score: number; resumo: string; resultUrl: string },
 ) {
   const apiKey = process.env.RESEND_API_KEY;
 
-  const html = `<p>Sua análise de prontidão para o visto americano de turismo está pronta.</p><p><strong>Nível de prontidão: ${input.readinessScore}/100</strong></p><p>Isso não é uma previsão de aprovação — é uma avaliação de quão completa está sua documentação e seus vínculos com o Brasil. A decisão final é sempre do consulado.</p><p><a href="${input.resultUrl}">Ver o resultado completo</a></p>`;
+  const html = `<p>Sua análise de perfil para o visto americano de turismo está pronta.</p><p><strong>${input.resumo}</strong></p><p>Quão preparado seu perfil parece: <strong>${input.score}/100</strong>. Isso não é uma previsão de aprovação — a decisão é sempre do oficial consular.</p><p><a href="${input.resultUrl}">Ver o resultado completo</a></p>`;
 
   if (!apiKey) {
     console.log(`[dev] Resultado da análise para ${email}: ${input.resultUrl}`);
@@ -65,7 +65,7 @@ export async function sendAnalysisResult(
   await resend.emails.send({
     from: "Rota Consular <acesso@enviar.rotaconsular.com.br>",
     to: email,
-    subject: `Sua análise está pronta — nível de prontidão ${input.readinessScore}/100`,
+    subject: "Sua análise de perfil está pronta",
     html,
   });
 }

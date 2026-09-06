@@ -2,79 +2,23 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { WIZARD_STEPS } from "@/lib/wizard";
 import { RunAnalysisButton } from "@/components/RunAnalysisButton";
+import { QUIZ_QUESTIONS } from "@/lib/quizQuestions";
 
-const FIELD_LABEL: Record<string, string> = {
-  nomeCompleto: "Nome completo",
-  idade: "Idade",
-  estadoCivil: "Estado civil",
-  cidade: "Cidade",
-  uf: "UF",
-  vinculo: "Vínculo",
-  profissao: "Profissão",
-  tempoNoEmprego: "Tempo no emprego/negócio (anos)",
-  rendaMensal: "Renda mensal (R$)",
-  jaViajouInternacional: "Já viajou internacionalmente",
-  jaTeveVistoAmericano: "Já teve visto americano",
-  vistoNegadoAntes: "Visto negado antes",
-  detalhesRecusa: "Detalhes da recusa",
-  motivo: "Motivo da viagem",
-  dataPretendidaViagem: "Data pretendida",
-  duracaoEstimadaDias: "Duração estimada (dias)",
-  temParenteNosEUA: "Tem parente nos EUA",
-  nomeParente: "Nome do parente",
-  escolaridade: "Escolaridade",
-  trabalhoAtual: "Trabalho atual",
-  tempoTrabalho: "Tempo no trabalho atual",
-  ramoAtividade: "Ramo de atividade",
-  declaraIR: "Declara Imposto de Renda",
-  casaPropria: "Possui casa própria",
-  jaViajou: "Já viajou para outros países",
-  paisesViajados: "Países visitados",
-  conheceAlguemEUA: "Conhece alguém nos EUA",
-  quemConheceEUA: "Quem conhece nos EUA",
-  maisDetalhes: "Mais detalhes",
-};
+// Rótulos vêm do próprio quiz — não precisa manter dois lugares em sincronia.
+const QUESTION_BY_ID = new Map(QUIZ_QUESTIONS.map((q) => [q.id, q]));
 
-const VALUE_LABEL: Record<string, string> = {
-  solteiro: "Solteiro(a)",
-  casado: "Casado(a)",
-  divorciado: "Divorciado(a)",
-  viuvo: "Viúvo(a)",
-  uniao_estavel: "União estável",
-  clt: "Carteira assinada (CLT)",
-  servidor_publico: "Servidor público",
-  autonomo: "Autônomo",
-  empresario: "Empresário(a)",
-  estudante: "Estudante",
-  aposentado: "Aposentado(a)",
-  desempregado: "Desempregado(a)",
-  turismo: "Turismo / lazer",
-  visita_familia_amigos: "Visita a família ou amigos",
-  convencao_evento: "Convenção ou evento",
-  outro: "Outro",
-  fundamental: "Fundamental",
-  medio: "Médio",
-  superior_incompleto: "Superior incompleto",
-  superior_completo: "Superior completo",
-  pos_graduacao: "Pós-graduação",
-  menos_6m: "Menos de 6 meses",
-  "6m_1a": "Entre 6 meses e 1 ano",
-  "1_3a": "Entre 1 e 3 anos",
-  mais_3a: "Mais de 3 anos",
-  sim: "Sim",
-  nao: "Não",
-  ate_3k: "Até R$ 3 mil",
-  "3k_6k": "Entre R$ 3 mil e R$ 6 mil",
-  "6k_10k": "Entre R$ 6 mil e R$ 10 mil",
-  "10k_20k": "Entre R$ 10 mil e R$ 20 mil",
-  acima_20k: "Acima de R$ 20 mil",
-};
+function fieldLabel(key: string) {
+  return QUESTION_BY_ID.get(key)?.question ?? key;
+}
 
-function formatValue(value: unknown) {
-  if (value === "on") return "Sim";
+function formatValue(key: string, value: unknown) {
   if (value === undefined || value === null || value === "") return "—";
   const str = String(value);
-  return VALUE_LABEL[str] ?? str;
+  const q = QUESTION_BY_ID.get(key);
+  if (q?.kind === "choice") {
+    return q.options.find((o) => o.key === str)?.label ?? str;
+  }
+  return str;
 }
 
 export default async function RevisaoPage(
@@ -129,11 +73,9 @@ export default async function RevisaoPage(
               <dl className="grid gap-x-6 gap-y-1 rounded-xl bg-slate-50 p-3 text-sm sm:grid-cols-2">
                 {Object.entries(data).map(([key, value]) => (
                   <div key={key} className="flex justify-between gap-2">
-                    <dt className="text-slate-500">
-                      {FIELD_LABEL[key] ?? key}
-                    </dt>
+                    <dt className="text-slate-500">{fieldLabel(key)}</dt>
                     <dd className="text-right font-medium text-ink">
-                      {formatValue(value)}
+                      {formatValue(key, value)}
                     </dd>
                   </div>
                 ))}

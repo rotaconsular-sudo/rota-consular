@@ -18,15 +18,15 @@ const HOW_IT_WORKS = [
     icon: IconSignup,
   },
   {
-    title: "Responda 10 perguntas simples",
+    title: "Responda perguntas simples",
     description:
-      "Nosso sistema vai avaliar sua escolaridade, vínculos e histórico em menos de 2 minutos.",
+      "Perguntas sobre seu trabalho, sua vida no Brasil e sua viagem. Leva poucos minutos.",
     icon: IconClock,
   },
   {
-    title: "Receba seu Diagnóstico",
+    title: "Receba seu diagnóstico",
     description:
-      "Descubra na hora a sua nota de aprovação e o que você precisa arrumar urgente.",
+      "Na hora: o que já está forte no seu perfil e o que arrumar antes de marcar a entrevista.",
     icon: IconTarget,
   },
 ];
@@ -39,9 +39,9 @@ const DIFERENCIAIS = [
     icon: IconSpark,
   },
   {
-    title: "Lista de Documentos Exata",
+    title: "Um plano do que reforçar",
     description:
-      "Esqueça aquelas listas gigantes e confusas da internet. Você vai receber um checklist mastigado mostrando apenas os documentos que o seu caso precisa levar no dia da entrevista",
+      "Em português claro, você recebe o que já joga a seu favor e o que precisa arrumar — com o que fazer na prática, não teoria da internet",
     icon: IconChecklist,
   },
   {

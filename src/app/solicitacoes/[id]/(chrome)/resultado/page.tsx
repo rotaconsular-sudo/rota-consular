@@ -1,24 +1,18 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
-import type { AnalysisChecklistItem } from "@/lib/anthropic";
+import type { ReforcarItem } from "@/lib/anthropic";
 
-const STATUS_STYLE: Record<string, string> = {
-  ok: "border border-ok/30 bg-ok/5 text-ok",
-  atencao: "border border-warn/30 bg-warn/5 text-warn",
-  faltando: "border border-err/30 bg-err/5 text-err",
+type Corpo = {
+  resumo: string;
+  favoravel: string[];
+  reforcar: ReforcarItem[];
 };
 
-const STATUS_LABEL: Record<string, string> = {
-  ok: "Ok",
-  atencao: "Atenção",
-  faltando: "Faltando",
-};
-
-function scoreColor(score: number) {
-  if (score >= 75) return "text-ok";
-  if (score >= 45) return "text-warn";
-  return "text-err";
+function barra(score: number) {
+  if (score >= 75) return { cor: "bg-ok", texto: "text-ok" };
+  if (score >= 45) return { cor: "bg-warn", texto: "text-warn" };
+  return { cor: "bg-err", texto: "text-err" };
 }
 
 export default async function ResultadoPage(
@@ -29,73 +23,92 @@ export default async function ResultadoPage(
   const result = await prisma.analysisResult.findUnique({
     where: { applicationId: id },
   });
-
   if (!result) notFound();
 
-  const checklist = result.checklist as unknown as AnalysisChecklistItem[];
-  const alerts = result.alerts as unknown as string[];
+  const score = result.readinessScore;
+  const corpo = result.checklist as unknown as Corpo;
+  const atencao = (result.alerts as unknown as string[]) ?? [];
+  const { cor, texto } = barra(score);
 
   return (
     <div className="flex flex-col gap-8">
       <div>
-        <h2 className="text-lg font-bold text-ink">Resultado da análise</h2>
-        <p className="mt-1 text-sm text-slate-500">
-          Isso é um checklist de prontidão da sua preparação, gerado
-          automaticamente — nunca uma previsão ou garantia de aprovação. A
-          decisão é sempre do oficial consular americano.
+        <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+          Sua análise de perfil
+        </p>
+        <h2 className="mt-1 text-xl font-bold leading-snug text-ink">
+          {corpo.resumo}
+        </h2>
+      </div>
+
+      <div className="rounded-2xl border border-slate-200 bg-white p-5">
+        <div className="flex items-baseline justify-between">
+          <p className="text-sm font-semibold text-ink">
+            Quanto seu perfil está preparado
+          </p>
+          <p className={`text-2xl font-extrabold ${texto}`}>{score}</p>
+        </div>
+        <div className="mt-3 h-2.5 w-full overflow-hidden rounded-full bg-slate-100">
+          <div className={`h-full rounded-full ${cor}`} style={{ width: `${score}%` }} />
+        </div>
+        <p className="mt-3 text-xs text-slate-500">
+          Isso mostra o quanto sua preparação parece completa hoje — não é uma
+          previsão nem garantia de aprovação. A decisão é sempre do oficial
+          consular americano.
         </p>
       </div>
 
-      <div className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5">
-        <div className={`text-4xl font-extrabold ${scoreColor(result.readinessScore)}`}>
-          {result.readinessScore}
-        </div>
-        <div>
-          <p className="text-sm font-semibold text-ink">Nível de prontidão</p>
-          <p className="text-xs text-slate-500">
-            Quanto sua preparação e seus vínculos parecem completos e
-            consistentes (0-100)
-          </p>
-        </div>
-      </div>
-
-      {alerts.length > 0 && (
+      {atencao.length > 0 && (
         <section className="flex flex-col gap-2">
-          <h3 className="text-sm font-semibold text-ink">Alertas</h3>
+          <h3 className="text-sm font-bold text-ink">🚨 Fique atento</h3>
           <ul className="flex flex-col gap-2">
-            {alerts.map((alert, i) => (
+            {atencao.map((a, i) => (
               <li
                 key={i}
-                className="rounded-xl border border-warn/30 bg-warn/5 px-4 py-2.5 text-sm text-warn"
+                className="rounded-xl border border-err/30 bg-err/5 px-4 py-3 text-sm text-err"
               >
-                {alert}
+                {a}
               </li>
             ))}
           </ul>
         </section>
       )}
 
-      <section className="flex flex-col gap-2">
-        <h3 className="text-sm font-semibold text-ink">Checklist</h3>
-        <ul className="flex flex-col gap-2">
-          {checklist.map((entry, i) => (
-            <li
-              key={i}
-              className="flex flex-col gap-1 rounded-xl border border-slate-200 bg-white p-3 text-sm sm:flex-row sm:items-start sm:justify-between sm:gap-4"
-            >
-              <div>
-                <p className="font-medium text-ink">{entry.item}</p>
-                <p className="text-slate-600">{entry.comentario}</p>
-              </div>
-              <span
-                className={`shrink-0 self-start rounded-full px-3 py-1 text-xs font-medium ${STATUS_STYLE[entry.status]}`}
+      {corpo.favoravel.length > 0 && (
+        <section className="flex flex-col gap-2">
+          <h3 className="text-sm font-bold text-ink">✅ O que joga a seu favor</h3>
+          <ul className="flex flex-col gap-2">
+            {corpo.favoravel.map((f, i) => (
+              <li
+                key={i}
+                className="rounded-xl border border-ok/30 bg-ok/5 px-4 py-3 text-sm text-slate-700"
               >
-                {STATUS_LABEL[entry.status] ?? entry.status}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </section>
+                {f}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {corpo.reforcar.length > 0 && (
+        <section className="flex flex-col gap-2">
+          <h3 className="text-sm font-bold text-ink">⚠️ O que vale reforçar</h3>
+          <ul className="flex flex-col gap-3">
+            {corpo.reforcar.map((r, i) => (
+              <li
+                key={i}
+                className="rounded-xl border border-warn/30 bg-warn/5 px-4 py-3 text-sm"
+              >
+                <p className="font-medium text-ink">{r.ponto}</p>
+                <p className="mt-1 text-slate-600">
+                  <span className="font-semibold text-warn">O que fazer: </span>
+                  {r.oQueFazer}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <div className="border-t border-slate-100 pt-5 text-sm">
         <Link
