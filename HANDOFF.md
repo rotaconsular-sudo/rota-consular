@@ -19,6 +19,22 @@ americano de turismo (questionário → resultado com IA), **loja de produtos +
 
 **O site ainda NÃO foi lançado** — está em fase de teste pesado antes de abrir.
 
+### DS-160 preenchido pra você (06/09/2026)
+Novo produto `ds160-preenchido` (R$97) + fluxo dentro do Rota Consular, **sem
+ligação** com `flow-vistoamericano`/`automacao_vistos`.
+- `/ds160` (rota; subdomínio `ds160.rotaconsular.com.br` pendente): página
+  explicativa → confirma CPF → `/ds160/formulario` com as 118 perguntas do
+  DS-160 em português (`src/lib/ds160Form.ts`, 12 seções, condicionais + listas,
+  rascunho auto-save). Enviar trava (status ENVIADO) e avisa a equipe.
+- `/admin/ds160`: lista + detalhe (todos os campos) + "Baixar JSON" (idêntico
+  ao `dados_cliente.json` da robô, 118 chaves) + campo "Número do DS-160" →
+  status ENTREGUE + e-mail pro cliente.
+- Model `SolicitacaoDs160` (migration `20260906174116_ds160_preenchido`).
+- **`src/lib/ds160Form.ts` é uma 1ª versão** montada a partir do
+  `dados_cliente.json` — as `key`s já batem com a robô; labels/opções/condicionais
+  a refinar quando chegar o JSON do formulário oficial do outro projeto.
+- `mapa-ds160` (R$27,90) ficou intocado — decidir depois se é o mesmo produto.
+
 ### Mudanças de 06/09/2026
 - **Removido o upload de documentos** (era opcional na análise). `model Document`,
   `enum DocumentType`, tela `/solicitacoes/[id]/documentos` e o passo do wizard
