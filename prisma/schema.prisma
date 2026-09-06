@@ -11,14 +11,15 @@ datasource db {
 }
 
 model User {
-  id           String        @id @default(cuid())
-  email        String        @unique
-  name         String?
-  createdAt    DateTime      @default(now())
-  applications Application[]
-  sessions     Session[]
-  compras      Compra[]
-  acessos      Acesso[]
+  id                String             @id @default(cuid())
+  email             String             @unique
+  name              String?
+  createdAt         DateTime           @default(now())
+  applications      Application[]
+  sessions          Session[]
+  compras           Compra[]
+  acessos           Acesso[]
+  solicitacoesDs160 SolicitacaoDs160[]
 }
 
 // Login sem senha: um link de acesso de uso único, válido por 15 minutos.
@@ -262,4 +263,34 @@ model ConsentLog {
   createdAt     DateTime @default(now())
 
   @@index([visitorId])
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// DS-160 preenchido pra você (produto `ds160-preenchido`)
+//
+// A pessoa paga, loga (link mágico), preenche o rascunho do DS-160 (118
+// campos, ver src/lib/ds160Form.ts). A equipe pega o JSON, preenche no
+// consulado e devolve o número por e-mail. Sem ligação com outros projetos.
+// ─────────────────────────────────────────────────────────────────────────
+model SolicitacaoDs160 {
+  id          String      @id @default(cuid())
+  user        User        @relation(fields: [userId], references: [id])
+  userId      String
+  cpf         String?
+  // Os 118 campos do DS-160 (mesma estrutura do dados_cliente.json da robô).
+  dados       Json        @default("{}")
+  status      Ds160Status @default(RASCUNHO)
+  numeroDs160 String? // devolvido pela equipe
+  enviadoEm   DateTime? // quando a pessoa travou/enviou
+  entregueEm  DateTime? // quando a equipe devolveu o número
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([userId])
+}
+
+enum Ds160Status {
+  RASCUNHO // ainda preenchendo
+  ENVIADO // travado, aguardando a equipe
+  ENTREGUE // número devolvido
 }

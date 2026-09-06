@@ -1,4 +1,7 @@
 import { Resend } from "resend";
+import { SITE_URL } from "@/lib/url";
+
+const FROM = "Rota Consular <acesso@enviar.rotaconsular.com.br>";
 
 // Sem RESEND_API_KEY configurada, o link de acesso só é logado no console do
 // servidor — dá pra testar o login localmente sem depender de e-mail de
@@ -66,6 +69,48 @@ export async function sendAnalysisResult(
     from: "Rota Consular <acesso@enviar.rotaconsular.com.br>",
     to: email,
     subject: "Sua análise de perfil está pronta",
+    html,
+  });
+}
+
+// Avisa a EQUIPE que chegou um rascunho de DS-160 pra processar.
+export async function sendDs160Recebido(input: {
+  solicitacaoId: string;
+  email: string;
+  nome: string | null;
+}) {
+  const apiKey = process.env.RESEND_API_KEY;
+  const para = (process.env.ADMIN_EMAIL ?? "").split(",")[0]?.trim();
+  const url = `${SITE_URL}/admin/ds160/${input.solicitacaoId}`;
+  const html = `<p>Nova solicitação de DS-160 preenchida.</p><p><strong>${input.nome ?? "(sem nome)"}</strong> — ${input.email}</p><p><a href="${url}">Abrir no admin</a> (ver dados, baixar JSON, devolver o número).</p>`;
+
+  if (!apiKey || !para) {
+    console.log(`[dev] DS-160 recebido (${input.email}) → ${url}`);
+    return;
+  }
+  const resend = new Resend(apiKey);
+  await resend.emails.send({
+    from: FROM,
+    to: para,
+    subject: "Novo DS-160 pra preencher",
+    html,
+  });
+}
+
+// Devolve pro cliente o número do DS-160 que a equipe preencheu.
+export async function sendDs160Numero(input: { email: string; numero: string }) {
+  const apiKey = process.env.RESEND_API_KEY;
+  const html = `<p>Seu DS-160 foi preenchido e enviado ao Consulado.</p><p><strong>Número do DS-160: ${input.numero}</strong></p><p>Guarde esse número — você vai precisar dele para agendar a entrevista no site do CASV/Consulado.</p><p><a href="${SITE_URL}/ds160">Ver na sua conta</a></p>`;
+
+  if (!apiKey) {
+    console.log(`[dev] Número do DS-160 para ${input.email}: ${input.numero}`);
+    return;
+  }
+  const resend = new Resend(apiKey);
+  await resend.emails.send({
+    from: FROM,
+    to: input.email,
+    subject: "Seu número do DS-160",
     html,
   });
 }
