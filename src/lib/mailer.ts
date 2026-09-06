@@ -46,8 +46,8 @@ export async function sendAcessoLiberado(
   });
 }
 
-// Resultado da análise gratuita (score) — o checklist detalhado fica
-// bloqueado até o pagamento, então esse e-mail não inclui os detalhes.
+// Resultado da análise de perfil — leva a pessoa de volta pro resultado
+// completo no site.
 export async function sendAnalysisResult(
   email: string,
   input: { readinessScore: number; resultUrl: string },

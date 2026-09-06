@@ -15,14 +15,12 @@ export default async function ApplicationLayout(
 
   const application = await prisma.application.findUniqueOrThrow({
     where: { id },
-    include: { answers: true, documents: true },
+    include: { answers: true },
   });
 
-  const completedSlugs = WIZARD_STEPS.filter((s) => {
-    if (s.step) return application.answers.some((a) => a.step === s.step);
-    if (s.slug === "documentos") return application.documents.length > 0;
-    return false;
-  }).map((s) => s.slug);
+  const completedSlugs = WIZARD_STEPS.filter((s) =>
+    s.step ? application.answers.some((a) => a.step === s.step) : false,
+  ).map((s) => s.slug);
 
   return (
     <div className="flex flex-1 flex-col">

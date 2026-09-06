@@ -35,15 +35,6 @@ const FIELD_LABEL: Record<string, string> = {
   maisDetalhes: "Mais detalhes",
 };
 
-const DOCUMENT_TYPE_LABEL: Record<string, string> = {
-  IDENTIDADE: "RG / CPF / Passaporte",
-  COMPROVANTE_RENDA: "Comprovante de renda",
-  EXTRATO_BANCARIO: "Extrato bancário",
-  VINCULO_EMPREGATICIO: "Comprovante de vínculo empregatício",
-  ITINERARIO: "Itinerário",
-  OUTRO: "Outro",
-};
-
 const VALUE_LABEL: Record<string, string> = {
   solteiro: "Solteiro(a)",
   casado: "Casado(a)",
@@ -93,7 +84,7 @@ export default async function RevisaoPage(
 
   const application = await prisma.application.findUnique({
     where: { id },
-    include: { answers: true, documents: true, analysisResult: true },
+    include: { answers: true, analysisResult: true },
   });
 
   if (!application) return null;
@@ -155,34 +146,6 @@ export default async function RevisaoPage(
           </section>
         );
       })}
-
-      <section className="flex flex-col gap-2">
-        <div className="flex items-center justify-between">
-          <h3 className="text-sm font-semibold text-ink">Documentos</h3>
-          <Link
-            href={`/solicitacoes/${id}/documentos`}
-            className="text-xs font-medium text-accent hover:underline"
-          >
-            Editar
-          </Link>
-        </div>
-        {application.documents.length > 0 ? (
-          <ul className="rounded-xl bg-slate-50 p-3 text-sm">
-            {application.documents.map((doc) => (
-              <li key={doc.id} className="flex justify-between gap-2">
-                <span className="text-slate-500">
-                  {DOCUMENT_TYPE_LABEL[doc.type] ?? doc.type}
-                </span>
-                <span className="font-medium text-ink">{doc.fileName}</span>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="rounded-xl bg-slate-50 p-3 text-sm text-slate-400">
-            Nenhum documento adicionado ainda.
-          </p>
-        )}
-      </section>
 
       <div className="border-t border-slate-100 pt-5">
         {application.analysisResult && (

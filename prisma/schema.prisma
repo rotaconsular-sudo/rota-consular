@@ -63,9 +63,7 @@ model Application {
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt
   answers         Answer[]
-  documents       Document[]
   analysisResult  AnalysisResult?
-  payments        Payment[]
 }
 
 enum ApplicationStatus {
@@ -99,25 +97,6 @@ enum WizardStep {
   PERFIL
 }
 
-model Document {
-  id            String       @id @default(cuid())
-  application   Application  @relation(fields: [applicationId], references: [id], onDelete: Cascade)
-  applicationId String
-  type          DocumentType
-  url           String
-  fileName      String
-  uploadedAt    DateTime     @default(now())
-}
-
-enum DocumentType {
-  IDENTIDADE
-  COMPROVANTE_RENDA
-  EXTRATO_BANCARIO
-  VINCULO_EMPREGATICIO
-  ITINERARIO
-  OUTRO
-}
-
 // Saída do motor de análise (Claude API) — apoio à decisão, nunca veredito.
 model AnalysisResult {
   id             String      @id @default(cuid())
@@ -129,34 +108,10 @@ model AnalysisResult {
   createdAt      DateTime    @default(now())
 }
 
-// Desbloqueia o checklist completo (freemium: score é grátis). Uma
-// Application pode ter mais de um Payment se uma tentativa falhar/expirar e
-// a pessoa tentar de novo. "Pago" = existe algum Payment com status
-// APPROVED, sem campo denormalizado.
-model Payment {
-  id             String        @id @default(cuid())
-  application    Application   @relation(fields: [applicationId], references: [id], onDelete: Cascade)
-  applicationId  String
-  mpPreferenceId String
-  mpPaymentId    String?       @unique
-  status         PaymentStatus @default(PENDING)
-  amountCents    Int
-  createdAt      DateTime      @default(now())
-  updatedAt      DateTime      @updatedAt
-}
-
-enum PaymentStatus {
-  PENDING
-  APPROVED
-  REJECTED
-}
-
 // ─────────────────────────────────────────────────────────────────────────
 // Loja de produtos + área de membros
 //
 // O catálogo saiu de src/lib/products.ts (código) pra cá, pra ter admin.
-// O fluxo freemium (model Payment, acima) é outro produto, outra jornada,
-// e continua separado — não mexer nele.
 //
 //   Produto ──< ProdutoConteudo >── Conteudo
 //      │

@@ -20,7 +20,6 @@ Avalie principalmente:
 - Força dos vínculos com o Brasil (emprego estável, renda, tempo no cargo/negócio, família)
 - Histórico de viagens e vistos (uma recusa anterior não desqualifica, mas merece atenção)
 - Coerência do motivo da viagem com o perfil da pessoa
-- Completude dos documentos listados
 
 Responda SOMENTE via a ferramenta "registrar_analise". Nunca use a palavra "aprovação" ou "aprovado" no comentário — fale em termos de "prontidão" e "pontos de atenção". Seja específico e cite os dados que a pessoa informou.`;
 
@@ -65,7 +64,6 @@ const TOOL: Anthropic.Tool = {
 
 export async function runReadinessAnalysis(input: {
   answers: Record<string, Record<string, unknown>>;
-  documents: { type: string; fileName: string }[];
 }): Promise<AnalysisOutput> {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
@@ -76,7 +74,7 @@ export async function runReadinessAnalysis(input: {
 
   const client = new Anthropic({ apiKey });
 
-  const userContent = `Respostas do formulário:\n${JSON.stringify(input.answers, null, 2)}\n\nDocumentos listados:\n${JSON.stringify(input.documents, null, 2)}`;
+  const userContent = `Respostas do formulário:\n${JSON.stringify(input.answers, null, 2)}`;
 
   const message = await client.messages.create({
     model: "claude-sonnet-5",

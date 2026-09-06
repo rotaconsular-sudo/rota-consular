@@ -3,21 +3,14 @@ import type { WizardStep } from "@/generated/prisma/enums";
 // Ordem das etapas do funil. "perfil" é o quiz (1 pergunta por tela, ver
 // src/components/Quiz.tsx) que substituiu as 4 páginas antigas de
 // formulário — essas páginas continuam existindo (não foram apagadas) mas
-// não fazem mais parte do fluxo ativo. "documentos" e "revisao" não têm
-// um WizardStep correspondente — documentos usa o model Document, e a
-// revisão só lê o que já foi salvo nas etapas anteriores.
+// não fazem mais parte do fluxo ativo. "revisao" não tem um WizardStep
+// correspondente — só lê o que já foi salvo nas etapas anteriores.
 export const WIZARD_STEPS = [
   {
     slug: "perfil",
     step: "PERFIL" satisfies WizardStep,
     title: "Perfil",
     description: "Análise de perfil",
-  },
-  {
-    slug: "documentos",
-    step: null,
-    title: "Documentos",
-    description: "O que você já tem em mãos",
   },
   {
     slug: "revisao",

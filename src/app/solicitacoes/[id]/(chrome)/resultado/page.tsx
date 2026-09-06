@@ -1,10 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
-import { UnlockChecklistButton } from "@/components/UnlockChecklistButton";
-import type {
-  AnalysisChecklistItem,
-} from "@/lib/anthropic";
+import type { AnalysisChecklistItem } from "@/lib/anthropic";
 
 const STATUS_STYLE: Record<string, string> = {
   ok: "border border-ok/30 bg-ok/5 text-ok",
@@ -35,9 +32,6 @@ export default async function ResultadoPage(
 
   if (!result) notFound();
 
-  const payments = await prisma.payment.findMany({ where: { applicationId: id } });
-  const paid = payments.some((p) => p.status === "APPROVED");
-
   const checklist = result.checklist as unknown as AnalysisChecklistItem[];
   const alerts = result.alerts as unknown as string[];
 
@@ -46,7 +40,7 @@ export default async function ResultadoPage(
       <div>
         <h2 className="text-lg font-bold text-ink">Resultado da análise</h2>
         <p className="mt-1 text-sm text-slate-500">
-          Isso é um checklist de prontidão da sua documentação, gerado
+          Isso é um checklist de prontidão da sua preparação, gerado
           automaticamente — nunca uma previsão ou garantia de aprovação. A
           decisão é sempre do oficial consular americano.
         </p>
@@ -59,39 +53,13 @@ export default async function ResultadoPage(
         <div>
           <p className="text-sm font-semibold text-ink">Nível de prontidão</p>
           <p className="text-xs text-slate-500">
-            Quanto sua documentação e vínculos parecem completos e
+            Quanto sua preparação e seus vínculos parecem completos e
             consistentes (0-100)
           </p>
         </div>
       </div>
 
-      {!paid && (
-        <section className="flex flex-col gap-3 rounded-2xl border border-ink/20 bg-white p-5">
-          <div>
-            <h3 className="text-sm font-semibold text-ink">
-              O que vem no checklist completo (R$47)
-            </h3>
-            <ul className="mt-2 flex flex-col gap-1.5 text-sm text-slate-600">
-              <li>
-                • Status individual (ok / atenção / faltando) dos{" "}
-                {checklist.length} itens avaliados
-              </li>
-              <li>
-                • Explicação específica de cada item, citando os dados que
-                você informou
-              </li>
-              <li>
-                • Alertas do seu caso (ex: recusa anterior, vínculo
-                financeiro fraco, viagem muito próxima da data)
-              </li>
-              <li>• Acesso permanente por e-mail, pra rever quando quiser</li>
-            </ul>
-          </div>
-          <UnlockChecklistButton applicationId={id} />
-        </section>
-      )}
-
-      {paid && alerts.length > 0 && (
+      {alerts.length > 0 && (
         <section className="flex flex-col gap-2">
           <h3 className="text-sm font-semibold text-ink">Alertas</h3>
           <ul className="flex flex-col gap-2">
@@ -117,35 +85,24 @@ export default async function ResultadoPage(
             >
               <div>
                 <p className="font-medium text-ink">{entry.item}</p>
-                {paid ? (
-                  <p className="text-slate-600">{entry.comentario}</p>
-                ) : (
-                  <p
-                    aria-hidden
-                    className="select-none text-slate-300"
-                  >
-                    ████████████████████████████
-                  </p>
-                )}
+                <p className="text-slate-600">{entry.comentario}</p>
               </div>
-              {paid && (
-                <span
-                  className={`shrink-0 self-start rounded-full px-3 py-1 text-xs font-medium ${STATUS_STYLE[entry.status]}`}
-                >
-                  {STATUS_LABEL[entry.status] ?? entry.status}
-                </span>
-              )}
+              <span
+                className={`shrink-0 self-start rounded-full px-3 py-1 text-xs font-medium ${STATUS_STYLE[entry.status]}`}
+              >
+                {STATUS_LABEL[entry.status] ?? entry.status}
+              </span>
             </li>
           ))}
         </ul>
       </section>
 
-      <div className="flex items-center justify-between border-t border-slate-100 pt-5 text-sm">
-        <Link href={`/solicitacoes/${id}/perfil`} className="text-slate-500 hover:underline">
+      <div className="border-t border-slate-100 pt-5 text-sm">
+        <Link
+          href={`/solicitacoes/${id}/perfil`}
+          className="text-slate-500 hover:underline"
+        >
           ← Editar respostas
-        </Link>
-        <Link href={`/solicitacoes/${id}/documentos`} className="font-medium text-accent hover:underline">
-          Enviar documentos e refinar a análise →
         </Link>
       </div>
     </div>
