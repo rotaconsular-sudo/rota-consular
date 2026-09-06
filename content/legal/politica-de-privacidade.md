@@ -99,7 +99,8 @@ O site usa três categorias de cookies:
 - **Estatística** — nos ajudam a entender como o site é usado. Só são ativados
   se você aceitar.
 - **Marketing** — medem o resultado de campanhas (por exemplo, em redes
-  sociais). Só são ativados se você aceitar.
+  sociais). Só são ativados se você aceitar. Atualmente: **Meta Pixel**
+  (Facebook/Instagram).
 
 Na primeira visita, um **banner de consentimento** permite aceitar, recusar
 ou configurar as categorias de estatística e marketing antes de qualquer
@@ -149,6 +150,7 @@ instruções, e apenas na medida necessária para operar o serviço:
 | **Resend** | Envio de e-mails transacionais (link de acesso, resultado da análise, liberação de compra) | Estados Unidos |
 | **Cloudflare / Registro.br** | Serviços de DNS e entrega do site | Brasil / Global |
 | **Google (YouTube)** | Exibição de vídeos na área de membros, em modo sem cookies até o play | Estados Unidos |
+| **Meta Platforms (Facebook/Instagram)** | Meta Pixel — mede o resultado de anúncios; só é ativado com o seu consentimento de cookies de marketing | Estados Unidos |
 
 Também podemos compartilhar dados: (a) para cumprir ordem judicial, requisição
 de autoridade competente ou obrigação legal; (b) para exercer ou defender
@@ -177,7 +179,8 @@ questionário.
 ## 7. Transferência internacional de dados
 
 Parte dos dados é tratada por operadores localizados **fora do Brasil**,
-principalmente nos Estados Unidos (Vercel, Anthropic e Resend), conforme a
+principalmente nos Estados Unidos (Vercel, Anthropic, Resend e — se você
+aceitar os cookies de marketing — Meta), conforme a
 seção 5.
 
 Essas transferências são realizadas com fundamento no art. 33 da LGPD, por
