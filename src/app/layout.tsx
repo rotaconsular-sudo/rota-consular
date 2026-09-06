@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
 import MetaPixel from "@/components/MetaPixel";
+import { SITE_URL } from "@/lib/url";
 
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-sans",
@@ -16,6 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Rota Consular",
   description:
     "Preparação para o visto americano de turismo (B1/B2) — checklist de prontidão, nunca uma promessa de aprovação.",
