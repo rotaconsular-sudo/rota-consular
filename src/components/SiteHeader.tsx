@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { NAV_LINKS } from "@/lib/nav";
@@ -29,13 +30,21 @@ export default function SiteHeader({
       }
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-5">
-        <Link
-          href="/"
-          className={`text-sm font-bold tracking-[0.14em] transition ${
-            dark ? "text-white hover:text-accent-soft" : "text-ink hover:text-accent"
-          }`}
-        >
-          ROTA CONSULAR
+        <Link href="/" className="transition hover:opacity-80">
+          {dark ? (
+            <span className="text-sm font-bold tracking-[0.14em] text-white transition hover:text-accent-soft">
+              ROTA CONSULAR
+            </span>
+          ) : (
+            <Image
+              src="/logo-rota-consular.png"
+              alt="Rota Consular"
+              width={1115}
+              height={235}
+              priority
+              className="h-8 w-auto"
+            />
+          )}
         </Link>
 
         {minimal ? (
