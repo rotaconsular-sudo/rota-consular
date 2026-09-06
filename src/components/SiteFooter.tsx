@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { NAV_LINKS } from "@/lib/nav";
+import CookiePrefsButton from "@/components/CookiePrefsButton";
 
 /**
  * Âncora escura que fecha as páginas públicas, no mesmo navy da capa.
@@ -30,6 +31,7 @@ export default function SiteFooter() {
             >
               Política de Privacidade
             </Link>
+            <CookiePrefsButton className="text-left transition hover:text-white sm:text-right" />
           </nav>
         </div>
 

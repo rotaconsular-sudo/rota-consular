@@ -248,3 +248,18 @@ enum AcessoOrigem {
   MANUAL
   CORTESIA
 }
+
+// Registro de consentimento de cookies (LGPD — guardar por ~18 meses).
+// Sem IP nem dado pessoal: só um id anônimo de navegador (cookie rc_vid)
+// pra correlacionar quando a mesma pessoa muda de escolha.
+model ConsentLog {
+  id            String   @id @default(cuid())
+  visitorId     String
+  estatistica   Boolean
+  marketing     Boolean
+  policyVersion String
+  userAgent     String?
+  createdAt     DateTime @default(now())
+
+  @@index([visitorId])
+}

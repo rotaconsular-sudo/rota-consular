@@ -90,21 +90,27 @@ obrigação legal de guarda de registros de acesso (Marco Civil da Internet).
 
 ### 3.5. Cookies
 
-Atualmente o site utiliza **apenas cookies estritamente necessários**:
+O site usa três categorias de cookies:
 
-- **Cookie de sessão** — mantém você conectado à sua conta.
-- **Cookies de acesso à solicitação** — permitem que você retome a análise
-  gratuita sem precisar criar conta.
+- **Necessários** (sempre ativos) — cookie de sessão (mantém você conectado),
+  cookies de acesso à solicitação (permitem retomar a análise sem criar conta)
+  e o cookie que guarda a sua escolha de cookies. São essenciais e não dependem
+  de consentimento.
+- **Estatística** — nos ajudam a entender como o site é usado. Só são ativados
+  se você aceitar.
+- **Marketing** — medem o resultado de campanhas (por exemplo, em redes
+  sociais). Só são ativados se você aceitar.
 
-Esses cookies são essenciais para o funcionamento do serviço e não dependem
-de consentimento. Os vídeos exibidos na área de membros usam o modo
-`youtube-nocookie` do YouTube, que não grava cookies até que você dê play.
+Na primeira visita, um **banner de consentimento** permite aceitar, recusar
+ou configurar as categorias de estatística e marketing antes de qualquer
+coleta. Você pode mudar sua escolha a qualquer momento pelo link **"Cookies"**
+no rodapé do site. Guardamos um registro de cada escolha (data, categorias
+aceitas e versão desta Política, sem qualquer dado que identifique você
+pessoalmente) para fins de comprovação, por até 18 meses. O consentimento é
+pedido de novo a cada 6 meses.
 
-Caso, no futuro, o Rota Consular passe a utilizar cookies de análise de
-audiência ou de publicidade (por exemplo, para campanhas em redes sociais),
-exibiremos um **aviso de consentimento de cookies** que permitirá aceitar,
-recusar ou configurar essas categorias antes de qualquer coleta, e esta
-Política será atualizada.
+Os vídeos exibidos na área de membros usam o modo `youtube-nocookie` do
+YouTube, que não grava cookies até que você dê play.
 
 ---
 
