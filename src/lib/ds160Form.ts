@@ -43,7 +43,7 @@ export type Ds160Field =
       itemFields: {
         key: string;
         label: string;
-        kind: "text" | "date" | "select";
+        kind: "text" | "date" | "select" | "textarea";
         options?: Opcao[];
       }[];
       help?: string;
@@ -408,7 +408,17 @@ export const DS160_SECTIONS: Ds160Section[] = [
       { key: "trabalho_endereco_cep", label: "Código postal", kind: "text", optional: true, showIf: (d) => ["Empresário / Empreendedor / Dono Próprio Negócio", "Funcionário", "Outra", "Estudante"].includes(String(d.ocupacao_atual)) },
       { key: "trabalho_endereco_pais", label: "País", kind: "text", optional: true, showIf: (d) => ["Empresário / Empreendedor / Dono Próprio Negócio", "Funcionário", "Outra", "Estudante"].includes(String(d.ocupacao_atual)) },
       { key: "possui_mais_de_um_emprego", label: "Possui mais de uma empresa ou mais de um emprego?", kind: "bool" },
-      { key: "mais_de_um_emprego_detalhe", label: "Descreva os dados da empresa", kind: "textarea", optional: true, help: "Nome completo da empresa, endereço, telefone e data de admissão.", showIf: (d) => SIM_NAO(d, "possui_mais_de_um_emprego") },
+      { key: "trabalho2_empresa_nome", label: "Nome completo da segunda empresa ou instituição de ensino", kind: "text", optional: true, showIf: (d) => SIM_NAO(d, "possui_mais_de_um_emprego") },
+      { key: "trabalho2_cargo", label: "Cargo / função na segunda empresa", kind: "text", optional: true, showIf: (d) => SIM_NAO(d, "possui_mais_de_um_emprego") },
+      { key: "trabalho2_telefone", label: "DDD+Telefone", kind: "text", optional: true, showIf: (d) => SIM_NAO(d, "possui_mais_de_um_emprego") },
+      { key: "trabalho2_endereco_rua", label: "Rua", kind: "text", optional: true, showIf: (d) => SIM_NAO(d, "possui_mais_de_um_emprego") },
+      { key: "trabalho2_endereco_bairro", label: "Bairro e Complemento", kind: "text", optional: true, showIf: (d) => SIM_NAO(d, "possui_mais_de_um_emprego") },
+      { key: "trabalho2_endereco_cidade", label: "Cidade", kind: "text", optional: true, showIf: (d) => SIM_NAO(d, "possui_mais_de_um_emprego") },
+      { key: "trabalho2_endereco_estado", label: "Estado", kind: "text", optional: true, showIf: (d) => SIM_NAO(d, "possui_mais_de_um_emprego") },
+      { key: "trabalho2_endereco_cep", label: "Código postal", kind: "text", optional: true, showIf: (d) => SIM_NAO(d, "possui_mais_de_um_emprego") },
+      { key: "trabalho2_endereco_pais", label: "País", kind: "text", optional: true, showIf: (d) => SIM_NAO(d, "possui_mais_de_um_emprego") },
+      { key: "trabalho2_data_inicio", label: "Data de Início nessa empresa", kind: "date", optional: true, showIf: (d) => SIM_NAO(d, "possui_mais_de_um_emprego") },
+      { key: "trabalho2_funcoes", label: "Descreva abaixo suas funções diárias nessa empresa", kind: "textarea", optional: true, showIf: (d) => SIM_NAO(d, "possui_mais_de_um_emprego") },
     ],
   },
   {
@@ -442,6 +452,20 @@ export const DS160_SECTIONS: Ds160Section[] = [
       { key: "trabalho_anterior2_data_inicio", label: "Data Início", kind: "date", optional: true, showIf: (d) => SIM_NAO(d, "trabalhou_outra_empresa_5anos") && !!d.trabalho_anterior_empresa_nome },
       { key: "trabalho_anterior2_data_fim", label: "Data Saída", kind: "date", optional: true, showIf: (d) => SIM_NAO(d, "trabalhou_outra_empresa_5anos") && !!d.trabalho_anterior_empresa_nome },
       { key: "trabalho_anterior2_funcoes", label: "Descreva Brevemente suas Funções", kind: "textarea", optional: true, showIf: (d) => SIM_NAO(d, "trabalhou_outra_empresa_5anos") && !!d.trabalho_anterior_empresa_nome },
+      {
+        key: "trabalho_anterior_extra", label: "Mais empresas anteriores (se tiver mais de 2 nos últimos 5 anos)", kind: "list",
+        showIf: (d) => SIM_NAO(d, "trabalhou_outra_empresa_5anos") && !!d.trabalho_anterior2_empresa_nome,
+        itemFields: [
+          { key: "empresa_nome", label: "Nome Completo da Empresa", kind: "text" },
+          { key: "cargo", label: "Cargo", kind: "text" },
+          { key: "supervisor", label: "Nome Completo do Supervisor", kind: "text" },
+          { key: "telefone", label: "Telefone com DDD (00) 0000-0000", kind: "text" },
+          { key: "endereco", label: "Endereço completo (rua, bairro, cidade, estado, CEP, país)", kind: "text" },
+          { key: "data_inicio", label: "Data Início", kind: "date" },
+          { key: "data_fim", label: "Data Saída", kind: "date" },
+          { key: "funcoes", label: "Descreva Brevemente suas Funções", kind: "textarea" },
+        ],
+      },
     ],
   },
   {
@@ -460,6 +484,18 @@ export const DS160_SECTIONS: Ds160Section[] = [
       { key: "curso_nome", label: "Nome do Curso Acadêmico", kind: "text", optional: true, showIf: (d) => SIM_NAO(d, "estudou_nivel_medio_superior") },
       { key: "curso_data_inicio", label: "Data Início", kind: "date", optional: true, showIf: (d) => SIM_NAO(d, "estudou_nivel_medio_superior") },
       { key: "curso_data_termino", label: "Data de Término (caso esteja cursando ainda, colocar data prevista de término)", kind: "date", optional: true, showIf: (d) => SIM_NAO(d, "estudou_nivel_medio_superior") },
+      {
+        key: "outras_instituicoes", label: "Outras instituições de ensino (se tiver mais de uma formação)", kind: "list",
+        showIf: (d) => SIM_NAO(d, "estudou_nivel_medio_superior"),
+        itemFields: [
+          { key: "nome", label: "Nome Completo da Instituição", kind: "text" },
+          { key: "telefone", label: "Telefone com DDD (00) 0000-0000", kind: "text" },
+          { key: "endereco", label: "Endereço completo (rua, bairro, cidade, estado, CEP, país)", kind: "text" },
+          { key: "curso_nome", label: "Nome do Curso Acadêmico", kind: "text" },
+          { key: "data_inicio", label: "Data Início", kind: "date" },
+          { key: "data_termino", label: "Data de Término", kind: "date" },
+        ],
+      },
     ],
   },
   {
@@ -576,5 +612,5 @@ export function secoesVisiveis(dados: Ds160Dados) {
   return DS160_SECTIONS.map((sec) => ({
     ...sec,
     campos: sec.campos.filter((c) => !c.showIf || c.showIf(dados)),
-  }));
+  })).filter((sec) => sec.campos.length > 0);
 }

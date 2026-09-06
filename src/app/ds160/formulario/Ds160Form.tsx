@@ -232,6 +232,17 @@ function Campo({
                       </option>
                     ))}
                   </select>
+                ) : f.kind === "textarea" ? (
+                  <textarea
+                    value={String(linha[f.key] ?? "")}
+                    onChange={(e) => {
+                      const novas = [...linhas];
+                      novas[i] = { ...novas[i], [f.key]: e.target.value };
+                      onChange(novas);
+                    }}
+                    rows={3}
+                    className={inputCls}
+                  />
                 ) : (
                   <input
                     value={String(linha[f.key] ?? "")}
