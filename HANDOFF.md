@@ -5,7 +5,7 @@
 > "Loja de produtos + área de membros"). Depois pergunte ao operador em qual
 > ponto quer continuar.
 
-Última atualização: **2026-09-05**.
+Última atualização: **2026-09-06**.
 
 ---
 
@@ -13,10 +13,28 @@
 
 App Next.js (App Router) + Prisma + Postgres (Prisma Postgres, instância única —
 o banco de dev é o mesmo de produção), deploy automático Git→Vercel em
-`rotaconsular.com.br`. Já existia: funil freemium de análise de visto americano
-(score grátis → checklist pago R$47 via Mercado Pago) + `/blog` em Markdown.
+`rotaconsular.com.br`. Tem: funil de **análise de perfil grátis** para visto
+americano de turismo (questionário → resultado com IA), **loja de produtos +
+área de membros**, e `/blog` em Markdown.
 
 **O site ainda NÃO foi lançado** — está em fase de teste pesado antes de abrir.
+
+### Mudanças de 06/09/2026
+- **Removido o upload de documentos** (era opcional na análise). `model Document`,
+  `enum DocumentType`, tela `/solicitacoes/[id]/documentos` e o passo do wizard
+  não existem mais. A análise é só o questionário.
+- **Removido o paywall** ("checklist completo R$47"). `model Payment`,
+  `enum PaymentStatus`, `createCheckoutPreference`, `UnlockChecklistButton` e o
+  webhook `/api/mercadopago/webhook` foram apagados. O resultado da análise é
+  gratuito e completo. Migration `20260906151928_remove_documentos_e_paywall`
+  dropa as tabelas Document e Payment.
+- **Análise de perfil reescrita**: quiz de ~22 perguntas (`src/lib/quizQuestions.ts`)
+  e resultado em linguagem simples ("O que joga a seu favor" / "O que vale
+  reforçar" com "O que fazer" / "Fique atento"). Novo shape em
+  `src/lib/anthropic.ts` (`AnalysisOutput` = score/resumo/favoravel/reforcar/atencao),
+  guardado nas 3 colunas de `AnalysisResult` sem migração.
+- Rascunho da **Política de Privacidade** em `content/legal/politica-de-privacidade.md`
+  (ainda sem página que renderize; pendente revisão jurídica + LGPD é próximo tema).
 
 ---
 
@@ -38,6 +56,9 @@ Commits desta sessão (mais antigo → mais novo):
 | `c68da78` | log da sessão no `PROJECT.md` |
 | `f797456` | checkout: confirma o e-mail antes de criar o pedido |
 | `c7f1550` | `Conteudo.descricao` (Markdown) + `Produto.categoria`/`promoverCategoria` + bloco "Leve também" no `/minha-conta/[id]` + `/checkout?p=<slug>` (migration `20260905202855_loja_categorias_descricao`) |
+| `a084c6e` | rascunho da Política de Privacidade (LGPD) em `content/legal/` |
+| `5ff9929` | remove upload de documentos + paywall (migration `20260906151928`) |
+| `cb28f65` | análise de perfil: 22 perguntas + resultado em linguagem simples |
 
 ### Testado (dev, no navegador)
 - Admin: criar/editar/excluir/ativar produto; criar/editar/excluir conteúdo dos 4
