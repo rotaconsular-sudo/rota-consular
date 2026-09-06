@@ -2,17 +2,46 @@ import { prisma } from "@/lib/prisma";
 import { produtosLiberados } from "@/lib/acesso";
 import { DS160_TODAS_CHAVES, type Ds160Dados } from "@/lib/ds160Form";
 
-export const PRODUTO_DS160_SLUG = "ds160-preenchido";
+export const PRODUTO_DS160_COMPLETO_SLUG = "ds160-preenchido"; // R$97, revisão humana + envio oficial
+export const PRODUTO_DS160_SELF_SLUG = "mapa-ds160"; // R$27,90, self-service
 
-// A pessoa pode entrar no /ds160 se tem acesso ativo ao produto.
-export async function temAcessoDs160(userId: string): Promise<boolean> {
+export type Ds160Tier = "completo" | "self" | null;
+
+// "completo" tem prioridade se a pessoa tiver os dois produtos.
+export async function tierDs160(userId: string): Promise<Ds160Tier> {
   const ids = await produtosLiberados(userId);
-  if (ids.length === 0) return false;
-  const prod = await prisma.produto.findFirst({
-    where: { slug: PRODUTO_DS160_SLUG, id: { in: ids } },
-    select: { id: true },
+  if (ids.length === 0) return null;
+  const produtos = await prisma.produto.findMany({
+    where: { slug: { in: [PRODUTO_DS160_COMPLETO_SLUG, PRODUTO_DS160_SELF_SLUG] }, id: { in: ids } },
+    select: { slug: true },
   });
-  return Boolean(prod);
+  const slugs = produtos.map((p) => p.slug);
+  if (slugs.includes(PRODUTO_DS160_COMPLETO_SLUG)) return "completo";
+  if (slugs.includes(PRODUTO_DS160_SELF_SLUG)) return "self";
+  return null;
+}
+
+// A pessoa pode entrar no /ds160 se tem acesso ativo a algum dos dois tiers.
+export async function temAcessoDs160(userId: string): Promise<boolean> {
+  return (await tierDs160(userId)) !== null;
+}
+
+// Formata um valor de resposta do DS-160 pra exibição legível (bool, array,
+// vazio, etc.). Usado no admin e no resumo do tier self-service.
+export function formatarValorDs160(valor: unknown): string {
+  if (valor === true) return "Sim";
+  if (valor === false) return "Não";
+  if (valor === undefined || valor === null || valor === "") return "—";
+  if (Array.isArray(valor)) {
+    return valor
+      .map((it) =>
+        typeof it === "object" && it
+          ? Object.values(it as Record<string, unknown>).join(" · ")
+          : String(it),
+      )
+      .join("  |  ");
+  }
+  return String(valor);
 }
 
 // Uma solicitação por usuário (a mais recente). Cria se não existir.

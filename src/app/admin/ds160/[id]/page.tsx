@@ -3,23 +3,8 @@ import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/admin";
 import { DS160_SECTIONS, type Ds160Dados } from "@/lib/ds160Form";
+import { formatarValorDs160 } from "@/lib/ds160";
 import { devolverNumero } from "../actions";
-
-function mostra(valor: unknown): string {
-  if (valor === true) return "Sim";
-  if (valor === false) return "Não";
-  if (valor === undefined || valor === null || valor === "") return "—";
-  if (Array.isArray(valor)) {
-    return valor
-      .map((it) =>
-        typeof it === "object" && it
-          ? Object.values(it as Record<string, unknown>).join(" · ")
-          : String(it),
-      )
-      .join("  |  ");
-  }
-  return String(valor);
-}
 
 export default async function AdminDs160DetalhePage({
   params,
@@ -100,7 +85,7 @@ export default async function AdminDs160DetalhePage({
               .map((c) => (
                 <div key={c.key} className="flex justify-between gap-3 border-b border-slate-50 py-1">
                   <dt className="text-slate-500">{c.label}</dt>
-                  <dd className="text-right font-medium text-ink">{mostra(dados[c.key])}</dd>
+                  <dd className="text-right font-medium text-ink">{formatarValorDs160(dados[c.key])}</dd>
                 </div>
               ))}
           </dl>

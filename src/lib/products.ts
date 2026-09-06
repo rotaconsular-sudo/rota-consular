@@ -26,16 +26,15 @@ export const FLAGSHIP_PRODUCT: Product = {
   slug: "mapa-ds160",
   title: "DS-160 Sem Erros",
   subtitle:
-    "Preencha seu DS-160 pelo nosso formulário 100% em português. Nossa equipe revisa suas respostas e faz o envio oficial ao Consulado americano por você.",
+    "Preencha seu DS-160 sozinho, sem abrir o site do governo em inglês. Formulário guiado 100% em português, com as mesmas seções do DS-160 oficial — você preenche, revisa e envia por conta própria.",
   priceCents: 2790,
   compareAtPriceCents: 9700,
   bullets: [
-    "Formulário próprio, 100% em português",
-    "Foco no DS-160 para visto de turista B1/B2",
-    "Revisão humana especializada antes do envio",
-    "Envio oficial direto ao site do Consulado americano",
-    "Alertas sobre informações conflitantes ou inconsistentes",
-    "Você recebe o código de confirmação e o PDF oficial",
+    "Formulário próprio, 100% em português — nada de traduzir na mão",
+    "As mesmas seções e perguntas do DS-160 oficial, uma por vez, sem se perder",
+    "Rascunho salvo automaticamente — pausa e volta quando quiser",
+    "Ao final, um resumo das suas respostas organizado por seção, pronto pra usar no site oficial",
+    "Você quem revisa e envia — esse é o plano econômico e independente",
   ],
   themes: [
     "Personal Information",

@@ -15,28 +15,27 @@ const GUIDE_FEATURES = [
     icon: IconClipboard,
   },
   {
-    title: "Auditoria Humana Especializada em cada resposta enviada",
+    title: "Rascunho salvo automaticamente, sem pressa",
     icon: IconDocument,
   },
   {
-    title: "Notificação oficial caso nosso Controle de Qualidade identifique alguma divergência",
+    title: "Resumo organizado das suas respostas ao final",
     icon: IconRoute,
   },
   {
-    title: "Alertas sobre informações conflitantes ou inconsistentes",
+    title: "Mesmas seções do DS-160 oficial, explicadas em português",
     icon: IconAlert,
   },
   {
-    title: "Envio oficial direto ao site do Consulado americano",
+    title: "Sem letra miúda: você revisa e envia por conta própria",
     icon: IconClipboard,
   },
 ];
 
 const IDEAL_FOR = [
-  "Preencher seus dados 100% em português, no seu tempo e sem esbarrar no site confuso do governo.",
-  "Ter a segurança de uma revisão humana especializada antes de qualquer envio oficial.",
-  "Receber a confirmação oficial (código de barras) e o PDF finalizado sem estresse.",
-  "Economizar centenas de reais fugindo das taxas abusivas de despachantes tradicionais.",
+  "Ter as mesmas seções do DS-160 oficial organizadas e explicadas em português.",
+  "Preencher no seu tempo, com o rascunho salvo automaticamente.",
+  "Economizar fugindo das taxas abusivas de despachantes tradicionais, preenchendo você mesmo com confiança.",
 ];
 
 const HOW_DS160_WORKS = [
@@ -46,29 +45,33 @@ const HOW_DS160_WORKS = [
     icon: IconOpenForm,
   },
   {
-    title: "A Revisão Humana",
-    description:
-      "Um especialista audita as suas respostas para eliminar informações conflitantes.",
+    title: "Revise você mesmo",
+    description: "Confira suas respostas com calma — o formulário te guia seção por seção.",
     icon: IconGuide,
   },
   {
-    title: "A Submissão Oficial",
+    title: "Use no site oficial",
     description:
-      "Nós assumimos a burocracia, lançamos tudo no site do Consulado e te enviamos o código do DS-160 e o PDF oficial prontos para o seu agendamento.",
+      "Leve o resumo organizado pro site do Consulado americano e finalize seu envio por lá.",
     icon: IconOrder,
   },
 ];
 
 const FAQ_ITEMS = [
   {
-    question: "Em quanto tempo recebo meu DS-160 oficial pronto?",
+    question: "Em quanto tempo posso usar?",
     answer:
-      "O nosso foco é a sua aprovação, e excelência leva tempo. Diferente de sistemas 100% automatizados que geram erros grotescos, nós fazemos uma Auditoria Humana Especializada em cada linha das suas respostas. Por isso, após você preencher o nosso formulário em português, nossa equipe leva de 7 a 10 dias úteis para revisar todas as informações, cruzar os dados, emitir o envio no sistema oficial do governo americano e te entregar o PDF finalizado com o código de barras, 100% seguro e sem erros.",
+      "Na hora. Assim que você conclui o formulário, seu resumo já fica disponível pra uso.",
+  },
+  {
+    question: "Vocês enviam o DS-160 por mim?",
+    answer:
+      "Não neste plano — você mesmo faz o envio final no site oficial do Consulado, usando o resumo organizado que a gente te entrega. Se preferir que a gente cuide de tudo, veja o DS-160 preenchido pra você (R$97).",
   },
   {
     question: "O serviço serve para quem nunca preencheu o DS-160?",
     answer:
-      "Sim. Você só precisa responder nosso formulário em português — nossa equipe cuida da revisão e do envio oficial, mesmo que seja a primeira vez que você lida com o DS-160.",
+      "Sim. Nosso formulário guia você seção por seção, em português, com a mesma ordem e as mesmas perguntas do DS-160 oficial — mesmo que seja a primeira vez que você lide com ele.",
   },
   {
     question: "Posso acessar pelo celular?",
@@ -77,32 +80,12 @@ const FAQ_ITEMS = [
   {
     question: "Preciso saber inglês para usar o formulário de vocês?",
     answer:
-      "Não. Nosso formulário é 100% em português — a tradução e o envio ao site oficial do Consulado ficam por nossa conta.",
+      "Não, o formulário é 100% em português. Só o site oficial do governo, no final, é em inglês — mas o resumo que você recebe já te dá o que preencher lá.",
   },
   {
     question: "Como funciona a garantia?",
     answer:
       "Você conta com garantia de 7 dias. Dentro desse prazo, caso não queira continuar com o produto, pode solicitar o reembolso.",
-  },
-  {
-    question: "Eu vou precisar entrar no site oficial do governo americano?",
-    answer:
-      "Não. Nossa equipe se encarrega de transferir todos os seus dados revisados para o sistema oficial do Consulado.",
-  },
-  {
-    question: "O que eu recebo no final do processo?",
-    answer:
-      "Você receberá o número de confirmação oficial do seu DS-160 e uma cópia em PDF gerada diretamente pelo site do governo americano.",
-  },
-  {
-    question: "E se eu errar alguma digitação no sistema de vocês?",
-    answer:
-      "Nosso Controle de Qualidade audita cada resposta antes do envio definitivo. Caso identifique alguma divergência, você recebe uma Notificação de Divergência para corrigir o dado pontual antes da submissão oficial.",
-  },
-  {
-    question: "E se as informações que eu preencher estiverem confusas?",
-    answer:
-      "Nosso time faz uma auditoria estrita. Caso encontremos informações conflitantes que coloquem seu visto em risco, emitiremos um (1) \"Alerta de Divergência\" via WhatsApp solicitando a correção pontual daquele dado para finalizar o seu envio. Este serviço inclui a submissão dos dados fornecidos por você, e não inclui consultoria de perfil, análise de vínculos ou simulação de entrevista.",
   },
 ];
 
@@ -119,11 +102,6 @@ export default function MapaDS160Page() {
 
   return (
     <div className="flex flex-1 flex-col bg-slate-50 text-ink">
-      {/* Faixa de oferta */}
-      <div className="bg-ink py-2 text-center text-xs font-semibold tracking-wide text-white">
-        OFERTA POR TEMPO LIMITADO — Como Tirar seu Visto Americano com Segurança
-      </div>
-
       <SiteHeader />
 
       {/* Hero */}
@@ -150,7 +128,7 @@ export default function MapaDS160Page() {
             ACESSAR AGORA
           </Link>
           <p className="text-sm text-slate-500">
-            Preencha agora e deixe o resto com a gente.
+            Acesso imediato. Preencha no seu tempo, no seu ritmo.
           </p>
         </div>
       </section>
@@ -159,7 +137,7 @@ export default function MapaDS160Page() {
       <section className="bg-slate-50">
         <div className="mx-auto max-w-4xl px-6 py-20 sm:py-28">
           <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
-            Nós cuidamos de cada uma dessas etapas do formulário oficial:
+            O formulário guia você por cada uma dessas etapas do processo oficial:
           </h2>
           <div className="mt-8 flex flex-wrap justify-center gap-2">
             {p.themes.map((theme) => (
@@ -194,8 +172,8 @@ export default function MapaDS160Page() {
             })}
           </ul>
           <p className="mt-10 text-center text-sm font-semibold uppercase tracking-wide text-slate-500">
-            Você preenche pelo nosso formulário, nossa equipe revisa e envia
-            oficialmente — sem risco de erro e sem precisar de despachante!
+            Você preenche pelo nosso formulário, no seu tempo — sem precisar
+            de despachante!
           </p>
           <div className="mt-8 flex justify-center">
             <Link
@@ -240,7 +218,7 @@ export default function MapaDS160Page() {
             ))}
           </ul>
           <p className="mt-6 text-center text-sm text-slate-500">
-            Você preenche, nossa equipe revisa e envia — sem burocracia.
+            Você preenche, revisa e envia — no seu tempo, sem burocracia.
           </p>
         </div>
       </section>
@@ -266,7 +244,6 @@ export default function MapaDS160Page() {
           <div className="rounded-2xl border border-ink/20 bg-white p-7 text-center">
             <div className="flex justify-center gap-2">
               <span className="rounded-full border border-slate-300 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600">MAIS VENDIDO</span>
-              <span className="rounded-full border border-ink/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink">ÚLTIMA CHANCE</span>
             </div>
             <h3 className="mt-4 text-xl font-bold text-ink">Mapa Completo</h3>
             <ul className="mt-6 flex flex-col gap-2 text-left text-sm text-slate-700">
@@ -290,6 +267,31 @@ export default function MapaDS160Page() {
               className="mt-6 block w-full rounded-full bg-ink px-5 py-3.5 text-sm font-bold text-white transition hover:bg-ink-muted"
             >
               QUERO O PLANO COMPLETO
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Upsell: DS-160 preenchido pra você (tier completo) */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-2xl px-6 py-20 sm:py-28">
+          <div className="rounded-2xl border border-slate-200 bg-white p-7 text-center sm:p-9">
+            <span className="inline-flex items-center rounded-full border border-ink/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink">
+              PREFERE NÃO PREENCHER NADA?
+            </span>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
+              A gente preenche, revisa e envia o seu DS-160 por você
+            </h2>
+            <p className="mt-2 text-sm text-slate-600">
+              Mesmo formulário, mas com um especialista revisando cada
+              resposta e fazendo o envio oficial em inglês no site do
+              Consulado por você.
+            </p>
+            <Link
+              href="/ds160-preenchido"
+              className="mt-6 inline-block rounded-full bg-ink px-8 py-3.5 text-sm font-bold text-white transition hover:bg-ink-muted"
+            >
+              Conhecer o DS-160 preenchido pra você
             </Link>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { logout } from "@/app/actions";
 import { requireUser } from "@/lib/auth";
-import { temAcessoDs160 } from "@/lib/ds160";
+import { tierDs160 } from "@/lib/ds160";
 import SiteHeader from "@/components/SiteHeader";
 import MinimalFooter from "@/components/MinimalFooter";
 
@@ -11,7 +11,8 @@ export default async function Ds160Layout({
   children: React.ReactNode;
 }) {
   const user = await requireUser();
-  const acesso = await temAcessoDs160(user.id);
+  const tier = await tierDs160(user.id);
+  const acesso = tier !== null;
 
   return (
     <div className="flex min-h-full flex-col bg-slate-50">

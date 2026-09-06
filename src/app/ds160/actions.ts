@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { requireUser } from "@/lib/auth";
-import { temAcessoDs160, getOrCreateSolicitacao } from "@/lib/ds160";
+import { temAcessoDs160, getOrCreateSolicitacao, tierDs160 } from "@/lib/ds160";
 import { sendDs160Recebido } from "@/lib/mailer";
 import type { Ds160Dados } from "@/lib/ds160Form";
 
@@ -38,22 +38,29 @@ export async function salvarRascunho(dados: Ds160Dados) {
   return { ok: true };
 }
 
-// Trava o rascunho e avisa a equipe.
+// Trava o rascunho. Tier completo avisa a equipe; tier self manda pro resumo.
 export async function enviarDs160() {
   const { user, solicitacao } = await contexto();
   if (solicitacao.status !== "RASCUNHO") redirect("/ds160");
+
+  const tier = await tierDs160(user.id);
 
   await prisma.solicitacaoDs160.update({
     where: { id: solicitacao.id },
     data: { status: "ENVIADO", enviadoEm: new Date() },
   });
 
-  await sendDs160Recebido({
-    solicitacaoId: solicitacao.id,
-    email: user.email,
-    nome: user.name,
-  });
+  if (tier === "completo") {
+    await sendDs160Recebido({
+      solicitacaoId: solicitacao.id,
+      email: user.email,
+      nome: user.name,
+    });
+    revalidatePath("/ds160");
+    redirect("/ds160?enviado=1");
+  }
 
+  // tier "self": ninguém da equipe precisa ser avisado -- a pessoa já vai ver o resumo.
   revalidatePath("/ds160");
-  redirect("/ds160?enviado=1");
+  redirect("/ds160/resumo");
 }
