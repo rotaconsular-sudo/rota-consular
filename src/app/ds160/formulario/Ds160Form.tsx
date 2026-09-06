@@ -124,6 +124,14 @@ function Campo({
     </span>
   );
 
+  if (campo.kind === "note") {
+    return (
+      <p className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2.5 text-xs leading-relaxed text-slate-500">
+        {campo.help}
+      </p>
+    );
+  }
+
   if (campo.kind === "bool") {
     const v = valor === true;
     return (

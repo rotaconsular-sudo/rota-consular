@@ -36,12 +36,15 @@ export default function SiteFooter() {
         </div>
 
         <p className="mt-12 border-t border-white/10 pt-8 text-xs leading-relaxed text-slate-500">
-          O Rota Consular é uma ferramenta de tecnologia e inteligência
-          estratégica. Não somos afiliados ao governo dos Estados Unidos, à
-          Embaixada ou ao Consulado americano. Isso não é uma promessa de
-          aprovação — a decisão final é sempre do oficial consular americano.
-          Nossa missão é te ajudar a chegar na entrevista com a melhor
-          estratégia e documentação possível.
+          <strong className="text-slate-300">
+            A Rota Consular é uma empresa privada de assessoria e não possui
+            qualquer vínculo com consulados ou embaixadas.
+          </strong>{" "}
+          Não somos afiliados ao governo dos Estados Unidos, à Embaixada ou ao
+          Consulado americano. Isso não é uma promessa de aprovação — a
+          decisão final é sempre do oficial consular americano. Nossa missão
+          é te ajudar a chegar na entrevista com a melhor estratégia e
+          documentação possível.
         </p>
       </div>
     </footer>

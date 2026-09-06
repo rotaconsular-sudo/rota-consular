@@ -95,12 +95,14 @@ export default async function AdminDs160DetalhePage({
         <section key={sec.id} className="rounded-xl border border-slate-200 bg-white p-4">
           <h2 className="text-sm font-bold text-ink">{sec.titulo}</h2>
           <dl className="mt-3 grid gap-x-6 gap-y-1.5 text-sm sm:grid-cols-2">
-            {sec.campos.map((c) => (
-              <div key={c.key} className="flex justify-between gap-3 border-b border-slate-50 py-1">
-                <dt className="text-slate-500">{c.label}</dt>
-                <dd className="text-right font-medium text-ink">{mostra(dados[c.key])}</dd>
-              </div>
-            ))}
+            {sec.campos
+              .filter((c) => c.kind !== "note")
+              .map((c) => (
+                <div key={c.key} className="flex justify-between gap-3 border-b border-slate-50 py-1">
+                  <dt className="text-slate-500">{c.label}</dt>
+                  <dd className="text-right font-medium text-ink">{mostra(dados[c.key])}</dd>
+                </div>
+              ))}
           </dl>
         </section>
       ))}
