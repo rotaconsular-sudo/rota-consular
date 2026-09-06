@@ -20,16 +20,20 @@ export default async function Ds160Page({
           DS-160 preenchido pra você
         </h1>
         <p className="mt-1 text-sm text-slate-500">
-          Você preenche o rascunho em português, nossa equipe revisa e faz o
-          preenchimento oficial no site do Consulado, e te devolve o número do
-          DS-160 por e-mail.
+          Você preenche o rascunho em português. Um especialista humano com{" "}
+          <strong className="text-ink">mais de 15 anos de experiência</strong>{" "}
+          em vistos americanos revisa cada resposta com cuidado — só depois
+          dessa revisão o DS-160 oficial é preenchido em inglês, diretamente
+          no site do Consulado americano, e você recebe o número por e-mail.
         </p>
       </div>
 
       {sp.enviado === "1" && (
         <p className="rounded-xl border border-ok/30 bg-ok/5 px-4 py-3 text-sm text-ok">
-          Recebemos o seu rascunho. A equipe vai preencher no Consulado e te
-          mandar o número por e-mail.
+          Recebemos o seu rascunho. Um especialista humano com mais de 15 anos
+          de experiência vai revisar suas respostas e, estando tudo certo,
+          preencher o DS-160 oficial no Consulado e te mandar o número por
+          e-mail.
         </p>
       )}
 
@@ -47,8 +51,9 @@ export default async function Ds160Page({
         <div className="rounded-2xl border border-slate-200 bg-white p-6 text-sm text-slate-600">
           <p className="font-semibold text-ink">Rascunho enviado ✓</p>
           <p className="mt-1">
-            A equipe está preenchendo o DS-160 oficial. Você recebe o número por
-            e-mail assim que estiver pronto.
+            Um especialista humano com mais de 15 anos de experiência está
+            revisando suas respostas e preenchendo o DS-160 oficial. Você
+            recebe o número por e-mail assim que estiver pronto.
           </p>
         </div>
       )}
@@ -60,8 +65,12 @@ export default async function Ds160Page({
             <ol className="mt-3 flex flex-col gap-2 text-sm text-slate-600">
               <li>1. Você preenche {DS160_SECTIONS.length} seções de perguntas, em português. Pode sair e voltar — salva sozinho.</li>
               <li>2. Ao terminar, você envia. A partir daí não dá mais pra editar.</li>
-              <li>3. Nossa equipe preenche o DS-160 oficial no site do Consulado.</li>
-              <li>4. Você recebe o <strong>número do DS-160</strong> por e-mail (o mesmo que você cadastrou).</li>
+              <li>
+                3. Um <strong className="text-ink">especialista humano com mais de 15 anos de experiência</strong>{" "}
+                em vistos americanos revisa suas respostas ponto a ponto, em busca de qualquer erro ou inconsistência.
+              </li>
+              <li>4. Estando tudo certo, a equipe preenche o DS-160 oficial <strong className="text-ink">em inglês</strong>, diretamente no site do Consulado americano.</li>
+              <li>5. Você recebe o <strong>número do DS-160</strong> por e-mail (o mesmo que você cadastrou).</li>
             </ol>
           </div>
 
