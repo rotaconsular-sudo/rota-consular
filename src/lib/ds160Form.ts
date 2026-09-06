@@ -83,6 +83,29 @@ const SITUACAO_EUA_OPCOES: Opcao[] = [
 
 const SIM_NAO = (d: Ds160Dados, key: string) => d[key] === true || d[key] === "true";
 
+// Calcula a idade a partir de dob_dia/dob_mes/dob_ano (mês em código de 3
+// letras, ver MESES). Retorna null se a data de nascimento ainda não foi
+// preenchida ou está incompleta/inválida.
+function idadeAtual(d: Ds160Dados): number | null {
+  const dia = Number(d.dob_dia);
+  const mesIndice = MESES.findIndex((m) => m.value === d.dob_mes);
+  const ano = Number(d.dob_ano);
+  if (!dia || mesIndice < 0 || !ano) return null;
+  const nascimento = new Date(ano, mesIndice, dia);
+  if (Number.isNaN(nascimento.getTime())) return null;
+  const hoje = new Date();
+  let idade = hoje.getFullYear() - nascimento.getFullYear();
+  const aniversarioEsteAno = new Date(hoje.getFullYear(), nascimento.getMonth(), nascimento.getDate());
+  if (hoje < aniversarioEsteAno) idade--;
+  return idade;
+}
+
+// Menor de idade não tem "trabalhos anteriores" — a seção some pra esse caso.
+const MENOR_DE_IDADE = (d: Ds160Dados) => {
+  const idade = idadeAtual(d);
+  return idade !== null && idade < 18;
+};
+
 export const DS160_SECTIONS: Ds160Section[] = [
   {
     id: "pessoais_1",
@@ -437,7 +460,7 @@ export const DS160_SECTIONS: Ds160Section[] = [
     id: "trabalho_anterior",
     titulo: "Informações sobre Trabalhos Anteriores",
     campos: [
-      { key: "trabalhou_outra_empresa_5anos", label: "Você Trabalhou em outra Empresa nos Últimos 5 Anos?", kind: "bool" },
+      { key: "trabalhou_outra_empresa_5anos", label: "Você Trabalhou em outra Empresa nos Últimos 5 Anos?", kind: "bool", showIf: (d) => !MENOR_DE_IDADE(d) },
       { key: "trabalho_anterior_empresa_nome", label: "Nome Completo da Empresa Anterior", kind: "text", showIf: (d) => SIM_NAO(d, "trabalhou_outra_empresa_5anos") },
       { key: "trabalho_anterior_cargo", label: "Cargo Anterior", kind: "text", showIf: (d) => SIM_NAO(d, "trabalhou_outra_empresa_5anos") },
       { key: "trabalho_anterior_supervisor", label: "Nome Completo do Supervisor", kind: "text", showIf: (d) => SIM_NAO(d, "trabalhou_outra_empresa_5anos") },
