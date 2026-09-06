@@ -11,6 +11,19 @@ import { salvarRascunho, enviarDs160 } from "../actions";
 const inputCls =
   "w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/30";
 
+// Um campo conta como "preenchido" se tem valor de verdade em dados[key].
+// Listas contam pela presença de pelo menos 1 item; bool conta como
+// respondido em true OU false (undefined = ainda não respondido).
+function campoPreenchido(campo: Ds160Field, valor: unknown): boolean {
+  if (campo.kind === "list") {
+    return Array.isArray(valor) && valor.length > 0;
+  }
+  if (campo.kind === "bool") {
+    return valor === true || valor === false;
+  }
+  return valor !== undefined && valor !== null && String(valor).trim() !== "";
+}
+
 export default function Ds160Form({ initial }: { initial: Ds160Dados }) {
   const [dados, setDados] = useState<Ds160Dados>(initial ?? {});
   const [estado, setEstado] = useState<"idle" | "salvando" | "salvo">("idle");
@@ -35,6 +48,53 @@ export default function Ds160Form({ initial }: { initial: Ds160Dados }) {
 
   const secoes = secoesVisiveis(dados);
 
+  // Progresso: só conta campos visíveis, com input real (sem "note"). Lista
+  // opcional some do total quando vazia — não penaliza quem não tem o que
+  // declarar num campo que nem é obrigatório.
+  let totalCampos = 0;
+  let camposPreenchidos = 0;
+  for (const sec of secoes) {
+    for (const campo of sec.campos) {
+      if (campo.kind === "note") continue;
+      const valor = dados[campo.key];
+      if (campo.kind === "list" && campo.optional && !campoPreenchido(campo, valor)) continue;
+      totalCampos++;
+      if (campoPreenchido(campo, valor)) camposPreenchidos++;
+    }
+  }
+  const percentual = totalCampos > 0 ? Math.round((camposPreenchidos / totalCampos) * 100) : 0;
+
+  // Seção ativa (pra destacar a pill correspondente) via scroll listener —
+  // mais simples que IntersectionObserver aqui e sem gambiarra visível.
+  // secoesRef guarda a lista mais atual sem forçar o efeito a religar o
+  // listener a cada render (secoesVisiveis recalcula a cada mudança em dados).
+  const [secaoAtivaId, setSecaoAtivaId] = useState<string | undefined>(secoes[0]?.id);
+  const secoesRef = useRef(secoes);
+
+  useEffect(() => {
+    secoesRef.current = secoes;
+  }, [secoes]);
+
+  useEffect(() => {
+    function atualizarSecaoAtiva() {
+      const atuais = secoesRef.current;
+      let ativa: string | undefined = atuais[0]?.id;
+      for (const sec of atuais) {
+        const el = document.getElementById(`sec-${sec.id}`);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= 140) ativa = sec.id;
+      }
+      setSecaoAtivaId(ativa);
+    }
+    atualizarSecaoAtiva();
+    window.addEventListener("scroll", atualizarSecaoAtiva, { passive: true });
+    return () => window.removeEventListener("scroll", atualizarSecaoAtiva);
+  }, []);
+
+  function irParaSecao(id: string) {
+    document.getElementById(`sec-${id}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   function setCampo(key: string, value: unknown) {
     setDados((d) => ({ ...d, [key]: value }));
   }
@@ -50,10 +110,46 @@ export default function Ds160Form({ initial }: { initial: Ds160Dados }) {
         </span>
       </div>
 
+      <div className="sticky top-[72px] z-30 -mx-6 flex flex-col gap-2 border-b border-slate-200 bg-slate-50/95 px-6 py-3 backdrop-blur">
+        <div className="flex items-center justify-between text-xs font-medium text-slate-500">
+          <span>Progresso do formulário</span>
+          <span className="text-ink">{percentual}% preenchido</span>
+        </div>
+        <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
+          <div
+            className="h-full rounded-full bg-ink transition-[width] duration-300"
+            style={{ width: `${percentual}%` }}
+          />
+        </div>
+        <div className="-mx-1 flex gap-1.5 overflow-x-auto px-1 pb-0.5">
+          {secoes.map((sec, i) => {
+            const ativa = sec.id === secaoAtivaId;
+            return (
+              <button
+                key={sec.id}
+                type="button"
+                title={sec.titulo}
+                aria-label={sec.titulo}
+                aria-current={ativa ? "step" : undefined}
+                onClick={() => irParaSecao(sec.id)}
+                className={`flex h-6 w-6 flex-none items-center justify-center rounded-full text-[11px] font-semibold transition ${
+                  ativa
+                    ? "bg-ink text-white"
+                    : "border border-slate-300 text-slate-500 hover:border-ink hover:text-ink"
+                }`}
+              >
+                {i + 1}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       {secoes.map((sec) => (
         <section
           key={sec.id}
-          className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6"
+          id={`sec-${sec.id}`}
+          className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6 scroll-mt-36"
         >
           <h2 className="text-sm font-bold text-ink">{sec.titulo}</h2>
           {sec.campos.map((campo) => (
