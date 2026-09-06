@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { mpConfigurado } from "@/lib/mercadopago";
 import SiteHeader from "@/components/SiteHeader";
+import MinimalFooter from "@/components/MinimalFooter";
 import CheckoutForm from "./CheckoutForm";
 
 export default async function CheckoutPage({
@@ -56,6 +57,7 @@ export default async function CheckoutPage({
           Nenhum produto disponível para compra no momento.
         </div>
       )}
+      <MinimalFooter />
     </div>
   );
 }

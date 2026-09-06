@@ -1,5 +1,6 @@
 import { requestMagicLink } from "./actions";
 import SiteHeader from "@/components/SiteHeader";
+import MinimalFooter from "@/components/MinimalFooter";
 
 const ERROR_MESSAGE: Record<string, string> = {
   email_invalido: "Digite um e-mail válido.",
@@ -59,6 +60,7 @@ export default async function EntrarPage(props: PageProps<"/entrar">) {
         </form>
       )}
       </div>
+      <MinimalFooter />
     </div>
   );
 }

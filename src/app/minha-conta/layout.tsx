@@ -1,6 +1,7 @@
 import { logout } from "@/app/actions";
 import { requireUser } from "@/lib/auth";
 import SiteHeader from "@/components/SiteHeader";
+import MinimalFooter from "@/components/MinimalFooter";
 
 export default async function MinhaContaLayout({
   children,
@@ -22,6 +23,7 @@ export default async function MinhaContaLayout({
         </div>
       </SiteHeader>
       <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-10">{children}</main>
+      <MinimalFooter />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { requireApplicationAccess } from "@/lib/applications";
 import { WizardNav } from "@/components/WizardNav";
 import { WIZARD_STEPS } from "@/lib/wizard";
 import SiteHeader from "@/components/SiteHeader";
+import MinimalFooter from "@/components/MinimalFooter";
 import { logout } from "@/app/actions";
 
 export default async function ApplicationLayout(
@@ -56,6 +57,7 @@ export default async function ApplicationLayout(
         </div>
       </div>
       </div>
+      <MinimalFooter />
     </div>
   );
 }
