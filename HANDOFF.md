@@ -33,8 +33,16 @@ americano de turismo (questionário → resultado com IA), **loja de produtos +
   reforçar" com "O que fazer" / "Fique atento"). Novo shape em
   `src/lib/anthropic.ts` (`AnalysisOutput` = score/resumo/favoravel/reforcar/atencao),
   guardado nas 3 colunas de `AnalysisResult` sem migração.
-- Rascunho da **Política de Privacidade** em `content/legal/politica-de-privacidade.md`
-  (ainda sem página que renderize; pendente revisão jurídica + LGPD é próximo tema).
+- **LGPD**: `content/legal/politica-de-privacidade.md` (controlador ASG CRUZ
+  AGENCIA DE VIAGENS E TURISMO LTDA), renderizada em `/politica-de-privacidade`
+  (`src/lib/legal.ts`), com link no rodapé de todas as telas (`SiteFooter` +
+  `MinimalFooter`). Ainda **pendente revisão jurídica**.
+- **Banner de cookies próprio** (`src/components/CookieBanner.tsx`,
+  `src/lib/consent.ts`, `POST /api/consent`, `model ConsentLog`). Categorias
+  necessários/estatística/marketing; registro sem PII no Postgres (18 meses).
+  Fica **dormente** até `NEXT_PUBLIC_META_PIXEL_ID` existir (`CONSENT_ACTIVE`).
+  Pra ligar o Pixel do Meta: criar componente que injeta o pixel só quando
+  `hasConsent("marketing")`, pôr o ID em `NEXT_PUBLIC_META_PIXEL_ID` no Vercel.
 
 ---
 
