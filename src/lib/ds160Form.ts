@@ -106,6 +106,14 @@ const MENOR_DE_IDADE = (d: Ds160Dados) => {
   return idade !== null && idade < 18;
 };
 
+// Estado civil: quem conta como "tem cônjuge" (inclui união estável, com ou
+// sem certidão) vs. "tem ex-parceiro" vs. "é viúvo".
+const EH_CONJUGE = (d: Ds160Dados) =>
+  d.estado_civil === "MARRIED" || d.estado_civil === "COMMON LAW MARRIAGE" || d.estado_civil === "COMMON LAW MARRIAGE (SEM CERTIDAO)";
+const EH_EX_PARCEIRO = (d: Ds160Dados) => d.estado_civil === "DIVORCED" || d.estado_civil === "LEGALLY SEPARATED";
+const EH_VIUVO = (d: Ds160Dados) => d.estado_civil === "WIDOWED";
+const TEM_HISTORICO_CONJUGAL = (d: Ds160Dados) => EH_CONJUGE(d) || EH_EX_PARCEIRO(d) || EH_VIUVO(d);
+
 export const DS160_SECTIONS: Ds160Section[] = [
   {
     id: "pessoais_1",
@@ -399,25 +407,25 @@ export const DS160_SECTIONS: Ds160Section[] = [
     id: "conjuge",
     titulo: "Informações do Cônjuge atual, Separado / Divorciado ou Viúvo",
     campos: [
-      { key: "conjuge_nome", label: "Nome Completo do Cônjuge", kind: "text", showIf: (d) => d.estado_civil === "MARRIED" },
+      { key: "conjuge_nome", label: "Nome Completo do Cônjuge", kind: "text", showIf: EH_CONJUGE },
       {
         key: "ex_parceiros_qtd", label: "Selecione quantos Ex Parceiros teve", kind: "select",
-        showIf: (d) => d.estado_civil === "DIVORCED" || d.estado_civil === "LEGALLY SEPARATED",
+        showIf: EH_EX_PARCEIRO,
         options: [{ value: "1", label: "1" }, { value: "2", label: "2" }],
       },
-      { key: "ex_parceiro_nome", label: "Nome Completo do Ex Parceiro(a)", kind: "text", showIf: (d) => d.estado_civil === "DIVORCED" || d.estado_civil === "LEGALLY SEPARATED" },
-      { key: "ex_parceiro2_nome", label: "Nome Completo do Ex Parceiro(a) 2", kind: "text", showIf: (d) => (d.estado_civil === "DIVORCED" || d.estado_civil === "LEGALLY SEPARATED") && d.ex_parceiros_qtd === "2" },
-      { key: "conjuge_falecido_nome", label: "Nome Completo do Cônjuge Falecido(a)", kind: "text", showIf: (d) => d.estado_civil === "WIDOWED" },
-      { key: "conjuge_data_nascimento", label: "Data Nascimento", kind: "date", showIf: (d) => d.estado_civil === "MARRIED" || d.estado_civil === "DIVORCED" || d.estado_civil === "LEGALLY SEPARATED" || d.estado_civil === "WIDOWED" },
-      { key: "conjuge_data_nascimento_2", label: "Data Nascimento 2", kind: "date", showIf: (d) => (d.estado_civil === "DIVORCED" || d.estado_civil === "LEGALLY SEPARATED") && d.ex_parceiros_qtd === "2" },
-      { key: "conjuge_nacionalidade", label: "Nacionalidade (País de Origem)", kind: "text", showIf: (d) => d.estado_civil === "MARRIED" || d.estado_civil === "DIVORCED" || d.estado_civil === "LEGALLY SEPARATED" || d.estado_civil === "WIDOWED" },
-      { key: "conjuge_nacionalidade_2", label: "Nacionalidade (País de Origem) 2", kind: "text", showIf: (d) => (d.estado_civil === "DIVORCED" || d.estado_civil === "LEGALLY SEPARATED") && d.ex_parceiros_qtd === "2" },
-      { key: "conjuge_cidade_nascimento", label: "Cidade de Nascimento do Cônjuge", kind: "text", showIf: (d) => d.estado_civil === "MARRIED" || d.estado_civil === "DIVORCED" || d.estado_civil === "LEGALLY SEPARATED" || d.estado_civil === "WIDOWED" },
-      { key: "conjuge_cidade_nascimento_2", label: "Cidade de Nascimento 2", kind: "text", showIf: (d) => (d.estado_civil === "DIVORCED" || d.estado_civil === "LEGALLY SEPARATED") && d.ex_parceiros_qtd === "2" },
-      { key: "data_casamento", label: "Data do Casamento", kind: "date", showIf: (d) => d.estado_civil === "DIVORCED" || d.estado_civil === "LEGALLY SEPARATED" },
-      { key: "data_divorcio", label: "Data do Divórcio", kind: "date", showIf: (d) => d.estado_civil === "DIVORCED" || d.estado_civil === "LEGALLY SEPARATED" },
-      { key: "data_casamento_2", label: "Data do Casamento 2", kind: "date", showIf: (d) => (d.estado_civil === "DIVORCED" || d.estado_civil === "LEGALLY SEPARATED") && d.ex_parceiros_qtd === "2" },
-      { key: "data_divorcio_2", label: "Data do Divórcio 2", kind: "date", showIf: (d) => (d.estado_civil === "DIVORCED" || d.estado_civil === "LEGALLY SEPARATED") && d.ex_parceiros_qtd === "2" },
+      { key: "ex_parceiro_nome", label: "Nome Completo do Ex Parceiro(a)", kind: "text", showIf: EH_EX_PARCEIRO },
+      { key: "ex_parceiro2_nome", label: "Nome Completo do Ex Parceiro(a) 2", kind: "text", showIf: (d) => EH_EX_PARCEIRO(d) && d.ex_parceiros_qtd === "2" },
+      { key: "conjuge_falecido_nome", label: "Nome Completo do Cônjuge Falecido(a)", kind: "text", showIf: EH_VIUVO },
+      { key: "conjuge_data_nascimento", label: "Data Nascimento", kind: "date", showIf: TEM_HISTORICO_CONJUGAL },
+      { key: "conjuge_data_nascimento_2", label: "Data Nascimento 2", kind: "date", showIf: (d) => EH_EX_PARCEIRO(d) && d.ex_parceiros_qtd === "2" },
+      { key: "conjuge_nacionalidade", label: "Nacionalidade (País de Origem)", kind: "text", showIf: TEM_HISTORICO_CONJUGAL },
+      { key: "conjuge_nacionalidade_2", label: "Nacionalidade (País de Origem) 2", kind: "text", showIf: (d) => EH_EX_PARCEIRO(d) && d.ex_parceiros_qtd === "2" },
+      { key: "conjuge_cidade_nascimento", label: "Cidade de Nascimento do Cônjuge", kind: "text", showIf: TEM_HISTORICO_CONJUGAL },
+      { key: "conjuge_cidade_nascimento_2", label: "Cidade de Nascimento 2", kind: "text", showIf: (d) => EH_EX_PARCEIRO(d) && d.ex_parceiros_qtd === "2" },
+      { key: "data_casamento", label: "Data do Casamento", kind: "date", showIf: EH_EX_PARCEIRO },
+      { key: "data_divorcio", label: "Data do Divórcio", kind: "date", showIf: EH_EX_PARCEIRO },
+      { key: "data_casamento_2", label: "Data do Casamento 2", kind: "date", showIf: (d) => EH_EX_PARCEIRO(d) && d.ex_parceiros_qtd === "2" },
+      { key: "data_divorcio_2", label: "Data do Divórcio 2", kind: "date", showIf: (d) => EH_EX_PARCEIRO(d) && d.ex_parceiros_qtd === "2" },
     ],
   },
   {
