@@ -134,10 +134,6 @@ export default function MapaDS160Page() {
           </h1>
           <p className="max-w-xl text-lg text-slate-600">{p.subtitle}</p>
 
-          <div className="flex aspect-[4/3] w-full max-w-sm items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
-            [ prévia do {p.title} ]
-          </div>
-
           <ul className="grid gap-2 text-left sm:grid-cols-2">
             {p.bullets.map((bullet) => (
               <li key={bullet} className="flex items-start gap-2 text-sm text-slate-700">
@@ -235,9 +231,6 @@ export default function MapaDS160Page() {
           <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
             Tudo o que você vai receber:
           </h2>
-          <div className="mt-8 flex aspect-video w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-400">
-            [ prévia do plano completo ]
-          </div>
           <ul className="mt-8 grid gap-2 sm:grid-cols-2">
             {p.bullets.map((bullet) => (
               <li key={bullet} className="flex items-start gap-2 text-sm text-slate-700">
@@ -258,9 +251,6 @@ export default function MapaDS160Page() {
           <span className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600">
             BÔNUS EXCLUSIVO
           </span>
-          <div className="mt-6 flex aspect-video w-full items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-sm text-slate-400">
-            [ capa do bônus ]
-          </div>
           <h3 className="mt-6 text-xl font-bold text-ink">{p.bonusTitle}</h3>
           <p className="mt-2 text-sm text-slate-600">{p.bonusDescription}</p>
           <p className="mt-3 text-sm font-semibold">
@@ -279,9 +269,6 @@ export default function MapaDS160Page() {
               <span className="rounded-full border border-ink/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink">ÚLTIMA CHANCE</span>
             </div>
             <h3 className="mt-4 text-xl font-bold text-ink">Mapa Completo</h3>
-            <div className="mt-4 flex aspect-square w-full items-center justify-center rounded-xl border border-dashed border-slate-300 bg-slate-50 text-xs text-slate-400">
-              [ prévia do produto ]
-            </div>
             <ul className="mt-6 flex flex-col gap-2 text-left text-sm text-slate-700">
               {[p.title, "Guia organizado passo a passo", "Conteúdo visual e de fácil consulta", `Bônus: ${p.bonusTitle}`].map((line) => (
                 <li key={line} className="flex items-start gap-2">
