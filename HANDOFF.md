@@ -37,12 +37,14 @@ americano de turismo (questionário → resultado com IA), **loja de produtos +
   AGENCIA DE VIAGENS E TURISMO LTDA), renderizada em `/politica-de-privacidade`
   (`src/lib/legal.ts`), com link no rodapé de todas as telas (`SiteFooter` +
   `MinimalFooter`). Ainda **pendente revisão jurídica**.
-- **Banner de cookies próprio** (`src/components/CookieBanner.tsx`,
-  `src/lib/consent.ts`, `POST /api/consent`, `model ConsentLog`). Categorias
-  necessários/estatística/marketing; registro sem PII no Postgres (18 meses).
-  Fica **dormente** até `NEXT_PUBLIC_META_PIXEL_ID` existir (`CONSENT_ACTIVE`).
-  Pra ligar o Pixel do Meta: criar componente que injeta o pixel só quando
-  `hasConsent("marketing")`, pôr o ID em `NEXT_PUBLIC_META_PIXEL_ID` no Vercel.
+- **Banner de cookies próprio + Meta Pixel** (`src/components/CookieBanner.tsx`,
+  `src/components/MetaPixel.tsx`, `src/lib/consent.ts`, `POST /api/consent`,
+  `model ConsentLog`). Categorias necessários/estatística/marketing; registro
+  sem PII no Postgres (guardar 18 meses — falta job de expurgo). O Meta Pixel
+  (`NEXT_PUBLIC_META_PIXEL_ID` = 2040382606596802, já no Vercel) só carrega
+  quando `hasConsent("marketing")`. Testado em produção. Só dispara PageView
+  por enquanto — eventos de funil (Lead/CompleteRegistration/Purchase) e a
+  Conversions API ficam pra depois.
 
 ---
 
