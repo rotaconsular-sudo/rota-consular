@@ -1,26 +1,39 @@
 import type { MetadataRoute } from "next";
-import { getAllPosts } from "@/lib/blog";
+import { getAllPosts, getAllTags } from "@/lib/blog";
 import { SITE_URL } from "@/lib/url";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const now = new Date();
+
   const paginas: MetadataRoute.Sitemap = [
-    { url: "", priority: 1 },
-    { url: "/analise-de-perfil", priority: 0.9 },
-    { url: "/mapads160", priority: 0.8 },
-    { url: "/assessoria-completa", priority: 0.7 },
-    { url: "/blog", priority: 0.6 },
-    { url: "/politica-de-privacidade", priority: 0.2 },
+    { url: "", priority: 1, changeFrequency: "weekly" as const },
+    { url: "/analise-de-perfil", priority: 0.9, changeFrequency: "monthly" as const },
+    { url: "/mapads160", priority: 0.8, changeFrequency: "monthly" as const },
+    { url: "/ds160", priority: 0.8, changeFrequency: "monthly" as const },
+    { url: "/ds160-preenchido", priority: 0.7, changeFrequency: "monthly" as const },
+    { url: "/assessoria-completa", priority: 0.7, changeFrequency: "monthly" as const },
+    { url: "/blog", priority: 0.6, changeFrequency: "daily" as const },
+    { url: "/politica-de-privacidade", priority: 0.2, changeFrequency: "yearly" as const },
   ].map((p) => ({
     url: `${SITE_URL}${p.url}`,
-    lastModified: new Date(),
+    lastModified: now,
+    changeFrequency: p.changeFrequency,
     priority: p.priority,
   }));
 
   const posts: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
     url: `${SITE_URL}/blog/${post.slug}`,
-    lastModified: new Date(`${post.publishedAt}T00:00:00`),
-    priority: 0.5,
+    lastModified: new Date(`${post.updatedAt}T00:00:00`),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
   }));
 
-  return [...paginas, ...posts];
+  const tags: MetadataRoute.Sitemap = getAllTags().map((tag) => ({
+    url: `${SITE_URL}/blog/tag/${tag}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.3,
+  }));
+
+  return [...paginas, ...posts, ...tags];
 }

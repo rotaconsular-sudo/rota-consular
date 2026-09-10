@@ -79,6 +79,26 @@ ligação** com `flow-vistoamericano`/`automacao_vistos`.
 - `src/lib/blog.ts`: `BlogPostMeta.readingMinutes` (≈200 wpm) + `getRelatedPosts`.
 - Verificado em `localhost:3001` (index, artigo, tag, busca) — tsc + eslint limpos.
 
+### Mudanças de 10/09/2026 (2) — SEO do blog + 4 artigos novos
+- **Frontmatter novo** (opcional): `metaTitle`, `metaDescription`, `updatedAt`,
+  `faq: [{q, a}]`. `src/lib/blog.ts` lê e tipa (`BlogFaq`). `updatedAt` cai pra
+  `publishedAt`; posts antigos seguem funcionando sem mudança.
+- **`/blog/[slug]`**: JSON-LD (`Article` + `BreadcrumbList` + `FAQPage` quando há
+  `faq`), `alternates.canonical`, `openGraph type:"article"` com
+  `publishedTime`/`modifiedTime`. Seção visível **"Perguntas frequentes"** (o
+  texto do schema tem que existir na página — bate 1:1 com o `faq`). Header
+  mostra "atualizado em" quando `updatedAt != publishedAt`.
+- **`src/app/sitemap.ts`**: agora inclui as páginas de tag e `/ds160`,
+  `/ds160-preenchido`; `lastModified` dos posts usa `updatedAt`;
+  `changeFrequency` em tudo. (`robots.ts` já existia, sem mudança.)
+- **4 artigos** em `content/blog/` (todos com `faq` e links internos):
+  `visto-americano-turismo-b1-b2-guia` (pilar), `quanto-custa-visto-americano`,
+  `como-agendar-entrevista-visto-americano`, `visto-americano-negado-o-que-fazer`.
+  Fatos sensíveis (taxa MRV US$185, Visa Integrity Fee, portal de agendamento)
+  estão **hedgeados** com "confirme no site oficial" — revisar antes de campanha.
+- **Pendente de SEO**: `og:image` por artigo (hoje sem imagem); revisar os fatos
+  datados dos 4 posts; mais artigos da lista (taxa/prazo/CEAC, 30 perguntas).
+
 ---
 
 ## Onde paramos (sessão 05/09/2026)

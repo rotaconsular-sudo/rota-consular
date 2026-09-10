@@ -3,17 +3,26 @@ import path from "path";
 import matter from "gray-matter";
 import { marked } from "marked";
 
+export type BlogFaq = { q: string; a: string };
+
 export type BlogPostMeta = {
   slug: string;
   title: string;
+  /** Título de SEO (<title>/og:title). Cai pra `title` se ausente. */
+  metaTitle?: string;
   excerpt: string;
+  /** Meta description. Cai pra `excerpt` se ausente. */
+  metaDescription?: string;
   tags: string[];
   publishedAt: string;
+  /** Data da última revisão do conteúdo. Cai pra `publishedAt` se ausente. */
+  updatedAt: string;
   readingMinutes: number;
 };
 
 export type BlogPost = BlogPostMeta & {
   contentHtml: string;
+  faq: BlogFaq[];
 };
 
 const POSTS_DIR = path.join(process.cwd(), "content", "blog");
@@ -27,11 +36,20 @@ function readPostFile(fileName: string): BlogPost {
   return {
     slug,
     title: data.title,
+    metaTitle: data.metaTitle ?? undefined,
     excerpt: data.excerpt,
+    metaDescription: data.metaDescription ?? undefined,
     tags: data.tags ?? [],
     publishedAt: data.publishedAt,
+    updatedAt: data.updatedAt ?? data.publishedAt,
     readingMinutes: Math.max(1, Math.round(words / 200)),
     contentHtml: marked.parse(content, { async: false }),
+    faq: Array.isArray(data.faq)
+      ? data.faq.filter((f: unknown): f is BlogFaq => {
+          const item = f as Record<string, unknown>;
+          return typeof item?.q === "string" && typeof item?.a === "string";
+        })
+      : [],
   };
 }
 

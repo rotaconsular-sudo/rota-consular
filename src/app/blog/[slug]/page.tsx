@@ -8,6 +8,7 @@ import {
   formatPostDate,
 } from "@/lib/blog";
 import { PostCard } from "@/components/blog/PostCard";
+import { SITE_URL } from "@/lib/url";
 
 export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
@@ -20,9 +21,23 @@ export async function generateMetadata(
   const post = getPostBySlug(slug);
   if (!post) return {};
 
+  const title = post.metaTitle ?? post.title;
+  const description = post.metaDescription ?? post.excerpt;
+  const url = `/blog/${post.slug}`;
+
   return {
-    title: `${post.title} | Blog Rota Consular`,
-    description: post.excerpt,
+    title: `${title} | Blog Rota Consular`,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      title,
+      description,
+      url,
+      publishedTime: post.publishedAt,
+      modifiedTime: post.updatedAt,
+      authors: ["Rota Consular"],
+    },
   };
 }
 
@@ -33,9 +48,64 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
 
   const related = getRelatedPosts(slug, 2);
   const primaryTag = post.tags[0];
+  const wasUpdated = post.updatedAt !== post.publishedAt;
+  const canonical = `${SITE_URL}/blog/${post.slug}`;
+
+  const jsonLd: Record<string, unknown>[] = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: post.title,
+      description: post.excerpt,
+      datePublished: post.publishedAt,
+      dateModified: post.updatedAt,
+      inLanguage: "pt-BR",
+      author: { "@type": "Organization", name: "Rota Consular", url: SITE_URL },
+      publisher: {
+        "@type": "Organization",
+        name: "Rota Consular",
+        logo: {
+          "@type": "ImageObject",
+          url: `${SITE_URL}/logo-rota-consular.png`,
+        },
+      },
+      mainEntityOfPage: canonical,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Início", item: SITE_URL },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Blog",
+          item: `${SITE_URL}/blog`,
+        },
+        { "@type": "ListItem", position: 3, name: post.title, item: canonical },
+      ],
+    },
+  ];
+
+  if (post.faq.length > 0) {
+    jsonLd.push({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: post.faq.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    });
+  }
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* Cabeçalho do artigo */}
       <header className="border-b border-slate-200 bg-white">
         <div className="mx-auto max-w-3xl px-6 pt-8 pb-12">
@@ -72,6 +142,12 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
             </time>
             <span aria-hidden>·</span>
             <span>{post.readingMinutes} min de leitura</span>
+            {wasUpdated && (
+              <>
+                <span aria-hidden>·</span>
+                <span>atualizado em {formatPostDate(post.updatedAt)}</span>
+              </>
+            )}
             {post.tags.length > 0 && (
               <>
                 <span aria-hidden>·</span>
@@ -94,9 +170,27 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
 
       <article className="mx-auto max-w-2xl px-6 py-12">
         <div
-          className="prose prose-slate max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-ink prose-h2:mt-10 prose-h2:mb-3 prose-h2:text-xl sm:prose-h2:text-2xl prose-p:leading-relaxed prose-p:text-slate-700 prose-a:font-medium prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-strong:font-semibold prose-strong:text-ink prose-li:text-slate-700 prose-li:marker:text-slate-400 prose-blockquote:border-l-2 prose-blockquote:border-accent prose-blockquote:not-italic prose-blockquote:text-slate-600"
+          className="prose prose-slate max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-ink prose-h2:mt-10 prose-h2:mb-3 prose-h2:text-xl sm:prose-h2:text-2xl prose-h3:text-base prose-h3:mt-6 prose-p:leading-relaxed prose-p:text-slate-700 prose-a:font-medium prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-strong:font-semibold prose-strong:text-ink prose-li:text-slate-700 prose-li:marker:text-slate-400 prose-blockquote:border-l-2 prose-blockquote:border-accent prose-blockquote:not-italic prose-blockquote:text-slate-600 prose-table:text-sm"
           dangerouslySetInnerHTML={{ __html: post.contentHtml }}
         />
+
+        {post.faq.length > 0 && (
+          <section className="mt-14 border-t border-slate-200 pt-10">
+            <h2 className="text-xl font-bold tracking-tight text-ink">
+              Perguntas frequentes
+            </h2>
+            <dl className="mt-6 divide-y divide-slate-200">
+              {post.faq.map((f) => (
+                <div key={f.q} className="py-4">
+                  <dt className="font-semibold text-ink">{f.q}</dt>
+                  <dd className="mt-2 text-sm leading-relaxed text-slate-700">
+                    {f.a}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        )}
 
         {/* CTA — mesma âncora navy do resto do site */}
         <aside className="mt-14 rounded-2xl bg-ink p-8 text-center">
