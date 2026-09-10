@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import { whatsappLink } from "@/lib/contato";
 
 export const metadata: Metadata = {
   title: "Assessoria Completa | Rota Consular",
@@ -8,9 +9,9 @@ export const metadata: Metadata = {
     "Uma especialista cuida do seu visto americano do início ao fim: formulário, documentação e preparação para a entrevista consular.",
 };
 
-// TODO: trocar pelo número real conectado ao Chatwoot antes de publicar.
-const WHATSAPP_LINK =
-  "https://wa.me/5500000000000?text=Ol%C3%A1%2C%20quero%20falar%20com%20uma%20especialista%20sobre%20a%20Assessoria%20Completa";
+const WHATSAPP_LINK = whatsappLink(
+  "Olá, quero falar com uma especialista sobre a Assessoria Completa",
+);
 
 const BENEFITS = [
   {
