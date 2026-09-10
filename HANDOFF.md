@@ -113,6 +113,18 @@ ligação** com `flow-vistoamericano`/`automacao_vistos`.
   `renovacao` sozinho. Verificado em `localhost:3001` (rotas 200, JSON-LD +
   FAQ ok, links internos 200).
 
+### Mudanças de 10/09/2026 (4) — +3 artigos + pilar de documentos
+- `content/blog/documentos-visto-turismo-eua.md` **reescrito como pilar**
+  (mesmo slug/publishedAt; `updatedAt` novo): lista base + **checklist por
+  perfil** (CLT, autônomo, aposentado, estudante, menor, empresário) + `faq`.
+- 3 novos: `carta-do-empregador-visto-americano` (com modelo),
+  `visto-americano-para-menores-criancas`,
+  `visto-americano-para-aposentados`.
+- Blog com **17 posts**. Todos os novos com `faq` e links internos cruzados.
+  Hedge nos pontos que mudam (idade de dispensa de entrevista/CASV do menor).
+- Verificado em `localhost:3001`: rotas 200, JSON-LD Article+Breadcrumb+FAQ,
+  "atualizado em" no header do pilar, todos os links internos 200.
+
 ---
 
 ## Onde paramos (sessão 05/09/2026)
