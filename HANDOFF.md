@@ -154,6 +154,20 @@ ligação** com `flow-vistoamericano`/`automacao_vistos`.
 - Blog agora com **23 posts**. Verificado: 6 rotas 200, tag/passaporte 200,
   sitemap 42 URLs, JSON-LD + box + byline OK, tsc limpo.
 
+### Mudanças de 10/09/2026 (7) — Tier 2: 4 artigos evergreen avulsos
+- `foto-para-o-visto-americano` (5x5, fundo branco, sem óculos, formato digital),
+  `custeador-do-visto-americano` (quem paga a viagem, campos do DS-160),
+  `imposto-de-renda-no-visto-americano` (por que pesa, obrigado x isento),
+  `i-94-tempo-de-permanencia-eua` (validade x permanência, overstay, CBP).
+- Backlinks adicionados: guia B1/B2 → I-94; pilar de documentos → IR, foto,
+  custeador, prazo/validade do passaporte.
+- Blog com **27 posts**, sitemap 46 URLs. Verificado: rotas 200, JSON-LD +
+  box + byline + links internos OK, tsc limpo.
+- **Tier 2 evergreen concluído.** Resta o **stream de notícias/atualidades**
+  (caução US$20k, taxa prioritária US$750, novas perguntas na entrevista,
+  endurecimento da isenção) — precisa de decisão de cadência editorial + risco
+  de fato datado, não foi iniciado.
+
 ---
 
 ## Onde paramos (sessão 05/09/2026)

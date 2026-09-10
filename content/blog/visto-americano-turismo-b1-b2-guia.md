@@ -77,7 +77,8 @@ São duas coisas diferentes, e confundir isso causa muito problema:
 
 Ou seja: ter um visto de 10 anos não autoriza morar nos EUA. Cada entrada é
 uma estadia temporária, e ficar além do prazo do I-94 (*overstay*) pode
-cancelar o visto e gerar barreiras para vistos futuros.
+cancelar o visto e gerar barreiras para vistos futuros. Entenda em
+[I-94 e o tempo de permanência](/blog/i-94-tempo-de-permanencia-eua).
 
 ## Passo a passo da solicitação
 

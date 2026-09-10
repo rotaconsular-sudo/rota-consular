@@ -34,10 +34,12 @@ depois o **checklist por perfil**.
 ## Lista base (serve para todo mundo)
 
 ### Identificação e viagem
-- Passaporte válido, com folhas em branco
+- [Passaporte válido](/blog/prazo-e-validade-do-passaporte), com folhas em branco
 - Folha de confirmação do DS-160 (com o código de barras)
 - Confirmação do agendamento da entrevista
 - Passaportes antigos, principalmente com vistos e carimbos de viagens
+- [Foto no padrão do visto](/blog/foto-para-o-visto-americano) (5x5 cm), caso o
+  envio digital tenha falhado
 
 ### Vínculo com o Brasil
 É o ponto mais avaliado: o que mostra que você tem motivos para voltar. Veja
@@ -49,8 +51,10 @@ em detalhe [os vínculos que mais pesam](/blog/vinculos-para-o-visto-americano).
 
 ### Situação financeira
 - Extratos bancários dos últimos 3 meses
-- Declaração de Imposto de Renda completa
+- [Declaração de Imposto de Renda](/blog/imposto-de-renda-no-visto-americano) completa
 - Comprovante de renda compatível com a viagem
+- Se outra pessoa paga a viagem: documentos do
+  [custeador](/blog/custeador-do-visto-americano)
 
 ### Informações da viagem
 - Itinerário previsto (mesmo sem estar fechado)
