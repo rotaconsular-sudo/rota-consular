@@ -5,7 +5,91 @@
 > "Loja de produtos + área de membros"). Depois pergunte ao operador em qual
 > ponto quer continuar.
 
-Última atualização: **2026-09-06**.
+Última atualização: **2026-09-10** (fim do dia — sessão longa de reskin + funil).
+
+---
+
+## ESTADO AO ENCERRAR 10/09/2026 (ler primeiro)
+
+Tudo commitado e no `main` (`git status` limpo). Último commit: `c8710d1`.
+O detalhamento de cada mudança está nas seções "Mudanças de 10/09/2026 (N)"
+mais abaixo. Resumo do que foi feito hoje:
+
+1. **Blog** — 6 → 29 posts + SEO (JSON-LD, sitemap, byline "Rota Consular",
+   caixa "Resposta rápida", cluster de passaporte, explicadores de
+   atualidades). Fatos datados **revisados via WebSearch** (Visa Integrity
+   Fee em vigor desde 01/10/2025; isenção de entrevista = 12 meses e sem
+   dispensa por idade; visa bond permanente US$10-20k, Brasil fora).
+2. **Reskin do site inteiro** — direção visual nova (mockup Artifact
+   `claude.ai/code/artifact/689b6184-...`, versão CLARA). Ver a memória
+   `rota-consular-direcao-visual` e a seção (12)/(13). Paleta: fundo
+   `#f3f5fb`, texto navy `#0a1b3d`, **vermelho `#c8102e` só em botão/acento**.
+   Tipografia: Libre Franklin + IBM Plex Mono + Source Serif 4. `.stripes`
+   (listra vermelha) e estrelas como estrutura. Capa mantém a bandeira
+   (`WavingFlag`) e a frase "Preparação inteligente para o seu visto
+   americano". `src/components/marketing.tsx` = `Kicker`/`Star`/`StarList`.
+3. **Funil** — home ganhou a **escada de 4 produtos** ("Por onde entrar");
+   `/analise-de-perfil`, `/assessoria-completa`, `/ds160-preenchido` no
+   sistema do mockup; `/mapads160` parcial; wizard (Quiz) alinhado ao tema;
+   páginas do comprador (checkout/obrigado/entrar/minha-conta) revisadas.
+4. **Meta Pixel + CAPI** — eventos de conversão adicionados (`FbTrack`) e
+   **Conversions API server-side** (`src/lib/metaCapi.ts`): `Purchase` no
+   webhook do Mercado Pago, `Lead` em `performAnalysis`, com dedupe por
+   `event_id`. Ver seções (14) e (15).
+
+### CAPI — estado do teste (10/09, fim do dia)
+- Operador **gerou o token** (Events Manager → API de Conversões → sem
+  Dataset Quality API) e colocou `META_CAPI_ACCESS_TOKEN` no `.env.local`
+  **e no Vercel** (confirmar se o Redeploy do Vercel foi feito).
+- Teste via script isolado (`scratchpad/capi_test.mjs`, fora do repo):
+  `POST graph.facebook.com/v21.0/2040382606596802/events` retornou
+  **`HTTP 200 {"events_received":1,"messages":[]}`** com `test_event_code`
+  `TEST56018` — ou seja, **o token e o payload funcionam**. O operador
+  **não conseguiu ver** o evento na aba "Eventos de teste" do Meta (o feed
+  ali é ao vivo e só mostra evento com a página aberta no momento do envio;
+  o `events_received:1` já é a confirmação do servidor da Meta).
+- **Próximo passo**: confirmar na "Visão geral" do pixel se os eventos
+  server (`Lead`/`Purchase`) aparecem depois de tráfego real; ou reabrir
+  "Eventos de teste", rolar até o feed e rodar `capi_test.mjs` de novo.
+- **Não há `META_CAPI_TEST_CODE` no `.env.local`** (foi usado só inline no
+  script). Se o operador tiver posto no Vercel, **remover** — senão os
+  eventos de prod ficam só no modo teste.
+
+### Pendências que dependem SÓ do operador (pra o funil funcionar)
+- [ ] `MERCADOPAGO_ACCESS_TOKEN` da **conta nova de recebimento** → Vercel
+      (Production) + `.env.local`; cadastrar o webhook
+      `https://rotaconsular.com.br/api/mercadopago/loja/webhook` (evento
+      *payments*). Enquanto não trocar, paga na conta "National Tur".
+- [ ] `RESEND_API_KEY` → Vercel + `.env.local` (sem ela, e-mails só no
+      console; magic link e "acesso liberado" não saem).
+- [ ] Número real do WhatsApp em `src/lib/contato.ts` (`WHATSAPP_NUMERO`).
+- [ ] `META_CAPI_ACCESS_TOKEN` no Vercel + **Redeploy** (confirmar).
+- [ ] Restrição de categoria do pixel "Rota Consular" no Events Manager —
+      tem aviso de "categorias com restrições"; usar "Gerenciar categorias"
+      e pedir análise se estiver errado (demora dias).
+- [ ] Confirmar que o pixel `2040382606596802` é o da conta de anúncios que
+      vai rodar campanha (BM "BM03 - Va Consular"). O 2º pixel do BM,
+      "Pixel VistoAmericano.INFO" (`1540481650733278`), **não** é usado.
+
+### Pendências de design/código (pra próxima sessão)
+- `/mapads160` — só o hero e os títulos estão no sistema do mockup; faltam
+  kicker/listras nas demais seções.
+- `admin/*` — herdou os tokens (ficou claro) mas sem revisão fina de
+  contraste.
+- Código morto do wizard (`(chrome)/dados-pessoais`, `historico-viagens`,
+  `motivo-viagem`, `situacao-profissional`) — **tarefa aberta** (spawn_task
+  `task_a1f9ffe0`); `WIZARD_STEPS` só tem `perfil` + `revisao`.
+- CAPI só cobre `Lead` e `Purchase` server-side; `InitiateCheckout` e
+  `ViewContent` seguem browser-only.
+- `og:image` por artigo do blog (hoje sem imagem no preview de link).
+- Decisão do operador: **não** travar o resultado da análise atrás de
+  e-mail/WhatsApp por enquanto (manter fricção baixa). O encanamento
+  (`sendAnalysisResult` + `/acessar?token=`) já existe pra ativar depois.
+
+### Dev server local
+Rodava na porta **3001** (config `.claude/launch.json` = `rota-consular`);
+foi encerrado ao fim da sessão. `WIZARD_STEPS`/quiz reais em
+`/solicitacoes/[id]/perfil`.
 
 ---
 
