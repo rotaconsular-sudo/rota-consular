@@ -3,6 +3,7 @@ import Link from "next/link";
 import { startFreeApplication } from "@/app/actions";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import { Kicker, StarList } from "@/components/marketing";
 
 export const metadata: Metadata = {
   title: "Análise Grátis de Perfil | Rota Consular",
@@ -107,75 +108,95 @@ function AnaliseForm() {
   );
 }
 
+const HERO_BULLETS = [
+  "Resultado na hora, em linguagem simples",
+  "Aponta o que pesa no 214(b): vínculos, roteiro, coerência",
+  "Sem custo e sem cartão de crédito",
+];
+
 export default function AnaliseDePerfilPage() {
   return (
-    <div className="flex flex-1 flex-col bg-slate-50 text-ink">
+    <div className="flex flex-1 flex-col bg-background text-ink">
       <SiteHeader />
 
       {/* Dobra principal: promessa + card de captura */}
       <section id="captura" className="scroll-mt-6 bg-white">
-        <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 px-6 py-20 sm:py-28 text-center">
-          <h1 className="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-            O seu perfil passa no teste do Consulado Americano?
-          </h1>
-          <p className="max-w-xl text-lg text-slate-600">
-            Descubra se você está no caminho certo ou se o seu perfil esconde
-            falhas que podem causar uma reprovação automática.
-          </p>
-          <div className="w-full text-left">
-            <AnaliseForm />
+        <div className="mx-auto grid max-w-5xl items-center gap-12 px-6 py-16 sm:py-24 lg:grid-cols-[1.05fr_.95fr]">
+          <div>
+            <Kicker>Análise de perfil · grátis</Kicker>
+            <h1 className="mt-5 text-balance text-3xl font-extrabold leading-tight tracking-tight text-ink sm:text-[2.7rem]">
+              O seu perfil passa no teste do Consulado Americano?
+            </h1>
+            <p className="mt-4 text-lg leading-relaxed text-slate-600">
+              Descubra em 2 minutos se você está no caminho certo — ou se o
+              seu perfil esconde falhas que causam uma reprovação automática.
+            </p>
+            <div className="mt-6">
+              <StarList items={HERO_BULLETS} />
+            </div>
+          </div>
+          <AnaliseForm />
+        </div>
+      </section>
+
+      <hr className="stripes" />
+
+      {/* Como funciona — sequência */}
+      <section className="bg-slate-50">
+        <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
+          <div className="max-w-2xl">
+            <Kicker>Como funciona</Kicker>
+            <h2 className="mt-5 text-balance text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+              Três passos até o seu diagnóstico.
+            </h2>
+          </div>
+          <div className="mt-10 flex flex-col">
+            {HOW_IT_WORKS.map((step, i) => (
+              <div
+                key={step.title}
+                className="grid grid-cols-[52px_1fr] gap-5 border-t border-slate-200 py-6 first:border-t-0 sm:grid-cols-[68px_1fr]"
+              >
+                <span className="font-mono text-2xl font-medium leading-none text-brand">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="text-lg font-bold text-ink">{step.title}</h3>
+                  <p className="mt-2 max-w-xl text-slate-600">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Como funciona */}
-      <section className="bg-slate-50">
-        <div className="mx-auto max-w-4xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
-            Como funciona a nossa Análise?
-          </h2>
-          <ol className="mt-10 grid gap-6 sm:grid-cols-3">
-            {HOW_IT_WORKS.map((step, i) => {
-              const Icon = step.icon;
-              return (
-                <li
-                  key={step.title}
-                  className="flex flex-col items-center gap-3 rounded-2xl border border-slate-200 bg-white p-6 text-center"
-                >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-ink">
-                    <Icon />
-                  </div>
-                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-                    Passo {i + 1}
-                  </p>
-                  <p className="text-sm font-semibold text-ink">{step.title}</p>
-                  <p className="text-sm text-slate-600">{step.description}</p>
-                </li>
-              );
-            })}
-          </ol>
-        </div>
-      </section>
+      <hr className="stripes" />
 
-      {/* Benefícios */}
+      {/* O que você recebe */}
       <section className="bg-white">
         <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
-            Como o Rota Consular ajuda
-          </h2>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="max-w-2xl">
+            <Kicker>O que você recebe</Kicker>
+            <h2 className="mt-5 text-balance text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+              Um raio-X honesto — o que joga a favor e o que arrumar.
+            </h2>
+          </div>
+          <div className="mt-12 grid gap-5 sm:grid-cols-2">
             {DIFERENCIAIS.map((d) => {
               const Icon = d.icon;
               return (
                 <div
                   key={d.title}
-                  className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-6"
+                  className="rounded-xl border border-slate-200 bg-white p-6"
                 >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-ink">
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-brand">
                     <Icon />
                   </div>
-                  <p className="text-sm font-semibold text-ink">{d.title}</p>
-                  <p className="text-sm text-slate-600">{d.description}</p>
+                  <p className="font-bold text-ink">{d.title}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                    {d.description}
+                  </p>
                 </div>
               );
             })}
@@ -183,30 +204,23 @@ export default function AnaliseDePerfilPage() {
         </div>
       </section>
 
-      {/* Autoridade */}
-      <section className="bg-slate-50">
-        <div className="mx-auto max-w-2xl px-6 py-20 sm:py-28 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
-            Não jogue a taxa do seu visto (US$&nbsp;185) no lixo por erros
-            amadores.
-          </h2>
-          <p className="mt-4 text-sm text-slate-600">
-            A maioria das reprovações acontece por informações conflitantes e
-            falta de preparo, não por falta de dinheiro. O Rota Consular foi
-            desenhado para blindar o seu processo, entregando a clareza que
-            os despachantes tradicionais não querem que você tenha.
-          </p>
-        </div>
-      </section>
+      <hr className="stripes" />
 
-      {/* Rodapé de resgate */}
-      <section className="bg-white">
-        <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 px-6 py-20 sm:py-28 text-center">
+      {/* CTA final */}
+      <section className="bg-slate-50">
+        <div className="mx-auto max-w-2xl px-6 py-20 text-center sm:py-24">
+          <h2 className="text-balance text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+            Não jogue a taxa do visto (US$&nbsp;185) no lixo por erro amador.
+          </h2>
+          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-slate-600">
+            A maioria das reprovações vem de informação conflitante e falta de
+            preparo, não de falta de dinheiro. Comece pelo Raio-X.
+          </p>
           <Link
             href="#captura"
-            className="rounded-full bg-brand px-9 py-4 text-base font-bold text-star transition hover:bg-brand-strong"
+            className="mt-7 inline-block rounded-full bg-brand px-9 py-4 text-sm font-bold text-star transition hover:bg-brand-strong"
           >
-            Quero Fazer Minha Análise Grátis
+            Fazer minha análise grátis →
           </Link>
         </div>
       </section>

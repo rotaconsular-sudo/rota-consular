@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { whatsappLink } from "@/lib/contato";
+import { Kicker, Star } from "@/components/marketing";
 
 export const metadata: Metadata = {
   title: "Assessoria Completa | Rota Consular",
@@ -85,20 +86,6 @@ const FAQ_ITEMS = [
   },
 ];
 
-function IconCheck() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" className="mt-0.5 h-4 w-4 shrink-0 text-accent">
-      <path
-        d="M5 12.5 9.5 17 19 7"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 function WhatsAppButton({ children }: { children: React.ReactNode }) {
   return (
     <a
@@ -114,91 +101,78 @@ function WhatsAppButton({ children }: { children: React.ReactNode }) {
 
 export default function AssessoriaCompletaPage() {
   return (
-    <div className="flex flex-1 flex-col bg-slate-50 text-ink">
+    <div className="flex flex-1 flex-col bg-background text-ink">
       <SiteHeader />
 
       {/* Hero */}
       <section className="bg-white">
-        <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 px-6 py-20 sm:py-28 text-center sm:py-20">
-          <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-semibold tracking-wide text-ink">
-            PARE DE ARRISCAR O SEU SONHO
-          </span>
-          <h1 className="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-            Aprovamos o seu visto americano cuidando de cada detalhe, do
-            preenchimento do formulário até a sua chegada em Orlando.
+        <div className="mx-auto max-w-3xl px-6 py-16 sm:py-24">
+          <Kicker>Assessoria completa</Kicker>
+          <h1 className="mt-5 text-balance text-3xl font-extrabold leading-tight tracking-tight text-ink sm:text-[2.7rem]">
+            Uma especialista cuida do seu visto americano do começo ao fim.
           </h1>
-          <p className="max-w-xl text-lg text-slate-600">
-            Não conte com a sorte. Tenha uma especialista segurando a sua mão
-            no WhatsApp, preparando sua documentação e treinando você para a
-            entrevista consular. Nós assumimos a burocracia para você viajar
-            em paz.
+          <p className="mt-4 max-w-xl text-lg leading-relaxed text-slate-600">
+            Do preenchimento do DS-160 à preparação para a entrevista, com uma
+            consultora sênior segurando a sua mão no WhatsApp. Você assume a
+            viagem; a gente assume a burocracia.
           </p>
-          <WhatsAppButton>Quero Falar com uma Especialista Agora</WhatsAppButton>
-        </div>
-      </section>
-
-      {/* Agitação da dor */}
-      <section className="bg-slate-50">
-        <div className="mx-auto max-w-2xl px-6 py-20 sm:py-28 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
-            O Consulado não perdoa erros amadores.
-          </h2>
-          <p className="mt-4 text-sm text-slate-600">
-            Todos os dias, centenas de brasileiros têm o visto negado e
-            perdem a cara taxa consular de US$&nbsp;185. O motivo? Não é falta de
-            dinheiro. É falta de instrução. Formulários com informações
-            conflitantes, nervosismo na frente do cônsul e falta de
-            documentos corretos destroem viagens planejadas por anos. Você
-            não precisa passar por esse estresse.
-          </p>
-        </div>
-      </section>
-
-      {/* Solução */}
-      <section className="bg-white">
-        <div className="mx-auto max-w-4xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
-            Conheça a Assessoria Completa Rota Consular
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-sm text-slate-600">
-            Muito mais que um simples &quot;despachante&quot;, nós somos o
-            seu escudo contra a burocracia. Nossa equipe assume o controle
-            técnico do seu processo e blinda o seu perfil para o momento da
-            entrevista.
-          </p>
-          <div className="mt-10 grid gap-6 sm:grid-cols-3">
-            {BENEFITS.map((b, i) => (
-              <div
-                key={b.title}
-                className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-6 text-center"
-              >
-                <span className="font-mono text-xs font-medium tracking-[0.2em] text-slate-400">
-                  {String(i + 1).padStart(2, "0")}
+          <div className="mt-6 flex flex-col gap-2.5">
+            {BENEFITS.map((b) => (
+              <div key={b.title} className="flex items-start gap-2.5 text-slate-700">
+                <Star className="mt-1.5" />
+                <span>
+                  <span className="font-semibold text-ink">{b.title}.</span>{" "}
+                  {b.description}
                 </span>
-                <p className="text-sm font-semibold text-ink">{b.title}</p>
-                <p className="text-sm text-slate-600">{b.description}</p>
               </div>
             ))}
+          </div>
+          <div className="mt-8">
+            <WhatsAppButton>Falar com uma especialista</WhatsAppButton>
           </div>
         </div>
       </section>
 
-      {/* Empilhamento de valor */}
+      <hr className="stripes" />
+
+      {/* Agitação da dor */}
       <section className="bg-slate-50">
-        <div className="mx-auto max-w-2xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
-            O que você garante ao entrar para a nossa Assessoria:
+        <div className="mx-auto max-w-3xl px-6 py-20 sm:py-28">
+          <Kicker>Por que preparar</Kicker>
+          <h2 className="mt-5 text-balance text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+            O consulado não perdoa erro amador.
           </h2>
-          <ul className="mt-8 flex flex-col gap-3">
+          <p className="mt-4 max-w-2xl leading-relaxed text-slate-600">
+            Todos os dias, brasileiros têm o visto negado e perdem as taxas
+            (MRV + Visa Integrity Fee, cerca de US$&nbsp;435). Quase nunca é
+            falta de dinheiro — é DS-160 com informação conflitante, roteiro
+            incoerente e nervosismo na entrevista. Isso se resolve com
+            preparação, não com sorte.
+          </p>
+        </div>
+      </section>
+
+      <hr className="stripes" />
+
+      {/* O que entra */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-3xl px-6 py-20 sm:py-28">
+          <Kicker>O que entra</Kicker>
+          <h2 className="mt-5 text-balance text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+            Tudo que você garante ao entrar.
+          </h2>
+          <ul className="mt-10 border-t border-slate-200">
             {VALUE_STACK.map((item) => (
               <li
                 key={item.title}
-                className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-4"
+                className="flex items-start gap-4 border-b border-slate-200 py-5"
               >
-                <IconCheck />
+                <Star className="mt-1.5" />
                 <div>
-                  <p className="text-sm font-semibold text-ink">{item.title}</p>
-                  <p className="mt-1 text-sm text-slate-600">{item.description}</p>
+                  <p className="font-bold text-ink">{item.title}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                    {item.description}
+                  </p>
                 </div>
               </li>
             ))}
@@ -206,70 +180,82 @@ export default function AssessoriaCompletaPage() {
         </div>
       </section>
 
+      <hr className="stripes" />
+
       {/* Bônus */}
-      <section className="bg-white">
-        <div className="mx-auto max-w-4xl px-6 py-20 sm:py-28 text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600">
-            E NÃO ACABA NA PORTA DO CONSULADO
-          </span>
-          <p className="mx-auto mt-4 max-w-2xl text-sm text-slate-600">
-            Quem tira o visto geralmente tem um destino principal: Orlando.
-            Como somos experts absolutos na cidade mágica, sua assessoria
-            inclui o nosso &quot;Kit Passaporte Carimbado&quot; para a sua
-            viagem:
-          </p>
-          <div className="mt-10 grid gap-6 sm:grid-cols-3">
-            {BONUSES.map((bonus, i) => (
+      <section className="bg-slate-50">
+        <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
+          <div className="max-w-2xl">
+            <Kicker>Não acaba na porta do consulado</Kicker>
+            <h2 className="mt-5 text-balance text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+              Kit Passaporte Carimbado, pra viagem.
+            </h2>
+            <p className="mt-4 text-slate-600">
+              Quem tira o visto geralmente vai pra Orlando. A assessoria já
+              inclui:
+            </p>
+          </div>
+          <div className="mt-10 grid gap-5 sm:grid-cols-3">
+            {BONUSES.map((bonus) => (
               <div
                 key={bonus.title}
-                className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-6 text-left"
+                className="rounded-xl border border-slate-200 bg-white p-6"
               >
-                <span className="font-mono text-xs font-medium tracking-[0.2em] text-slate-400">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <p className="text-sm font-semibold text-ink">{bonus.title}</p>
-                <p className="text-sm text-slate-600">{bonus.description}</p>
+                <span className="eyebrow text-brand">Bônus</span>
+                <p className="mt-3 font-bold text-ink">{bonus.title}</p>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                  {bonus.description}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA final */}
-      <section className="bg-slate-50">
-        <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 px-6 py-20 sm:py-28 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
-            O seu visto americano merece preparação de verdade.
-          </h2>
-          <p className="text-sm text-slate-600">
-            Pare de perder tempo com tutoriais soltos na internet e conselhos
-            de quem não entende do assunto. Clique no botão abaixo, converse
-            com a nossa equipe e dê o primeiro passo seguro rumo à sua
-            aprovação.
-          </p>
-          <WhatsAppButton>Quero Iniciar Minha Assessoria</WhatsAppButton>
-        </div>
-      </section>
+      <hr className="stripes" />
 
       {/* FAQ */}
       <section className="bg-white">
         <div className="mx-auto max-w-2xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
-            Perguntas frequentes
+          <Kicker>Dúvidas</Kicker>
+          <h2 className="mt-5 text-balance text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+            Antes de começar.
           </h2>
-          <div className="mt-8 flex flex-col gap-3">
+          <div className="mt-8 border-t border-slate-200">
             {FAQ_ITEMS.map((item) => (
               <details
                 key={item.question}
-                className="group rounded-xl border border-slate-200 bg-slate-50 p-4 transition-colors open:border-hairline/30"
+                className="group border-b border-slate-200 py-4"
               >
-                <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-semibold text-ink">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-ink">
                   {item.question}
-                  <span className="ml-4 text-slate-400 transition group-open:rotate-45">+</span>
+                  <span className="text-xl font-black leading-none text-brand transition group-open:rotate-45">
+                    +
+                  </span>
                 </summary>
-                <p className="mt-3 text-sm text-slate-600">{item.answer}</p>
+                <p className="mt-3 leading-relaxed text-slate-600">
+                  {item.answer}
+                </p>
               </details>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <hr className="stripes" />
+
+      {/* CTA final */}
+      <section className="bg-slate-50">
+        <div className="mx-auto max-w-2xl px-6 py-20 text-center sm:py-24">
+          <h2 className="text-balance text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+            O seu visto merece preparação de verdade.
+          </h2>
+          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-slate-600">
+            Chega de tutorial solto e conselho de quem não entende do assunto.
+            Converse com a equipe e dê o primeiro passo seguro.
+          </p>
+          <div className="mt-7 flex justify-center">
+            <WhatsAppButton>Quero iniciar minha assessoria</WhatsAppButton>
           </div>
         </div>
       </section>

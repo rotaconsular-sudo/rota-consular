@@ -1,6 +1,6 @@
-import type { ReactNode } from "react";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
+import { Kicker, Star } from "@/components/marketing";
 import { getSession } from "@/lib/session";
 import { createApplication, logout } from "@/app/actions";
 import { WIZARD_STEPS } from "@/lib/wizard";
@@ -171,22 +171,6 @@ const PASSOS = [
   },
 ];
 
-function Kicker({ children }: { children: ReactNode }) {
-  return (
-    <div className="flex items-center gap-3">
-      <span className="h-0.5 w-6 bg-brand" />
-      <span className="eyebrow text-slate-500">{children}</span>
-    </div>
-  );
-}
-
-function Star() {
-  return (
-    <svg viewBox="0 0 16 16" className="mt-1 h-3.5 w-3.5 shrink-0 fill-brand" aria-hidden>
-      <path d="M8 0l2 5 5 .4-3.8 3.3 1.2 5L8 12.6 3.4 15.7l1.2-5L.8 5.4 5.8 5z" />
-    </svg>
-  );
-}
 
 function InstitutionalHome() {
   const posts = getAllPosts().slice(0, 3);
@@ -229,7 +213,7 @@ function InstitutionalHome() {
           <ul className="mt-7 flex max-w-xl flex-col gap-2.5">
             {HERO_BULLETS.map((b) => (
               <li key={b} className="flex items-start gap-2.5 text-sm text-slate-200">
-                <Star />
+                <Star className="mt-1" />
                 <span>{b}</span>
               </li>
             ))}
