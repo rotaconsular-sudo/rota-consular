@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FLAGSHIP_PRODUCT } from "@/lib/products";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import { Kicker, Star } from "@/components/marketing";
 
 export const metadata: Metadata = {
   title: "Mapa do DS-160 | Rota Consular",
@@ -101,21 +102,27 @@ export default function MapaDS160Page() {
   const discountCents = p.compareAtPriceCents - p.priceCents;
 
   return (
-    <div className="flex flex-1 flex-col bg-slate-50 text-ink">
+    <div className="flex flex-1 flex-col bg-background text-ink">
       <SiteHeader />
 
       {/* Hero */}
-      <section className="bg-slate-50">
-        <div className="mx-auto flex w-full max-w-2xl flex-col items-center gap-6 px-6 py-14 text-center sm:py-20">
-          <h1 className="text-4xl font-extrabold tracking-tight text-ink sm:text-5xl text-balance">
+      <section className="bg-white">
+        <div className="mx-auto max-w-3xl px-6 py-16 sm:py-24">
+          <Kicker>DS-160 sem erros · {formatBRL(p.priceCents)}</Kicker>
+          <h1 className="mt-5 text-balance text-3xl font-extrabold leading-tight tracking-tight text-ink sm:text-[2.7rem]">
             {p.title}
           </h1>
-          <p className="max-w-xl text-lg text-slate-600">{p.subtitle}</p>
+          <p className="mt-4 max-w-xl text-lg leading-relaxed text-slate-600">
+            {p.subtitle}
+          </p>
 
-          <ul className="grid gap-2 text-left sm:grid-cols-2">
+          <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
             {p.bullets.map((bullet) => (
-              <li key={bullet} className="flex items-start gap-2 text-sm text-slate-700">
-                <IconCheck />
+              <li
+                key={bullet}
+                className="flex items-start gap-2.5 text-sm text-slate-700"
+              >
+                <Star className="mt-1" />
                 <span>{bullet}</span>
               </li>
             ))}
@@ -123,20 +130,22 @@ export default function MapaDS160Page() {
 
           <Link
             href="/checkout"
-            className="mt-2 rounded-full bg-brand px-9 py-4 text-base font-bold text-star transition hover:bg-brand-strong"
+            className="mt-8 inline-block rounded-full bg-brand px-9 py-4 text-sm font-bold text-star transition hover:bg-brand-strong"
           >
-            ACESSAR AGORA
+            Acessar agora →
           </Link>
-          <p className="text-sm text-slate-500">
-            Acesso imediato. Preencha no seu tempo, no seu ritmo.
+          <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.12em] text-slate-400">
+            Acesso imediato · preencha no seu ritmo
           </p>
         </div>
       </section>
 
+      <hr className="stripes" />
+
       {/* Prévia do material */}
       <section className="bg-slate-50">
         <div className="mx-auto max-w-4xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
+          <h2 className="text-balance text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
             O formulário guia você por cada uma dessas etapas do processo oficial:
           </h2>
           <div className="mt-8 flex flex-wrap justify-center gap-2">
@@ -155,7 +164,7 @@ export default function MapaDS160Page() {
       {/* O guia possui */}
       <section className="bg-white">
         <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
+          <h2 className="text-balance text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
             O {p.title} inclui:
           </h2>
           <ul className="mt-10 grid gap-6 sm:grid-cols-3">
@@ -189,7 +198,7 @@ export default function MapaDS160Page() {
       {/* Ideal para você que deseja */}
       <section className="bg-slate-50">
         <div className="mx-auto max-w-2xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
+          <h2 className="text-balance text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
             O nosso Sistema Inteligente é ideal para você que deseja:
           </h2>
           <ul className="mt-8 flex flex-col gap-3">
@@ -206,7 +215,7 @@ export default function MapaDS160Page() {
       {/* Tudo que você vai receber */}
       <section className="bg-white">
         <div className="mx-auto max-w-3xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
+          <h2 className="text-balance text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
             Tudo o que você vai receber:
           </h2>
           <ul className="mt-8 grid gap-2 sm:grid-cols-2">
@@ -320,7 +329,7 @@ export default function MapaDS160Page() {
       {/* Como funciona o seu DS-160 Blindado */}
       <section className="bg-white">
         <div className="mx-auto max-w-4xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
+          <h2 className="text-balance text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
             Como funciona o seu DS-160 Blindado?
           </h2>
           <ol className="mt-10 grid gap-6 sm:grid-cols-3">
@@ -374,7 +383,7 @@ export default function MapaDS160Page() {
       {/* FAQ */}
       <section className="bg-slate-50">
         <div className="mx-auto max-w-2xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
+          <h2 className="text-balance text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
             Perguntas frequentes
           </h2>
           <div className="mt-8 flex flex-col gap-3">

@@ -171,6 +171,48 @@ const PASSOS = [
   },
 ];
 
+const PRODUTOS = [
+  {
+    selo: "Grátis",
+    titulo: "Análise de perfil",
+    desc: "Um Raio-X do seu perfil em 2 minutos: o que joga a favor, o que reforçar e onde há risco de recusa.",
+    preco: "R$ 0",
+    precoNota: "sem cartão",
+    cta: "Fazer o Raio-X",
+    href: "/analise-de-perfil",
+    destaque: true,
+  },
+  {
+    selo: "Autoatendimento",
+    titulo: "DS-160 sem erros",
+    desc: "O formulário oficial no seu idioma, com validação campo a campo. Você preenche com calma, sem tradução torta.",
+    preco: "R$ 27,90",
+    precoNota: "pagamento único",
+    cta: "Ver o DS-160 sem erros",
+    href: "/mapads160",
+    destaque: false,
+  },
+  {
+    selo: "Feito pra você",
+    titulo: "DS-160 preenchido",
+    desc: "Você responde em português; a nossa equipe preenche o formulário oficial e revisa campo a campo antes do envio.",
+    preco: "R$ 97",
+    precoNota: "pagamento único",
+    cta: "Quero que preencham",
+    href: "/ds160-preenchido",
+    destaque: false,
+  },
+  {
+    selo: "Sob medida",
+    titulo: "Assessoria completa",
+    desc: "Uma consultora cuida de tudo, do DS-160 à simulação da entrevista, com suporte no WhatsApp até o dia.",
+    preco: "Falar com especialista",
+    precoNota: "por pessoa",
+    cta: "Conhecer a assessoria",
+    href: "/assessoria-completa",
+    destaque: false,
+  },
+];
 
 function InstitutionalHome() {
   const posts = getAllPosts().slice(0, 3);
@@ -309,49 +351,60 @@ function InstitutionalHome() {
 
       <hr className="stripes" />
 
-      {/* O que você encontra aqui */}
+      {/* Produtos — a escada */}
       <section className="bg-slate-50">
-        <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
+        <div className="mx-auto max-w-6xl px-6 py-20 sm:py-28">
           <div className="max-w-2xl">
-            <Kicker>Por onde começar</Kicker>
+            <Kicker>Por onde entrar</Kicker>
             <h2 className="mt-5 text-balance text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-              Comece pelo grátis. Só avança quem quiser.
+              Comece pelo grátis. Avança só quem quiser.
             </h2>
+            <p className="mt-4 text-slate-600">
+              Do Raio-X gratuito à assessoria com uma especialista — você
+              escolhe até onde quer ajuda.
+            </p>
           </div>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2">
-            <Link
-              href="/analise-de-perfil"
-              className="group flex flex-col rounded-xl border border-slate-200 bg-white p-7 transition hover:border-slate-400"
-            >
-              <span className="eyebrow text-brand">Análise grátis</span>
-              <h3 className="mt-3 text-lg font-bold text-ink">
-                Descubra suas chances na hora
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                Um quiz de 2 minutos e um diagnóstico imediato: se o seu perfil
-                está pronto ou se esconde uma &ldquo;pegadinha&rdquo; que pode
-                te fazer perder a taxa.
-              </p>
-              <span className="mt-4 text-sm font-semibold text-accent transition group-hover:text-ink">
-                Fazer o Raio-X →
-              </span>
-            </Link>
-            <Link
-              href="/mapads160"
-              className="group flex flex-col rounded-xl border border-slate-200 bg-white p-7 transition hover:border-slate-400"
-            >
-              <span className="eyebrow text-slate-500">Preenchimento oficial</span>
-              <h3 className="mt-3 text-lg font-bold text-ink">
-                O fim do medo de errar no DS-160
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                Formulário fácil no seu idioma + revisão humana campo a campo
-                antes do envio ao governo americano. Zero risco de erro bobo.
-              </p>
-              <span className="mt-4 text-sm font-semibold text-accent transition group-hover:text-ink">
-                Ver o DS-160 sem erros →
-              </span>
-            </Link>
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {PRODUTOS.map((p) => (
+              <div
+                key={p.titulo}
+                className={`flex flex-col rounded-xl border bg-white p-6 ${
+                  p.destaque
+                    ? "border-brand ring-1 ring-brand/25"
+                    : "border-slate-200"
+                }`}
+              >
+                <span
+                  className={`eyebrow ${
+                    p.destaque ? "text-brand" : "text-slate-500"
+                  }`}
+                >
+                  {p.selo}
+                </span>
+                <h3 className="mt-3 text-lg font-bold text-ink">{p.titulo}</h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
+                  {p.desc}
+                </p>
+                <div className="mt-5">
+                  <p className="text-xl font-extrabold tracking-tight text-ink">
+                    {p.preco}
+                  </p>
+                  <p className="mt-0.5 font-mono text-[11px] uppercase tracking-[0.12em] text-slate-400">
+                    {p.precoNota}
+                  </p>
+                </div>
+                <Link
+                  href={p.href}
+                  className={`mt-4 inline-block rounded-full px-5 py-2.5 text-center text-sm font-bold transition ${
+                    p.destaque
+                      ? "bg-brand text-star hover:bg-brand-strong"
+                      : "border border-slate-300 text-ink hover:border-brand hover:text-brand"
+                  }`}
+                >
+                  {p.cta} →
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </section>
