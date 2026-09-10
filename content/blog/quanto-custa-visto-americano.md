@@ -16,8 +16,8 @@ faq:
   - q: "O brasileiro paga taxa de reciprocidade no visto de turismo?"
     a: "Para o visto de turismo/negócios (B1/B2), o brasileiro não paga taxa de emissão (reciprocidade) — ela é zero. Essa taxa existe para outras categorias e outras nacionalidades."
   - q: "Existe alguma taxa nova além da MRV?"
-    a: "Uma lei americana de 2025 criou uma taxa adicional chamada Visa Integrity Fee, de US$ 250, para várias categorias de visto de não-imigrante. A cobrança depende de regulamentação do governo dos EUA — verifique se já está em vigor e se aplica ao B1/B2 antes de fechar seu orçamento."
-respostaRapida: "A taxa de solicitação (MRV) do visto de turismo B1/B2 é de US$ 185, paga em reais e não reembolsável. Para o brasileiro não há taxa de reciprocidade no B1/B2. Uma lei de 2025 criou uma possível taxa extra (Visa Integrity Fee, US$ 250) — confirme se já está em vigor."
+    a: "Sim. Desde 1º de outubro de 2025, a maioria dos vistos de não-imigrante — incluindo o B1/B2 — tem a Visa Integrity Fee, de US$ 250, cobrada na emissão, por cima da MRV. O valor é reajustado por inflação a cada ano; confirme o vigente no site do consulado."
+respostaRapida: "A taxa de solicitação (MRV) do visto de turismo B1/B2 é de US$ 185, paga em reais e não reembolsável. Para o brasileiro não há taxa de reciprocidade no B1/B2. Desde outubro de 2025 há também a Visa Integrity Fee, de US$ 250, cobrada na emissão."
 ---
 
 
@@ -47,16 +47,16 @@ Alguns países pagam uma segunda taxa quando o visto é **aprovado**, chamada
 taxa de reciprocidade. **Para o brasileiro, no B1/B2, essa taxa é zero.**
 Você não paga nada a mais para o consulado quando o visto sai.
 
-## A possível taxa nova: Visa Integrity Fee
+## A taxa extra: Visa Integrity Fee (US$ 250)
 
-Uma lei americana de 2025 criou uma cobrança adicional, a **Visa Integrity
-Fee**, de **US$ 250**, prevista para diversas categorias de visto de
-não-imigrante. Ela pode ser restituível em algumas situações se o visitante
-cumprir as condições do visto.
+Desde **1º de outubro de 2025**, a maioria dos vistos de não-imigrante dos
+EUA — **incluindo o B1/B2** — tem uma cobrança adicional, a **Visa Integrity
+Fee**, de **US$ 250**. Ela é paga **na emissão** do visto, no consulado, por
+cima da MRV, e é **reajustada pela inflação** a cada ano.
 
-A aplicação prática depende de regulamentação do Departamento de Estado e do
-DHS. **Antes de orçar sua viagem, confirme no site do consulado** se essa
-taxa já está sendo cobrada e se incide sobre o B1/B2. Detalhes em
+A lei prevê **reembolso** para quem cumpre as condições do visto (sair no
+prazo, não pedir extensão), mas o procedimento de devolução ainda não está
+operacional — trate os US$ 250 como um **custo**. Detalhes em
 [Visa Integrity Fee: a taxa de US$ 250 ponto a ponto](/blog/visa-integrity-fee-taxa-250).
 
 ## Os gastos ao redor do processo
@@ -84,10 +84,10 @@ Além das taxas do consulado, entram na conta:
 ## Estimativa de custo total
 
 Para quem **já tem passaporte válido** e mora perto de um consulado, o custo
-gira em torno da **MRV (US$ 185 em reais) + fotos**. Para quem precisa
-renovar o passaporte e viajar até outra cidade, o total sobe bastante por
-causa de passagem e hospedagem — muitas vezes mais do que a própria taxa do
-visto.
+gira em torno da **MRV (US$ 185) + Visa Integrity Fee (US$ 250) + fotos** —
+ou seja, cerca de **US$ 435 por pessoa** em taxas dos EUA. Para quem precisa
+renovar o passaporte e viajar até outra cidade, o total sobe ainda mais por
+causa de passagem e hospedagem.
 
 ## Antes de pagar
 
@@ -101,10 +101,11 @@ antes de você gastar com a taxa.
 ## Resumo
 
 - Taxa MRV do B1/B2: **US$ 185**, em reais, não reembolsável.
+- **Visa Integrity Fee: US$ 250**, cobrada na emissão desde outubro de 2025.
 - Reciprocidade para brasileiro no B1/B2: **zero**.
-- Pode haver uma taxa nova (Visa Integrity Fee, US$ 250) — confirme se já
-  vale.
-- O maior custo, para quem mora longe, costuma ser deslocamento, não a taxa.
+- Total de taxas dos EUA: cerca de **US$ 435 por pessoa**.
+- Para quem mora longe, deslocamento e hospedagem podem passar do valor das
+  taxas.
 
 *Valores e regras de cobrança mudam. Confirme sempre no site do consulado
 dos EUA no Brasil antes de pagar.*

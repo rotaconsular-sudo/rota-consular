@@ -31,21 +31,26 @@ A taxa do **passaporte comum** é de **R$ 257,25**, cobrada por meio da
 - É paga **antes** do agendamento — sem a compensação, o sistema não libera
   a marcação.
 - A guia é emitida no próprio serviço **"Passaporte"** do `gov.br`.
-- O boleto costuma levar **1 a 2 dias úteis** para compensar.
+- Pagamento por **boleto** (banco, app, lotérica) ou **PIX**. O boleto leva
+  **1 a 2 dias úteis** para compensar.
 - O valor é o **mesmo para menor de idade**.
 
-## Emergência e urgência custam mais
+> A Polícia Federal pediu ao Ministério da Justiça, em 2026, um reajuste da
+> taxa. Confirme o valor vigente no gov.br antes de pagar.
 
-Os regimes mais rápidos têm uma **taxa adicional** sobre a comum:
+## Emergência, urgência e perda custam mais
+
+Os regimes mais rápidos e os casos de perda têm uma **taxa adicional** sobre
+a comum:
 
 | Tipo | Prazo aproximado | Custo |
 |---|---|---|
-| Comum | ~6 dias úteis | R$ 257,25 |
-| Urgência | ~72 horas úteis | taxa comum + adicional |
-| Emergência | ~24 horas | taxa comum + adicional (validade reduzida) |
+| Comum | ~6 dias úteis | **R$ 257,25** |
+| Urgência / emergência | ~72h úteis / ~24h | **R$ 334,42** (comum + R$ 77,17) |
+| Documento perdido ou extraviado | ~6 dias úteis | **R$ 514,50** (comum + R$ 257,25) |
 
-O valor exato do adicional e os casos aceitos (viagem a trabalho,
-tratamento de saúde, falecimento de familiar etc.) estão no gov.br.
+Os casos aceitos para urgência e emergência (viagem a trabalho, tratamento
+de saúde, falecimento de familiar etc.) estão no gov.br.
 
 ## A "regra dos 5 anos" da taxa paga
 
@@ -58,14 +63,15 @@ reaproveitamento.
 
 - **Deslocamento** até a unidade da Polícia Federal, se você mora longe.
 - **Documentos pendentes** (2ª via de identidade, por exemplo).
-- Para os EUA, depois vem a **taxa do visto (MRV, US$ 185)** — que é outra
-  taxa, de outro órgão. Veja
+- Para os EUA, depois vêm as **taxas do visto: MRV (US$ 185) + Visa
+  Integrity Fee (US$ 250)** — outras taxas, de outro órgão. Veja
   [quanto custa o visto americano](/blog/quanto-custa-visto-americano).
 
 ## Resumo
 
-- Passaporte comum: **R$ 257,25** via GRU, paga antes de agendar.
-- Emergência e urgência: taxa comum **+ adicional**.
+- Passaporte comum: **R$ 257,25** via GRU (boleto ou PIX), paga antes de
+  agendar.
+- Urgência / emergência: **R$ 334,42**. Documento perdido: **R$ 514,50**.
 - Boleto compensa em **1 a 2 dias úteis**.
 - Taxa não usada pode ser reaproveitada dentro de um prazo — confirme.
 

@@ -189,6 +189,27 @@ ligação** com `flow-vistoamericano`/`automacao_vistos`.
 - `sitemap.ts`: + `/sobre`. Verificado: /sobre 200, JSON-LD ok, byline e
   footer linkando, tsc + eslint limpos.
 
+### Mudanças de 10/09/2026 (10) — revisão de fatos datados (WebSearch)
+Conferido contra fontes de 2026 e corrigido:
+- **Visa Integrity Fee (US$ 250)**: NÃO é mais "possível/pendente" — está
+  **em vigor desde 1º/10/2025**, cobrada na emissão. Reembolso previsto em lei
+  mas sem procedimento operante. Atualizados: `visa-integrity-fee-taxa-250`
+  (reescrito), `quanto-custa-visto-americano` (FAQ, resposta, seção, total
+  agora ~US$ 435/pessoa), menção no `quanto-custa-passaporte`.
+- **Isenção de entrevista**: prazo confirmado em **12 meses** (voltou de 48);
+  **dispensas por idade ELIMINADAS** desde set/out 2025 — crianças <14 e
+  idosos >79 agora fazem entrevista; 1ª vez nunca tem isenção. Reescrito
+  `renovacao-visto-americano-sem-entrevista`; corrigidos
+  `visto-americano-para-menores-criancas` (não é mais "dispensado por idade")
+  e `como-agendar` (FAQ do CASV).
+- **Visa bond (caução)**: virou **permanente em ago/2026**, valores
+  **US$ 10k/15k/20k** (eram 5/10/15 no piloto), ~**50 países**. Brasil
+  **fora da lista** (confirmado). Reescrito `caucao-visto-americano-visa-bond`.
+- **Confirmados sem mudança**: taxa MRV US$ 185; taxa passaporte R$ 257,25
+  (+ especificados R$ 334,42 urgência e R$ 514,50 perda; PF pediu reajuste em
+  2026 — hedge adicionado).
+- Verificado: 7 artigos revisados 200, JSON-LD + FAQ + box OK, tsc limpo.
+
 ---
 
 ## Onde paramos (sessão 05/09/2026)

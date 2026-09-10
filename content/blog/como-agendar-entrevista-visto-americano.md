@@ -10,7 +10,7 @@ faq:
   - q: "Qual a ordem certa para agendar o visto americano?"
     a: "Primeiro você preenche o DS-160 e guarda o código de barras da confirmação. Depois cria o perfil no sistema de agendamento e paga a taxa MRV. Com o pagamento compensado, você marca dois compromissos: o CASV (digitais e foto) e a entrevista no consulado."
   - q: "O que é o CASV?"
-    a: "É o Centro de Atendimento ao Solicitante de Visto, onde são coletadas suas impressões digitais e a foto. É um local diferente do consulado e geralmente acontece um ou dois dias antes da entrevista. Algumas situações são dispensadas do CASV — as regras de dispensa mudam, então confira a sua."
+    a: "É o Centro de Atendimento ao Solicitante de Visto, onde são coletadas suas impressões digitais e a foto. É um local diferente do consulado e geralmente acontece um ou dois dias antes da entrevista. As dispensas de entrevista por idade (crianças e idosos) acabaram em 2025 — hoje quase todo solicitante comparece."
   - q: "Posso escolher em qual cidade fazer a entrevista?"
     a: "Sim. Você pode marcar em São Paulo, Rio de Janeiro, Brasília, Recife ou Porto Alegre, independentemente de onde mora. Os tempos de espera variam bastante entre elas, e é possível trocar de cidade depois."
   - q: "Quantas vezes posso remarcar a entrevista?"
