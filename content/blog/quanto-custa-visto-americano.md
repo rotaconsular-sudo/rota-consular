@@ -56,7 +56,8 @@ cumprir as condições do visto.
 
 A aplicação prática depende de regulamentação do Departamento de Estado e do
 DHS. **Antes de orçar sua viagem, confirme no site do consulado** se essa
-taxa já está sendo cobrada e se incide sobre o B1/B2.
+taxa já está sendo cobrada e se incide sobre o B1/B2. Detalhes em
+[Visa Integrity Fee: a taxa de US$ 250 ponto a ponto](/blog/visa-integrity-fee-taxa-250).
 
 ## Os gastos ao redor do processo
 

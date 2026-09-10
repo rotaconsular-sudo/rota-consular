@@ -163,10 +163,17 @@ ligação** com `flow-vistoamericano`/`automacao_vistos`.
   custeador, prazo/validade do passaporte.
 - Blog com **27 posts**, sitemap 46 URLs. Verificado: rotas 200, JSON-LD +
   box + byline + links internos OK, tsc limpo.
-- **Tier 2 evergreen concluído.** Resta o **stream de notícias/atualidades**
-  (caução US$20k, taxa prioritária US$750, novas perguntas na entrevista,
-  endurecimento da isenção) — precisa de decisão de cadência editorial + risco
-  de fato datado, não foi iniciado.
+- **Tier 2 evergreen concluído.**
+
+### Mudanças de 10/09/2026 (8) — 2 explicadores de atualidades (tag `atualidades`)
+- `caucao-visto-americano-visa-bond` (visa bond: mecanismo, valores, Brasil
+  fora da lista) e `visa-integrity-fee-taxa-250` (taxa US$ 250 da lei de 2025,
+  ainda pendente de regulamentação). Formato "explicador" (envelhece melhor
+  que notícia), com nota "última revisão: setembro de 2026".
+- **Fatos conferidos e aprovados pelo operador em 10/09** antes de publicar.
+- Backlink de `quanto-custa` → explicador da Visa Integrity Fee.
+- Blog com **29 posts**. Ainda em aberto: cadência de um stream de notícias
+  recorrente (não definida).
 
 ---
 
