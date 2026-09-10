@@ -189,6 +189,36 @@ ligação** com `flow-vistoamericano`/`automacao_vistos`.
 - `sitemap.ts`: + `/sobre`. Verificado: /sobre 200, JSON-LD ok, byline e
   footer linkando, tsc + eslint limpos.
 
+### Mudanças de 10/09/2026 (11) — RESKIN: tema escuro US flag
+Direção aprovada pelo operador (modelo: sl.finclass.com). Mockup:
+Artifact "Rota Consular" (claude.ai/code/artifact/689b6184-...).
+- **`src/app/globals.css`** é a fonte da verdade agora: **tema escuro único**
+  (sem modo claro). Paleta: fundo navy `#0a1b3d` (campo da bandeira), ação
+  vermelho old-glory `#d81f3d`, texto `#f6f8ff` / atenuado `#9db0d6`, bloco de
+  aviso em papel `#ece4d3`. A rampa `slate-*` do Tailwind foi **invertida**
+  (50 = escuro … 900 = claro); `--color-ink` = quase-branco; `--color-accent`
+  = vermelho `#ff5a74`. Classe utilitária `.stripes` (divisor de listras).
+- **Trocas de classe no código** (40 arquivos, via sed): `bg-ink`→`bg-brand`
+  (vermelho), `bg-ink-muted`→`bg-brand-strong`, `text-white`→`text-star`,
+  `border-white`→`border-star`, `border-ink`→`border-hairline`,
+  `ring-ink`→`ring-accent`, `#070d1c`→`#0a1b3d`.
+- Ajustes manuais: `SiteHeader` (logo BRANCO sempre, barra sticky navy
+  translúcida), `SiteFooter` (`bg-[#071231]`, não vermelho), `blog/[slug]`
+  (`prose-invert`; CTA vermelho com pílula branca), `analise-de-perfil`
+  (contraste do texto no card vermelho).
+- **`bg-ink` virou vermelho em TUDO** — inclui painéis/cards que antes eram
+  navy (ex.: card de captura da /analise-de-perfil). Onde era botão, certo;
+  onde era painel, é decisão a revisar com o operador.
+- Áreas não conferidas visualmente: admin, wizard, checkout, minha-conta
+  (herdam os tokens, então ficaram escuras, mas sem revisão de contraste).
+- Verificado: home, /blog, artigo, /sobre, /analise-de-perfil e +6 rotas 200;
+  tsc + eslint limpos (os 2 erros de eslint são os pré-existentes de
+  CookieBanner/MetaPixel).
+- **Pendente**: revisar densidade de vermelho nos painéis; conferir
+  admin/wizard/checkout; o mockup tem tipografia (Libre Franklin + Source
+  Serif 4 + IBM Plex Mono) que NÃO foi aplicada ao site ainda — hoje segue
+  Plus Jakarta Sans.
+
 ### Mudanças de 10/09/2026 (10) — revisão de fatos datados (WebSearch)
 Conferido contra fontes de 2026 e corrigido:
 - **Visa Integrity Fee (US$ 250)**: NÃO é mais "possível/pendente" — está
