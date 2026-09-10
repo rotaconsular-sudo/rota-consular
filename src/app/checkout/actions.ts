@@ -83,7 +83,7 @@ export async function criarPedido(formData: FormData) {
       unitPriceCents: p.precoCents,
     })),
     payerEmail: email,
-    successUrl: `${baseUrl}/checkout/obrigado`,
+    successUrl: `${baseUrl}/checkout/obrigado?c=${compra.id}`,
     notificationUrl: `${baseUrl}/api/mercadopago/loja/webhook`,
   });
 

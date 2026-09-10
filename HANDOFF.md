@@ -445,3 +445,21 @@ Operador escolheu a **versão clara** do mockup (não a escura do commit 11).
 - Decisão do operador: **NÃO** travar o resultado da análise atrás de
   e-mail/WhatsApp por enquanto — manter fricção baixa até a marca ganhar
   confiança. Resultado segue aparecendo na hora + e-mail como backup.
+
+### Mudanças de 10/09/2026 (15) — Conversions API (CAPI) server-side
+- **`src/lib/metaCapi.ts`**: `sendCapiEvent()` — POST pro Graph API v21.0
+  (`{PIXEL_ID}/events`), SHA-256 em e-mail/telefone, timeout 4s, nunca lança.
+  **No-op sem `META_CAPI_ACCESS_TOKEN`.**
+- **Purchase** disparado no **webhook do Mercado Pago** (fonte confiável — o
+  webhook sempre chega), `event_id = purchase_{compraId}`, com value/currency/
+  content_ids. Dedupe com o Pixel do `/checkout/obrigado?c={compraId}`
+  (o `successUrl` do MP passou a levar `?c=`).
+- **Lead** disparado em `performAnalysis` (server action), `event_id =
+  lead_{applicationId}`, com IP/UA dos headers. Dedupe com o Pixel do
+  `/solicitacoes/[id]/resultado`.
+- `FbTrack` ganhou prop `eventId` → passa `{ eventID }` no `fbq('track', ...)`.
+- **Operador**: gerar token em Events Manager → Conversions API → colocar em
+  `META_CAPI_ACCESS_TOKEN` (Vercel + .env.local). Opcional `META_CAPI_TEST_CODE`
+  pra ver na aba "Testar eventos".
+- **Ainda browser-only** (sem CAPI): InitiateCheckout, ViewContent — menos
+  críticos; dá pra levar pro server depois se quiser.

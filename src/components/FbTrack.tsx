@@ -14,11 +14,14 @@ import { hasConsent } from "@/lib/consent";
 export function FbTrack({
   event,
   params,
+  eventId,
 }: {
   event: string;
   params?: Record<string, unknown>;
+  /** Mesmo id usado no CAPI server-side, pra dedupe. */
+  eventId?: string;
 }) {
-  const key = event + "|" + JSON.stringify(params ?? {});
+  const key = event + "|" + (eventId ?? "") + "|" + JSON.stringify(params ?? {});
 
   useEffect(() => {
     let fired = false;
@@ -26,7 +29,12 @@ export function FbTrack({
     function fire() {
       if (fired) return;
       if (!hasConsent("marketing") || typeof window.fbq !== "function") return;
-      window.fbq("track", event, params);
+      window.fbq(
+        "track",
+        event,
+        params,
+        eventId ? { eventID: eventId } : undefined,
+      );
       fired = true;
     }
 

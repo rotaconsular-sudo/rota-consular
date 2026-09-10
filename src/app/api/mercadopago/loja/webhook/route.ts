@@ -5,6 +5,7 @@ import { sendAcessoLiberado } from "@/lib/mailer";
 import { generateToken, hashToken } from "@/lib/crypto";
 import { getBaseUrl } from "@/lib/url";
 import { concederAcessosDaCompra, revogarAcessosDaCompra } from "@/lib/loja";
+import { sendCapiEvent } from "@/lib/metaCapi";
 
 const TOKEN_MINUTOS = 15;
 
@@ -76,6 +77,26 @@ export async function POST(request: Request) {
     await sendAcessoLiberado(compra.user.email, {
       loginUrl: `${baseUrl}/verificar?token=${token}&next=/minha-conta`,
       produtos: compra.itens.map((i) => i.produto.nome),
+    });
+
+    // Conversions API — Purchase server-side (dedupe com o Pixel do /obrigado
+    // pelo mesmo event_id). É a fonte confiável: o webhook sempre chega.
+    const whats =
+      compra.raw && typeof compra.raw === "object" && "whatsapp" in compra.raw
+        ? String((compra.raw as { whatsapp?: unknown }).whatsapp ?? "")
+        : null;
+    await sendCapiEvent({
+      eventName: "Purchase",
+      eventId: `purchase_${compra.id}`,
+      eventSourceUrl: `${baseUrl}/checkout/obrigado`,
+      email: compra.user.email,
+      phone: whats,
+      customData: {
+        value: compra.valorCents / 100,
+        currency: "BRL",
+        content_name: compra.itens.map((i) => i.produto.nome).join(" + "),
+        content_ids: compra.itens.map((i) => i.produto.id),
+      },
     });
   } else if (
     payment.status === "refunded" ||

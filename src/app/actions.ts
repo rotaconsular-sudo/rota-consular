@@ -16,6 +16,8 @@ import type { QuizAnswers } from "@/lib/quizQuestions";
 import { runReadinessAnalysis } from "@/lib/anthropic";
 import { sendAnalysisResult } from "@/lib/mailer";
 import { getBaseUrl } from "@/lib/url";
+import { sendCapiEvent } from "@/lib/metaCapi";
+import { headers } from "next/headers";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -163,6 +165,22 @@ async function performAnalysis(applicationId: string) {
       resultUrl,
     });
   }
+
+  // Conversions API — Lead server-side (dedupe com o Pixel do /resultado
+  // pelo mesmo event_id).
+  const h = await headers();
+  await sendCapiEvent({
+    eventName: "Lead",
+    eventId: `lead_${applicationId}`,
+    eventSourceUrl: `${await getBaseUrl()}/solicitacoes/${applicationId}/resultado`,
+    email: application.email,
+    phone: application.whatsapp ?? null,
+    clientIp:
+      h.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+      h.get("x-real-ip"),
+    userAgent: h.get("user-agent"),
+    customData: { content_name: "Análise de perfil" },
+  });
 }
 
 export async function runAnalysis(applicationId: string) {

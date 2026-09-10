@@ -33,7 +33,11 @@ export default async function ResultadoPage(
 
   return (
     <div className="flex flex-col gap-8">
-      <FbTrack event="Lead" params={{ content_name: "Análise de perfil" }} />
+      <FbTrack
+        event="Lead"
+        params={{ content_name: "Análise de perfil" }}
+        eventId={`lead_${id}`}
+      />
       <div>
         <p className="eyebrow text-accent">Sua análise de perfil</p>
         <h2 className="mt-2 text-xl font-extrabold leading-snug tracking-tight text-ink">
