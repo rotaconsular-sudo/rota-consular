@@ -426,3 +426,22 @@ Operador escolheu a **versão clara** do mockup (não a escura do commit 11).
   (conta nova) + webhook; `RESEND_API_KEY`; número real em `src/lib/contato.ts`.
 - **Design pendente**: admin/wizard/checkout/minha-conta (herdaram tokens, sem
   revisão fina); listras/kickers nas seções internas de `/mapads160`.
+
+### Mudanças de 10/09/2026 (14) — eventos de conversão do Meta Pixel
+- **`src/components/FbTrack.tsx`**: client component que dispara 1 evento
+  padrão do Pixel ao montar, respeitando o consentimento de marketing
+  (reage a `rc-consent-changed`, tenta por 8s enquanto o `fbevents.js` carrega).
+- Eventos ligados:
+  - `Lead` → `/solicitacoes/[id]/resultado` (completou a análise grátis)
+  - `InitiateCheckout` → `/checkout` (com `value`/`currency` do produto principal)
+  - `Purchase` → `/checkout/obrigado` (currency BRL; `value` ainda não — a
+    /obrigado não recebe o total; melhorar depois com query ou via webhook)
+  - `ViewContent` → `/mapads160`, `/ds160-preenchido`, `/assessoria-completa`
+- O Pixel base (PageView, id `2040382606596802`) já existia em
+  `src/components/MetaPixel.tsx`. **Conferir** que esse id é o da conta de
+  anúncios que vai rodar as campanhas (BM "BM03 - Va Consular").
+- **Pendente**: Conversions API (CAPI) server-side p/ resiliência a
+  iOS/adblock; `value` real no Purchase; dedupe eventID entre Pixel e CAPI.
+- Decisão do operador: **NÃO** travar o resultado da análise atrás de
+  e-mail/WhatsApp por enquanto — manter fricção baixa até a marca ganhar
+  confiança. Resultado segue aparecendo na hora + e-mail como backup.

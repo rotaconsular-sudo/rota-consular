@@ -3,6 +3,7 @@ import { mpConfigurado } from "@/lib/mercadopago";
 import SiteHeader from "@/components/SiteHeader";
 import MinimalFooter from "@/components/MinimalFooter";
 import CheckoutForm from "./CheckoutForm";
+import { FbTrack } from "@/components/FbTrack";
 
 export default async function CheckoutPage({
   searchParams,
@@ -39,6 +40,16 @@ export default async function CheckoutPage({
 
   return (
     <div className="min-h-full bg-slate-50">
+      {principal && (
+        <FbTrack
+          event="InitiateCheckout"
+          params={{
+            currency: "BRL",
+            value: principal.precoCents / 100,
+            content_name: principal.nome,
+          }}
+        />
+      )}
       <SiteHeader variant="minimal">
         <span className="inline-flex items-center rounded-full border border-ok/30 bg-ok/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-ok">
           Ambiente seguro

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import type { ReforcarItem } from "@/lib/anthropic";
+import { FbTrack } from "@/components/FbTrack";
 
 type Corpo = {
   resumo: string;
@@ -32,6 +33,7 @@ export default async function ResultadoPage(
 
   return (
     <div className="flex flex-col gap-8">
+      <FbTrack event="Lead" params={{ content_name: "Análise de perfil" }} />
       <div>
         <p className="eyebrow text-accent">Sua análise de perfil</p>
         <h2 className="mt-2 text-xl font-extrabold leading-snug tracking-tight text-ink">

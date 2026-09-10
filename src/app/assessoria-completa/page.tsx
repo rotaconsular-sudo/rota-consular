@@ -3,6 +3,7 @@ import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { whatsappLink } from "@/lib/contato";
 import { Kicker, Star } from "@/components/marketing";
+import { FbTrack } from "@/components/FbTrack";
 
 export const metadata: Metadata = {
   title: "Assessoria Completa | Rota Consular",
@@ -102,6 +103,7 @@ function WhatsAppButton({ children }: { children: React.ReactNode }) {
 export default function AssessoriaCompletaPage() {
   return (
     <div className="flex flex-1 flex-col bg-background text-ink">
+      <FbTrack event="ViewContent" params={{ content_name: "Assessoria completa" }} />
       <SiteHeader />
 
       {/* Hero */}

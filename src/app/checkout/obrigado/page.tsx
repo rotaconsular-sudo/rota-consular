@@ -1,9 +1,11 @@
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
+import { FbTrack } from "@/components/FbTrack";
 
 export default function ObrigadoPage() {
   return (
     <div className="flex min-h-full flex-col bg-slate-50">
+      <FbTrack event="Purchase" params={{ currency: "BRL" }} />
       <SiteHeader variant="minimal" />
       <main className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center gap-4 px-6 py-16 text-center">
         <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-ok/10 text-xl text-ok">

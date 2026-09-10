@@ -4,6 +4,7 @@ import { FLAGSHIP_PRODUCT } from "@/lib/products";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { Kicker, Star } from "@/components/marketing";
+import { FbTrack } from "@/components/FbTrack";
 
 export const metadata: Metadata = {
   title: "Mapa do DS-160 | Rota Consular",
@@ -103,6 +104,10 @@ export default function MapaDS160Page() {
 
   return (
     <div className="flex flex-1 flex-col bg-background text-ink">
+      <FbTrack
+        event="ViewContent"
+        params={{ currency: "BRL", value: p.priceCents / 100, content_name: "DS-160 sem erros" }}
+      />
       <SiteHeader />
 
       {/* Hero */}

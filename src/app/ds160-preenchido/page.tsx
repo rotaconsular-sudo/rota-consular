@@ -5,6 +5,7 @@ import { formatBRL } from "@/lib/money";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { Kicker, Star, StarList } from "@/components/marketing";
+import { FbTrack } from "@/components/FbTrack";
 
 export const metadata: Metadata = {
   title: "DS-160 preenchido pra você | Rota Consular",
@@ -48,6 +49,10 @@ export default async function Ds160PreenchidoPage() {
 
   return (
     <div className="flex flex-1 flex-col bg-background text-ink">
+      <FbTrack
+        event="ViewContent"
+        params={{ currency: "BRL", value: precoCents / 100, content_name: "DS-160 preenchido" }}
+      />
       <SiteHeader />
 
       {/* Hero */}
