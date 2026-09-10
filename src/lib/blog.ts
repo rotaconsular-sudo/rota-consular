@@ -9,6 +9,7 @@ export type BlogPostMeta = {
   excerpt: string;
   tags: string[];
   publishedAt: string;
+  readingMinutes: number;
 };
 
 export type BlogPost = BlogPostMeta & {
@@ -21,6 +22,7 @@ function readPostFile(fileName: string): BlogPost {
   const slug = fileName.replace(/\.md$/, "");
   const raw = fs.readFileSync(path.join(POSTS_DIR, fileName), "utf8");
   const { data, content } = matter(raw);
+  const words = content.trim().split(/\s+/).filter(Boolean).length;
 
   return {
     slug,
@@ -28,6 +30,7 @@ function readPostFile(fileName: string): BlogPost {
     excerpt: data.excerpt,
     tags: data.tags ?? [],
     publishedAt: data.publishedAt,
+    readingMinutes: Math.max(1, Math.round(words / 200)),
     contentHtml: marked.parse(content, { async: false }),
   };
 }
@@ -79,6 +82,26 @@ export function filterPosts(
   }
 
   return result;
+}
+
+export function getRelatedPosts(slug: string, limit = 2): BlogPost[] {
+  const all = getAllPosts();
+  const current = all.find((p) => p.slug === slug);
+  const others = all.filter((p) => p.slug !== slug);
+  if (!current) return others.slice(0, limit);
+
+  return others
+    .map((post) => ({
+      post,
+      shared: post.tags.filter((t) => current.tags.includes(t)).length,
+    }))
+    .sort(
+      (a, b) =>
+        b.shared - a.shared ||
+        (a.post.publishedAt < b.post.publishedAt ? 1 : -1)
+    )
+    .slice(0, limit)
+    .map((s) => s.post);
 }
 
 export function formatPostDate(publishedAt: string): string {

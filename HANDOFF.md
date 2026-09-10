@@ -62,6 +62,23 @@ ligação** com `flow-vistoamericano`/`automacao_vistos`.
   por enquanto — eventos de funil (Lead/CompleteRegistration/Purchase) e a
   Conversions API ficam pra depois.
 
+### Mudanças de 10/09/2026 — redesign do blog
+- **`/blog` e `/blog/[slug]` e `/blog/tag/[tag]`** repaginados no sistema das
+  páginas públicas (navy `ink` + accent, resto cinza, eyebrow com filete).
+- Novo `src/components/blog/BlogHero.tsx` (eyebrow + título + busca + fileira de
+  pills de tag) — **substituiu** `BlogSidebar.tsx` (removido); index e tag page
+  agora usam o mesmo cabeçalho, sem coluna lateral.
+- `/blog`: post mais recente vira **card "Em destaque"**; o resto em grid
+  `sm:grid-cols-2` de `PostCard`. Busca com `?q=` some o destaque e mostra
+  contagem de resultados.
+- `PostCard`: agora com "N min de leitura", hover em accent, altura uniforme.
+- `/blog/[slug]`: cabeçalho com back-link, eyebrow da tag principal, `excerpt`
+  como lead, meta (data · leitura · tags); `prose` afinado (H2 menor, links
+  accent); CTA agora é card **navy** (`bg-ink`); seção **"Continue lendo"** com 2
+  posts relacionados por tag (`getRelatedPosts` em `src/lib/blog.ts`).
+- `src/lib/blog.ts`: `BlogPostMeta.readingMinutes` (≈200 wpm) + `getRelatedPosts`.
+- Verificado em `localhost:3001` (index, artigo, tag, busca) — tsc + eslint limpos.
+
 ---
 
 ## Onde paramos (sessão 05/09/2026)

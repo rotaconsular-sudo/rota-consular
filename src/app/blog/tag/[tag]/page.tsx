@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getAllPosts, getAllTags, filterPosts } from "@/lib/blog";
 import { PostCard } from "@/components/blog/PostCard";
-import { BlogSidebar } from "@/components/blog/BlogSidebar";
+import { BlogHero } from "@/components/blog/BlogHero";
 import { Pagination } from "@/components/blog/Pagination";
 
 const PAGE_SIZE = 6;
@@ -29,34 +29,35 @@ export default async function BlogTagPage(props: PageProps<"/blog/tag/[tag]">) {
   const posts = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   return (
-    <div className="mx-auto max-w-5xl px-6 py-12">
-      <h1 className="text-3xl font-extrabold tracking-tight text-ink">
-        Artigos com #{tag}
-      </h1>
+    <>
+      <BlogHero
+        title={`Artigos com #${tag}`}
+        subtitle={`${filtered.length} ${
+          filtered.length === 1 ? "artigo" : "artigos"
+        } marcados com esta tag.`}
+        tags={tags}
+        activeTag={tag}
+      />
 
-      <div className="mt-8 flex flex-col gap-8 lg:flex-row">
-        <div className="flex-1">
-          {posts.length === 0 ? (
-            <p className="rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center text-sm text-slate-500">
-              Nenhum artigo encontrado com essa tag.
-            </p>
-          ) : (
-            <div className="flex flex-col gap-4">
-              {posts.map((post) => (
-                <PostCard key={post.slug} post={post} />
-              ))}
-            </div>
-          )}
+      <div className="mx-auto max-w-5xl px-6 py-12">
+        {posts.length === 0 ? (
+          <p className="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center text-sm text-slate-500">
+            Nenhum artigo encontrado com essa tag.
+          </p>
+        ) : (
+          <div className="grid gap-6 sm:grid-cols-2">
+            {posts.map((post) => (
+              <PostCard key={post.slug} post={post} />
+            ))}
+          </div>
+        )}
 
-          <Pagination
-            page={page}
-            totalPages={totalPages}
-            basePath={`/blog/tag/${tag}`}
-          />
-        </div>
-
-        <BlogSidebar tags={tags} activeTag={tag} />
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          basePath={`/blog/tag/${tag}`}
+        />
       </div>
-    </div>
+    </>
   );
 }
