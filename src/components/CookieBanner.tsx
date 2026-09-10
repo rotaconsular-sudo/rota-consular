@@ -90,7 +90,7 @@ export default function CookieBanner() {
             type="button"
             disabled={salvando}
             onClick={() => decidir({ estatistica: true, marketing: true })}
-            className="rounded-full bg-ink px-4 py-2 text-xs font-bold text-white transition hover:bg-ink-muted disabled:opacity-60"
+            className="rounded-full bg-brand px-4 py-2 text-xs font-bold text-star transition hover:bg-brand-strong disabled:opacity-60"
           >
             Aceitar tudo
           </button>
@@ -98,7 +98,7 @@ export default function CookieBanner() {
             type="button"
             disabled={salvando}
             onClick={() => decidir({ estatistica: false, marketing: false })}
-            className="rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold text-ink transition hover:border-ink disabled:opacity-60"
+            className="rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold text-ink transition hover:border-hairline disabled:opacity-60"
           >
             Rejeitar
           </button>
@@ -107,7 +107,7 @@ export default function CookieBanner() {
               type="button"
               disabled={salvando}
               onClick={() => decidir({ estatistica, marketing })}
-              className="rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold text-ink transition hover:border-ink disabled:opacity-60"
+              className="rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold text-ink transition hover:border-hairline disabled:opacity-60"
             >
               Salvar escolha
             </button>

@@ -43,11 +43,11 @@ export function BlogHero({
             defaultValue={query}
             placeholder="Buscar por tema, ex: DS-160, vínculos…"
             aria-label="Buscar no blog"
-            className="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-ink outline-none transition placeholder:text-slate-400 focus:border-ink focus:ring-2 focus:ring-ink/30"
+            className="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-ink outline-none transition placeholder:text-slate-400 focus:border-hairline focus:ring-2 focus:ring-accent/30"
           />
           <button
             type="submit"
-            className="shrink-0 rounded-lg bg-ink px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-ink-muted"
+            className="shrink-0 rounded-lg bg-brand px-4 py-2.5 text-sm font-semibold text-star transition hover:bg-brand-strong"
           >
             Buscar
           </button>
@@ -88,8 +88,8 @@ function TagPill({
       href={href}
       className={`rounded-full px-3 py-1 text-xs font-medium transition ${
         active
-          ? "bg-ink text-white"
-          : "border border-slate-300 text-slate-600 hover:border-ink hover:text-ink"
+          ? "bg-brand text-star"
+          : "border border-slate-300 text-slate-600 hover:border-hairline hover:text-ink"
       }`}
     >
       {children}

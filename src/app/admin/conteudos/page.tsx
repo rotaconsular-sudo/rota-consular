@@ -45,7 +45,7 @@ export default async function AdminConteudosPage() {
         </div>
         <Link
           href="/admin/conteudos/novo"
-          className="rounded-full bg-ink px-4 py-2 text-sm font-bold text-white transition hover:bg-ink-muted"
+          className="rounded-full bg-brand px-4 py-2 text-sm font-bold text-star transition hover:bg-brand-strong"
         >
           Novo conteúdo
         </Link>

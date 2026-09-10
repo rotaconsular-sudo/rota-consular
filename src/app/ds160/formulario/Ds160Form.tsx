@@ -9,7 +9,7 @@ import {
 import { salvarRascunho, enviarDs160 } from "../actions";
 
 const inputCls =
-  "w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/30";
+  "w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-hairline focus:ring-2 focus:ring-accent/30";
 
 // Um campo conta como "preenchido" se tem valor de verdade em dados[key].
 // Listas contam pela presença de pelo menos 1 item; bool conta como
@@ -117,7 +117,7 @@ export default function Ds160Form({ initial }: { initial: Ds160Dados }) {
         </div>
         <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
           <div
-            className="h-full rounded-full bg-ink transition-[width] duration-300"
+            className="h-full rounded-full bg-brand transition-[width] duration-300"
             style={{ width: `${percentual}%` }}
           />
         </div>
@@ -134,8 +134,8 @@ export default function Ds160Form({ initial }: { initial: Ds160Dados }) {
                 onClick={() => irParaSecao(sec.id)}
                 className={`flex h-6 w-6 flex-none items-center justify-center rounded-full text-[11px] font-semibold transition ${
                   ativa
-                    ? "bg-ink text-white"
-                    : "border border-slate-300 text-slate-500 hover:border-ink hover:text-ink"
+                    ? "bg-brand text-star"
+                    : "border border-slate-300 text-slate-500 hover:border-hairline hover:text-ink"
                 }`}
               >
                 {i + 1}
@@ -168,7 +168,7 @@ export default function Ds160Form({ initial }: { initial: Ds160Dados }) {
           <button
             type="button"
             onClick={() => setConfirmar(true)}
-            className="rounded-full bg-ink px-5 py-3 text-sm font-bold text-white transition hover:bg-ink-muted"
+            className="rounded-full bg-brand px-5 py-3 text-sm font-bold text-star transition hover:bg-brand-strong"
           >
             Revisar e enviar para a equipe
           </button>
@@ -182,7 +182,7 @@ export default function Ds160Form({ initial }: { initial: Ds160Dados }) {
               <form action={enviarDs160}>
                 <button
                   type="submit"
-                  className="rounded-full bg-ink px-5 py-2.5 text-sm font-bold text-white transition hover:bg-ink-muted"
+                  className="rounded-full bg-brand px-5 py-2.5 text-sm font-bold text-star transition hover:bg-brand-strong"
                 >
                   Enviar
                 </button>
@@ -190,7 +190,7 @@ export default function Ds160Form({ initial }: { initial: Ds160Dados }) {
               <button
                 type="button"
                 onClick={() => setConfirmar(false)}
-                className="rounded-full border border-slate-300 px-5 py-2.5 text-sm font-semibold text-ink transition hover:border-ink"
+                className="rounded-full border border-slate-300 px-5 py-2.5 text-sm font-semibold text-ink transition hover:border-hairline"
               >
                 Voltar e revisar
               </button>
@@ -244,7 +244,7 @@ function Campo({
               onClick={() => onChange(o.b)}
               className={`rounded-lg border px-4 py-1.5 text-sm font-medium transition ${
                 (valor === true) === o.b && valor !== undefined
-                  ? "border-ink bg-slate-100 text-ink"
+                  ? "border-hairline bg-slate-100 text-ink"
                   : "border-slate-300 text-slate-600 hover:border-slate-400"
               }`}
             >
@@ -364,7 +364,7 @@ function Campo({
         <button
           type="button"
           onClick={() => onChange([...linhas, {}])}
-          className="w-fit rounded-full border border-slate-300 px-4 py-1.5 text-xs font-semibold text-ink transition hover:border-ink"
+          className="w-fit rounded-full border border-slate-300 px-4 py-1.5 text-xs font-semibold text-ink transition hover:border-hairline"
         >
           + Adicionar
         </button>

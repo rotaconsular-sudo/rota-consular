@@ -84,7 +84,7 @@ function FeaturedPost({
   return (
     <article className="group rounded-2xl border border-slate-200 bg-white p-7 transition hover:border-slate-400 hover:shadow-sm sm:p-9">
       <div className="flex items-center gap-3">
-        <span className="rounded-full bg-ink px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white">
+        <span className="rounded-full bg-brand px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-star">
           Em destaque
         </span>
         <div className="flex items-center gap-2 text-xs text-slate-500">
@@ -117,7 +117,7 @@ function FeaturedPost({
             <Link
               key={tag}
               href={`/blog/tag/${tag}`}
-              className="rounded-full border border-slate-200 px-2.5 py-1 text-xs font-medium text-slate-500 transition hover:border-ink hover:text-ink"
+              className="rounded-full border border-slate-200 px-2.5 py-1 text-xs font-medium text-slate-500 transition hover:border-hairline hover:text-ink"
             >
               #{tag}
             </Link>

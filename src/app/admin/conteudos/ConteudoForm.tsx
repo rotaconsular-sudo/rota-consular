@@ -20,7 +20,7 @@ type Conteudo = {
 };
 
 const field =
-  "rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/30";
+  "rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-hairline focus:ring-2 focus:ring-accent/30";
 const label = "flex flex-col gap-1.5 text-sm font-medium text-slate-700";
 
 export default function ConteudoForm({ conteudo }: { conteudo?: Conteudo }) {
@@ -107,7 +107,7 @@ export default function ConteudoForm({ conteudo }: { conteudo?: Conteudo }) {
               name="arquivo"
               type="file"
               accept="application/pdf"
-              className="text-sm text-slate-600 file:mr-3 file:rounded-full file:border-0 file:bg-ink file:px-3 file:py-1.5 file:text-xs file:font-bold file:text-white"
+              className="text-sm text-slate-600 file:mr-3 file:rounded-full file:border-0 file:bg-brand file:px-3 file:py-1.5 file:text-xs file:font-bold file:text-star"
             />
             {conteudo?.arquivoNome && (
               <span className="text-xs font-normal text-slate-400">
@@ -166,7 +166,7 @@ export default function ConteudoForm({ conteudo }: { conteudo?: Conteudo }) {
           <button
             type="submit"
             disabled={pending}
-            className="rounded-full bg-ink px-5 py-2.5 text-sm font-bold text-white transition hover:bg-ink-muted disabled:opacity-50"
+            className="rounded-full bg-brand px-5 py-2.5 text-sm font-bold text-star transition hover:bg-brand-strong disabled:opacity-50"
           >
             {pending ? "Salvando…" : conteudo ? "Salvar alterações" : "Criar conteúdo"}
           </button>

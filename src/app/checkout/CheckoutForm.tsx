@@ -94,7 +94,7 @@ export default function CheckoutForm({
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="seuemail@email.com"
-                className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
+                className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-hairline focus:ring-2 focus:ring-accent/40"
               />
             </label>
             <label className="flex flex-col gap-1.5">
@@ -111,7 +111,7 @@ export default function CheckoutForm({
                 className={`rounded-lg border px-3.5 py-2.5 text-sm outline-none transition focus:ring-2 ${
                   mostrarErroEmail
                     ? "border-err focus:border-err focus:ring-err/30"
-                    : "border-slate-300 focus:border-ink focus:ring-ink/40"
+                    : "border-slate-300 focus:border-hairline focus:ring-accent/40"
                 }`}
               />
             </label>
@@ -121,7 +121,7 @@ export default function CheckoutForm({
                 name="whatsapp"
                 type="tel"
                 placeholder="DDD + número"
-                className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
+                className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-hairline focus:ring-2 focus:ring-accent/40"
               />
             </label>
             <label className="flex flex-col gap-1.5">
@@ -130,7 +130,7 @@ export default function CheckoutForm({
                 name="nome"
                 type="text"
                 placeholder="Nome e sobrenome"
-                className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
+                className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-hairline focus:ring-2 focus:ring-accent/40"
               />
             </label>
           </div>
@@ -151,7 +151,7 @@ export default function CheckoutForm({
               onClick={() => setPaymentMethod("cartao")}
               className={`flex flex-1 items-center justify-center gap-2 rounded-lg border px-4 py-3 text-sm font-medium transition sm:flex-none sm:px-6 ${
                 paymentMethod === "cartao"
-                  ? "border-ink bg-slate-100 text-ink"
+                  ? "border-hairline bg-slate-100 text-ink"
                   : "border-slate-300 text-slate-600 hover:border-slate-400"
               }`}
             >
@@ -162,12 +162,12 @@ export default function CheckoutForm({
               onClick={() => setPaymentMethod("pix")}
               className={`relative flex flex-1 items-center justify-center gap-2 rounded-lg border px-4 py-3 text-sm font-medium transition sm:flex-none sm:px-6 ${
                 paymentMethod === "pix"
-                  ? "border-ink bg-slate-100 text-ink"
+                  ? "border-hairline bg-slate-100 text-ink"
                   : "border-slate-300 text-slate-600 hover:border-slate-400"
               }`}
             >
               Pix
-              <span className="absolute -top-2 -right-2 rounded-full bg-ok px-1.5 py-0.5 text-[10px] font-bold text-white">
+              <span className="absolute -top-2 -right-2 rounded-full bg-ok px-1.5 py-0.5 text-[10px] font-bold text-star">
                 3% OFF
               </span>
             </button>
@@ -208,8 +208,8 @@ export default function CheckoutForm({
                         onClick={() => toggleBump(bump.slug)}
                         className={`flex shrink-0 items-center gap-2 rounded-lg px-4 py-2 text-xs font-bold transition ${
                           checked
-                            ? "bg-ok text-white"
-                            : "bg-ink text-white hover:bg-ink-muted"
+                            ? "bg-ok text-star"
+                            : "bg-brand text-star hover:bg-brand-strong"
                         }`}
                       >
                         {checked ? "OFERTA ADICIONADA" : "PEGAR OFERTA"}
@@ -230,7 +230,7 @@ export default function CheckoutForm({
         <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7">
           <div className="flex items-center justify-between">
             <h2 className="text-base font-bold text-ink">Seu carrinho</h2>
-            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-ink text-xs font-bold text-white">
+            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand text-xs font-bold text-star">
               {1 + selectedBumps.size}
             </span>
           </div>
@@ -286,7 +286,7 @@ export default function CheckoutForm({
               disabled={!podeEnviar}
               className={`w-full rounded-full px-5 py-3.5 text-sm font-bold transition ${
                 podeEnviar
-                  ? "bg-ink text-white hover:bg-ink-muted"
+                  ? "bg-brand text-star hover:bg-brand-strong"
                   : "cursor-not-allowed bg-slate-300 text-slate-500"
               }`}
             >

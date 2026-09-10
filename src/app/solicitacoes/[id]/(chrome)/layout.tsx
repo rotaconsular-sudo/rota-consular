@@ -29,7 +29,7 @@ export default async function ApplicationLayout(
         <form action={logout}>
           <button
             type="submit"
-            className="rounded-full border border-slate-300 px-4 py-1.5 text-sm font-medium text-ink transition hover:border-ink"
+            className="rounded-full border border-slate-300 px-4 py-1.5 text-sm font-medium text-ink transition hover:border-hairline"
           >
             Sair
           </button>

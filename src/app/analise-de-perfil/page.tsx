@@ -60,15 +60,15 @@ const DIFERENCIAIS = [
 
 function AnaliseForm() {
   return (
-    <div className="rounded-2xl bg-ink p-7 text-left sm:p-9">
-      <span className="inline-flex items-center rounded-full border border-white/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent-soft">
+    <div className="rounded-2xl bg-brand p-7 text-left sm:p-9">
+      <span className="inline-flex items-center rounded-full border border-star/35 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-star">
         GRÁTIS
       </span>
 
       <form action={startFreeApplication} className="mt-5 flex flex-col gap-3">
         <div className="flex flex-col gap-3 sm:flex-row">
           <label className="flex flex-1 flex-col gap-1.5">
-            <span className="text-sm font-medium text-slate-300">
+            <span className="text-sm font-medium text-star/85">
               Seu melhor e-mail
             </span>
             <input
@@ -81,7 +81,7 @@ function AnaliseForm() {
           </label>
 
           <label className="flex flex-1 flex-col gap-1.5">
-            <span className="text-sm font-medium text-slate-300">
+            <span className="text-sm font-medium text-star/85">
               Seu WhatsApp
             </span>
             <input
@@ -96,13 +96,13 @@ function AnaliseForm() {
 
         <button
           type="submit"
-          className="w-full rounded-full bg-white px-6 py-3 text-sm font-bold text-ink transition hover:bg-slate-100"
+          className="w-full rounded-full bg-star px-6 py-3 text-sm font-bold text-brand transition hover:bg-slate-800"
         >
           Iniciar Minha Análise Gratuita
         </button>
       </form>
 
-      <p className="mt-3 text-xs text-slate-400">
+      <p className="mt-3 text-xs text-star/75">
         100% seguro e sigiloso. Sem necessidade de cartão de crédito.
       </p>
     </div>
@@ -206,7 +206,7 @@ export default function AnaliseDePerfilPage() {
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 px-6 py-20 sm:py-28 text-center">
           <Link
             href="#captura"
-            className="rounded-full bg-ink px-9 py-4 text-base font-bold text-white transition hover:bg-ink-muted"
+            className="rounded-full bg-brand px-9 py-4 text-base font-bold text-star transition hover:bg-brand-strong"
           >
             Quero Fazer Minha Análise Grátis
           </Link>

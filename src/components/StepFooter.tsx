@@ -25,7 +25,7 @@ export function StepFooter({
 
       <button
         type="submit"
-        className="rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-ink-muted"
+        className="rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-star transition hover:bg-brand-strong"
       >
         Salvar e continuar
       </button>

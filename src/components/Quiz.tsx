@@ -54,7 +54,7 @@ export function Quiz({
   }, [current]);
 
   return (
-    <div className="flex min-h-screen flex-col bg-gradient-to-b from-[#0b3d91] to-[#0a2f6e] text-white">
+    <div className="flex min-h-screen flex-col bg-gradient-to-b from-[#0b3d91] to-[#0a2f6e] text-star">
       <div className="mx-auto flex w-full max-w-xl flex-1 flex-col px-6 py-10">
         {current ? (
           <>
@@ -67,7 +67,7 @@ export function Quiz({
               />
             </div>
 
-            <p className="text-xs font-semibold uppercase tracking-wide text-white/70">
+            <p className="text-xs font-semibold uppercase tracking-wide text-star/70">
               Pergunta {progressIndex + 1} de {progressTotal}
             </p>
 
@@ -91,9 +91,9 @@ export function Quiz({
 function AnalyzingScreen() {
   return (
     <div className="flex flex-1 flex-col items-center justify-center gap-4 text-center">
-      <div className="h-8 w-8 animate-spin rounded-full border-2 border-white/25 border-t-white" />
+      <div className="h-8 w-8 animate-spin rounded-full border-2 border-star/25 border-t-white" />
       <h2 className="font-serif text-2xl">Analisando suas respostas…</h2>
-      <p className="text-sm text-white/60">Isso pode levar até 20 segundos.</p>
+      <p className="text-sm text-star/60">Isso pode levar até 20 segundos.</p>
     </div>
   );
 }
@@ -142,7 +142,7 @@ function QuestionScreen({
               key={option.key}
               type="button"
               onClick={() => onAnswer(option.key)}
-              className="flex items-center gap-3 rounded-xl border border-white/25 bg-white/5 px-4 py-3.5 text-left text-sm font-medium transition hover:border-white/50 hover:bg-white/10 sm:text-base"
+              className="flex items-center gap-3 rounded-xl border border-star/25 bg-white/5 px-4 py-3.5 text-left text-sm font-medium transition hover:border-star/50 hover:bg-white/10 sm:text-base"
             >
               <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-white/15 text-xs font-semibold">
                 {String.fromCharCode(65 + i)}
@@ -150,7 +150,7 @@ function QuestionScreen({
               {option.label}
             </button>
           ))}
-          <p className="mt-1 text-xs text-white/50">
+          <p className="mt-1 text-xs text-star/50">
             Use as teclas 1-{question.options.length} ou clique para
             selecionar
           </p>
@@ -170,7 +170,7 @@ function QuestionScreen({
             onChange={(e) => setTextValue(e.target.value)}
             placeholder={question.placeholder}
             required={!question.optional}
-            className="border-b border-white/30 bg-transparent pb-2 text-lg outline-none placeholder:text-white/40 focus:border-white"
+            className="border-b border-star/30 bg-transparent pb-2 text-lg outline-none placeholder:text-star/40 focus:border-star"
           />
           <button
             type="submit"
@@ -185,7 +185,7 @@ function QuestionScreen({
         <button
           type="button"
           onClick={onBack}
-          className="w-fit text-sm text-white/60 hover:text-white hover:underline"
+          className="w-fit text-sm text-star/60 hover:text-star hover:underline"
         >
           ← Voltar
         </button>

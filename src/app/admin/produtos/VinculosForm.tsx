@@ -77,7 +77,7 @@ export default function VinculosForm({
             <button
               type="submit"
               disabled={pending}
-              className="rounded-full bg-ink px-5 py-2.5 text-sm font-bold text-white transition hover:bg-ink-muted disabled:opacity-50"
+              className="rounded-full bg-brand px-5 py-2.5 text-sm font-bold text-star transition hover:bg-brand-strong disabled:opacity-50"
             >
               {pending ? "Salvando…" : "Salvar vínculos"}
             </button>

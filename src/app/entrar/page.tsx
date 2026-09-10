@@ -48,12 +48,12 @@ export default async function EntrarPage(props: PageProps<"/entrar">) {
               required
               autoFocus
               placeholder="voce@email.com"
-              className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
+              className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-hairline focus:ring-2 focus:ring-accent/40"
             />
           </label>
           <button
             type="submit"
-            className="rounded-full bg-ink px-5 py-3 text-sm font-bold text-white transition hover:bg-ink-muted"
+            className="rounded-full bg-brand px-5 py-3 text-sm font-bold text-star transition hover:bg-brand-strong"
           >
             Enviar link de acesso
           </button>

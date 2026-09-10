@@ -65,7 +65,7 @@ export default async function HistoricoViagensPage(
             name="detalhesRecusa"
             defaultValue={data.detalhesRecusa}
             rows={3}
-            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
+            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-hairline focus:ring-2 focus:ring-accent/40"
           />
         </label>
       </div>

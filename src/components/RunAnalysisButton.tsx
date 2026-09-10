@@ -17,7 +17,7 @@ export function RunAnalysisButton({
       type="button"
       disabled={isPending}
       onClick={() => startTransition(() => runAnalysis(applicationId))}
-      className="w-full rounded-full bg-ink px-5 py-3.5 text-sm font-bold text-white transition hover:bg-ink-muted disabled:cursor-wait disabled:opacity-70"
+      className="w-full rounded-full bg-brand px-5 py-3.5 text-sm font-bold text-star transition hover:bg-brand-strong disabled:cursor-wait disabled:opacity-70"
     >
       {isPending ? "Analisando… pode levar até 20 segundos" : label}
     </button>

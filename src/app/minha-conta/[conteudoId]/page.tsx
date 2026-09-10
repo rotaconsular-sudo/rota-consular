@@ -55,7 +55,7 @@ export default async function ConteudoPage({
             </p>
             <a
               href={`/minha-conta/${conteudo.id}/arquivo`}
-              className="mt-3 inline-flex rounded-full bg-ink px-5 py-2.5 text-sm font-bold text-white transition hover:bg-ink-muted"
+              className="mt-3 inline-flex rounded-full bg-brand px-5 py-2.5 text-sm font-bold text-star transition hover:bg-brand-strong"
             >
               Baixar PDF
             </a>
@@ -67,7 +67,7 @@ export default async function ConteudoPage({
             href={conteudo.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex w-fit rounded-full bg-ink px-5 py-2.5 text-sm font-bold text-white transition hover:bg-ink-muted"
+            className="inline-flex w-fit rounded-full bg-brand px-5 py-2.5 text-sm font-bold text-star transition hover:bg-brand-strong"
           >
             Abrir ↗
           </a>
@@ -103,7 +103,7 @@ export default async function ConteudoPage({
               <Link
                 key={p.slug}
                 href={`/checkout?p=${p.slug}`}
-                className="flex flex-col gap-1 rounded-xl border border-slate-200 p-4 transition hover:border-ink"
+                className="flex flex-col gap-1 rounded-xl border border-slate-200 p-4 transition hover:border-hairline"
               >
                 <span className="text-sm font-semibold text-ink">{p.nome}</span>
                 {p.descricao && (

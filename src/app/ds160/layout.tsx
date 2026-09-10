@@ -39,7 +39,7 @@ export default async function Ds160Layout({
             </p>
             <Link
               href="/checkout?p=ds160-preenchido"
-              className="mt-4 inline-flex rounded-full bg-ink px-5 py-2.5 text-sm font-bold text-white transition hover:bg-ink-muted"
+              className="mt-4 inline-flex rounded-full bg-brand px-5 py-2.5 text-sm font-bold text-star transition hover:bg-brand-strong"
             >
               Ver o serviço
             </Link>

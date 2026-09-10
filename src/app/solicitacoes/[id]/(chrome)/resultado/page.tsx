@@ -110,11 +110,11 @@ export default async function ResultadoPage(
         </section>
       )}
 
-      <section className="rounded-2xl bg-ink p-6 text-center sm:p-8">
-        <span className="inline-flex items-center rounded-full border border-white/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent-soft">
+      <section className="rounded-2xl bg-brand p-6 text-center sm:p-8">
+        <span className="inline-flex items-center rounded-full border border-star/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent-soft">
           Próximo passo
         </span>
-        <h3 className="mt-3 text-xl font-bold text-white">
+        <h3 className="mt-3 text-xl font-bold text-star">
           Seu diagnóstico está pronto. Agora vem o DS-160.
         </h3>
         <p className="mx-auto mt-2 max-w-md text-sm text-slate-300">
@@ -125,7 +125,7 @@ export default async function ResultadoPage(
         <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:justify-center">
           <Link
             href="/mapads160"
-            className="rounded-full border border-white/25 px-6 py-3 text-sm font-bold text-white transition hover:border-white/60 hover:bg-white/10"
+            className="rounded-full border border-star/25 px-6 py-3 text-sm font-bold text-star transition hover:border-star/60 hover:bg-white/10"
           >
             Prefiro preencher sozinho — R$27,90
           </Link>

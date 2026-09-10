@@ -24,13 +24,13 @@ export default async function Ds160Page({
         <div className="mt-4 flex flex-col items-center gap-2">
           <Link
             href="/checkout?p=ds160-preenchido"
-            className="inline-flex rounded-full bg-ink px-5 py-2.5 text-sm font-bold text-white transition hover:bg-ink-muted"
+            className="inline-flex rounded-full bg-brand px-5 py-2.5 text-sm font-bold text-star transition hover:bg-brand-strong"
           >
             Quero que façam por mim — R$97
           </Link>
           <Link
             href="/mapads160"
-            className="inline-flex rounded-full border border-slate-300 px-5 py-2.5 text-sm font-bold text-ink transition hover:border-ink"
+            className="inline-flex rounded-full border border-slate-300 px-5 py-2.5 text-sm font-bold text-ink transition hover:border-hairline"
           >
             Quero preencher sozinho — R$27,90
           </Link>
@@ -99,7 +99,7 @@ export default async function Ds160Page({
           <p className="font-semibold text-ink">Suas respostas estão prontas.</p>
           <Link
             href="/ds160/resumo"
-            className="mt-3 inline-flex rounded-full bg-ink px-5 py-2.5 text-sm font-bold text-white transition hover:bg-ink-muted"
+            className="mt-3 inline-flex rounded-full bg-brand px-5 py-2.5 text-sm font-bold text-star transition hover:bg-brand-strong"
           >
             Ver minhas respostas →
           </Link>
@@ -142,7 +142,7 @@ export default async function Ds160Page({
                   inputMode="numeric"
                   required
                   placeholder="000.000.000-00"
-                  className="rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:border-ink focus:ring-2 focus:ring-ink/30"
+                  className="rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:border-hairline focus:ring-2 focus:ring-accent/30"
                 />
               </label>
               {sp.erro === "cpf" && (
@@ -150,7 +150,7 @@ export default async function Ds160Page({
               )}
               <button
                 type="submit"
-                className="w-fit rounded-full bg-ink px-5 py-2.5 text-sm font-bold text-white transition hover:bg-ink-muted"
+                className="w-fit rounded-full bg-brand px-5 py-2.5 text-sm font-bold text-star transition hover:bg-brand-strong"
               >
                 Começar o formulário
               </button>
@@ -158,7 +158,7 @@ export default async function Ds160Page({
           ) : (
             <Link
               href="/ds160/formulario"
-              className="w-fit rounded-full bg-ink px-5 py-3 text-sm font-bold text-white transition hover:bg-ink-muted"
+              className="w-fit rounded-full bg-brand px-5 py-3 text-sm font-bold text-star transition hover:bg-brand-strong"
             >
               Continuar o formulário →
             </Link>

@@ -28,7 +28,7 @@ export default async function DadosPessoaisPage(
             name="nomeCompleto"
             defaultValue={data.nomeCompleto}
             required
-            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
+            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-hairline focus:ring-2 focus:ring-accent/40"
           />
         </label>
 
@@ -41,7 +41,7 @@ export default async function DadosPessoaisPage(
             max={120}
             defaultValue={data.idade}
             required
-            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
+            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-hairline focus:ring-2 focus:ring-accent/40"
           />
         </label>
 
@@ -51,7 +51,7 @@ export default async function DadosPessoaisPage(
             name="estadoCivil"
             defaultValue={data.estadoCivil ?? ""}
             required
-            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
+            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-hairline focus:ring-2 focus:ring-accent/40"
           >
             <option value="" disabled>
               Selecione
@@ -70,7 +70,7 @@ export default async function DadosPessoaisPage(
             name="cidade"
             defaultValue={data.cidade}
             required
-            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
+            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-hairline focus:ring-2 focus:ring-accent/40"
           />
         </label>
 
@@ -81,7 +81,7 @@ export default async function DadosPessoaisPage(
             maxLength={2}
             defaultValue={data.uf}
             required
-            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40 uppercase"
+            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-hairline focus:ring-2 focus:ring-accent/40 uppercase"
           />
         </label>
       </div>

@@ -24,7 +24,7 @@ export function PostCard({ post }: { post: BlogPostMeta }) {
           <Link
             key={tag}
             href={`/blog/tag/${tag}`}
-            className="rounded-full border border-slate-200 px-2.5 py-1 text-xs font-medium text-slate-500 transition hover:border-ink hover:text-ink"
+            className="rounded-full border border-slate-200 px-2.5 py-1 text-xs font-medium text-slate-500 transition hover:border-hairline hover:text-ink"
           >
             #{tag}
           </Link>

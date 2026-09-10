@@ -287,7 +287,7 @@ export default function SobrePage() {
             </p>
             <Link
               href="/analise-de-perfil"
-              className="mt-6 inline-block rounded-full bg-ink px-6 py-3 text-sm font-bold text-white transition hover:bg-ink-muted"
+              className="mt-6 inline-block rounded-full bg-brand px-6 py-3 text-sm font-bold text-star transition hover:bg-brand-strong"
             >
               Fazer a análise de perfil grátis
             </Link>

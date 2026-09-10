@@ -123,7 +123,7 @@ export default function MapaDS160Page() {
 
           <Link
             href="/checkout"
-            className="mt-2 rounded-full bg-ink px-9 py-4 text-base font-bold text-white transition hover:bg-ink-muted"
+            className="mt-2 rounded-full bg-brand px-9 py-4 text-base font-bold text-star transition hover:bg-brand-strong"
           >
             ACESSAR AGORA
           </Link>
@@ -178,7 +178,7 @@ export default function MapaDS160Page() {
           <div className="mt-8 flex justify-center">
             <Link
               href="/checkout"
-              className="rounded-full bg-ink px-9 py-4 text-base font-bold text-white transition hover:bg-ink-muted"
+              className="rounded-full bg-brand px-9 py-4 text-base font-bold text-star transition hover:bg-brand-strong"
             >
               QUERO ACESSAR AGORA
             </Link>
@@ -241,7 +241,7 @@ export default function MapaDS160Page() {
       {/* Oferta / preço */}
       <section className="bg-white">
         <div className="mx-auto max-w-md px-6 py-20 sm:py-28">
-          <div className="rounded-2xl border border-ink/20 bg-white p-7 text-center">
+          <div className="rounded-2xl border border-hairline/20 bg-white p-7 text-center">
             <div className="flex justify-center gap-2">
               <span className="rounded-full border border-slate-300 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600">MAIS VENDIDO</span>
             </div>
@@ -264,7 +264,7 @@ export default function MapaDS160Page() {
             </p>
             <Link
               href="/checkout"
-              className="mt-6 block w-full rounded-full bg-ink px-5 py-3.5 text-sm font-bold text-white transition hover:bg-ink-muted"
+              className="mt-6 block w-full rounded-full bg-brand px-5 py-3.5 text-sm font-bold text-star transition hover:bg-brand-strong"
             >
               QUERO O PLANO COMPLETO
             </Link>
@@ -276,7 +276,7 @@ export default function MapaDS160Page() {
       <section className="bg-white">
         <div className="mx-auto max-w-2xl px-6 py-20 sm:py-28">
           <div className="rounded-2xl border border-slate-200 bg-white p-7 text-center sm:p-9">
-            <span className="inline-flex items-center rounded-full border border-ink/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink">
+            <span className="inline-flex items-center rounded-full border border-hairline/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink">
               PREFERE NÃO PREENCHER NADA?
             </span>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
@@ -289,7 +289,7 @@ export default function MapaDS160Page() {
             </p>
             <Link
               href="/ds160-preenchido"
-              className="mt-6 inline-block rounded-full bg-ink px-8 py-3.5 text-sm font-bold text-white transition hover:bg-ink-muted"
+              className="mt-6 inline-block rounded-full bg-brand px-8 py-3.5 text-sm font-bold text-star transition hover:bg-brand-strong"
             >
               Conhecer o DS-160 preenchido pra você
             </Link>
@@ -350,7 +350,7 @@ export default function MapaDS160Page() {
       <section className="bg-white">
         <div className="mx-auto max-w-2xl px-6 py-20 sm:py-28">
           <div className="rounded-2xl border border-slate-200 bg-white p-7 text-center sm:p-9">
-            <span className="inline-flex items-center rounded-full border border-ink/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink">
+            <span className="inline-flex items-center rounded-full border border-hairline/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink">
               PARA QUEM QUER IR ALÉM DO FORMULÁRIO
             </span>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
@@ -363,7 +363,7 @@ export default function MapaDS160Page() {
             </p>
             <Link
               href="/assessoria-completa"
-              className="mt-6 inline-block rounded-full bg-ink px-8 py-3.5 text-sm font-bold text-white transition hover:bg-ink-muted"
+              className="mt-6 inline-block rounded-full bg-brand px-8 py-3.5 text-sm font-bold text-star transition hover:bg-brand-strong"
             >
               Conhecer a Assessoria Completa
             </Link>
@@ -381,7 +381,7 @@ export default function MapaDS160Page() {
             {FAQ_ITEMS.map((item) => (
               <details
                 key={item.question}
-                className="group rounded-xl border border-slate-200 bg-white p-4 transition-colors open:border-ink/30"
+                className="group rounded-xl border border-slate-200 bg-white p-4 transition-colors open:border-hairline/30"
               >
                 <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-semibold text-ink">
                   {item.question}

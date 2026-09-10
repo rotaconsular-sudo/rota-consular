@@ -30,7 +30,7 @@ export default async function MotivoViagemPage(
             name="motivo"
             defaultValue={data.motivo ?? ""}
             required
-            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
+            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-hairline focus:ring-2 focus:ring-accent/40"
           >
             <option value="" disabled>
               Selecione
@@ -48,7 +48,7 @@ export default async function MotivoViagemPage(
             name="dataPretendidaViagem"
             type="date"
             defaultValue={data.dataPretendidaViagem}
-            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
+            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-hairline focus:ring-2 focus:ring-accent/40"
           />
         </label>
 
@@ -59,7 +59,7 @@ export default async function MotivoViagemPage(
             type="number"
             min={1}
             defaultValue={data.duracaoEstimadaDias}
-            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
+            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-hairline focus:ring-2 focus:ring-accent/40"
           />
         </label>
 
@@ -80,7 +80,7 @@ export default async function MotivoViagemPage(
           <input
             name="nomeParente"
             defaultValue={data.nomeParente}
-            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/40"
+            className="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm outline-none transition focus:border-hairline focus:ring-2 focus:ring-accent/40"
           />
         </label>
       </div>

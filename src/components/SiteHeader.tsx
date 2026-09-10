@@ -26,13 +26,13 @@ export default function SiteHeader({
       className={
         dark
           ? "relative z-10"
-          : "sticky top-0 z-40 border-b border-slate-200 bg-white/85 backdrop-blur"
+          : "sticky top-0 z-40 border-b border-slate-200 bg-[#0a1b3d]/85 backdrop-blur"
       }
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-5">
         <Link href="/" className="transition hover:opacity-80">
           <Image
-            src={dark ? "/logo-rota-consular-branco.png" : "/logo-rota-consular.png"}
+            src="/logo-rota-consular-branco.png"
             alt="Rota Consular"
             width={1115}
             height={235}
@@ -46,7 +46,7 @@ export default function SiteHeader({
         ) : (
           <nav
             className={`flex items-center gap-6 text-sm font-medium ${
-              dark ? "text-white/70" : "text-slate-600"
+              dark ? "text-star/70" : "text-slate-600"
             }`}
           >
             {NAV_LINKS.map((l) => (
@@ -54,7 +54,7 @@ export default function SiteHeader({
                 key={l.href}
                 href={l.href}
                 className={`hidden transition sm:inline ${
-                  dark ? "hover:text-white" : "hover:text-ink"
+                  dark ? "hover:text-star" : "hover:text-ink"
                 }`}
               >
                 {l.label}
@@ -64,8 +64,8 @@ export default function SiteHeader({
               href="/entrar"
               className={`rounded-full border px-4 py-1.5 transition ${
                 dark
-                  ? "border-white/25 text-white hover:border-white/60 hover:bg-white/10"
-                  : "border-slate-300 text-ink hover:border-ink"
+                  ? "border-star/25 text-star hover:border-star/60 hover:bg-white/10"
+                  : "border-slate-300 text-ink hover:border-hairline"
               }`}
             >
               Entrar

@@ -170,7 +170,7 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
                     <Link
                       key={tag}
                       href={`/blog/tag/${tag}`}
-                      className="rounded-full border border-slate-200 px-2.5 py-0.5 font-medium text-slate-500 transition hover:border-ink hover:text-ink"
+                      className="rounded-full border border-slate-200 px-2.5 py-0.5 font-medium text-slate-500 transition hover:border-hairline hover:text-ink"
                     >
                       #{tag}
                     </Link>
@@ -191,7 +191,7 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
         )}
 
         <div
-          className="prose prose-slate max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-ink prose-h2:mt-10 prose-h2:mb-3 prose-h2:text-xl sm:prose-h2:text-2xl prose-h3:text-base prose-h3:mt-6 prose-p:leading-relaxed prose-p:text-slate-700 prose-a:font-medium prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-strong:font-semibold prose-strong:text-ink prose-li:text-slate-700 prose-li:marker:text-slate-400 prose-blockquote:border-l-2 prose-blockquote:border-accent prose-blockquote:not-italic prose-blockquote:text-slate-600 prose-table:text-sm"
+          className="prose prose-invert max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-ink prose-h2:mt-10 prose-h2:mb-3 prose-h2:text-xl sm:prose-h2:text-2xl prose-h3:text-base prose-h3:mt-6 prose-p:leading-relaxed prose-p:text-slate-700 prose-a:font-medium prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-strong:font-semibold prose-strong:text-ink prose-li:text-slate-700 prose-li:marker:text-slate-400 prose-blockquote:border-l-2 prose-blockquote:border-accent prose-blockquote:not-italic prose-blockquote:text-slate-600 prose-table:text-sm"
           dangerouslySetInnerHTML={{ __html: post.contentHtml }}
         />
 
@@ -213,19 +213,19 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
           </section>
         )}
 
-        {/* CTA — mesma âncora navy do resto do site */}
-        <aside className="mt-14 rounded-2xl bg-ink p-8 text-center">
-          <span className="eyebrow text-accent-soft">Análise grátis</span>
-          <p className="mx-auto mt-3 max-w-md text-balance text-lg font-bold text-white">
+        {/* CTA — bloco vermelho, a cor de ação do site */}
+        <aside className="mt-14 rounded-2xl bg-brand p-8 text-center">
+          <span className="eyebrow text-star/80">Análise grátis</span>
+          <p className="mx-auto mt-3 max-w-md text-balance text-lg font-bold text-star">
             Descubra o nível de prontidão do seu perfil para o visto
           </p>
-          <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-slate-400">
+          <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-star/75">
             Um questionário rápido e um diagnóstico imediato — sem custo e sem
             cartão de crédito.
           </p>
           <Link
             href="/analise-de-perfil"
-            className="mt-5 inline-block rounded-full bg-white px-6 py-3 text-sm font-bold text-ink transition hover:bg-slate-100"
+            className="mt-5 inline-block rounded-full bg-star px-6 py-3 text-sm font-bold text-brand transition hover:bg-slate-800"
           >
             Fazer análise grátis
           </Link>

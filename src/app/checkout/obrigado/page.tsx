@@ -21,7 +21,7 @@ export default function ObrigadoPage() {
         </p>
         <Link
           href="/minha-conta"
-          className="mx-auto mt-2 inline-flex rounded-full bg-ink px-6 py-3 text-sm font-bold text-white transition hover:bg-ink-muted"
+          className="mx-auto mt-2 inline-flex rounded-full bg-brand px-6 py-3 text-sm font-bold text-star transition hover:bg-brand-strong"
         >
           Ir para Minha conta
         </Link>

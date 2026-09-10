@@ -5,7 +5,7 @@ export default function ImprimirBotao() {
     <button
       type="button"
       onClick={() => window.print()}
-      className="print:hidden w-fit rounded-full bg-ink px-5 py-2.5 text-sm font-bold text-white transition hover:bg-ink-muted"
+      className="print:hidden w-fit rounded-full bg-brand px-5 py-2.5 text-sm font-bold text-star transition hover:bg-brand-strong"
     >
       Imprimir / Salvar em PDF
     </button>

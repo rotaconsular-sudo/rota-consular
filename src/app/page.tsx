@@ -39,7 +39,7 @@ export default async function HomePage() {
           <form action={logout}>
             <button
               type="submit"
-              className="rounded-full border border-slate-300 px-4 py-1.5 text-sm font-medium text-ink transition hover:border-ink"
+              className="rounded-full border border-slate-300 px-4 py-1.5 text-sm font-medium text-ink transition hover:border-hairline"
             >
               Sair
             </button>
@@ -103,7 +103,7 @@ export default async function HomePage() {
         <form action={createApplication}>
           <button
             type="submit"
-            className="w-full rounded-full bg-ink px-5 py-3.5 text-sm font-bold text-white transition hover:bg-ink-muted"
+            className="w-full rounded-full bg-brand px-5 py-3.5 text-sm font-bold text-star transition hover:bg-brand-strong"
           >
             Nova solicitação
           </button>
@@ -146,12 +146,12 @@ function InstitutionalHome() {
   return (
     <div className="flex flex-1 flex-col bg-slate-50 text-ink">
       {/* Capa */}
-      <section className="relative isolate flex min-h-[92svh] flex-col overflow-hidden bg-[#070d1c]">
+      <section className="relative isolate flex min-h-[92svh] flex-col overflow-hidden bg-[#0a1b3d]">
         <WavingFlag className="absolute inset-0 h-full w-full" />
 
         {/* Camadas de leitura: escurecem o pano sem apagar a bandeira */}
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(100deg,rgba(7,13,28,0.96)_0%,rgba(7,13,28,0.88)_30%,rgba(7,13,28,0.5)_55%,rgba(7,13,28,0.24)_78%,rgba(7,13,28,0.34)_100%)]" />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#070d1c]/90 via-transparent to-[#070d1c]/60" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0a1b3d]/90 via-transparent to-[#0a1b3d]/60" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-slate-50" />
 
         <SiteHeader variant="dark" />
@@ -159,12 +159,12 @@ function InstitutionalHome() {
         <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-6 py-20 sm:py-28 sm:py-24">
           <div className="flex items-center gap-3">
             <span className="h-px w-10 bg-white/40" />
-            <span className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-white/70">
+            <span className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-star/70">
               Visto americano de turismo · B1/B2
             </span>
           </div>
 
-          <h1 className="mt-7 max-w-4xl text-[clamp(2.5rem,6.6vw,5rem)] font-extrabold leading-[0.98] tracking-tight text-white">
+          <h1 className="mt-7 max-w-4xl text-[clamp(2.5rem,6.6vw,5rem)] font-extrabold leading-[0.98] tracking-tight text-star">
             Preparação inteligente
             <br />
             para o seu{" "}
@@ -187,7 +187,7 @@ function InstitutionalHome() {
             </Link>
             <Link
               href="/mapads160"
-              className="rounded-full border border-white/30 px-8 py-3.5 text-center text-sm font-bold text-white backdrop-blur-sm transition hover:border-white/70 hover:bg-white/10"
+              className="rounded-full border border-star/30 px-8 py-3.5 text-center text-sm font-bold text-star backdrop-blur-sm transition hover:border-star/70 hover:bg-white/10"
             >
               DS160 sem erros
             </Link>
@@ -195,7 +195,7 @@ function InstitutionalHome() {
         </div>
 
         <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-10">
-          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/45">
+          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-star/45">
             ↓ Role para ver como funciona
           </span>
         </div>
@@ -238,7 +238,7 @@ function InstitutionalHome() {
               href="/analise-de-perfil"
               className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-7 transition hover:border-slate-400"
             >
-              <span className="inline-flex w-fit items-center gap-2 rounded-full border border-ink/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink">
+              <span className="inline-flex w-fit items-center gap-2 rounded-full border border-hairline/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink">
                 ANÁLISE GRÁTIS
               </span>
               <h3 className="text-lg font-bold text-ink">

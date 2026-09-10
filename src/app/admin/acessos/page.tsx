@@ -86,12 +86,12 @@ export default async function AdminAcessosPage({
             type="email"
             defaultValue={email}
             placeholder="cliente@email.com"
-            className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-ink focus:ring-2 focus:ring-ink/30"
+            className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-hairline focus:ring-2 focus:ring-accent/30"
           />
         </label>
         <button
           type="submit"
-          className="rounded-full bg-ink px-5 py-2.5 text-sm font-bold text-white transition hover:bg-ink-muted"
+          className="rounded-full bg-brand px-5 py-2.5 text-sm font-bold text-star transition hover:bg-brand-strong"
         >
           Buscar
         </button>
@@ -165,7 +165,7 @@ export default async function AdminAcessosPage({
               Produto
               <select
                 name="produtoId"
-                className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-ink focus:ring-2 focus:ring-ink/30"
+                className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-hairline focus:ring-2 focus:ring-accent/30"
               >
                 {produtos.map((p) => (
                   <option key={p.id} value={p.id}>
@@ -178,7 +178,7 @@ export default async function AdminAcessosPage({
               Duração
               <select
                 name="duracao"
-                className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-ink focus:ring-2 focus:ring-ink/30"
+                className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-hairline focus:ring-2 focus:ring-accent/30"
               >
                 <option value="produto">Padrão do produto</option>
                 <option value="nunca">Não expira</option>
@@ -186,7 +186,7 @@ export default async function AdminAcessosPage({
             </label>
             <button
               type="submit"
-              className="rounded-full bg-ink px-5 py-2.5 text-sm font-bold text-white transition hover:bg-ink-muted"
+              className="rounded-full bg-brand px-5 py-2.5 text-sm font-bold text-star transition hover:bg-brand-strong"
             >
               Conceder acesso
             </button>

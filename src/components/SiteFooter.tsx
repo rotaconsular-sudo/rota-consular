@@ -10,35 +10,35 @@ import CookiePrefsButton from "@/components/CookiePrefsButton";
 
 export default function SiteFooter() {
   return (
-    <footer className="bg-ink">
+    <footer className="bg-[#071231]">
       <div className="mx-auto max-w-5xl px-6 py-14">
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
           <Link
             href="/"
-            className="text-sm font-bold tracking-[0.14em] text-white transition hover:text-accent-soft"
+            className="text-sm font-bold tracking-[0.14em] text-star transition hover:text-accent-soft"
           >
             ROTA CONSULAR
           </Link>
           <nav className="flex flex-col gap-3 text-sm text-slate-400 sm:items-end">
             {NAV_LINKS.map((l) => (
-              <Link key={l.href} href={l.href} className="transition hover:text-white">
+              <Link key={l.href} href={l.href} className="transition hover:text-star">
                 {l.label}
               </Link>
             ))}
-            <Link href="/sobre" className="transition hover:text-white">
+            <Link href="/sobre" className="transition hover:text-star">
               Sobre
             </Link>
             <Link
               href="/politica-de-privacidade"
-              className="transition hover:text-white"
+              className="transition hover:text-star"
             >
               Política de Privacidade
             </Link>
-            <CookiePrefsButton className="text-left transition hover:text-white sm:text-right" />
+            <CookiePrefsButton className="text-left transition hover:text-star sm:text-right" />
           </nav>
         </div>
 
-        <p className="mt-12 border-t border-white/10 pt-8 text-xs leading-relaxed text-slate-500">
+        <p className="mt-12 border-t border-star/10 pt-8 text-xs leading-relaxed text-slate-500">
           <strong className="text-slate-300">
             A Rota Consular é uma empresa privada de assessoria e não possui
             qualquer vínculo com consulados ou embaixadas.

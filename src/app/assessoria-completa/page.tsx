@@ -104,7 +104,7 @@ function WhatsAppButton({ children }: { children: React.ReactNode }) {
       href={WHATSAPP_LINK}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 rounded-full bg-ink px-9 py-4 text-base font-bold text-white transition hover:bg-ink-muted"
+      className="inline-flex items-center gap-2 rounded-full bg-brand px-9 py-4 text-base font-bold text-star transition hover:bg-brand-strong"
     >
       {children}
     </a>
@@ -260,7 +260,7 @@ export default function AssessoriaCompletaPage() {
             {FAQ_ITEMS.map((item) => (
               <details
                 key={item.question}
-                className="group rounded-xl border border-slate-200 bg-slate-50 p-4 transition-colors open:border-ink/30"
+                className="group rounded-xl border border-slate-200 bg-slate-50 p-4 transition-colors open:border-hairline/30"
               >
                 <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-semibold text-ink">
                   {item.question}
