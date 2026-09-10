@@ -97,7 +97,21 @@ ligação** com `flow-vistoamericano`/`automacao_vistos`.
   Fatos sensíveis (taxa MRV US$185, Visa Integrity Fee, portal de agendamento)
   estão **hedgeados** com "confirme no site oficial" — revisar antes de campanha.
 - **Pendente de SEO**: `og:image` por artigo (hoje sem imagem); revisar os fatos
-  datados dos 4 posts; mais artigos da lista (taxa/prazo/CEAC, 30 perguntas).
+  datados dos posts.
+
+### Mudanças de 10/09/2026 (3) — +4 artigos do blog
+- `content/blog/`: `quanto-tempo-demora-visto-americano` (prazos + CEAC),
+  `renovacao-visto-americano-sem-entrevista` (interview waiver/dropbox),
+  `perguntas-entrevista-visto-americano` (as perguntas + como responder),
+  `visto-americano-autonomo-mei-freelancer` (comprovar vínculo sem CLT).
+- Todos com `faq`, links internos cruzados e CTA pra `/analise-de-perfil` /
+  `/assessoria-completa`. Blog agora tem **14 posts**.
+- Fatos voláteis hedgeados: janela da isenção de entrevista (mudou em 2025),
+  prazos de espera, status do CEAC. **Revisar contra fonte oficial** antes de
+  usar em anúncio.
+- Sem mudança de código — `sitemap.ts` já pega os novos posts e a tag
+  `renovacao` sozinho. Verificado em `localhost:3001` (rotas 200, JSON-LD +
+  FAQ ok, links internos 200).
 
 ---
 
