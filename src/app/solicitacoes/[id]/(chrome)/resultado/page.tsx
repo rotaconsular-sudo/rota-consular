@@ -33,10 +33,8 @@ export default async function ResultadoPage(
   return (
     <div className="flex flex-col gap-8">
       <div>
-        <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-          Sua análise de perfil
-        </p>
-        <h2 className="mt-1 text-xl font-bold leading-snug text-ink">
+        <p className="eyebrow text-accent">Sua análise de perfil</p>
+        <h2 className="mt-2 text-xl font-extrabold leading-snug tracking-tight text-ink">
           {corpo.resumo}
         </h2>
       </div>

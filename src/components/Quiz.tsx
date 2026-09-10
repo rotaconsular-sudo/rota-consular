@@ -54,20 +54,20 @@ export function Quiz({
   }, [current]);
 
   return (
-    <div className="flex min-h-screen flex-col bg-gradient-to-b from-[#0b3d91] to-[#0a2f6e] text-star">
+    <div className="flex min-h-screen flex-col bg-gradient-to-b from-[#0a1b3d] to-[#0b1f45] text-star">
       <div className="mx-auto flex w-full max-w-xl flex-1 flex-col px-6 py-10">
         {current ? (
           <>
             <div className="mb-8 h-1.5 w-full overflow-hidden rounded-full bg-white/15">
               <div
-                className="h-full rounded-full bg-white transition-all duration-300"
+                className="h-full rounded-full bg-brand transition-all duration-300"
                 style={{
                   width: `${((progressIndex + 1) / Math.max(progressTotal, 1)) * 100}%`,
                 }}
               />
             </div>
 
-            <p className="text-xs font-semibold uppercase tracking-wide text-star/70">
+            <p className="eyebrow text-star/60">
               Pergunta {progressIndex + 1} de {progressTotal}
             </p>
 
@@ -91,7 +91,7 @@ export function Quiz({
 function AnalyzingScreen() {
   return (
     <div className="flex flex-1 flex-col items-center justify-center gap-4 text-center">
-      <div className="h-8 w-8 animate-spin rounded-full border-2 border-star/25 border-t-white" />
+      <div className="h-8 w-8 animate-spin rounded-full border-2 border-star/20 border-t-brand" />
       <h2 className="font-serif text-2xl">Analisando suas respostas…</h2>
       <p className="text-sm text-star/60">Isso pode levar até 20 segundos.</p>
     </div>
@@ -174,7 +174,7 @@ function QuestionScreen({
           />
           <button
             type="submit"
-            className="w-fit rounded-lg bg-white px-5 py-2 text-sm font-semibold text-[#0b3d91] transition hover:bg-white/90"
+            className="w-fit rounded-full bg-brand px-6 py-2.5 text-sm font-bold text-star transition hover:bg-brand-strong"
           >
             OK · pressione Enter
           </button>

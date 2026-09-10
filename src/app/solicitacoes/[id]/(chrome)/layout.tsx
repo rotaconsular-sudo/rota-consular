@@ -5,6 +5,7 @@ import { WizardNav } from "@/components/WizardNav";
 import { WIZARD_STEPS } from "@/lib/wizard";
 import SiteHeader from "@/components/SiteHeader";
 import MinimalFooter from "@/components/MinimalFooter";
+import { Kicker } from "@/components/marketing";
 import { logout } from "@/app/actions";
 
 export default async function ApplicationLayout(
@@ -38,10 +39,16 @@ export default async function ApplicationLayout(
 
       <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-8 px-6 py-12">
       <div>
-        <Link href="/" className="text-sm font-medium text-accent hover:underline">
-          ← Minhas solicitações
+        <Link
+          href="/"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition hover:text-ink"
+        >
+          <span aria-hidden>←</span> Minhas solicitações
         </Link>
-        <h1 className="mt-2 text-xl font-bold tracking-tight text-ink">
+        <div className="mt-6">
+          <Kicker>Análise de perfil</Kicker>
+        </div>
+        <h1 className="mt-3 text-2xl font-extrabold tracking-tight text-ink">
           Solicitação de{" "}
           {new Date(application.createdAt).toLocaleDateString("pt-BR")}
         </h1>
@@ -52,7 +59,7 @@ export default async function ApplicationLayout(
           <WizardNav applicationId={application.id} completedSlugs={completedSlugs} />
         </nav>
 
-        <div className="flex-1 rounded-2xl border border-slate-200 bg-white p-6">
+        <div className="flex-1 rounded-xl border border-slate-200 bg-white p-6 sm:p-8">
           {props.children}
         </div>
       </div>
