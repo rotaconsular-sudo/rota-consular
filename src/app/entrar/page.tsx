@@ -1,6 +1,7 @@
 import { requestMagicLink } from "./actions";
 import SiteHeader from "@/components/SiteHeader";
 import MinimalFooter from "@/components/MinimalFooter";
+import { Kicker } from "@/components/marketing";
 
 const ERROR_MESSAGE: Record<string, string> = {
   email_invalido: "Digite um e-mail válido.",
@@ -17,7 +18,8 @@ export default async function EntrarPage(props: PageProps<"/entrar">) {
       <SiteHeader variant="minimal" />
       <div className="mx-auto flex w-full max-w-sm flex-1 flex-col justify-center gap-6 px-6 py-16">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-ink">
+        <Kicker>Acesso</Kicker>
+        <h1 className="mt-4 text-2xl font-extrabold tracking-tight text-ink">
           Entrar
         </h1>
         <p className="mt-2 text-sm text-slate-500">
