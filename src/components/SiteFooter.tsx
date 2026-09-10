@@ -25,6 +25,9 @@ export default function SiteFooter() {
                 {l.label}
               </Link>
             ))}
+            <Link href="/sobre" className="transition hover:text-white">
+              Sobre
+            </Link>
             <Link
               href="/politica-de-privacidade"
               className="transition hover:text-white"

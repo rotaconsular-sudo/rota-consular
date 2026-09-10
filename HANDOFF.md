@@ -175,6 +175,20 @@ ligação** com `flow-vistoamericano`/`automacao_vistos`.
 - Blog com **29 posts**. Ainda em aberto: cadência de um stream de notícias
   recorrente (não definida).
 
+### Mudanças de 10/09/2026 (9) — página /sobre + E-E-A-T do blog
+- Nova `src/app/sobre/page.tsx` (`/sobre`): quem somos (ASG CRUZ, CNPJ),
+  princípios, como o blog é produzido (fontes oficiais + revisão), o que
+  oferecemos, "o que não somos", contato. JSON-LD `AboutPage` + `Organization`
+  com `legalName`/`taxID`/`contactPoint`. Canonical `/sobre`. Usa
+  SiteHeader/SiteFooter, design do site.
+- `SiteFooter`: link **"Sobre"** ao lado de "Política de Privacidade" — aparece
+  no rodapé de todas as páginas públicas (blog incluído).
+- `/blog/[slug]`: byline "Por Rota Consular" agora **linka pra /sobre**, e
+  `Article.author.url` no JSON-LD aponta pra `${SITE_URL}/sobre` (sinal de
+  autoridade do autor).
+- `sitemap.ts`: + `/sobre`. Verificado: /sobre 200, JSON-LD ok, byline e
+  footer linkando, tsc + eslint limpos.
+
 ---
 
 ## Onde paramos (sessão 05/09/2026)

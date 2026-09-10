@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "/ds160", priority: 0.8, changeFrequency: "monthly" as const },
     { url: "/ds160-preenchido", priority: 0.7, changeFrequency: "monthly" as const },
     { url: "/assessoria-completa", priority: 0.7, changeFrequency: "monthly" as const },
+    { url: "/sobre", priority: 0.5, changeFrequency: "yearly" as const },
     { url: "/blog", priority: 0.6, changeFrequency: "daily" as const },
     { url: "/politica-de-privacidade", priority: 0.2, changeFrequency: "yearly" as const },
   ].map((p) => ({

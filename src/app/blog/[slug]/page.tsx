@@ -61,7 +61,11 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
       datePublished: post.publishedAt,
       dateModified: post.updatedAt,
       inLanguage: "pt-BR",
-      author: { "@type": "Organization", name: BLOG_AUTHOR, url: SITE_URL },
+      author: {
+        "@type": "Organization",
+        name: BLOG_AUTHOR,
+        url: `${SITE_URL}/sobre`,
+      },
       publisher: {
         "@type": "Organization",
         name: BLOG_AUTHOR,
@@ -138,7 +142,12 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
           </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-slate-500">
-            <span className="font-medium text-slate-600">Por {BLOG_AUTHOR}</span>
+            <Link
+              href="/sobre"
+              className="font-medium text-slate-600 transition hover:text-ink"
+            >
+              Por {BLOG_AUTHOR}
+            </Link>
             <span aria-hidden>·</span>
             <time dateTime={post.publishedAt}>
               Publicado em {formatPostDate(post.publishedAt)}
