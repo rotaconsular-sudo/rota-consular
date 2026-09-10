@@ -404,3 +404,25 @@ Operador escolheu a **versão clara** do mockup (não a escura do commit 11).
 - Commit `2462bae`. tsc + eslint limpos (fora os 2 erros pré-existentes).
 - **Pendente**: admin/wizard/checkout/minha-conta não revisados; estrelas/
   listras nas páginas internas; ritmo de seção.
+
+### Mudanças de 10/09/2026 (13) — funil no sistema do mockup
+- `src/components/marketing.tsx`: `Kicker` (eyebrow + filete vermelho), `Star`,
+  `StarList` — reusados em todas as páginas de marketing.
+- **Home** (`page.tsx`): sistema do mockup (kicker, estrelas na capa, `.stripes`
+  entre seções, "Como funciona" 01–05) + nova seção **"Por onde entrar"** =
+  escada de 4 produtos com selo/preço/CTA (Análise R$0 destacada, DS-160 sem
+  erros R$27,90, DS-160 preenchido R$97, Assessoria "falar com especialista").
+- **`/analise-de-perfil`**, **`/assessoria-completa`**, **`/ds160-preenchido`**:
+  tratamento completo do mockup (kicker, Libre Franklin à esquerda, estrelas,
+  FAQ estilo mockup, listras).
+- **`/mapads160`**: hero com kicker + preço + estrelas; h2 das seções
+  alinhados à esquerda em extrabold. Falta pôr kicker/listras nas demais
+  seções (polir depois).
+- H1 da assessoria: "Aprovamos o seu visto" → "Uma especialista cuida do seu
+  visto" (alinha com a voz "não é promessa de aprovação").
+- Verificado: home, /analise, /assessoria, /mapads160, /ds160-preenchido → 200;
+  tsc + eslint limpos.
+- **Falta pra o funil PROCESSAR** (só operador): `MERCADOPAGO_ACCESS_TOKEN`
+  (conta nova) + webhook; `RESEND_API_KEY`; número real em `src/lib/contato.ts`.
+- **Design pendente**: admin/wizard/checkout/minha-conta (herdaram tokens, sem
+  revisão fina); listras/kickers nas seções internas de `/mapads160`.
