@@ -137,8 +137,22 @@ ligação** com `flow-vistoamericano`/`automacao_vistos`.
   difere). Os 5 posts originais que faltavam ganharam `updatedAt: 2026-09-10`.
 - Script gerador: `scratchpad/add_resposta.py` (fora do repo).
 - Verificado: 17 posts 200, box + byline + JSON-LD author OK, tsc + eslint limpos.
-- **Próximo (Tier 2)**: cluster de passaporte; "resposta rápida" ainda falta
-  padronizar "Erros comuns" + tabela nos pilares; stream de notícias.
+- **Próximo (Tier 2)**: "resposta rápida" ainda falta padronizar "Erros
+  comuns" + tabela nos pilares; stream de notícias.
+
+### Mudanças de 10/09/2026 (6) — cluster de passaporte (Tier 2)
+- 6 artigos novos em `content/blog/` (tag nova `passaporte`):
+  `como-tirar-passaporte-brasileiro` (pilar), `documentos-para-tirar-passaporte`,
+  `quanto-custa-passaporte`, `prazo-e-validade-do-passaporte`,
+  `passaporte-para-menor-de-idade`, `passaporte-e-visto-para-os-eua` (bridge
+  que funila pro visto).
+- Todos com `respostaRapida`, `faq`, links internos entre si + backlinks do
+  guia B1/B2 e do artigo de menores pro cluster de passaporte.
+- Fatos hedgeados: taxa GRU R$ 257,25, prazo ~6 dias úteis, faixas de
+  validade do menor, regra dos 6 meses (EUA isenta o Brasil) — **conferir na
+  Polícia Federal / gov.br** antes de campanha.
+- Blog agora com **23 posts**. Verificado: 6 rotas 200, tag/passaporte 200,
+  sitemap 42 URLs, JSON-LD + box + byline OK, tsc limpo.
 
 ---
 

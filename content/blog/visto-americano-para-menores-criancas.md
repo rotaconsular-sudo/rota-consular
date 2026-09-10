@@ -60,7 +60,8 @@ pais.
 ## Documentos do menor
 
 - **Certidão de nascimento** — documento central, liga a criança aos pais
-- **Passaporte** do menor, válido
+- **Passaporte** do menor, válido (veja
+  [passaporte para menor de idade](/blog/passaporte-para-menor-de-idade))
 - **Cópia do passaporte e do visto dos pais** (ou do DS-160 deles, se
   pedirem juntos)
 - **Comprovantes de vínculo dos pais** com o Brasil — é o que sustenta o

@@ -81,8 +81,9 @@ cancelar o visto e gerar barreiras para vistos futuros.
 
 ## Passo a passo da solicitação
 
-1. **Passaporte válido.** Se o seu está vencido ou perto disso, emita ou
-   renove antes de começar.
+1. **Passaporte válido.** Se o seu está vencido ou perto disso,
+   [tire um novo](/blog/como-tirar-passaporte-brasileiro) antes de começar —
+   o número dele entra no DS-160.
 2. **Preencha o formulário DS-160.** É o formulário oficial, obrigatório,
    feito online. Ao final ele gera um código de barras (a confirmação) que
    você vai usar no agendamento. Veja o
