@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/session";
@@ -113,32 +114,79 @@ export default async function HomePage() {
   );
 }
 
+const HERO_BULLETS = [
+  "Análise dos seus vínculos com o Brasil — o que pesa no 214(b)",
+  "Checklist de documentos do seu perfil, não uma lista genérica",
+  "DS-160 em português, com revisão humana antes do envio",
+  "Simulação da entrevista com as perguntas reais do consulado",
+];
+
 const DIFERENCIAIS = [
   {
-    title: "Análise Inteligente de Perfil",
+    title: "Análise de perfil",
     description:
-      "Em poucos minutos, nosso sistema lê suas respostas e te avisa exatamente onde você pode estar errando. Descubra os pontos fracos do seu perfil antes mesmo de pagar a cara taxa do visto",
+      "Um questionário curto lê as suas respostas e aponta, na hora, onde o seu perfil está forte e onde está frágil aos olhos do consulado.",
     icon: IconSpark,
   },
   {
-    title: "Lista de Documentos Exata",
+    title: "Checklist por perfil",
     description:
-      "Esqueça aquelas listas gigantes e confusas da internet. Você vai receber um checklist mastigado mostrando apenas os documentos que o seu caso precisa levar no dia da entrevista",
+      "CLT, autônomo, MEI, aposentado, estudante ou menor: cada caso tem uma lista de documentos própria. Você leva só o que o seu precisa.",
     icon: IconChecklist,
   },
   {
-    title: "Preparação Sem Falsas Promessas",
+    title: "DS-160 sem erro",
     description:
-      "Não vendemos milagres, jogamos limpo com você. Entregamos a preparação real para você sentar na frente do cônsul sabendo exatamente o que fazer, com total segurança e confiança",
-    icon: IconShieldOutline,
-  },
-  {
-    title: "Passo a Passo Descomplicado",
-    description:
-      "Preencher o formulário DS-160 não precisa dar dor de cabeça. Te guiamos pela mão em cada etapa para você não cometer erros bobos e economizar um bom dinheiro com despachantes",
+      "O formulário oficial preenchido no seu idioma, com revisão humana campo a campo. O erro no DS-160 é o que mais derruba a entrevista.",
     icon: IconSteps,
   },
+  {
+    title: "Sem falsas promessas",
+    description:
+      "A decisão é sempre do oficial consular. Não vendemos milagre — tiramos do seu caminho os erros que fazem perder a taxa.",
+    icon: IconShieldOutline,
+  },
 ];
+
+const PASSOS = [
+  {
+    t: "Você faz o Raio-X grátis",
+    d: "Um questionário rápido sobre emprego, renda, família, patrimônio e o roteiro que pretende fazer. Leva 2 minutos.",
+  },
+  {
+    t: "A análise aponta os riscos",
+    d: "Resultado na hora, em linguagem simples: o que joga a seu favor, o que vale reforçar e onde há ponto de atenção que pode virar recusa.",
+  },
+  {
+    t: "Você corrige antes de agendar",
+    d: "Cada ponto fraco vem com o que fazer: qual documento buscar, como ajustar o roteiro, o que organizar no extrato.",
+  },
+  {
+    t: "DS-160 revisado e entrevista treinada",
+    d: "Preenchemos o formulário com você e fazemos uma simulação com as perguntas reais do consulado, até a resposta sair natural.",
+  },
+  {
+    t: "Você entra na entrevista preparado",
+    d: "Sabendo o que levar, o que dizer e por que cada escolha do seu processo faz sentido.",
+  },
+];
+
+function Kicker({ children }: { children: ReactNode }) {
+  return (
+    <div className="flex items-center gap-3">
+      <span className="h-0.5 w-6 bg-brand" />
+      <span className="eyebrow text-slate-500">{children}</span>
+    </div>
+  );
+}
+
+function Star() {
+  return (
+    <svg viewBox="0 0 16 16" className="mt-1 h-3.5 w-3.5 shrink-0 fill-brand" aria-hidden>
+      <path d="M8 0l2 5 5 .4-3.8 3.3 1.2 5L8 12.6 3.4 15.7l1.2-5L.8 5.4 5.8 5z" />
+    </svg>
+  );
+}
 
 function InstitutionalHome() {
   const posts = getAllPosts().slice(0, 3);
@@ -178,48 +226,66 @@ function InstitutionalHome() {
             consulado com total segurança.
           </p>
 
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+          <ul className="mt-7 flex max-w-xl flex-col gap-2.5">
+            {HERO_BULLETS.map((b) => (
+              <li key={b} className="flex items-start gap-2.5 text-sm text-slate-200">
+                <Star />
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Link
               href="/analise-de-perfil"
-              className="rounded-full bg-white px-8 py-3.5 text-center text-sm font-bold text-ink shadow-xl shadow-black/25 transition hover:bg-slate-100"
+              className="rounded-full bg-brand px-8 py-3.5 text-center text-sm font-bold text-star shadow-xl shadow-black/25 transition hover:bg-brand-strong"
             >
-              Fazer análise grátis
+              Fazer minha análise grátis →
             </Link>
             <Link
               href="/mapads160"
               className="rounded-full border border-star/30 px-8 py-3.5 text-center text-sm font-bold text-star backdrop-blur-sm transition hover:border-star/70 hover:bg-white/10"
             >
-              DS160 sem erros
+              DS-160 sem erros
             </Link>
           </div>
-        </div>
-
-        <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-10">
-          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-star/45">
-            ↓ Role para ver como funciona
-          </span>
+          <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.2em] text-star/50">
+            2 min · sem cartão · resultado na hora
+          </p>
         </div>
       </section>
 
-      {/* Diferenciais */}
+      <hr className="stripes" />
+
+      {/* O que você recebe */}
       <section className="bg-slate-50">
         <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
-            Como o Rota Consular ajuda
-          </h2>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
+          <div className="max-w-2xl">
+            <Kicker>O que você recebe</Kicker>
+            <h2 className="mt-5 text-balance text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+              Quatro coisas que decidem a sua entrevista — todas cobertas.
+            </h2>
+            <p className="mt-4 text-slate-600">
+              Não vendemos milagre. A decisão é sempre do oficial consular. O
+              que a gente faz é tirar do seu caminho os erros que fazem perder
+              a taxa.
+            </p>
+          </div>
+          <div className="mt-12 grid gap-5 sm:grid-cols-2">
             {DIFERENCIAIS.map((d) => {
               const Icon = d.icon;
               return (
                 <div
                   key={d.title}
-                  className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-6"
+                  className="rounded-xl border border-slate-200 bg-white p-6"
                 >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-ink">
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-brand">
                     <Icon />
                   </div>
-                  <p className="text-sm font-semibold text-ink">{d.title}</p>
-                  <p className="text-sm text-slate-600">{d.description}</p>
+                  <p className="font-bold text-ink">{d.title}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                    {d.description}
+                  </p>
                 </div>
               );
             })}
@@ -227,82 +293,147 @@ function InstitutionalHome() {
         </div>
       </section>
 
-      {/* O que oferecemos */}
+      <hr className="stripes" />
+
+      {/* Como funciona */}
       <section className="bg-white">
-        <div className="mx-auto max-w-4xl px-6 py-20 sm:py-28">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
-            O que você encontra aqui
-          </h2>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
+        <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
+          <div className="max-w-2xl">
+            <Kicker>Como funciona</Kicker>
+            <h2 className="mt-5 text-balance text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+              Do &ldquo;será que passo?&rdquo; ao consulado, sem improviso.
+            </h2>
+          </div>
+          <div className="mt-10 flex flex-col">
+            {PASSOS.map((p, i) => (
+              <div
+                key={p.t}
+                className="grid grid-cols-[52px_1fr] gap-5 border-t border-slate-200 py-6 first:border-t-0 sm:grid-cols-[68px_1fr]"
+              >
+                <span className="font-mono text-2xl font-medium leading-none text-brand">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="text-lg font-bold text-ink">{p.t}</h3>
+                  <p className="mt-2 max-w-xl text-slate-600">{p.d}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <hr className="stripes" />
+
+      {/* O que você encontra aqui */}
+      <section className="bg-slate-50">
+        <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
+          <div className="max-w-2xl">
+            <Kicker>Por onde começar</Kicker>
+            <h2 className="mt-5 text-balance text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+              Comece pelo grátis. Só avança quem quiser.
+            </h2>
+          </div>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2">
             <Link
               href="/analise-de-perfil"
-              className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-7 transition hover:border-slate-400"
+              className="group flex flex-col rounded-xl border border-slate-200 bg-white p-7 transition hover:border-slate-400"
             >
-              <span className="inline-flex w-fit items-center gap-2 rounded-full border border-hairline/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink">
-                ANÁLISE GRÁTIS
-              </span>
-              <h3 className="text-lg font-bold text-ink">
+              <span className="eyebrow text-brand">Análise grátis</span>
+              <h3 className="mt-3 text-lg font-bold text-ink">
                 Descubra suas chances na hora
               </h3>
-              <p className="text-sm text-slate-600">
-                Responda um quiz rápido de 2 minutos e receba um diagnóstico
-                imediato. Saiba se o seu perfil está pronto para aprovação ou
-                se esconde alguma &quot;pegadinha&quot; que pode te fazer
-                perder a taxa do visto.
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                Um quiz de 2 minutos e um diagnóstico imediato: se o seu perfil
+                está pronto ou se esconde uma &ldquo;pegadinha&rdquo; que pode
+                te fazer perder a taxa.
               </p>
+              <span className="mt-4 text-sm font-semibold text-accent transition group-hover:text-ink">
+                Fazer o Raio-X →
+              </span>
             </Link>
             <Link
               href="/mapads160"
-              className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-7 transition hover:border-slate-400"
+              className="group flex flex-col rounded-xl border border-slate-200 bg-white p-7 transition hover:border-slate-400"
             >
-              <span className="inline-flex w-fit items-center gap-2 rounded-full border border-slate-300 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600">
-                PREENCHIMENTO OFICIAL
-              </span>
-              <h3 className="text-lg font-bold text-ink">
-                O Fim do Medo de Errar no DS-160
+              <span className="eyebrow text-slate-500">Preenchimento oficial</span>
+              <h3 className="mt-3 text-lg font-bold text-ink">
+                O fim do medo de errar no DS-160
               </h3>
-              <p className="text-sm text-slate-600">
-                Esqueça o site confuso em inglês. Use nosso formulário fácil
-                no seu idioma e deixe o resto com a gente. Nossa equipe faz
-                uma revisão humana minuciosa para evitar &quot;pegadinhas&quot;
-                e transmite seus dados ao governo americano com zero risco de
-                erros.
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                Formulário fácil no seu idioma + revisão humana campo a campo
+                antes do envio ao governo americano. Zero risco de erro bobo.
               </p>
+              <span className="mt-4 text-sm font-semibold text-accent transition group-hover:text-ink">
+                Ver o DS-160 sem erros →
+              </span>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Blog teaser */}
       {posts.length > 0 && (
-        <section className="bg-slate-50">
-          <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
-            <div className="flex items-center justify-between">
-              <h2 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
-                Últimas do blog
-              </h2>
-              <Link href="/blog" className="text-sm font-semibold text-accent hover:underline">
-                Ver blog completo →
-              </Link>
-            </div>
-            <div className="mt-8 grid gap-4 sm:grid-cols-3">
-              {posts.map((post) => (
+        <>
+          <hr className="stripes" />
+          <section className="bg-white">
+            <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
+              <div className="flex flex-wrap items-end justify-between gap-4">
+                <div>
+                  <Kicker>Do blog</Kicker>
+                  <h2 className="mt-5 text-balance text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+                    Chegue informado.
+                  </h2>
+                </div>
                 <Link
-                  key={post.slug}
-                  href={`/blog/${post.slug}`}
-                  className="flex flex-col gap-2 rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-slate-400"
+                  href="/blog"
+                  className="text-sm font-semibold text-accent hover:text-ink"
                 >
-                  <time className="text-xs text-slate-400" dateTime={post.publishedAt}>
-                    {formatPostDate(post.publishedAt)}
-                  </time>
-                  <p className="text-sm font-bold text-ink">{post.title}</p>
-                  <p className="text-xs text-slate-600">{post.excerpt}</p>
+                  Ver blog completo →
                 </Link>
-              ))}
+              </div>
+              <div className="mt-10 grid gap-5 sm:grid-cols-3">
+                {posts.map((post) => (
+                  <Link
+                    key={post.slug}
+                    href={`/blog/${post.slug}`}
+                    className="flex flex-col gap-2 rounded-xl border border-slate-200 bg-white p-5 transition hover:border-slate-400"
+                  >
+                    <time
+                      className="font-mono text-[11px] uppercase tracking-[0.12em] text-slate-400"
+                      dateTime={post.publishedAt}
+                    >
+                      {formatPostDate(post.publishedAt)}
+                    </time>
+                    <p className="text-sm font-bold leading-snug text-ink">
+                      {post.title}
+                    </p>
+                    <p className="text-xs leading-relaxed text-slate-600">
+                      {post.excerpt}
+                    </p>
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </>
       )}
+
+      <hr className="stripes" />
+
+      {/* CTA final */}
+      <section className="bg-slate-50">
+        <div className="mx-auto max-w-2xl px-6 py-20 text-center sm:py-24">
+          <h2 className="text-balance text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+            Comece pelo Raio-X. Ele é grátis e leva 2 minutos.
+          </h2>
+          <Link
+            href="/analise-de-perfil"
+            className="mt-7 inline-block rounded-full bg-brand px-8 py-4 text-sm font-bold text-star transition hover:bg-brand-strong"
+          >
+            Fazer minha análise grátis →
+          </Link>
+        </div>
+      </section>
 
       <SiteFooter />
     </div>
