@@ -2,57 +2,44 @@
 @plugin "@tailwindcss/typography";
 
 /*
- * DIREÇÃO VISUAL (2026-09-10): tema escuro único, cores da bandeira dos EUA.
- * O "campo azul" da bandeira é o chão; o vermelho old-glory é a ÚNICA cor de
- * ação (CTA + urgência); branco e estrelas fazem a estrutura. Sem modo claro —
- * o site compromete com um só mundo visual.
+ * DIREÇÃO VISUAL (2026-09-10, revisada): tema CLARO, cores da bandeira dos EUA.
+ * Referência: mockup "Rota Consular" (Artifact) — versão clara.
  *
- * O reskin é feito por TOKEN: os utilitários existentes (bg-white, text-slate-*,
- * border-slate-*, text-ink, bg-ink...) continuam no código; aqui a rampa de
- * cinza do Tailwind é invertida (escuro -> claro) e `ink`/`accent` são
- * reapontados. Trocas pontuais no código: bg-ink -> bg-brand (vermelho),
- * text-white -> text-star, border-ink -> border-hairline, ring-ink -> ring-accent.
+ * Fundo claro azulado; navy é a tinta (títulos, wordmark, capa com bandeira);
+ * VERMELHO só em botão e acento; branco nos cards; listras vermelhas finas
+ * (.stripes) separam blocos; estrelas marcam item de lista.
+ *
+ * Trocas semânticas já feitas no código (mantidas): bg-ink -> bg-brand
+ * (botão vermelho), text-white -> text-star (branco sobre vermelho/navy),
+ * border-ink -> border-hairline, ring-ink -> ring-accent.
  */
 
 :root {
-  --background: #0a1b3d; /* campo azul — o chão */
-  --foreground: #f6f8ff;
-  color-scheme: dark;
+  --background: #f3f5fb; /* branco frio, levemente azulado */
+  --foreground: #0a1b3d; /* navy da bandeira */
+  color-scheme: light;
 }
 
 @theme {
   /* marca */
-  --color-ink: #f6f8ff;          /* text-ink = títulos, quase branco */
-  --color-ink-muted: #cdd9f2;
-  --color-accent: #ff5a74;       /* text-accent = links, vermelho claro sobre navy */
-  --color-accent-soft: #ff9aab;  /* highlight do hero */
+  --color-ink: #0a1b3d;          /* text-ink = títulos, navy */
+  --color-ink-muted: #1e2f52;
+  --color-accent: #c8102e;       /* text-accent = links, vermelho */
+  --color-accent-soft: #ff8a9c;  /* highlight sobre a capa navy (contraste) */
 
-  --color-star: #ffffff;         /* text-star (ex text-white): branco puro sobre navy/vermelho */
-  --color-brand: #d81f3d;        /* bg-brand (ex bg-ink): o CTA vermelho */
-  --color-brand-strong: #ff3a58; /* hover do CTA */
-  --color-hairline: #26406e;     /* border-hairline (ex border-ink) */
-  --color-parchment: #ece4d3;    /* bloco de aviso "oficial", uso pontual */
+  --color-star: #ffffff;         /* text-star = branco sobre vermelho/navy */
+  --color-brand: #c8102e;        /* bg-brand = o botão vermelho */
+  --color-brand-strong: #a50d26; /* hover do botão */
+  --color-hairline: #cbd5ea;     /* border-hairline = fio navy suave */
+  --color-parchment: #ece4d3;    /* bloco de aviso "oficial" */
 
-  /* rampa de cinza invertida: agora vai de escuro (50) a claro (900) */
-  --color-white:     #0c2249;    /* bg-white = superfície de card navy */
-  --color-slate-50:  #0b1e42;    /* bg-slate-50 = faixa de seção alternada */
-  --color-slate-100: #152a54;    /* bg-slate-100 = superfície fraca (chips) */
-  --color-slate-200: #24365e;    /* border-slate-200 = fio */
-  --color-slate-300: #8ea2c8;    /* serve p/ border-slate-300 e p/ text-slate-300 (lede da capa) */
-  --color-slate-400: #8497c0;    /* text-slate-400 = texto tênue */
-  --color-slate-500: #9db0d6;    /* text-slate-500 = texto atenuado */
-  --color-slate-600: #b7c4e2;    /* text-slate-600 = secundário */
-  --color-slate-700: #d3ddf1;    /* text-slate-700 = quase corpo */
-  --color-slate-800: #e8eeff;
-  --color-slate-900: #f6f8ff;
+  /* faixa de seção alternada = mesmo tom do fundo */
+  --color-slate-50: #f3f5fb;
 
-  /*
-   * Vocabulário semântico da área logada. Brilho ajustado para ler sobre navy.
-   * Superfícies saem por opacidade (bg-ok/10, border-warn/30).
-   */
-  --color-ok:   #34d399;
-  --color-warn: #fbbf24;
-  --color-err:  #fb7185;
+  /* semânticos da área logada */
+  --color-ok:   #047857;
+  --color-warn: #b45309;
+  --color-err:  #b91c1c;
 }
 
 @theme inline {
@@ -60,12 +47,13 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-serif);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), "Libre Franklin", system-ui, Arial, sans-serif;
 }
 
 /* Faixa de listras da bandeira — divisor estrutural entre blocos. */
@@ -78,10 +66,10 @@ body {
     var(--color-brand) 0 56px,
     transparent 56px 112px
   );
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
-/* Sobrescrita da label do eyebrow: mono, caixa alta, tracking largo. */
+/* Eyebrow: mono, caixa alta, tracking largo — voz de "campo de formulário". */
 .eyebrow {
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 11px;

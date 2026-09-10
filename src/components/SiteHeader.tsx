@@ -26,13 +26,13 @@ export default function SiteHeader({
       className={
         dark
           ? "relative z-10"
-          : "sticky top-0 z-40 border-b border-slate-200 bg-[#0a1b3d]/85 backdrop-blur"
+          : "sticky top-0 z-40 border-b border-slate-200 bg-white/85 backdrop-blur"
       }
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-5">
         <Link href="/" className="transition hover:opacity-80">
           <Image
-            src="/logo-rota-consular-branco.png"
+            src={dark ? "/logo-rota-consular-branco.png" : "/logo-rota-consular.png"}
             alt="Rota Consular"
             width={1115}
             height={235}

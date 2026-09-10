@@ -1,19 +1,32 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Geist_Mono } from "next/font/google";
+import { Libre_Franklin, IBM_Plex_Mono, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
 import MetaPixel from "@/components/MetaPixel";
 import { SITE_URL } from "@/lib/url";
 
-const plusJakarta = Plus_Jakarta_Sans({
+// Libre Franklin: gótica americana (linhagem Franklin Gothic) — cara cívica.
+const franklin = Libre_Franklin({
   variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
+// IBM Plex Mono: eyebrows, tags e números — voz de campo de formulário.
+const plexMono = IBM_Plex_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
+});
+
+// Source Serif 4: bloco de aviso "oficial".
+const sourceSerif = Source_Serif_4({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -27,9 +40,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="pt-BR"
-      className={`${plusJakarta.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
+      className={`${franklin.variable} ${plexMono.variable} ${sourceSerif.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-slate-50 text-slate-900">
+      <body className="min-h-full flex flex-col bg-background text-foreground">
         {children}
         <CookieBanner />
         <MetaPixel />

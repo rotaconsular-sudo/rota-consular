@@ -60,15 +60,13 @@ const DIFERENCIAIS = [
 
 function AnaliseForm() {
   return (
-    <div className="rounded-2xl bg-brand p-7 text-left sm:p-9">
-      <span className="inline-flex items-center rounded-full border border-star/35 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-star">
-        GRÁTIS
-      </span>
+    <div className="rounded-2xl border border-slate-200 bg-white p-7 text-left shadow-[0_20px_50px_-30px_rgba(10,27,61,.35)] sm:p-9">
+      <span className="eyebrow text-accent">Grátis</span>
 
-      <form action={startFreeApplication} className="mt-5 flex flex-col gap-3">
+      <form action={startFreeApplication} className="mt-4 flex flex-col gap-3">
         <div className="flex flex-col gap-3 sm:flex-row">
           <label className="flex flex-1 flex-col gap-1.5">
-            <span className="text-sm font-medium text-star/85">
+            <span className="text-sm font-medium text-slate-600">
               Seu melhor e-mail
             </span>
             <input
@@ -76,12 +74,12 @@ function AnaliseForm() {
               type="email"
               required
               placeholder="seu@email.com"
-              className="rounded-lg border border-transparent bg-white px-3.5 py-2.5 text-sm text-ink outline-none transition focus:ring-2 focus:ring-accent-soft"
+              className="rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-ink outline-none transition focus:border-hairline focus:ring-2 focus:ring-accent/30"
             />
           </label>
 
           <label className="flex flex-1 flex-col gap-1.5">
-            <span className="text-sm font-medium text-star/85">
+            <span className="text-sm font-medium text-slate-600">
               Seu WhatsApp
             </span>
             <input
@@ -89,20 +87,20 @@ function AnaliseForm() {
               type="tel"
               required
               placeholder="(11) 99999-9999"
-              className="rounded-lg border border-transparent bg-white px-3.5 py-2.5 text-sm text-ink outline-none transition focus:ring-2 focus:ring-accent-soft"
+              className="rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-ink outline-none transition focus:border-hairline focus:ring-2 focus:ring-accent/30"
             />
           </label>
         </div>
 
         <button
           type="submit"
-          className="w-full rounded-full bg-star px-6 py-3 text-sm font-bold text-brand transition hover:bg-slate-800"
+          className="w-full rounded-full bg-brand px-6 py-3.5 text-sm font-bold text-star transition hover:bg-brand-strong"
         >
           Iniciar Minha Análise Gratuita
         </button>
       </form>
 
-      <p className="mt-3 text-xs text-star/75">
+      <p className="mt-3 text-xs text-slate-400">
         100% seguro e sigiloso. Sem necessidade de cartão de crédito.
       </p>
     </div>

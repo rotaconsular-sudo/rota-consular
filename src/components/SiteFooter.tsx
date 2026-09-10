@@ -10,7 +10,8 @@ import CookiePrefsButton from "@/components/CookiePrefsButton";
 
 export default function SiteFooter() {
   return (
-    <footer className="bg-[#071231]">
+    <footer className="bg-[#0a1b3d]">
+      <hr className="stripes" />
       <div className="mx-auto max-w-5xl px-6 py-14">
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
           <Link
@@ -38,8 +39,8 @@ export default function SiteFooter() {
           </nav>
         </div>
 
-        <p className="mt-12 border-t border-star/10 pt-8 text-xs leading-relaxed text-slate-500">
-          <strong className="text-slate-300">
+        <p className="mt-12 border-t border-star/10 pt-8 text-xs leading-relaxed text-slate-400">
+          <strong className="text-slate-200">
             A Rota Consular é uma empresa privada de assessoria e não possui
             qualquer vínculo com consulados ou embaixadas.
           </strong>{" "}

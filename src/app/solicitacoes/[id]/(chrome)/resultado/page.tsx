@@ -110,14 +110,12 @@ export default async function ResultadoPage(
         </section>
       )}
 
-      <section className="rounded-2xl bg-brand p-6 text-center sm:p-8">
-        <span className="inline-flex items-center rounded-full border border-star/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent-soft">
-          Próximo passo
-        </span>
-        <h3 className="mt-3 text-xl font-bold text-star">
+      <section className="rounded-2xl border border-slate-200 bg-white p-6 text-center sm:p-8">
+        <span className="eyebrow text-accent">Próximo passo</span>
+        <h3 className="mt-3 text-xl font-bold text-ink">
           Seu diagnóstico está pronto. Agora vem o DS-160.
         </h3>
-        <p className="mx-auto mt-2 max-w-md text-sm text-slate-300">
+        <p className="mx-auto mt-2 max-w-md text-sm text-slate-500">
           Você já sabe o que está a seu favor e o que reforçar. O próximo
           passo é o formulário oficial do visto — e ele não perdoa erro de
           preenchimento.
@@ -125,13 +123,13 @@ export default async function ResultadoPage(
         <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:justify-center">
           <Link
             href="/mapads160"
-            className="rounded-full border border-star/25 px-6 py-3 text-sm font-bold text-star transition hover:border-star/60 hover:bg-white/10"
+            className="rounded-full border border-slate-300 px-6 py-3 text-sm font-bold text-ink transition hover:border-hairline"
           >
             Prefiro preencher sozinho — R$27,90
           </Link>
           <Link
             href="/ds160-preenchido"
-            className="rounded-full bg-white px-6 py-3 text-sm font-bold text-ink transition hover:bg-slate-100"
+            className="rounded-full bg-brand px-6 py-3 text-sm font-bold text-star transition hover:bg-brand-strong"
           >
             Quero que façam por mim — R$97
           </Link>
