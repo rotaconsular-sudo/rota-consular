@@ -388,3 +388,19 @@ servir arquivo — `blobUrl` nunca vai pro cliente.
 - [ ] Migrar a copy de `/mapads160` (`src/lib/products.ts`, ainda em código) pro banco/admin.
 - [ ] `/minha-conta`: adaptar o header do site pra mostrar "Minha conta" quando logado.
 - [ ] (herdado) cobrança comercial na Anthropic antes de escalar tráfego; trocar "National Tur" no perfil do Mercado Pago; trocar os posts de exemplo do blog.
+
+### Mudanças de 10/09/2026 (12) — reskin v2: tema CLARO (versão final)
+Operador escolheu a **versão clara** do mockup (não a escura do commit 11).
+- `globals.css`: fundo `#f3f5fb`, texto navy `#0a1b3d`, vermelho `#c8102e` só
+  em botão/acento; slate ramp de volta ao padrão do Tailwind (só `slate-50`
+  reapontado p/ `#f3f5fb`). Classe `.stripes` (listra vermelha).
+- `layout.tsx`: **Libre Franklin** (sans) + **IBM Plex Mono** (eyebrow) +
+  **Source Serif 4**; `body` usa `bg-background/text-foreground`.
+- `SiteHeader` barra clara + logo condicional; `SiteFooter` navy + `.stripes`;
+  `blog/[slug]` `prose-slate` + CTA card branco/botão vermelho;
+  `analise-de-perfil` card branco/botão vermelho; `resultado` idem.
+- **Mantido**: capa com `WavingFlag` + frase "Preparação inteligente para o
+  seu visto americano".
+- Commit `2462bae`. tsc + eslint limpos (fora os 2 erros pré-existentes).
+- **Pendente**: admin/wizard/checkout/minha-conta não revisados; estrelas/
+  listras nas páginas internas; ritmo de seção.
