@@ -17,7 +17,9 @@ faq:
     a: "Respostas que não batem com o DS-160, roteiro vago ou incompatível com a renda, vínculos fracos com o Brasil e falar demais. A recusa mais comum (214(b)) é sobre não convencer o cônsul de que você vai voltar."
   - q: "Posso levar alguém comigo?"
     a: "Em regra, cada adulto faz sua própria entrevista. Famílias com filhos menores costumam ser atendidas juntas. Acompanhantes que não são solicitantes normalmente não entram."
+respostaRapida: "A entrevista dura poucos minutos e gira em torno de cerca de 15 perguntas previsíveis: motivo e duração da viagem, quem paga, onde você trabalha, renda, estado civil, viagens anteriores e parentes nos EUA. Responda curto, honesto e coerente com o que está no DS-160."
 ---
+
 
 A entrevista do visto americano intimida mais pela fama do que pela
 realidade: são **poucos minutos** e um conjunto **previsível** de perguntas.

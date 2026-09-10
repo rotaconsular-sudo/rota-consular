@@ -3,7 +3,10 @@ title: "O que é o DS-160 e por que ele é o centro do pedido de visto americano
 excerpt: "O DS-160 é o formulário online obrigatório para quase todos os tipos de visto de não imigrante dos EUA. Entenda o que ele pede e por que vale preencher com calma."
 tags: ["ds160", "visto-americano"]
 publishedAt: "2026-08-20"
+updatedAt: "2026-09-10"
+respostaRapida: "O DS-160 é o formulário oficial e obrigatório para solicitar o visto americano, preenchido online no site do Departamento de Estado. Ao final ele gera uma folha de confirmação com código de barras, usada para pagar a taxa MRV e agendar a entrevista."
 ---
+
 
 ## O que é o DS-160
 

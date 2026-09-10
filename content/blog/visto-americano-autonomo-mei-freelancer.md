@@ -17,7 +17,9 @@ faq:
     a: "Não atrapalha por si só. O que o cônsul quer entender é se você tem motivos para voltar ao Brasil. Mostre que a sua base é aqui: residência, família, patrimônio, clientes e rotina no país."
   - q: "Sou MEI recente, abri há poucos meses. Devo esperar?"
     a: "Um histórico mais longo de atividade e movimentação transmite mais estabilidade. Se o MEI é muito recente e não há outros vínculos fortes, vale reforçar os demais laços ou aguardar alguns meses de operação comprovável."
+respostaRapida: "Autônomo e MEI conseguem visto de turismo — não há exigência de carteira assinada. O desafio é comprovar que a atividade é real, recorrente e baseada no Brasil: CNPJ/MEI, DAS, contratos, notas fiscais e extratos com recebimentos regulares, além dos vínculos familiares e patrimoniais."
 ---
+
 
 Quem trabalha por conta própria — autônomo, MEI, freelancer, prestador de
 serviço — costuma se preocupar mais com a entrevista do visto americano.

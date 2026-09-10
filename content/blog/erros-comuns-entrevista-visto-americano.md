@@ -3,7 +3,10 @@ title: "5 erros comuns na entrevista do visto americano"
 excerpt: "Pequenos deslizes que pesam mais do que parecem na entrevista consular — e como se preparar para evitá-los."
 tags: ["visto-americano", "entrevista"]
 publishedAt: "2026-08-14"
+updatedAt: "2026-09-10"
+respostaRapida: "Os erros que mais derrubam a entrevista são respostas que não batem com o DS-160, roteiro vago ou incompatível com a renda, falar além do que foi perguntado e demonstrar vínculo fraco com o Brasil. A recusa mais comum (214(b)) é sobre não convencer o cônsul de que você vai voltar."
 ---
+
 
 A entrevista consular costuma durar poucos minutos, o que faz cada resposta
 pesar mais. Alguns erros aparecem com frequência em relatos de quem já

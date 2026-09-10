@@ -17,7 +17,9 @@ faq:
     a: "Para o visto de turismo/negócios (B1/B2), o brasileiro não paga taxa de emissão (reciprocidade) — ela é zero. Essa taxa existe para outras categorias e outras nacionalidades."
   - q: "Existe alguma taxa nova além da MRV?"
     a: "Uma lei americana de 2025 criou uma taxa adicional chamada Visa Integrity Fee, de US$ 250, para várias categorias de visto de não-imigrante. A cobrança depende de regulamentação do governo dos EUA — verifique se já está em vigor e se aplica ao B1/B2 antes de fechar seu orçamento."
+respostaRapida: "A taxa de solicitação (MRV) do visto de turismo B1/B2 é de US$ 185, paga em reais e não reembolsável. Para o brasileiro não há taxa de reciprocidade no B1/B2. Uma lei de 2025 criou uma possível taxa extra (Visa Integrity Fee, US$ 250) — confirme se já está em vigor."
 ---
+
 
 A pergunta mais comum de quem vai tirar o visto americano é simples:
 **quanto isso vai custar?** A resposta oficial também é simples — existe

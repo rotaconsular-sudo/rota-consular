@@ -3,7 +3,10 @@ title: "Os 3 vínculos que mais pesam para o visto americano ser aprovado"
 excerpt: "Vínculo profissional, financeiro e familiar: entenda o que o oficial consular está avaliando quando pergunta sobre sua vida no Brasil."
 tags: ["visto-americano", "entrevista"]
 publishedAt: "2026-08-22"
+updatedAt: "2026-09-10"
+respostaRapida: "Os vínculos que mais pesam são o profissional (emprego ou negócio estável), o financeiro (renda e patrimônio compatíveis com a viagem) e o familiar (cônjuge, filhos, dependentes no Brasil). Juntos, mostram ao cônsul que você tem motivos concretos para voltar ao país."
 ---
+
 
 ## Por que "vínculo" é a palavra mais repetida sobre visto americano
 

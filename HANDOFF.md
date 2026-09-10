@@ -125,6 +125,21 @@ ligação** com `flow-vistoamericano`/`automacao_vistos`.
 - Verificado em `localhost:3001`: rotas 200, JSON-LD Article+Breadcrumb+FAQ,
   "atualizado em" no header do pilar, todos os links internos 200.
 
+### Mudanças de 10/09/2026 (5) — Tier 1 de SEO (análise vs. Viaggi Vistos)
+- **Autor institucional**: `BLOG_AUTHOR = "Rota Consular"` em `src/lib/blog.ts`.
+  Byline visível "Por Rota Consular" + `Article.author` = Organization no
+  JSON-LD. (Decisão do operador: autor é a empresa, não pessoa. Contrapeso de
+  E-E-A-T pendente: página "Sobre" forte linkada no rodapé dos artigos.)
+- **Caixa "Resposta rápida"** no topo de cada artigo: campo `respostaRapida`
+  no frontmatter (`BlogPostMeta`), renderizado em box com borda accent antes do
+  corpo. Adicionado aos **17 posts** (1–2 frases respondendo o título).
+- **Data dupla** no header: "Publicado em X · atualizado em Y" (Y só quando
+  difere). Os 5 posts originais que faltavam ganharam `updatedAt: 2026-09-10`.
+- Script gerador: `scratchpad/add_resposta.py` (fora do repo).
+- Verificado: 17 posts 200, box + byline + JSON-LD author OK, tsc + eslint limpos.
+- **Próximo (Tier 2)**: cluster de passaporte; "resposta rápida" ainda falta
+  padronizar "Erros comuns" + tabela nos pilares; stream de notícias.
+
 ---
 
 ## Onde paramos (sessão 05/09/2026)

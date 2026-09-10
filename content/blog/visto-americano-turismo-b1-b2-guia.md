@@ -17,7 +17,9 @@ faq:
     a: "Quem decide é o oficial da imigração (CBP) no momento da entrada, e o prazo fica registrado no seu I-94. O período mais comum é de até 6 meses por viagem. O visto ter validade de 10 anos não significa que você pode morar lá — cada entrada é uma visita temporária."
   - q: "Meu visto foi negado. Posso tentar de novo?"
     a: "Pode, a qualquer momento, mas pagando a taxa MRV de novo. A recusa mais comum é a 214(b), quando o cônsul não se convence dos seus vínculos com o Brasil. Reaplicar sem nada ter mudado geralmente leva ao mesmo resultado."
+respostaRapida: "Todo brasileiro precisa de visto para ir aos EUA a turismo — não existe ESTA para brasileiros. O B1/B2 é emitido junto (negócios + turismo), costuma valer 10 anos com múltiplas entradas, e o tempo de permanência por viagem é definido pela imigração na chegada, não pelo visto."
 ---
+
 
 O visto americano de turismo é o documento que a maioria dos brasileiros
 precisa para entrar nos Estados Unidos a passeio, para visitar parentes ou

@@ -17,7 +17,9 @@ faq:
     a: "Use os documentos da sua atividade: CNPJ/MEI, contratos de prestação de serviço, notas fiscais, DAS e extratos com recebimentos recorrentes. Veja o artigo sobre visto para autônomo, MEI e freelancer."
   - q: "A carta garante a aprovação do visto?"
     a: "Não. Ela apoia a sua resposta sobre trabalho e retorno ao Brasil, mas o cônsul avalia o conjunto: DS-160, entrevista, histórico e coerência. Carta boa com entrevista incoerente não resolve."
+respostaRapida: "A carta do empregador não é obrigatória, mas é a forma mais direta de comprovar vínculo de trabalho CLT. Ela precisa ter papel timbrado, data recente, seu cargo, tempo de casa, salário, o período de férias aprovado e um contato da empresa para verificação."
 ---
+
 
 Para quem tem carteira assinada, a **carta do empregador** é um dos jeitos
 mais objetivos de mostrar ao cônsul que você tem um emprego para voltar. Ela

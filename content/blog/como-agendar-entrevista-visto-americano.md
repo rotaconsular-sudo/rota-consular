@@ -17,7 +17,9 @@ faq:
     a: "O sistema permite remarcar um número limitado de vezes com a mesma taxa. Passando desse limite, ou deixando o recibo da MRV expirar (cerca de 1 ano), você precisa pagar a taxa de novo."
   - q: "Dá para conseguir uma data mais rápida?"
     a: "Se você tem uma viagem urgente e justificável (emergência médica, funeral, tratamento), dá para solicitar um agendamento de emergência dentro do próprio sistema, anexando comprovação. A aprovação não é garantida e depende da agenda do consulado."
+respostaRapida: "O agendamento tem uma ordem fixa: primeiro preencha o DS-160 e guarde o código de barras, depois crie o perfil no sistema oficial e pague a taxa MRV. Com o pagamento compensado, marque os dois compromissos — o CASV (digitais e foto) e a entrevista no consulado."
 ---
+
 
 O agendamento do visto americano trava muita gente porque a ordem dos
 passos não é óbvia. Você não marca a entrevista "direto" — precisa ter o

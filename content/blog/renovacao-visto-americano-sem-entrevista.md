@@ -17,7 +17,9 @@ faq:
     a: "Pode. A isenção não é garantia: o oficial consular pode pedir a entrevista presencial a qualquer momento, inclusive depois de você entregar o passaporte."
   - q: "Crianças e idosos precisam de entrevista para renovar?"
     a: "Menores abaixo de certa idade e pessoas acima de uma faixa etária costumam ser dispensados da entrevista, mesmo em primeira solicitação. As idades exatas mudam conforme a política vigente — confirme."
+respostaRapida: "A isenção de entrevista na renovação ainda existe, mas as regras ficaram mais restritas em 2025 — principalmente o prazo desde o visto anterior. É o sistema de agendamento que decide, pelas suas respostas de elegibilidade; a isenção não dispensa a taxa MRV nem o novo DS-160."
 ---
+
 
 Renovar o visto americano sem passar pela entrevista — o que muita gente
 chama de "dropbox" — **ainda é possível**, mas as regras mudaram várias

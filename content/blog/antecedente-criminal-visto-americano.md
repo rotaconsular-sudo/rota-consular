@@ -3,7 +3,10 @@ title: "Quem já foi preso ou tem antecedente criminal consegue visto americano?
 excerpt: "Ter passagem pela polícia não significa recusa automática — mas exige atenção redobrada ao preencher o DS-160 e pode envolver um processo mais longo."
 tags: ["visto-americano", "elegibilidade"]
 publishedAt: "2026-08-24"
+updatedAt: "2026-09-10"
+respostaRapida: "Sim, é possível. Não existe recusa automática por antecedente criminal — cada caso é analisado individualmente pelo oficial consular. O ponto central é responder o DS-160 com precisão: omitir a informação costuma ser mais grave do que o próprio antecedente e pode gerar inelegibilidade por fraude."
 ---
+
 
 ## Não existe recusa automática só por ter antecedente
 

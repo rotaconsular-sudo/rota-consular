@@ -17,8 +17,13 @@ export type BlogPostMeta = {
   publishedAt: string;
   /** Data da última revisão do conteúdo. Cai pra `publishedAt` se ausente. */
   updatedAt: string;
+  /** Resposta direta à dúvida do título, em 1–2 frases. Vai numa caixa no topo. */
+  respostaRapida?: string;
   readingMinutes: number;
 };
+
+/** Autor institucional de todos os artigos (decisão do operador em 10/09). */
+export const BLOG_AUTHOR = "Rota Consular";
 
 export type BlogPost = BlogPostMeta & {
   contentHtml: string;
@@ -42,6 +47,7 @@ function readPostFile(fileName: string): BlogPost {
     tags: data.tags ?? [],
     publishedAt: data.publishedAt,
     updatedAt: data.updatedAt ?? data.publishedAt,
+    respostaRapida: data.respostaRapida ?? undefined,
     readingMinutes: Math.max(1, Math.round(words / 200)),
     contentHtml: marked.parse(content, { async: false }),
     faq: Array.isArray(data.faq)

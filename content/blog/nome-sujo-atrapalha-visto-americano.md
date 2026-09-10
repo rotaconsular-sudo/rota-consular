@@ -3,7 +3,10 @@ title: "Nome sujo (SPC/Serasa) atrapalha tirar o visto americano?"
 excerpt: "Ter restrição de crédito no Brasil não é, por si só, motivo de recusa — mas pode pesar indiretamente na avaliação do vínculo financeiro."
 tags: ["visto-americano", "documentos"]
 publishedAt: "2026-08-23"
+updatedAt: "2026-09-10"
+respostaRapida: "Ter nome sujo (SPC/Serasa) não é, por si só, motivo de recusa do visto americano — o consulado não consulta cadastros de crédito brasileiros. Mas a situação pode pesar de forma indireta na avaliação do vínculo financeiro, se a renda e a movimentação bancária não sustentarem a viagem."
 ---
+
 
 ## A resposta curta
 

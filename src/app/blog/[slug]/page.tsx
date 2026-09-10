@@ -6,6 +6,7 @@ import {
   getPostBySlug,
   getRelatedPosts,
   formatPostDate,
+  BLOG_AUTHOR,
 } from "@/lib/blog";
 import { PostCard } from "@/components/blog/PostCard";
 import { SITE_URL } from "@/lib/url";
@@ -60,10 +61,10 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
       datePublished: post.publishedAt,
       dateModified: post.updatedAt,
       inLanguage: "pt-BR",
-      author: { "@type": "Organization", name: "Rota Consular", url: SITE_URL },
+      author: { "@type": "Organization", name: BLOG_AUTHOR, url: SITE_URL },
       publisher: {
         "@type": "Organization",
-        name: "Rota Consular",
+        name: BLOG_AUTHOR,
         logo: {
           "@type": "ImageObject",
           url: `${SITE_URL}/logo-rota-consular.png`,
@@ -137,17 +138,21 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
           </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-slate-500">
-            <time dateTime={post.publishedAt}>
-              {formatPostDate(post.publishedAt)}
-            </time>
+            <span className="font-medium text-slate-600">Por {BLOG_AUTHOR}</span>
             <span aria-hidden>·</span>
-            <span>{post.readingMinutes} min de leitura</span>
+            <time dateTime={post.publishedAt}>
+              Publicado em {formatPostDate(post.publishedAt)}
+            </time>
             {wasUpdated && (
               <>
                 <span aria-hidden>·</span>
-                <span>atualizado em {formatPostDate(post.updatedAt)}</span>
+                <time dateTime={post.updatedAt}>
+                  atualizado em {formatPostDate(post.updatedAt)}
+                </time>
               </>
             )}
+            <span aria-hidden>·</span>
+            <span>{post.readingMinutes} min de leitura</span>
             {post.tags.length > 0 && (
               <>
                 <span aria-hidden>·</span>
@@ -169,6 +174,13 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
       </header>
 
       <article className="mx-auto max-w-2xl px-6 py-12">
+        {post.respostaRapida && (
+          <div className="mb-10 rounded-2xl border border-slate-200 border-l-4 border-l-accent bg-white p-5 sm:p-6">
+            <p className="eyebrow text-accent">Resposta rápida</p>
+            <p className="mt-2 leading-relaxed text-ink">{post.respostaRapida}</p>
+          </div>
+        )}
+
         <div
           className="prose prose-slate max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-ink prose-h2:mt-10 prose-h2:mb-3 prose-h2:text-xl sm:prose-h2:text-2xl prose-h3:text-base prose-h3:mt-6 prose-p:leading-relaxed prose-p:text-slate-700 prose-a:font-medium prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-strong:font-semibold prose-strong:text-ink prose-li:text-slate-700 prose-li:marker:text-slate-400 prose-blockquote:border-l-2 prose-blockquote:border-accent prose-blockquote:not-italic prose-blockquote:text-slate-600 prose-table:text-sm"
           dangerouslySetInnerHTML={{ __html: post.contentHtml }}

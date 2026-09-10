@@ -17,7 +17,9 @@ faq:
     a: "Considerando a espera pela entrevista (que varia muito por cidade) mais o retorno do passaporte, o ideal é começar com vários meses de antecedência. Consulte a estimativa de espera atual do consulado antes de comprar passagem."
   - q: "Dá para acelerar se eu tenho viagem urgente?"
     a: "Se a urgência é justificável (emergência médica, funeral, tratamento), dá para pedir agendamento de emergência pelo sistema, com comprovação. A aprovação depende da agenda do consulado e não é garantida."
+respostaRapida: "O tempo total soma três etapas: a espera pela data da entrevista (de semanas a meses, varia por consulado), a decisão do cônsul e o retorno do passaporte (cerca de 7 a 15 dias úteis após a aprovação). O andamento é consultado no CEAC, com o código de barras do DS-160."
 ---
+
 
 "Quanto tempo demora o visto americano?" não tem uma resposta única, porque
 o processo tem **três etapas** com prazos bem diferentes. Entender cada uma

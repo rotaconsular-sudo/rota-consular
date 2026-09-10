@@ -17,7 +17,9 @@ faq:
     a: "Sim, a certidão de nascimento do menor é o documento central, porque liga a criança aos pais. Leve também o passaporte do menor e cópia do passaporte e do visto dos pais."
   - q: "E se a criança vai viajar só com um dos pais ou com outra pessoa?"
     a: "Isso é uma exigência brasileira de autorização de viagem para a saída do país, não do visto americano. Ainda assim, é bom já organizar a autorização (com firma reconhecida ou pela via aplicável) porque ela será exigida no embarque."
+respostaRapida: "Sim, toda criança precisa de visto americano próprio, inclusive recém-nascido — não existe visto no passaporte dos pais. Os pais preenchem o DS-160 com os dados do menor, que normalmente é dispensado da entrevista e do CASV conforme a idade (confirme a regra vigente)."
 ---
+
 
 Uma dúvida muito comum de quem vai viajar em família: **o bebê precisa de
 visto?** A resposta é sim — e vale para qualquer idade, inclusive

@@ -17,7 +17,9 @@ faq:
     a: "A 214(b) é uma recusa por falta de comprovação de vínculo. A 221(g) não é uma recusa final: é uma pendência — falta documento ou o caso foi para processamento administrativo. No 221(g) você normalmente entrega o que foi pedido e aguarda; dá para acompanhar pelo CEAC."
   - q: "Contratar despachante aumenta a chance depois de uma recusa?"
     a: "Ninguém consegue 'aprovar' um visto negado, e promessa de aprovação é sinal de golpe. O que muda o resultado é corrigir o que estava fraco: vínculos melhor demonstrados, roteiro coerente, situação de vida mais estável — e, em casos sensíveis, orientação técnica."
+respostaRapida: "A recusa mais comum é a 214(b): o cônsul não se convenceu dos seus vínculos com o Brasil. Não há recurso nem prazo de carência — você pode reaplicar a qualquer momento, pagando a taxa de novo, mas só faz sentido se algo no seu perfil realmente mudou."
 ---
+
 
 Receber "sinto muito, não posso aprovar seu visto hoje" na entrevista é
 frustrante — mas, na maioria dos casos, **não é o fim da linha**. O que

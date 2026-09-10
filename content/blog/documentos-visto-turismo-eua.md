@@ -17,7 +17,9 @@ faq:
     a: "O mais comum é levar os últimos 3 meses. O que pesa é a movimentação recorrente compatível com a sua renda declarada, não um saldo alto e pontual — depósito grande de última hora chama atenção negativa."
   - q: "Reserva de hotel e passagem são obrigatórias?"
     a: "Não é obrigatório ter tudo fechado. Um itinerário previsto já ajuda. Comprar passagem antes de ter o visto é justamente o que não se recomenda."
+respostaRapida: "Não existe lista oficial fechada de documentos para o visto de turismo. Leve sempre passaporte, folha do DS-160 e confirmação do agendamento; tenha organizados os comprovantes de vínculo e financeiros. O conjunto ideal muda conforme o perfil — CLT, autônomo, aposentado, estudante ou menor."
 ---
+
 
 O governo americano **não exige uma lista fixa** de documentos para o visto
 de turismo (B1/B2). A entrevista é conduzida pelo oficial consular, que

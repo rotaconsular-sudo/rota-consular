@@ -17,7 +17,9 @@ faq:
     a: "Sim, e ajuda. Uma atividade atual reforça o vínculo. Se for MEI ou autônomo, leve os documentos correspondentes, além dos do benefício."
   - q: "Tenho filhos morando nos EUA. Atrapalha meu visto de turista?"
     a: "Ter filhos nos EUA não impede o visto. O cônsul avalia o conjunto: se você tem casa, renda e outros laços no Brasil e histórico de cumprir prazos, a visita a familiares é um motivo comum e legítimo."
+respostaRapida: "Aposentado costuma ter perfil favorável: renda estável do benefício, patrimônio formado e família no Brasil. Sem carteira assinada, o vínculo se comprova pelo conjunto — extrato ou carta de concessão do benefício, Imposto de Renda, bens e laços familiares."
 ---
+
 
 Aposentados às vezes chegam à entrevista do visto americano preocupados
 porque "não têm emprego para comprovar". Na prática, o perfil costuma ser
